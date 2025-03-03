@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Zagros Trading",
+      "subtitle": "Your trusted partner in agricultural solutions",
+      "cta": {
+        "products": "Our Products",
+        "contact": "Contact Us"
+      }
+    },
+    "services": {
+      "title": "Our Services",
+      "items": [
+        "Importation of agricultural inputs",
+        "Distribution of fertilizers and seeds",
+        "Production of field crops and forage crops seeds"
+      ]
+    },
+    "partners": {
+      "title": "International Partners",
+      "fertilizers": "Fertilizers",
+      "pesticides": "Pesticides"
+    },
+    "customers": {
+      "title": "Our Trusted Customers"
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "pesticides": {
+      "title": "Pesticides",
+      "type": "Type",
+      "usage": "Usage"
+    },
+    "fertilizers": {
+      "title": "Fertilizers",
+      "composition": "Composition",
+      "usage": "Usage"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "history": {
+      "title": "Our History",
+      "established": "Established in",
+      "specialization": "specializing in"
+    },
+    "network": {
+      "title": "Distribution Network"
+    },
+    "management": {
+      "title": "Management"
+    },
+    "partners": {
+      "title": "International Partners",
+      "seeds": "Seeds",
+      "vegetableSeeds": "Vegetable Seeds",
+      "forageCrops": "Forage Crops Seeds",
+      "agriculturalInputs": "Agricultural Inputs"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "address": "Address",
+    "email": "Email",
+    "phone": "Phone Numbers",
+    "branches": "Our Branches",
+    "form": {
+      "title": "Send us a Message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "contact": "Contact Us",
+    "branches": "Our Branches",
+    "quickLinks": "Quick Links",
+    "rights": "All rights reserved"
+  }
+}

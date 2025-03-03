@@ -1,0 +1,71 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+
+interface Props {
+  id: string;
+  name: string;
+  name_ar: string;
+  type?: string;
+  type_ar?: string;
+  composition?: string;
+  composition_ar?: string;
+  category: string;
+  category_ar: string;
+  description: string;
+  description_ar: string;
+  usage: string;
+  usage_ar: string;
+  image: string;
+}
+
+const props = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const isArabic = lang === 'ar';
+
+const product = {
+  name: isArabic ? props.name_ar : props.name,
+  type: props.type ? (isArabic ? props.type_ar : props.type) : null,
+  composition: props.composition ? (isArabic ? props.composition_ar : props.composition) : null,
+  category: isArabic ? props.category_ar : props.category,
+  description: isArabic ? props.description_ar : props.description,
+  usage: isArabic ? props.usage_ar : props.usage,
+  image: props.image
+};
+---
+
+<div class={`bg-white rounded-lg shadow-lg overflow-hidden ${isArabic ? 'text-right' : ''}`}>
+  <img 
+    src={product.image} 
+    alt={product.name}
+    class="w-full h-48 object-cover"
+  />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-3">{product.name}</h3>
+    
+    {product.type && (
+      <div class="mb-2">
+        <span class="text-green-700 font-medium">{isArabic ? 'النوع: ' : 'Type: '}</span>
+        <span>{product.type}</span>
+      </div>
+    )}
+    
+    {product.composition && (
+      <div class="mb-2">
+        <span class="text-green-700 font-medium">{isArabic ? 'التركيب: ' : 'Composition: '}</span>
+        <span>{product.composition}</span>
+      </div>
+    )}
+    
+    <div class="mb-2">
+      <span class="text-green-700 font-medium">{isArabic ? 'الفئة: ' : 'Category: '}</span>
+      <span>{product.category}</span>
+    </div>
+    
+    <p class="text-gray-600 mb-4">{product.description}</p>
+    
+    <div>
+      <span class="text-green-700 font-medium">{isArabic ? 'الاستخدام: ' : 'Usage: '}</span>
+      <p class="text-gray-600">{product.usage}</p>
+    </div>
+  </div>
+</div>

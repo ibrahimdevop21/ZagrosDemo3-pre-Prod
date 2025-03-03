@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { companyData } from '../data/company';
+---
+
+<Layout title="About Us">
+	<div class="container mx-auto px-4 py-16">
+		<h1 class="text-4xl font-bold text-center mb-16">About {companyData.company.name}</h1>
+
+		<div class="max-w-3xl mx-auto">
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold mb-4">Our History</h2>
+				<p class="text-gray-700 mb-4">
+					Established in {companyData.company.established}, {companyData.company.name} has been a leading force in the agricultural sector.
+					We operate as {companyData.company.subsidiary}, specializing in {companyData.company.specialization}.
+				</p>
+				<p class="text-gray-700">
+					We are proud members of the {companyData.company.membership}, which reflects our commitment to industry standards and excellence.
+				</p>
+			</div>
+
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold mb-4">Distribution Network</h2>
+				<p class="text-gray-700">{companyData.company.distribution_network}</p>
+			</div>
+
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold mb-4">Management</h2>
+				<p class="text-gray-700">
+					Our company is {companyData.company.management.description}, with a dedicated team of {companyData.company.management.staff} professionals.
+				</p>
+			</div>
+
+			<div class="mb-12">
+				<h2 class="text-2xl font-bold mb-4">International Partners</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div>
+						<h3 class="text-xl font-semibold mb-3">Seeds</h3>
+						<ul class="space-y-2 text-gray-700">
+							<li><strong>Vegetable Seeds:</strong> {companyData.company.international_linkages.vegetable_seeds}</li>
+							<li><strong>Forage Crops Seeds:</strong> {companyData.company.international_linkages.forage_crops_seeds}</li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-xl font-semibold mb-3">Agricultural Inputs</h3>
+						<ul class="space-y-2 text-gray-700">
+							<li><strong>Fertilizers:</strong></li>
+							{companyData.company.international_linkages.fertilizers.map(partner => (
+								<li class="ml-4">- {partner}</li>
+							))}
+							<li class="mt-2"><strong>Pesticides:</strong></li>
+							{companyData.company.international_linkages.pesticides.map(partner => (
+								<li class="ml-4">- {partner}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

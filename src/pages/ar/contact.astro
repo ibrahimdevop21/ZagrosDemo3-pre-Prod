@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { companyData } from '../../data/company';
+---
+
+<Layout title="Contact Us">
+	<div class="container mx-auto px-4 py-16">
+		<h1 class="text-4xl font-bold text-center mb-16">Contact Us</h1>
+
+		<div class="max-w-4xl mx-auto">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+				<div>
+					<h2 class="text-2xl font-bold mb-6">Get in Touch</h2>
+					<div class="space-y-4">
+						<div>
+							<h3 class="font-semibold mb-2">Address:</h3>
+							<p class="text-gray-700">{companyData.company.contact.address}</p>
+						</div>
+						<div>
+							<h3 class="font-semibold mb-2">Email:</h3>
+							<p class="text-gray-700">{companyData.company.contact.email}</p>
+						</div>
+						<div>
+							<h3 class="font-semibold mb-2">Phone Numbers:</h3>
+							<ul class="space-y-1 text-gray-700">
+								{companyData.company.contact.telephones.map(phone => (
+									<li>{phone}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+
+					<div class="mt-8">
+						<h2 class="text-2xl font-bold mb-6">Our Branches</h2>
+						<ul class="grid grid-cols-2 gap-4">
+							{companyData.company.contact.branches.map(branch => (
+								<li class="bg-gray-50 p-3 rounded">{branch}</li>
+							))}
+						</ul>
+					</div>
+				</div>
+
+				<div>
+					<h2 class="text-2xl font-bold mb-6">Send us a Message</h2>
+					<form class="space-y-4">
+						<div>
+							<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+								required
+							/>
+						</div>
+						<div>
+							<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+								required
+							/>
+						</div>
+						<div>
+							<label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+							<input
+								type="text"
+								id="subject"
+								name="subject"
+								class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+								required
+							/>
+						</div>
+						<div>
+							<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+							<textarea
+								id="message"
+								name="message"
+								rows="4"
+								class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+								required
+							></textarea>
+						</div>
+						<button
+							type="submit"
+							class="w-full bg-green-700 text-white py-2 px-4 rounded-md hover:bg-green-800 transition duration-200"
+						>
+							Send Message
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

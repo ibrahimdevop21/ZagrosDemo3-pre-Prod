@@ -1,11 +1,103 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { companyData } from '../data/company';
+import { getLangFromUrl } from '../i18n/utils';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const lang = getLangFromUrl(Astro.url);
+const isArabic = lang === 'ar';
 ---
 
 <Layout>
-	<Welcome />
+	<div class="bg-green-700 text-white py-12 md:py-20">
+		<div class="container mx-auto px-4 text-center">
+			<h1 class="text-3xl md:text-5xl font-bold mb-4">{isArabic ? companyData.company.name_ar : companyData.company.name}</h1>
+			<p class="text-lg md:text-xl mb-8">{isArabic ? companyData.company.specialization_ar : companyData.company.specialization}</p>
+			<div class="flex flex-col sm:flex-row justify-center gap-4">
+				<a 
+					href={`/${lang}/products`.replace('/en/', '/')} 
+					class="bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-100 transition-colors w-full sm:w-auto text-center"
+				>
+					{isArabic ? 'منتجاتنا' : 'Our Products'}
+				</a>
+				<a 
+					href={`/${lang}/contact`.replace('/en/', '/')} 
+					class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors w-full sm:w-auto text-center"
+				>
+					{isArabic ? 'اتصل بنا' : 'Contact Us'}
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<section class="py-12 md:py-16 bg-gray-50">
+		<div class="container mx-auto px-4">
+			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'خدماتنا' : 'Our Services'}</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+				{(isArabic ? companyData.company.services_ar : companyData.company.services).map(service => (
+					<div class="bg-white p-6 rounded-lg shadow-lg">
+						<p class="text-lg">{service}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="py-12 md:py-16">
+		<div class="container mx-auto px-4">
+			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'الشركاء الدوليون' : 'International Partners'}</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+				<div class="bg-white p-6 rounded-lg shadow">
+					<h3 class="text-xl font-bold mb-6 text-center md:text-right">{isArabic ? 'الأسمدة' : 'Fertilizers'}</h3>
+					<div class="space-y-6">
+						{companyData.company.international_linkages.fertilizers.map(partner => (
+							<div class={`flex items-center gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
+								<img 
+									src={`/partners/${partner.logo}`} 
+									alt={isArabic ? partner.name_ar : partner.name}
+									class="w-20 h-14 md:w-24 md:h-16 object-contain"
+									loading="lazy"
+								/>
+								<p class="text-base md:text-lg">{isArabic ? partner.name_ar : partner.name}</p>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow">
+					<h3 class="text-xl font-bold mb-6 text-center md:text-right">{isArabic ? 'المبيدات' : 'Pesticides'}</h3>
+					<div class="space-y-6">
+						{companyData.company.international_linkages.pesticides.map(partner => (
+							<div class={`flex items-center gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
+								<img 
+									src={`/partners/${partner.logo}`} 
+									alt={isArabic ? partner.name_ar : partner.name}
+									class="w-20 h-14 md:w-24 md:h-16 object-contain"
+									loading="lazy"
+								/>
+								<p class="text-base md:text-lg">{isArabic ? partner.name_ar : partner.name}</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-12 md:py-16 bg-gray-50">
+		<div class="container mx-auto px-4">
+			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'عملاؤنا الموثوق بهم' : 'Our Trusted Customers'}</h2>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+				{companyData.customers.map(customer => (
+					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center transition-transform hover:scale-105">
+						<img 
+							src={`/trusted-customer-logos/${customer.logo}`} 
+							alt={customer.name}
+							class="w-full h-20 md:h-24 object-contain mb-4"
+							loading="lazy"
+						/>
+						<p class="font-medium text-center">{customer.name}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
 </Layout>

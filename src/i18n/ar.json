@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "من نحن",
+    "contact": "اتصل بنا"
+  },
+  "home": {
+    "hero": {
+      "title": "زاغروس للتجارة",
+      "subtitle": "شريكك الموثوق في الحلول الزراعية",
+      "cta": {
+        "products": "منتجاتنا",
+        "contact": "اتصل بنا"
+      }
+    },
+    "services": {
+      "title": "خدماتنا",
+      "items": [
+        "استيراد المدخلات الزراعية",
+        "توزيع الأسمدة والبذور",
+        "إنتاج بذور المحاصيل الحقلية والعلفية"
+      ]
+    },
+    "partners": {
+      "title": "الشركاء الدوليون",
+      "fertilizers": "الأسمدة",
+      "pesticides": "المبيدات"
+    },
+    "customers": {
+      "title": "عملاؤنا الموثوقون"
+    }
+  },
+  "products": {
+    "title": "منتجاتنا",
+    "pesticides": {
+      "title": "المبيدات",
+      "type": "النوع",
+      "usage": "الاستخدام"
+    },
+    "fertilizers": {
+      "title": "الأسمدة",
+      "composition": "التركيب",
+      "usage": "الاستخدام"
+    }
+  },
+  "about": {
+    "title": "من نحن",
+    "history": {
+      "title": "تاريخنا",
+      "established": "تأسست في عام",
+      "specialization": "متخصصون في"
+    },
+    "network": {
+      "title": "شبكة التوزيع"
+    },
+    "management": {
+      "title": "الإدارة"
+    },
+    "partners": {
+      "title": "الشركاء الدوليون",
+      "seeds": "البذور",
+      "vegetableSeeds": "بذور الخضروات",
+      "forageCrops": "بذور المحاصيل العلفية",
+      "agriculturalInputs": "المدخلات الزراعية"
+    }
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "getInTouch": "تواصل معنا",
+    "address": "العنوان",
+    "email": "البريد الإلكتروني",
+    "phone": "أرقام الهاتف",
+    "branches": "فروعنا",
+    "form": {
+      "title": "أرسل لنا رسالة",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "subject": "الموضوع",
+      "message": "الرسالة",
+      "send": "إرسال الرسالة"
+    }
+  },
+  "footer": {
+    "contact": "اتصل بنا",
+    "branches": "فروعنا",
+    "quickLinks": "روابط سريعة",
+    "rights": "جميع الحقوق محفوظة"
+  }
+}

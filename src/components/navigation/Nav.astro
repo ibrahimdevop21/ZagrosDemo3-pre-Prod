@@ -1,0 +1,146 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLocalizedPath } from '../../utils/navigation';
+import { companyData } from '../../data/company';
+import LanguagePicker from '../LanguagePicker.astro';
+import Logo from './Logo.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentPath = new URL(Astro.request.url).pathname;
+const isArabic = lang === 'ar';
+
+// Navigation items
+const navItems = [
+  { path: '', label: 'nav.home' },
+  { path: 'products', label: 'nav.products' },
+  { path: 'about', label: 'nav.about' },
+  { path: 'contact', label: 'nav.contact' }
+];
+---
+
+<header class="fixed w-full top-0 z-50 bg-green-800/95 backdrop-blur-sm text-white shadow-lg">
+  <nav class="container mx-auto px-4 py-4" aria-label="Main navigation">
+    <div class={`flex items-center justify-between md:hidden ${isArabic ? 'flex-row-reverse' : ''}`}>
+      <div class="flex-shrink-0 flex items-center">
+        <a href={getLocalizedPath(lang)} class="block">
+          <Logo class="h-10 w-auto" />
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="text-white hover:text-green-200 transition-colors p-2 hover:bg-white/10 rounded-lg"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="menu-toggle"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class={`hidden md:flex md:flex-row justify-between items-center ${isArabic ? 'flex-row-reverse' : ''}`}>
+      <div class="flex-shrink-0 flex items-center">
+        <a href={getLocalizedPath(lang)} class="block">
+          <Logo class="h-12 w-auto" />
+        </a>
+      </div>
+
+      <ul class={`flex flex-col md:flex-row items-center gap-4 md:gap-2 ${isArabic ? 'md:space-x-reverse md:space-x-8' : 'md:space-x-8'}`}>
+        {navItems.map(({ path, label }) => {
+          const localizedPath = getLocalizedPath(lang, path);
+          const isActive = currentPath === localizedPath;
+          return (
+            <li>
+              <a 
+                href={localizedPath}
+                class={`block px-3 py-2 rounded-lg transition-colors hover:bg-white/10 ${isActive ? 'text-green-200 bg-white/10' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {t(label)}
+              </a>
+            </li>
+          );
+        })}
+        <li class="md:ml-4">
+          <LanguagePicker />
+        </li>
+      </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <ul class={`flex flex-col gap-2 pt-4 border-t border-green-700/50 mt-4 ${isArabic ? 'items-start' : 'items-end'}`}>
+        {navItems.map(({ path, label }) => {
+          const localizedPath = getLocalizedPath(lang, path);
+          const isActive = currentPath === localizedPath;
+          return (
+            <li class="w-full">
+              <a 
+                href={localizedPath}
+                class={`block px-4 py-2 rounded-lg transition-colors hover:bg-white/10 ${isActive ? 'text-green-200 bg-white/10' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {t(label)}
+              </a>
+            </li>
+          );
+        })}
+        <li class="w-full">
+          <div class={`px-4 py-2 ${isArabic ? 'text-left' : 'text-right'}`}>
+            <LanguagePicker />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer to prevent content from going under fixed header -->
+<div class="h-[72px] md:h-[80px]"></div>
+
+<script>
+  // Mobile menu toggle with smooth animation
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', (!expanded).toString());
+      if (expanded) {
+        mobileMenu.style.maxHeight = '0px';
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+        }, 300);
+      } else {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Smooth transitions */
+  #mobile-menu {
+    transition: max-height 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  /* Glass effect for fixed header */
+  header {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Logo hover effect */
+  a:hover :global(img) {
+    opacity: 0.9;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+  }
+</style>

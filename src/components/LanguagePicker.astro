@@ -1,0 +1,52 @@
+---
+import { languages, getLangFromUrl } from '../i18n/utils';
+
+// Get the current language from the URL
+const currentLang = getLangFromUrl(Astro.url);
+
+// Function to get the corresponding URL for a language
+function getUrlForLang(lang: string) {
+  const pathname = Astro.url.pathname;
+  // Handle root path specially
+  if (pathname === '/' || pathname === '/ar') {
+    return lang === 'en' ? '/' : '/ar';
+  }
+  // Handle other paths
+  if (lang === 'en') {
+    return pathname.replace(`/${currentLang}`, '');
+  }
+  return pathname.startsWith('/') ? `/${lang}${pathname.replace(`/${currentLang}`, '')}` : `/${lang}/${pathname}`;
+}
+
+// Language display data
+const languageData = {
+  en: {
+    name: 'EN',
+    flag: '🇬🇧',
+  },
+  ar: {
+    name: 'ع',
+    flag: '🇸🇩',
+  }
+};
+
+// Get the other language
+const otherLang = currentLang === 'en' ? 'ar' : 'en';
+---
+
+<a
+  href={getUrlForLang(otherLang)}
+  class="inline-flex items-center justify-center gap-1 px-2 py-1 text-sm font-medium hover:text-green-200 transition-colors"
+  aria-label={`Switch to ${languages[otherLang]}`}
+>
+  <span class="text-base" aria-hidden="true">{languageData[otherLang].flag}</span>
+  <span class="font-semibold">{languageData[otherLang].name}</span>
+</a>
+
+<style>
+  /* Add a subtle hover effect */
+  a:hover span {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+</style>
