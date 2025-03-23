@@ -24,6 +24,7 @@
     },
     "partners": {
       "title": "الشركاء الدوليون",
+      "seeds": "البذور والمحاصيل العلفية",
       "fertilizers": "الأسمدة",
       "pesticides": "المبيدات"
     },
@@ -33,16 +34,13 @@
   },
   "products": {
     "title": "منتجاتنا",
-    "pesticides": {
-      "title": "المبيدات",
-      "type": "النوع",
-      "usage": "الاستخدام"
-    },
-    "fertilizers": {
-      "title": "الأسمدة",
-      "composition": "التركيب",
-      "usage": "الاستخدام"
-    }
+    "heading": "منتجاتنا",
+    "subheading": "مجموعة متكاملة من المنتجات الزراعية عالية الجودة",
+    "pesticides": "المبيدات",
+    "fertilizers": "الأسمدة",
+    "type": "النوع",
+    "composition": "التركيب",
+    "usage": "الاستخدام"
   },
   "about": {
     "title": "من نحن",

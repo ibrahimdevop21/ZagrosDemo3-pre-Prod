@@ -1,0 +1,70 @@
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+@media (min-width: 640px) {
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Hide default navigation arrows */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+/* Custom gradient for RTL/LTR */
+[dir="rtl"] .bg-gradient-to-r {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), transparent);
+}
+
+[dir="ltr"] .bg-gradient-to-r {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+}
+
+/* Improve image loading */
+.swiper-slide img {
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+
+/* Responsive container padding */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Smooth transitions for text */
+.swiper-slide h2,
+.swiper-slide p {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.swiper-slide-active h2,
+.swiper-slide-active p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.swiper-slide-active h2 {
+  transition-delay: 0.3s;
+}
+
+.swiper-slide-active p {
+  transition-delay: 0.5s;
+}
