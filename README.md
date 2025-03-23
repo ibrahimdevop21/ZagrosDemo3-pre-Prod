@@ -1,48 +1,107 @@
-# Astro Starter Kit: Basics
+# 🌱 Zagros Agriculture Website
 
+Welcome to the **Zagros Agriculture** website repository! This project is built using **Astro.js, React, and TailwindCSS** to provide a modern and performant web experience for an agriculture company in Sudan. 🌾🚜
+
+## 🚀 Features
+- **Dynamic Hero Section** with a **Swiper.js** carousel showcasing the company's key sectors
+- **Multi-language Support** (English & Arabic) with Astro's built-in i18n
+- **Fast & SEO-friendly** using Astro.js
+- **Beautiful UI** with TailwindCSS
+- **Reusable React Components** for modular development
+
+## 🛠️ Tech Stack
+- **Astro.js** – Blazing-fast frontend framework
+- **React.js** – Component-based UI
+- **TailwindCSS** – Utility-first CSS for styling
+- **Swiper.js** – Carousel for showcasing content
+
+## 🌍 Internationalization (i18n)
+This project supports **multi-language functionality** with **English (default) and Arabic**.
+
+### 📌 How It Works:
+- The **default language** is **English**.
+- **Localized routes** are generated for Arabic content.
+- Uses **Astro's i18n configuration** to manage translations.
+
+### 🏗️ Adding a New Language:
+1. Update `astro.config.mjs`:
+   ```js
+   export default defineConfig({
+     i18n: {
+       defaultLocale: 'en',
+       locales: ['en', 'ar', 'NEW_LANGUAGE'],
+       routing: {
+         prefixDefaultLocale: false,
+       },
+     },
+   });
+   ```
+2. Add translation files in the appropriate `locales/` directory.
+3. Update content components to support multi-language rendering.
+
+---
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone the Repository
 ```sh
-npm create astro@latest -- --template basics
+git clone https://github.com/yourusername/zagros2.git
+cd zagros2
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+### 2️⃣ Install Dependencies
+```sh
+npm install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### 3️⃣ Start the Development Server
+```sh
+npm run dev
+```
 
-## 🧞 Commands
+The website will be available at **`http://localhost:4321`** (or the port Astro assigns).
 
-All commands are run from the root of the project, from a terminal:
+## 📌 Branching & Contribution Guidelines
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### 🌿 Creating a Feature Branch
+1. Pull the latest changes from `main`:
+   ```sh
+   git checkout main
+   git pull origin main
+   ```
+2. Create a new branch following this naming convention:
+   ```sh
+   git checkout -b feature/your-feature-name
+   ```
 
-## 👀 Want to learn more?
+### ✅ Committing & Pushing Changes
+1. Stage changes:
+   ```sh
+   git add .
+   ```
+2. Commit with a meaningful message:
+   ```sh
+   git commit -m "feat: add responsive Swiper.js carousel to hero section"
+   ```
+3. Push the feature branch:
+   ```sh
+   git push origin feature/your-feature-name
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### 🔄 Open a Pull Request (PR)
+- Once your feature is complete, open a **PR to `main`**.
+- Include a clear description of your changes.
+- Request a review before merging.
+
+## 📜 License
+This project is open-source and available for modification. Feel free to contribute! 🚀
+
+## 🤝 Contributing
+If you'd like to contribute, fork the repo, create a feature branch, and submit a PR!
+
+## 🌍 Connect
+Have suggestions or feedback? Reach out via GitHub Issues or start a discussion!
+
+---
+🎉 Happy Coding! 🚀
+
