@@ -1,41 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { companyData } from '../data/company';
-import { getLangFromUrl } from '../i18n/utils';
+import { companyData } from '../data/company.js';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Carousel from '../components/products/Carousel';
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const isArabic = lang === 'ar';
+const dir = isArabic ? 'rtl' : 'ltr';
 ---
 
 <Layout>
-	<div class="bg-green-700 text-white py-12 md:py-20">
-		<div class="container mx-auto px-4 text-center">
-			<h1 class="text-3xl md:text-5xl font-bold mb-4">{isArabic ? companyData.company.name_ar : companyData.company.name}</h1>
-			<p class="text-lg md:text-xl mb-8">{isArabic ? companyData.company.specialization_ar : companyData.company.specialization}</p>
-			<div class="flex flex-col sm:flex-row justify-center gap-4">
-				<a 
-					href={`/${lang}/products`.replace('/en/', '/')} 
-					class="bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-100 transition-colors w-full sm:w-auto text-center"
-				>
-					{isArabic ? 'منتجاتنا' : 'Our Products'}
-				</a>
-				<a 
-					href={`/${lang}/contact`.replace('/en/', '/')} 
-					class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors w-full sm:w-auto text-center"
-				>
-					{isArabic ? 'اتصل بنا' : 'Contact Us'}
-				</a>
-			</div>
-		</div>
+	<div dir={dir}>
+		<Carousel client:only="react" isArabic={isArabic} />
 	</div>
 
-	<section class="py-12 md:py-16 bg-gray-50">
+	<!-- Services Section with Icons -->
+	<section class="py-20 bg-gradient-to-b from-white to-green-50">
 		<div class="container mx-auto px-4">
-			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'خدماتنا' : 'Our Services'}</h2>
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-				{(isArabic ? companyData.company.services_ar : companyData.company.services).map(service => (
-					<div class="bg-white p-6 rounded-lg shadow-lg">
-						<p class="text-lg">{service}</p>
+			<div class="max-w-3xl mx-auto mb-16 text-center">
+				<h2 class="text-3xl md:text-4xl font-bold text-green-900 mb-4">{t('home.services.title')}</h2>
+				<div class="h-1 w-20 bg-green-500 mx-auto rounded-full mb-6"></div>
+			</div>
+
+			<div class="flex flex-col lg:flex-row gap-6">
+				{t('home.services.items').map((service, index) => (
+					<div class="group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex-1">
+						<div class="bg-green-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-500 transition-colors duration-300">
+							{index === 0 && (
+								<svg class="w-8 h-8 text-green-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+								</svg>
+							)}
+							{index === 1 && (
+								<svg class="w-8 h-8 text-green-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+								</svg>
+							)}
+							{index === 2 && (
+								<svg class="w-8 h-8 text-green-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+								</svg>
+							)}
+						</div>
+						<h3 class="text-xl font-semibold text-gray-900 mb-4">{service}</h3>
 					</div>
 				))}
 			</div>
@@ -44,60 +52,62 @@ const isArabic = lang === 'ar';
 
 	<section class="py-12 md:py-16">
 		<div class="container mx-auto px-4">
-			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'الشركاء الدوليون' : 'International Partners'}</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-				<div class="bg-white p-6 rounded-lg shadow">
-					<h3 class="text-xl font-bold mb-6 text-center md:text-right">{isArabic ? 'الأسمدة' : 'Fertilizers'}</h3>
-					<div class="space-y-6">
-						{companyData.company.international_linkages.fertilizers.map(partner => (
-							<div class={`flex items-center gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
-								<img 
-									src={`/partners/${partner.logo}`} 
-									alt={isArabic ? partner.name_ar : partner.name}
-									class="w-20 h-14 md:w-24 md:h-16 object-contain"
-									loading="lazy"
-								/>
-								<p class="text-base md:text-lg">{isArabic ? partner.name_ar : partner.name}</p>
-							</div>
-						))}
+			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{t('home.partners.title')}</h2>
+			<div class="flex flex-col lg:flex-row gap-6">
+				{[
+					{
+						key: 'seeds',
+						partners: [...companyData.company.international_linkages.seeds, ...companyData.company.international_linkages.forage_crops_seeds]
+					},
+					{
+						key: 'fertilizers',
+						partners: companyData.company.international_linkages.fertilizers
+					},
+					{
+						key: 'pesticides',
+						partners: companyData.company.international_linkages.pesticides
+					}
+				].map(category => (
+					<div class="bg-white p-6 rounded-lg shadow flex-1">
+						<h3 class="text-xl font-bold mb-6 text-center">{t(`home.partners.${category.key}`)}</h3>
+						<div class={`space-y-4 ${isArabic ? 'text-right' : 'text-left'}`}>
+							{category.partners.map(partner => (
+								<div class={`flex items-center gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
+									<img 
+										src={`/partners/${partner.logo}`}
+										alt={isArabic ? partner.name_ar : partner.name}
+										class="w-20 h-14 object-contain"
+										loading="lazy"
+									/>
+									<div class={`flex-1 ${isArabic ? 'text-right' : 'text-left'}`}>
+										<p class="text-base">{isArabic ? partner.name_ar : partner.name}</p>
+									</div>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
-				<div class="bg-white p-6 rounded-lg shadow">
-					<h3 class="text-xl font-bold mb-6 text-center md:text-right">{isArabic ? 'المبيدات' : 'Pesticides'}</h3>
-					<div class="space-y-6">
-						{companyData.company.international_linkages.pesticides.map(partner => (
-							<div class={`flex items-center gap-4 ${isArabic ? 'flex-row-reverse' : ''}`}>
-								<img 
-									src={`/partners/${partner.logo}`} 
-									alt={isArabic ? partner.name_ar : partner.name}
-									class="w-20 h-14 md:w-24 md:h-16 object-contain"
-									loading="lazy"
-								/>
-								<p class="text-base md:text-lg">{isArabic ? partner.name_ar : partner.name}</p>
-							</div>
-						))}
-					</div>
-				</div>
+				))}
 			</div>
 		</div>
 	</section>
 
 	<section class="py-12 md:py-16 bg-gray-50">
 		<div class="container mx-auto px-4">
-			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{isArabic ? 'عملاؤنا الموثوق بهم' : 'Our Trusted Customers'}</h2>
+			<h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">{t('home.customers.title')}</h2>
 			<div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
 				{companyData.customers.map(customer => (
 					<div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center transition-transform hover:scale-105">
 						<img 
 							src={`/trusted-customer-logos/${customer.logo}`} 
-							alt={customer.name}
+							alt={isArabic ? customer.name_ar : customer.name}
 							class="w-full h-20 md:h-24 object-contain mb-4"
 							loading="lazy"
 						/>
-						<p class="font-medium text-center">{customer.name}</p>
+						<p class="font-medium text-center">{isArabic ? customer.name_ar : customer.name}</p>
 					</div>
 				))}
 			</div>
 		</div>
 	</section>
+	</div>
 </Layout>

@@ -1,6 +1,6 @@
 ---
 import ProductCard from './ProductCard.astro';
-import { companyData } from '../../data/company';
+import productsData from '../../data/products.json';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { category } = Astro.props;
-const products = companyData.products[category];
+const products = productsData[category];
 ---
 
 <section class="py-12">

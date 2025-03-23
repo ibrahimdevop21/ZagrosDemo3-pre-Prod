@@ -1,4 +1,78 @@
-export const companyData = {
+export interface CompanyData {
+    company: {
+        name: string;
+        name_ar: string;
+        specialization: string;
+        specialization_ar: string;
+        description: string;
+        description_ar: string;
+        established: string;
+        subsidiary: string;
+        membership: string;
+        distribution_network: string;
+        management: {
+            description: string;
+            staff: number;
+        };
+        services: string[];
+        services_ar: string[];
+        contact: {
+            address: string;
+            phone: string;
+            email: string;
+            hours: string;
+            telephones: string[];
+            branches: string[];
+        };
+        international_linkages: {
+            vegetable_seeds: Array<{
+                name: string;
+                name_ar: string;
+                description: string;
+                description_ar: string;
+                logo: string;
+                country: string;
+            }>;
+            forage_crops_seeds: Array<{
+                name: string;
+                name_ar: string;
+                description: string;
+                description_ar: string;
+                logo: string;
+                country: string;
+            }>;
+            seeds: Array<{
+                name: string;
+                name_ar: string;
+                description: string;
+                description_ar: string;
+                logo: string;
+                country: string;
+            }>;
+            fertilizers: Array<{
+                name: string;
+                name_ar: string;
+                description: string;
+                description_ar: string;
+                logo: string;
+            }>;
+            pesticides: Array<{
+                name: string;
+                name_ar: string;
+                description: string;
+                description_ar: string;
+                logo: string;
+            }>;
+        };
+    };
+    customers: Array<{
+        name: string;
+        name_ar: string;
+        logo: string;
+    }>;
+}
+
+export const companyData: CompanyData = {
     company: {
         name: "Zagros Trading",
         name_ar: "تجارة زاغروس",
@@ -16,21 +90,75 @@ export const companyData = {
             "أسمدة متميزة",
             "حلول مكافحة الآفات"
         ],
+        established: "2010",
+        subsidiary: "a subsidiary of Zagros Group",
+        membership: "International Agricultural Trade Association",
+        distribution_network: "Our extensive distribution network covers major agricultural regions across Sudan, with strategic partnerships enabling efficient delivery of our products to farmers nationwide.",
+        management: {
+            description: "led by experienced agricultural professionals",
+            staff: 50
+        },
+        contact: {
+            address: "123 Agricultural District, Khartoum, Sudan",
+            phone: "+249 183 123456",
+            email: "info@zagros-trading.com",
+            hours: "Sunday - Thursday: 8:00 AM - 5:00 PM",
+            telephones: ["+249 183 123456", "+249 183 789012"],
+            branches: ["Khartoum Main Office", "Port Sudan Branch", "El Obeid Branch"]
+        },
         international_linkages: {
+            vegetable_seeds: [
+                {
+                    name: "East West Seeds International",
+                    name_ar: "إيست ويست سيدز انترناشونال",
+                    description: "Vegetables seeds from Thailand",
+                    description_ar: "بذور الخضروات من تايلاند",
+                    logo: "east-west-seeds.webp",
+                    country: "Thailand"
+                }
+            ],
+            forage_crops_seeds: [
+                {
+                    name: "Barenbrug Australia (Heritage Seeds)",
+                    name_ar: "بارينبرج أستراليا (هيريتاج سيدز)",
+                    description: "Forage crops seeds from Australia",
+                    description_ar: "بذور محاصيل الأعلاف من أستراليا",
+                    logo: "barenbrug.svg",
+                    country: "Australia"
+                }
+            ],
+            seeds: [
+                {
+                    name: "East West Seeds International",
+                    name_ar: "إيست ويست سيدز انترناشونال",
+                    description: "Vegetables seeds from Thailand",
+                    description_ar: "بذور الخضروات من تايلاند",
+                    logo: "east-west-seeds.webp",
+                    country: "Thailand"
+                },
+                {
+                    name: "Barenbrug Australia (Heritage Seeds)",
+                    name_ar: "بارينبرج أستراليا (هيريتاج سيدز)",
+                    description: "Forage crops seeds from Australia",
+                    description_ar: "بذور محاصيل الأعلاف من أستراليا",
+                    logo: "barenbrug.svg",
+                    country: "Australia"
+                }
+            ],
             fertilizers: [
                 {
                     name: "Global Fertilizers Co.",
                     name_ar: "شركة الأسمدة العالمية",
                     description: "Premium quality fertilizers",
                     description_ar: "أسمدة عالية الجودة",
-                    logo: "global-fertilizers.svg"
+                    logo: "k&s.webp"
                 },
                 {
                     name: "Green Growth Inc.",
                     name_ar: "شركة النمو الأخضر",
                     description: "Organic fertilizer solutions",
                     description_ar: "حلول الأسمدة العضوية",
-                    logo: "green-growth.svg"
+                    logo: "agro-dragon.webp"
                 }
             ],
             pesticides: [
@@ -39,95 +167,43 @@ export const companyData = {
                     name_ar: "حلول المحاصيل الآمنة",
                     description: "Advanced pest control",
                     description_ar: "مكافحة متقدمة للآفات",
-                    logo: "safecrop.svg"
+                    logo: "saf.webp"
                 },
                 {
                     name: "BioProtect Ltd.",
                     name_ar: "بيوبروتكت المحدودة",
                     description: "Bio-based pesticides",
                     description_ar: "مبيدات حيوية",
-                    logo: "bioprotect.svg"
+                    logo: "kz.webp"
                 }
             ]
         }
     },
-    products: {
-        pesticides: [
-            {
-                id: "p1",
-                name: "Organic Pest Control",
-                name_ar: "مكافحة الآفات العضوية",
-                type: "Biological",
-                type_ar: "حيوي",
-                category: "Pesticides",
-                category_ar: "المبيدات",
-                description: "Safe and effective pest management solution",
-                description_ar: "حل آمن وفعال لإدارة الآفات",
-                usage: "Apply as directed on specific crops when pest pressure is observed",
-                usage_ar: "يتم التطبيق حسب التوجيهات على المحاصيل المحددة عند ملاحظة ضغط الآفات",
-                image: "/products/organic-pesticide.jpg"
-            },
-            {
-                id: "p2",
-                name: "BioShield Insecticide",
-                name_ar: "مبيد حشري بايوشيلد",
-                type: "Chemical",
-                type_ar: "كيميائي",
-                category: "Pesticides",
-                category_ar: "المبيدات",
-                description: "Advanced biological pest control",
-                description_ar: "مكافحة حيوية متقدمة للآفات",
-                usage: "Dilute according to crop type and apply during early morning or late evening",
-                usage_ar: "يخفف وفقاً لنوع المحصول ويطبق خلال الصباح الباكر أو المساء",
-                image: "/products/bioshield.jpg"
-            }
-        ],
-        fertilizers: [
-            {
-                id: "f1",
-                name: "Premium NPK Fertilizer",
-                name_ar: "سماد NPK ممتاز",
-                composition: "N-P-K 20-20-20",
-                composition_ar: "ن-ف-ب 20-20-20",
-                category: "Fertilizers",
-                category_ar: "الأسمدة",
-                description: "Balanced nutrition for optimal crop growth",
-                description_ar: "تغذية متوازنة لنمو محصول مثالي",
-                usage: "Apply 2-3 times during growing season, mix with soil before planting",
-                usage_ar: "يطبق 2-3 مرات خلال موسم النمو، يخلط مع التربة قبل الزراعة",
-                image: "/products/npk-fertilizer.jpg"
-            },
-            {
-                id: "f2",
-                name: "Organic Growth Booster",
-                name_ar: "معزز النمو العضوي",
-                composition: "Natural compounds",
-                composition_ar: "مركبات طبيعية",
-                category: "Fertilizers",
-                category_ar: "الأسمدة",
-                description: "Natural solution for enhanced plant growth",
-                description_ar: "حل طبيعي لتعزيز نمو النبات",
-                usage: "Apply weekly as foliar spray during active growth phase",
-                usage_ar: "يطبق أسبوعياً كرش ورقي خلال مرحلة النمو النشط",
-                image: "/products/growth-booster.jpg"
-            }
-        ]
-    },
     customers: [
         {
-            name: "Sudan Farms Co.",
-            name_ar: "شركة مزارع السودان",
-            logo: "/trusted-customer-logos/customer1.svg"
+            name: "Ministry of Agriculture & Natural Resources Sudan",
+            name_ar: "وزارة الزراعة و الموارد الطبيعية السودان",
+            logo: "ministry-of-agriculture.webp"
         },
         {
-            name: "Green Valley Agriculture",
-            name_ar: "الوادي الأخضر للزراعة",
-            logo: "/trusted-customer-logos/customer2.svg"
+            name: "Alrajihi Agriculture Project",
+            name_ar: "مشروع الراجحي الزراعي",
+            logo: "alrajihi.webp"
         },
         {
-            name: "Al Nile Farming Group",
-            name_ar: "مجموعة النيل للزراعة",
-            logo: "/trusted-customer-logos/customer3.svg"
+            name: "Amtar Agriculture Project",
+            name_ar: "مشروع امطار الزراعي",
+            logo: "amtar.webp"
+        },
+        {
+            name: "Dal Agriculture ",
+            name_ar: "دال الزراعية",
+            logo: "dal.webp"
+        },
+        {
+            name: "Paramount Agriculture",
+            name_ar: " باراماونت الزراعية",
+            logo: "paramount.webp"
         }
     ]
 }
