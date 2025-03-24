@@ -5,22 +5,46 @@ import Footer from '../components/footer/Footer.astro';
 import '../styles/global.css';
 import '../styles/animations.css';
 
+interface Props {
+  title?: string;
+}
+
 const { title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const isRTL = lang === 'ar';
 ---
 
 <!doctype html>
-<html lang={lang} dir={isRTL ? 'rtl' : 'ltr'} class="h-full">
+<html lang={lang} dir={isRTL ? 'rtl' : 'ltr'} class="h-full scroll-smooth">
+  <script is:inline>
+    (function() {
+      const theme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (theme === 'dark' || (!theme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    })();
+  </script>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Zagros Trading - Your trusted partner in agricultural solutions. We provide premium fertilizers, pesticides, and agricultural consultancy services." />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
 		<title>{title}</title>
 	</head>
-	<body class={`min-h-full flex flex-col bg-gray-50 ${isRTL ? 'font-arabic' : ''}`}>
+	<body class:list={[
+		'min-h-full flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300',
+		{ 'font-arabic': isRTL }
+	]}>
 		<Nav />
 		<main class="flex-1">
 			<slot />

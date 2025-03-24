@@ -98,7 +98,7 @@ const Carousel = ({ isArabic = false }) => {
                 alt={slide.title[isArabic ? 'ar' : 'en']}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-r ${isArabic ? 'from-black/60 to-transparent' : 'from-black/60 to-transparent'}`}>
+              <div className={`absolute inset-0 bg-gradient-to-r ${isArabic ? 'from-black/60 dark:from-black/70 to-transparent' : 'from-black/60 dark:from-black/70 to-transparent'}`}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
                   <div className="max-w-2xl text-white w-full md:w-3/4 lg:w-1/2">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-4 leading-tight">{slide.title[isArabic ? 'ar' : 'en']}</h2>

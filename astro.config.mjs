@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from './node_modules/astro/dist/config/index.js';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';  // ✅ Import React integration
 

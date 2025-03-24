@@ -1,0 +1,744 @@
+{
+  "id": "cat1",
+          "name": {
+              "en": "Pesticides",
+              "ar": "المبيدات"
+          },
+          "description": {
+              "en": "Products used to control pests, weeds, and diseases.",
+              "ar": "منتجات تستخدم للسيطرة على الآفات، الأعشاب الضارة، والأمراض."
+          },
+          "subcategories": [
+              {
+                  "id": "subcat1",
+                  "name": {
+                      "en": "Insecticides",
+                      "ar": "مبيدات حشرية"
+                  },
+                  "products": [
+                      {
+                          "id": "p1",
+                          "name": {
+                              "en": "Malason",
+                              "ar": "ملاسون"
+                          },
+                          "code": {
+                              "en": "Malason 57% EC (Malathion)",
+                              "ar": "ملاسون 57% EC (Malathion)"
+                          },
+                          "type": {
+                              "en": "Insecticide",
+                              "ar": "مبيد حشري"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "سائل مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "570 g/L Malathion",
+                              "ar": "570 جرام ملاثيون / لتر"
+                          },
+                          "description": {
+                              "en": "Non-systemic insecticide that works by contact and stomach poison with respiratory action. Controls insect pests in field/horticultural crops and stored products.",
+                              "ar": "مبيد حشرى غير جهازى يعمل بالملامسة و كسم معدي و له تأثير تنفسي. يكافح الآفات في المحاصيل الحقلية والبستانية ومخازن المنتجات."
+                          },
+                          "recommendation": {
+                              "en": "For onion rabbit pests: 2 liters per acre.",
+                              "ar": "لمكافحة حشرة الأرنب في البصل: 2 لتر للفدان."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in controlling onion pests, increasing productivity.",
+                              "ar": "فاعلية عالية في مكافحة آفات البصل وزيادة الإنتاجية."
+                          },
+                          "manufacturer": {
+                              "en": "Kafr El Zayat Pesticides & Chemical Co. Ltd",
+                              "ar": "شركة كفر الزيات للمبيدات والكيماويات"
+                          },
+                          "country": {
+                              "en": "Egypt",
+                              "ar": "مصر"
+                          },
+                          "image": "/products/Malason.webp"
+                      },
+                      {
+                          "id": "p2",
+                          "name": {
+                              "en": "Agromectin",
+                              "ar": "أقرومكتين"
+                          },
+                          "code": {
+                              "en": "Agromectin 1.8% EC (Abamectin)",
+                              "ar": "أقرومكتين 1.8% EC (أبامكتين)"
+                          },
+                          "type": {
+                              "en": "Insecticide/Acaricide",
+                              "ar": "مبيد حشرات/عناكب"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "18 g/L Abamectin",
+                              "ar": "18 جرام أبامكتين / لتر"
+                          },
+                          "description": {
+                              "en": "Contact insecticide and acaricide with stomach poison effect. Controls African bollworms and spider mites.",
+                              "ar": "مبيد حشرات/عناكب يعمل بالملامسة مع تأثير معدى. يكافح دودة اللوز الأفريقية والعناكب."
+                          },
+                          "recommendation": {
+                              "en": "For African bollworms in tomatoes: 113 ml per acre.",
+                              "ar": "لمكافحة دودة اللوز الأفريقية في الطماطم: 113 مل للفدان."
+                          },
+                          "efficacy": {
+                              "en": "Reduces infected fruits and boosts marketable yield.",
+                              "ar": "يخفض الثمار المصابة ويزيد الإنتاجية التسويقية."
+                          },
+                          "manufacturer": {
+                              "en": "Zhejiang Oianjiang Biochemical Co. Ltd",
+                              "ar": "شركة زيجيانج أوقيانج للصناعات الكيميائية الحيوية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Agromectin.webp"
+                      }
+                  ]
+              },
+              {
+                  "id": "subcat2",
+                  "name": {
+                      "en": "Herbicides",
+                      "ar": "مبيدات أعشاب"
+                  },
+                  "products": [
+                      {
+                          "id": "p3",
+                          "name": {
+                              "en": "Oraselect",
+                              "ar": "أوراسلكت"
+                          },
+                          "code": {
+                              "en": "Oraselect 24% EC (Clethodim)",
+                              "ar": "أوراسلكت 24% EC (كلثوديم)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "240 g/L Clethodim",
+                              "ar": "240 جرام كلثوديم / لتر"
+                          },
+                          "description": {
+                              "en": "Selective post-emergence herbicide for annual/perennial grassy weeds.",
+                              "ar": "مبيد أعشاب انتقائي بعد الإنبات للأعشاب النجيلية."
+                          },
+                          "recommendation": {
+                              "en": "For alfalfa: post-emergence control of grassy weeds.",
+                              "ar": "للبرسيم: مكافحة الأعشاب النجيلية بعد الإنبات."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in alfalfa weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البرسيم."
+                          },
+                          "manufacturer": {
+                              "en": "Shandong Cynda Chemical Co. Ltd",
+                              "ar": "شركة شاندونغ سيندا للصناعات الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Oraselect.webp"
+                      },
+                      {
+                          "id": "p4",
+                          "name": {
+                              "en": "Agroharvest",
+                              "ar": "أقروهارفست"
+                          },
+                          "code": {
+                              "en": "Agroharvest 10.8% EC (Haloxyfop-P-methyl)",
+                              "ar": "أقروهارفست 10.8% EC (هالوكسيفوب-ب-ميثيل)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "108 g/L Haloxyfop-P-methyl",
+                              "ar": "108 جرام هالوكسيفوب-ب-ميثيل / لتر"
+                          },
+                          "description": {
+                              "en": "Selective post-emergence herbicide for narrow-leaf weeds in perennial crops.",
+                              "ar": "مبيد أعشاب انتقائي بعد الإنبات للأعشاب رفيعة الأوراق."
+                          },
+                          "recommendation": {
+                              "en": "For sesame: 0.3 liters per acre, applied 3 weeks pre-planting.",
+                              "ar": "للسمسم: 0.3 لتر للفدان، يُرش قبل الزراعة بـ 3 أسابيع."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in sesame weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش السمسم."
+                          },
+                          "manufacturer": {
+                              "en": "Anhui Fengle Agrochemical Co. Ltd",
+                              "ar": "شركة أنوي فنغلي للأدوية الزراعية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Agroharvest.webp"
+                      },
+                      {
+                          "id": "p5",
+                          "name": {
+                              "en": "Agronos",
+                              "ar": "أقرونوس"
+                          },
+                          "code": {
+                              "en": "Agronos 600 SL (2,4-D)",
+                              "ar": "أقرونوس 600 SL (2,4-D)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Soluble Liquid",
+                              "ar": "سائل قابل للذوبان"
+                          },
+                          "active_ingredient_content": {
+                              "en": "600 g/L 2,4-D",
+                              "ar": "600 جرام 2,4-D / لتر"
+                          },
+                          "description": {
+                              "en": "Systemic herbicide for post-emergence control of broadleaf weeds in corn/wheat.",
+                              "ar": "مبيد أعشاب جهازي بعد الإنبات للأعشاب عريضة الأوراق."
+                          },
+                          "recommendation": {
+                              "en": "Corn: 0.533 L/acre (3-4 weeks post-planting). Wheat: 1 L/acre (3 weeks post-planting).",
+                              "ar": "الذرة: 0.533 لتر/فدان بعد 3-4 أسابيع. القمح: 1 لتر/فدان بعد 3 أسابيع."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy against broadleaf weeds like moalita and fajila.",
+                              "ar": "فاعلية عالية ضد الأعشاب عريضة الأوراق مثل المواليتا."
+                          },
+                          "manufacturer": {
+                              "en": "Jiangsu CF Agrochemical Co. Ltd",
+                              "ar": "شركة جيانغسو سي إف للأدوية الزراعية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Agronos.webp"
+                      },
+                      {
+                          "id": "p6",
+                          "name": {
+                              "en": "Agreflan",
+                              "ar": "أقرفلان"
+                          },
+                          "code": {
+                              "en": "Agreflan 48% EC (Trifluralin)",
+                              "ar": "أقرفلان 48% EC (تريفلورالين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "480 g/L Trifluralin",
+                              "ar": "480 جرام تريفلورالين / لتر"
+                          },
+                          "description": {
+                              "en": "Pre-emergence herbicide for annual narrow/broadleaf weeds.",
+                              "ar": "مبيد أعشاب قبل الإنبات للأعشاب الحولية."
+                          },
+                          "recommendation": {
+                              "en": "For clover: 0.84 L/acre, followed by soil plowing.",
+                              "ar": "للبرسيم: 0.84 لتر/فدان مع حراثة التربة."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in clover weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البرسيم."
+                          },
+                          "manufacturer": {
+                              "en": "Jiangsu Fengshan Group Co. Ltd",
+                              "ar": "مجموعة جيانغسو فنغشان"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Agreflan.webp"
+                      },
+                      {
+                          "id": "p7",
+                          "name": {
+                              "en": "Orazine",
+                              "ar": "أورازين"
+                          },
+                          "code": {
+                              "en": "Orazine 50% SC (Atrazine)",
+                              "ar": "أورازين 50% SC (أترازين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Suspension Concentrate",
+                              "ar": "مركز معلق"
+                          },
+                          "active_ingredient_content": {
+                              "en": "500 g/L Atrazine",
+                              "ar": "500 جرام أترازين / لتر"
+                          },
+                          "description": {
+                              "en": "Systemic herbicide for pre/post-emergence control of annual weeds in corn.",
+                              "ar": "مبيد أعشاب جهازي قبل وبعد الإنبات للمحاصيل مثل الذرة."
+                          },
+                          "recommendation": {
+                              "en": "Corn: 0.5 L/acre for narrow/broadleaf weeds.",
+                              "ar": "للذرة: 0.5 لتر/فدان لمكافحة الأعشاب."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy against weeds like addar, boosting corn yield.",
+                              "ar": "فاعلية عالية ضد حشائش مثل العدار وزيادة إنتاجية الذرة."
+                          },
+                          "manufacturer": {
+                              "en": "Shandong Vicome Greenland Chemical Co. Ltd",
+                              "ar": "شركة شاندونغ فيكوم غرينلاند الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Orazine.webp"
+                      },
+                      {
+                          "id": "p8",
+                          "name": {
+                              "en": "Agrimethalin",
+                              "ar": "أقريمثالين"
+                          },
+                          "code": {
+                              "en": "Agrimethalin 50% EC (Pendimethalin)",
+                              "ar": "أقريمثالين 50% EC (بندامثالين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "500 g/L Pendimethalin",
+                              "ar": "500 جرام بندامثالين / لتر"
+                          },
+                          "description": {
+                              "en": "Pre-emergence herbicide for cotton, peanuts, sunflower, sesame, sugarcane, and onions.",
+                              "ar": "مبيد أعشاب قبل الإنبات لمكافحة الحشائش في محاصيل مثل القطن."
+                          },
+                          "recommendation": {
+                              "en": "Peanuts: 1.5 L/acre. Cotton: 1.2 L/acre mixed with Dirone.",
+                              "ar": "الفول السوداني: 1.5 لتر/فدان. القطن: 1.2 لتر/فدان مع دايرون."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in peanut and cotton weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش الفول السوداني والقطن."
+                          },
+                          "manufacturer": {
+                              "en": "Mahamaya Lifesciences PVT Ltd",
+                              "ar": "شركة ماهامايا للعلوم الحيوية"
+                          },
+                          "country": {
+                              "en": "India",
+                              "ar": "الهند"
+                          },
+                          "image": "/products/Agrimethalin.webp"
+                      },
+                      {
+                          "id": "p9",
+                          "name": {
+                              "en": "Agrisuit",
+                              "ar": "أقريسوت"
+                          },
+                          "code": {
+                              "en": "Agrisuit 10% SL (Imazethapyr)",
+                              "ar": "أقريسوت 10% SL (إيمازيثابير)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Soluble Liquid",
+                              "ar": "سائل قابل للذوبان"
+                          },
+                          "active_ingredient_content": {
+                              "en": "100 g/kg Imazethapyr",
+                              "ar": "100 جرام إيمازيثابير / كجم"
+                          },
+                          "description": {
+                              "en": "Systemic herbicide for pre/post-emergence control of broadleaf weeds like clover.",
+                              "ar": "مبيد أعشاب جهازي قبل وبعد الإنبات لمكافحة البرسيم."
+                          },
+                          "recommendation": {
+                              "en": "Clover: 320 ml/acre.",
+                              "ar": "البرسيم: 320 مل/فدان."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in clover weed control, increasing yield.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البرسيم."
+                          },
+                          "manufacturer": {
+                              "en": "Shandong Cynda Chemical Co. Ltd",
+                              "ar": "شركة شاندونغ سيندا للصناعات الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Agrisuit.webp"
+                      },
+                      {
+                          "id": "p10",
+                          "name": {
+                              "en": "AgriTop",
+                              "ar": "أقريتوب"
+                          },
+                          "code": {
+                              "en": "AgriTop 8% EC (Clodinafop-propargyl)",
+                              "ar": "أقريتوب 8% EC (كلودينايفوب-بروباجيل)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "80 g/kg Clodinafop-propargyl",
+                              "ar": "80 جرام كلودينايفوب-بروباجيل / كجم"
+                          },
+                          "description": {
+                              "en": "Systemic post-emergence herbicide for annual grassy weeds like nutgrass.",
+                              "ar": "مبيد أعشاب جهازي بعد الإنبات للأعشاب النجيلية الحولية."
+                          },
+                          "recommendation": {
+                              "en": "Wheat: 420 ml/acre (3-4 weeks post-planting).",
+                              "ar": "القمح: 420 مل/فدان بعد 3-4 أسابيع من الزراعة."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy against nutgrass and addar weeds in wheat.",
+                              "ar": "فاعلية عالية ضد الأعوار والعدار في القمح."
+                          },
+                          "manufacturer": {
+                              "en": "Anhui Sida Pesticides Chemicals Co. Ltd",
+                              "ar": "شركة أنوي سيذا للمبيدات الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/AgriTop.webp"
+                      },
+                      {
+                          "id": "p11",
+                          "name": {
+                              "en": "Pendinos",
+                              "ar": "بندينوس"
+                          },
+                          "code": {
+                              "en": "Pendinos 50% EC (Pendimethalin)",
+                              "ar": "بندينوس 50% EC (بندامثالين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "500 g/L Pendimethalin",
+                              "ar": "500 جرام بندامثالين / لتر"
+                          },
+                          "description": {
+                              "en": "Pre-emergence herbicide for onions, cotton, and other crops.",
+                              "ar": "مبيد أعشاب قبل الإنبات للبصل والقطن وغيرها."
+                          },
+                          "recommendation": {
+                              "en": "Onions: 1.5 L/acre.",
+                              "ar": "البصل: 1.5 لتر/فدان."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in onion weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البصل."
+                          },
+                          "manufacturer": {
+                              "en": "Jiangsu Yongan Chemical Co Ltd",
+                              "ar": "شركة جيانغسو يونغان الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Pendinos.webp"
+                      },
+                      {
+                          "id": "p12",
+                          "name": {
+                              "en": "Oruzin",
+                              "ar": "أوروزين"
+                          },
+                          "code": {
+                              "en": "Oruzin 70% WP (Metribuzin)",
+                              "ar": "أوروزين 70% WP (ميتربوزين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Wettable Powder",
+                              "ar": "مسحوق قابل للبلل"
+                          },
+                          "active_ingredient_content": {
+                              "en": "700 g/kg Metribuzin",
+                              "ar": "700 جرام ميتربوزين / كجم"
+                          },
+                          "description": {
+                              "en": "Systemic herbicide absorbed by roots/leaves. Controls annual weeds in potatoes, tomatoes, and clover.",
+                              "ar": "مبيد أعشاب جهازي يُمتص بالجذور/الأوراق. يكافح الأعشاب الحولية."
+                          },
+                          "recommendation": {
+                              "en": "Potatoes: 700 g/acre pre-emergence.",
+                              "ar": "البطاطس: 700 جرام/فدان قبل الإنبات."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in potato weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البطاطس."
+                          },
+                          "manufacturer": {
+                              "en": "Changzhou Wujin Henglong Pesticide Co. Ltd",
+                              "ar": "شركة تشانغتشو ووجين هينجلونغ للمبيدات"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Oruzin.webp"
+                      },
+                      {
+                          "id": "p13",
+                          "name": {
+                              "en": "Oranoset",
+                              "ar": "أورانوسيت"
+                          },
+                          "code": {
+                              "en": "Oranoset 36% SL (Glyphosate)",
+                              "ar": "أورانوسيت 36% SL (جليفوسات)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Soluble Liquid",
+                              "ar": "سائل قابل للذوبان"
+                          },
+                          "active_ingredient_content": {
+                              "en": "360 g/L Glyphosate",
+                              "ar": "360 جرام جليفوسات / لتر"
+                          },
+                          "description": {
+                              "en": "Non-selective systemic herbicide for broadleaf/grassy weeds.",
+                              "ar": "مبيد أعشاب غير انتقائي يدمر الأعشاب عريضة/رفيعة الأوراق."
+                          },
+                          "recommendation": {
+                              "en": "Zero-tillage farming: 1.5–2.0 L/acre.",
+                              "ar": "الزراعة الصفرية: 1.5–2.0 لتر/فدان."
+                          },
+                          "efficacy": {
+                              "en": "Excellent control of weeds in fallow lands.",
+                              "ar": "فاعلية ممتازة في الأراضي البور."
+                          },
+                          "manufacturer": {
+                              "en": "Shanghai Hujiang Biochemical Co. Ltd",
+                              "ar": "شركة شانغهاي هوجيانغ الكيميائية الحيوية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Oranoset.webp"
+                      },
+                      {
+                          "id": "p14",
+                          "name": {
+                              "en": "Orafen",
+                              "ar": "أورافن"
+                          },
+                          "code": {
+                              "en": "Orafen 24% EC (Oxyfluorfen)",
+                              "ar": "أورافن 24% EC (أوكسي فلورفين)"
+                          },
+                          "type": {
+                              "en": "Herbicide",
+                              "ar": "مبيد حشائش"
+                          },
+                          "form": {
+                              "en": "Emulsifiable Concentrate",
+                              "ar": "مركز قابل للاستحلاب"
+                          },
+                          "active_ingredient_content": {
+                              "en": "240 g/L Oxyfluorfen",
+                              "ar": "240 جرام أوكسي فلورفين / لتر"
+                          },
+                          "description": {
+                              "en": "Pre-emergence herbicide for onions, cotton, and potatoes.",
+                              "ar": "مبيد أعشاب قبل الإنبات للبصل والقطن والبطاطس."
+                          },
+                          "recommendation": {
+                              "en": "Onions: 0.5 L/acre.",
+                              "ar": "البصل: 0.5 لتر/فدان."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in onion and cotton weed control.",
+                              "ar": "فاعلية عالية في مكافحة حشائش البصل والقطن."
+                          },
+                          "manufacturer": {
+                              "en": "Shandong Vicome Greenland Chemical Co. Ltd",
+                              "ar": "شركة شاندونغ فيكوم غرينلاند الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Orafen.webp"
+                      }
+                  ]
+              },
+              {
+                  "id": "subcat3",
+                  "name": {
+                      "en": "Fungicides",
+                      "ar": "مبيدات فطرية"
+                  },
+                  "products": [
+                      {
+                          "id": "p15",
+                          "name": {
+                              "en": "Mancoxyl",
+                              "ar": "مانوكسيل"
+                          },
+                          "code": {
+                              "en": "Mancoxyl 72% WP (Mancozeb + Metalaxyl)",
+                              "ar": "مانوكسيل 72% WP (مانكوزب + ميتالاكسيل)"
+                          },
+                          "type": {
+                              "en": "Fungicide",
+                              "ar": "مبيد فطريات"
+                          },
+                          "form": {
+                              "en": "Wettable Powder",
+                              "ar": "مسحوق قابل للبلل"
+                          },
+                          "active_ingredient_content": {
+                              "en": "640 g/kg Mancozeb + 80 g/kg Metalaxyl",
+                              "ar": "640 جرام مانكوزب + 80 جرام ميتالاكسيل / كجم"
+                          },
+                          "description": {
+                              "en": "Systemic fungicide with protective/curative properties. Controls powdery mildew, downy mildew, and blight.",
+                              "ar": "مبيد فطريات جهازي وقائي/علاجي. يكافح البياض الدقيقي والزغبي والندوة."
+                          },
+                          "recommendation": {
+                              "en": "Tomatoes: 850 g/100 L water for powdery mildew.",
+                              "ar": "الطماطم: 850 جرام/100 لتر ماء للبياض الدقيق."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in tomato powdery mildew control.",
+                              "ar": "فاعلية عالية في مكافحة البياض الدقيق بالطماطم."
+                          },
+                          "manufacturer": {
+                              "en": "Limin Chemical Co. Ltd",
+                              "ar": "شركة ليمين الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Mancoxyl.webp"
+                      },
+                      {
+                          "id": "p16",
+                          "name": {
+                              "en": "Orastrobin",
+                              "ar": "أوراستروبين"
+                          },
+                          "code": {
+                              "en": "Orastrobin 25% SC (Azoxystrobin)",
+                              "ar": "أوراستروبين 25% SC (أزوكسي ستروبين)"
+                          },
+                          "type": {
+                              "en": "Fungicide",
+                              "ar": "مبيد فطريات"
+                          },
+                          "form": {
+                              "en": "Suspension Concentrate",
+                              "ar": "مركز معلق"
+                          },
+                          "active_ingredient_content": {
+                              "en": "250 g/L Azoxystrobin",
+                              "ar": "250 جرام أزوكسي ستروبين / لتر"
+                          },
+                          "description": {
+                              "en": "Systemic fungicide with protective, curative, and eradicative action. Controls powdery mildew, blight, and downy mildew.",
+                              "ar": "مبيد فطريات جهازي وقائي/علاجي/استئصالي. يكافح البياض الدقيق والندوة."
+                          },
+                          "recommendation": {
+                              "en": "Tomatoes: 200 ml/100 L water for powdery mildew.",
+                              "ar": "الطماطم: 200 مل/100 لتر ماء للبياض الدقيقى."
+                          },
+                          "efficacy": {
+                              "en": "High efficacy in tomato powdery mildew control.",
+                              "ar": "فاعلية عالية في مكافحة البياض الدقيقى بالطماطم."
+                          },
+                          "manufacturer": {
+                              "en": "Jiangsu Greenscie Chemical Co. Ltd",
+                              "ar": "شركة جيانغسو غرينسي الكيميائية"
+                          },
+                          "country": {
+                              "en": "China",
+                              "ar": "الصين"
+                          },
+                          "image": "/products/Orastrobin.webp"
+                      }
+                  ]
+              }
+          ]
+}

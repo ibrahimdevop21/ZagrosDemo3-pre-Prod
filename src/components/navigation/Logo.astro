@@ -6,10 +6,19 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<img 
-  src="/zagros-white.png"
-  alt="Zagros Trading Logo" 
-  class={className}
-  width="150"
-  height="50"
-/>
+<div class="relative">
+  <img 
+    src="/zagros-dark.png"
+    alt="Zagros Trading Logo" 
+    class={`block dark:hidden ${className}`}
+    width="150"
+    height="50"
+  />
+  <img 
+    src="/zagros-white.png"
+    alt="Zagros Trading Logo" 
+    class={`hidden dark:block ${className}`}
+    width="150"
+    height="50"
+  />
+</div>
