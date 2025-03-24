@@ -8,10 +8,10 @@ const t = useTranslations(lang);
 const isArabic = lang === 'ar';
 ---
 
-<footer class="bg-gradient-to-b from-green-900 to-green-950 text-white relative overflow-hidden mt-auto">
+<footer class="bg-gradient-to-b from-emerald-900 to-emerald-950 dark:from-gray-900 dark:to-gray-950 text-white relative overflow-hidden mt-auto transition-colors duration-300">
   <!-- Decorative Elements -->
-  <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
-  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-green-500/20 to-transparent"></div>
+  <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5 dark:opacity-10"></div>
+  <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-emerald-500/20 dark:via-emerald-400/10 to-transparent"></div>
 
   <div class="relative container mx-auto px-4 pt-16 pb-8">
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-12 mb-16">
@@ -49,7 +49,7 @@ const isArabic = lang === 'ar';
       <div class={`space-y-6 ${isArabic ? 'text-right' : ''}`}>
         <h3 class="text-lg font-semibold text-white relative inline-block">
           {isArabic ? 'روابط سريعة' : 'Quick Links'}
-          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-green-500/30"></div>
+          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-emerald-500/30 dark:bg-emerald-400/20"></div>
         </h3>
         <ul class="space-y-3">
           <li>
@@ -86,7 +86,7 @@ const isArabic = lang === 'ar';
       <div class={`space-y-6 ${isArabic ? 'text-right' : ''}`}>
         <h3 class="text-lg font-semibold text-white relative inline-block">
           {isArabic ? 'معلومات الاتصال' : 'Contact Info'}
-          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-green-500/30"></div>
+          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-emerald-500/30 dark:bg-emerald-400/20"></div>
         </h3>
         <ul class="space-y-4">
           <li class={`flex items-center gap-3 group ${isArabic ? 'flex-row-reverse' : ''}`}>
@@ -116,12 +116,12 @@ const isArabic = lang === 'ar';
       <div class={`space-y-4 ${isArabic ? 'text-right' : ''}`}>
         <h3 class="text-lg font-semibold text-white relative inline-block">
           {isArabic ? 'فروعنا' : 'Our Branches'}
-          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-green-500/30"></div>
+          <div class="absolute -bottom-2 left-0 right-0 h-0.5 bg-emerald-500/30 dark:bg-emerald-400/20"></div>
         </h3>
         <ul class="space-y-3">
           <li class={`flex items-start gap-2 group ${isArabic ? 'flex-row-reverse' : ''}`}>
-            <div class="flex-shrink-0 w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-lg flex items-center justify-center mt-1 transition-colors">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="flex-shrink-0 w-8 h-8 bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 rounded-lg flex items-center justify-center mt-1 transition-colors">
+              <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -132,8 +132,8 @@ const isArabic = lang === 'ar';
             </div>
           </li>
           <li class={`flex items-start gap-2 group ${isArabic ? 'flex-row-reverse' : ''}`}>
-            <div class="flex-shrink-0 w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-lg flex items-center justify-center mt-1 transition-colors">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="flex-shrink-0 w-8 h-8 bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 rounded-lg flex items-center justify-center mt-1 transition-colors">
+              <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -144,8 +144,8 @@ const isArabic = lang === 'ar';
             </div>
           </li>
           <li class={`flex items-start gap-2 group ${isArabic ? 'flex-row-reverse' : ''}`}>
-            <div class="flex-shrink-0 w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-lg flex items-center justify-center mt-1 transition-colors">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="flex-shrink-0 w-8 h-8 bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 rounded-lg flex items-center justify-center mt-1 transition-colors">
+              <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -156,8 +156,8 @@ const isArabic = lang === 'ar';
             </div>
           </li>
           <li class={`flex items-start gap-2 group ${isArabic ? 'flex-row-reverse' : ''}`}>
-            <div class="flex-shrink-0 w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-lg flex items-center justify-center mt-1 transition-colors">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="flex-shrink-0 w-8 h-8 bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 rounded-lg flex items-center justify-center mt-1 transition-colors">
+              <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -168,8 +168,8 @@ const isArabic = lang === 'ar';
             </div>
           </li>
           <li class={`flex items-start gap-2 group ${isArabic ? 'flex-row-reverse' : ''}`}>
-            <div class="flex-shrink-0 w-8 h-8 bg-white/5 group-hover:bg-white/10 rounded-lg flex items-center justify-center mt-1 transition-colors">
-              <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="flex-shrink-0 w-8 h-8 bg-white/5 dark:bg-white/10 group-hover:bg-white/10 dark:group-hover:bg-white/15 rounded-lg flex items-center justify-center mt-1 transition-colors">
+              <svg class="w-4 h-4 text-emerald-400 dark:text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -184,7 +184,7 @@ const isArabic = lang === 'ar';
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 mt-8 border-t border-white/10">
+    <div class="pt-8 mt-8 border-t border-white/10 dark:border-white/5">
       <div class={`flex ${isArabic ? 'flex-row-reverse' : ''} justify-between items-center flex-wrap gap-4`}>
         <p class="text-green-100/70">
           &copy; {new Date().getFullYear()} {isArabic ? companyData.company.name_ar : companyData.company.name}. 

@@ -18,35 +18,29 @@ function getUrlForLang(lang: string) {
   return pathname.startsWith('/') ? `/${lang}${pathname.replace(`/${currentLang}`, '')}` : `/${lang}/${pathname}`;
 }
 
-// Language display data
-const languageData = {
-  en: {
-    name: 'EN',
-    flag: '🇬🇧',
-  },
-  ar: {
-    name: 'ع',
-    flag: '🇸🇩',
-  }
-};
-
 // Get the other language
 const otherLang = currentLang === 'en' ? 'ar' : 'en';
+
+// Language display text
+const languageText = {
+  en: 'English',
+  ar: 'عربي',
+};
 ---
 
 <a
   href={getUrlForLang(otherLang)}
-  class="inline-flex items-center justify-center gap-1 px-2 py-1 text-sm font-medium hover:text-green-200 transition-colors"
+  class="inline-flex items-center justify-center px-3 py-1 text-sm font-medium hover:text-green-200 transition-colors"
   aria-label={`Switch to ${languages[otherLang]}`}
 >
-  <span class="text-base" aria-hidden="true">{languageData[otherLang].flag}</span>
-  <span class="font-semibold">{languageData[otherLang].name}</span>
+  <span class="font-semibold">{languageText[otherLang]}</span>
 </a>
 
 <style>
-  /* Add a subtle hover effect */
-  a:hover span {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
+  a {
+    opacity: 0.9;
+  }
+  a:hover {
+    opacity: 1;
   }
 </style>

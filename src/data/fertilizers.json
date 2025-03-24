@@ -1,0 +1,245 @@
+{
+  "id": "cat2",
+  "name": {
+      "en": "Fertilizers",
+      "ar": "الأسمدة"
+  },
+  "description": {
+      "en": "Products providing essential nutrients for optimal plant growth.",
+      "ar": "منتجات توفر العناصر الغذائية الأساسية للنباتات."
+  },
+  "subcategories": [
+      {
+          "id": "subcat4",
+          "name": {
+              "en": "NPK Fertilizers",
+              "ar": "أسمدة NPK"
+          },
+          "products": [
+              {
+                  "id": "f1",
+                  "name": {
+                      "en": "Premium NPK Fertilizer",
+                      "ar": "سماد NPK ممتاز"
+                  },
+                  "composition": {
+                      "en": "N-P-K 20-20-20",
+                      "ar": "ن-ف-ب 20-20-20"
+                  },
+                  "description": {
+                      "en": "Balanced nutrition for optimal crop growth.",
+                      "ar": "تغذية متوازنة لنمو مثالي للمحاصيل."
+                  },
+                  "usage": {
+                      "en": "Apply 2-3 times during the growing season; mix with soil before planting.",
+                      "ar": "يطبق 2-3 مرات في الموسم، يخلط مع التربة قبل الزراعة."
+                  },
+                  "manufacturer": {
+                      "en": "Generic Manufacturer",
+                      "ar": "شركة مصنعة عامة"
+                  },
+                  "country": {
+                      "en": "Global",
+                      "ar": "عالمي"
+                  },
+                  "image": "/products/PremiumNPK.webp"
+              },
+              {
+                  "id": "f3",
+                  "name": {
+                      "en": "SoluNPK 20-20-20+TE",
+                      "ar": "سولو NPK 20-20-20+TE"
+                  },
+                  "composition": {
+                      "en": "20% Nitrogen, 20% Phosphorus, 20% Potassium + Trace Elements",
+                      "ar": "20% نيتروجين، 20% فوسفور، 20% بوتاسيوم + عناصر صغرى"
+                  },
+                  "description": {
+                      "en": "High-quality water-soluble fertilizer for balanced crop nutrition.",
+                      "ar": "سماد ذائب في الماء ذو جودة عالية لتغذية متوازنة."
+                  },
+                  "usage": {
+                      "en": "Apply 6-8 kg/ha for vegetable crops; 10-15 kg/ha for field crops.",
+                      "ar": "يطبق 6-8 كجم/هكتار للخضروات؛ 10-15 كجم/هكتار للمحاصيل الحقلية."
+                  },
+                  "manufacturer": {
+                      "en": "K Plus S Middle East FZE DMCC",
+                      "ar": "شركة كاي بلس أس الشرق الأوسط"
+                  },
+                  "country": {
+                      "en": "United Arab Emirates",
+                      "ar": "الإمارات العربية المتحدة"
+                  },
+                  "image": "/products/SoluNPK20-20-20.webp"
+              },
+              {
+                "id": "f4",
+                "name": {
+                    "en": "SoluNOP",
+                    "ar": "سولو ان او بي"
+                },
+                "composition": {
+                    "en": "100% Potassium Nitrate",
+                    "ar": "100% نترات البوتاسيوم"
+                },
+                "description": {
+                    "en": "High-purity potassium nitrate for foliar application.",
+                    "ar": "نترات بوتاسيوم نقية للرش الورقي."
+                },
+                "usage": {
+                    "en": "Apply 3 times at 150-200 kg/ha for leafy vegetables; 2 times at 100-150 kg/ha for root crops.",
+                    "ar": "يطبق 3 مرات بجرعة 150-200 كجم/هكتار للخضروات الورقية، و2 مرات بجرعة 100-150 كجم/هكتار للخضروات الجذرية."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/SoluNOP.webp"
+            },
+            {
+                "id": "f5",
+                "name": {
+                    "en": "KaliSOP gran.",
+                    "ar": "كالي اس او بي (حبيبات)"
+                },
+                "composition": {
+                    "en": "50% Potassium Sulfate, 45% Potassium Oxide, Chloride ≤1.0%",
+                    "ar": "50% كبريتات البوتاسيوم، 45% أكسيد البوتاسيوم، كلوريد ≤1.0%"
+                },
+                "description": {
+                    "en": "Granular potassium fertilizer for cereals, vegetables, and fruits.",
+                    "ar": "سماد بوتاسيوم حبيبي للمحاصيل الحقلية والخضروات والفواكه."
+                },
+                "usage": {
+                    "en": "Cereals: 250-300 kg/ha. Vegetables: 200-250 kg/ha. Fruits: 100-150 kg/ha.",
+                    "ar": "الحبوب: 250-300 كجم/هكتار. الخضروات: 200-250 كجم/هكتار. الفواكه: 100-150 كجم/هكتار."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/KaliSOP_gran.webp"
+            },
+            {
+                "id": "f6",
+                "name": {
+                    "en": "KaliSOP fine",
+                    "ar": "كالي اس او بي (ناعم)"
+                },
+                "composition": {
+                    "en": "50% Potassium Sulfate, 45% Potassium Oxide, Chloride ≤0.1%",
+                    "ar": "50% كبريتات البوتاسيوم، 45% أكسيد البوتاسيوم، كلوريد ≤0.1%"
+                },
+                "description": {
+                    "en": "Fine-grade potassium fertilizer for precision application.",
+                    "ar": "سماد بوتاسيوم ناعم للتطبيق الدقيق."
+                },
+                "usage": {
+                    "en": "Cereals: 600-800 kg/ha. Vegetables: 400-600 kg/ha. Fruits: 250-500 kg/ha.",
+                    "ar": "الحبوب: 600-800 كجم/هكتار. الخضروات: 400-600 كجم/هكتار. الفواكه: 250-500 كجم/هكتار."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/KaliSOP_fine.webp"
+            },
+            {
+                "id": "f7",
+                "name": {
+                    "en": "EPSOTop",
+                    "ar": "اي بي اس او توب"
+                },
+                "composition": {
+                    "en": "16% Magnesium Oxide, 16% Sulfur Trioxide",
+                    "ar": "16% أكسيد المغنيسيوم، 16% ثلاثي أكسيد الكبريت"
+                },
+                "description": {
+                    "en": "Magnesium and sulfur fertilizer to address nutrient deficiencies.",
+                    "ar": "سماد مغنيسيوم وكبريت لمعالجة نقص العناصر."
+                },
+                "usage": {
+                    "en": "Apply 5-10 kg/ha per application; 1-2 kg/ha for foliar spray.",
+                    "ar": "يطبق 5-10 كجم/هكتار لكل مرة، أو 1-2 كجم/هكتار كرش ورقي."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/EPSOTop.webp"
+            },
+            {
+                "id": "f8",
+                "name": {
+                    "en": "SoluNPK 20-20-20+TE",
+                    "ar": "سولو ان بي كيه 20-20-20+TE"
+                },
+                "composition": {
+                    "en": "20% Nitrogen, 20% Phosphorus, 20% Potassium + Trace Elements",
+                    "ar": "20% نيتروجين، 20% فوسفور، 20% بوتاسيوم + عناصر صغرى"
+                },
+                "description": {
+                    "en": "Balanced NPK fertilizer with trace elements for high-yield crops.",
+                    "ar": "سماد NPK متوازن مع عناصر صغرى لمحاصيل عالية الإنتاجية."
+                },
+                "usage": {
+                    "en": "Vegetables: 6-8 kg/ha per application. Field crops: 10-15 kg/ha per application.",
+                    "ar": "الخضروات: 6-8 كجم/هكتار لكل مرة. المحاصيل الحقلية: 10-15 كجم/هكتار لكل مرة."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/SoluNPK20-20-20.webp"
+            },
+            {
+                "id": "f9",
+                "name": {
+                    "en": "SoluNPK 12-12-36+TE",
+                    "ar": "سولو ان بي كيه 12-12-36+TE"
+                },
+                "composition": {
+                    "en": "12% Nitrogen, 12% Phosphorus, 36% Potassium + Trace Elements",
+                    "ar": "12% نيتروجين، 12% فوسفور، 36% بوتاسيوم + عناصر صغرى"
+                },
+                "description": {
+                    "en": "High-potassium NPK fertilizer for fruiting and flowering crops.",
+                    "ar": "سماد NPK عالي البوتاسيوم لمحاصيل الثمار والأزهار."
+                },
+                "usage": {
+                    "en": "Fruits: 8-10 kg/ha per application. Vegetables: 12-15 kg/ha per application.",
+                    "ar": "الفاكهة: 8-10 كجم/هكتار لكل مرة. الخضروات: 12-15 كجم/هكتار لكل مرة."
+                },
+                "manufacturer": {
+                    "en": "K Plus S Middle East FZE DMCC",
+                    "ar": "شركة كاي بلس أس الشرق الأوسط"
+                },
+                "country": {
+                    "en": "United Arab Emirates",
+                    "ar": "الإمارات العربية المتحدة"
+                },
+                "image": "/products/SoluNPK12-12-36.webp"
+            }
+        ]
+    }
+]}

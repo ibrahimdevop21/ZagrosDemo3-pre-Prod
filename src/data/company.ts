@@ -55,6 +55,7 @@ export interface CompanyData {
                 description: string;
                 description_ar: string;
                 logo: string;
+                country: string;
             }>;
             pesticides: Array<{
                 name: string;
@@ -62,6 +63,7 @@ export interface CompanyData {
                 description: string;
                 description_ar: string;
                 logo: string;
+                country: string;
             }>;
         };
     };
@@ -123,7 +125,7 @@ export const companyData: CompanyData = {
                     name_ar: "بارينبرج أستراليا (هيريتاج سيدز)",
                     description: "Forage crops seeds from Australia",
                     description_ar: "بذور محاصيل الأعلاف من أستراليا",
-                    logo: "barenbrug.svg",
+                    logo: "barenbrug.png",
                     country: "Australia"
                 }
             ],
@@ -135,14 +137,6 @@ export const companyData: CompanyData = {
                     description_ar: "بذور الخضروات من تايلاند",
                     logo: "east-west-seeds.webp",
                     country: "Thailand"
-                },
-                {
-                    name: "Barenbrug Australia (Heritage Seeds)",
-                    name_ar: "بارينبرج أستراليا (هيريتاج سيدز)",
-                    description: "Forage crops seeds from Australia",
-                    description_ar: "بذور محاصيل الأعلاف من أستراليا",
-                    logo: "barenbrug.svg",
-                    country: "Australia"
                 }
             ],
             fertilizers: [
@@ -151,14 +145,16 @@ export const companyData: CompanyData = {
                     name_ar: "شركة الأسمدة العالمية",
                     description: "Premium quality fertilizers",
                     description_ar: "أسمدة عالية الجودة",
-                    logo: "k&s.webp"
+                    logo: "k&s.webp",
+                    country: "Germany"
                 },
                 {
                     name: "Green Growth Inc.",
                     name_ar: "شركة النمو الأخضر",
                     description: "Organic fertilizer solutions",
                     description_ar: "حلول الأسمدة العضوية",
-                    logo: "agro-dragon.webp"
+                    logo: "agro-dragon.webp",
+                    country: "Netherlands"
                 }
             ],
             pesticides: [
@@ -167,14 +163,16 @@ export const companyData: CompanyData = {
                     name_ar: "حلول المحاصيل الآمنة",
                     description: "Advanced pest control",
                     description_ar: "مكافحة متقدمة للآفات",
-                    logo: "saf.webp"
+                    logo: "saf.webp",
+                    country: "Switzerland"
                 },
                 {
                     name: "BioProtect Ltd.",
                     name_ar: "بيوبروتكت المحدودة",
                     description: "Bio-based pesticides",
                     description_ar: "مبيدات حيوية",
-                    logo: "kz.webp"
+                    logo: "kz.webp",
+                    country: "United Kingdom"
                 }
             ]
         }

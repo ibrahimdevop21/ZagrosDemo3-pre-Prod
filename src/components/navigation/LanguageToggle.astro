@@ -1,0 +1,42 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+const pathname = Astro.url.pathname;
+
+// Function to get the corresponding URL for a language
+function getUrlForLang(targetLang: string) {
+  // Handle root path specially
+  if (pathname === '/' || pathname === '/ar') {
+    return targetLang === 'en' ? '/' : '/ar';
+  }
+  // Handle other paths
+  if (targetLang === 'en') {
+    return pathname.replace(`/${currentLang}`, '');
+  }
+  return pathname.startsWith('/') ? `/${targetLang}${pathname.replace(`/${currentLang}`, '')}` : `/${targetLang}/${pathname}`;
+}
+
+const isArabic = currentLang === 'ar';
+const targetLang = isArabic ? 'en' : 'ar';
+const targetUrl = getUrlForLang(targetLang);
+---
+
+<a
+  href={targetUrl}
+  class="group relative inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-white dark:hover:text-emerald-200 transition-all duration-200 ease-out rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 active:bg-gray-200 dark:active:bg-white/15"
+  aria-label={`Switch to ${targetLang === 'ar' ? 'Arabic' : 'English'}`}
+>
+  <span class="text-sm font-medium">
+    {isArabic ? 'English' : 'عربي'}
+  </span>
+  
+  <!-- Hover effect -->
+  <span class="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/20 group-hover:ring-white/40 group-hover:scale-[0.98] group-active:scale-95 transition-all duration-200"></span>
+</a>
+
+<style>
+  .font-arabic {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+  }
+</style>
