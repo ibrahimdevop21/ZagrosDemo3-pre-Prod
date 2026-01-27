@@ -47,7 +47,7 @@ const isArabic = lang === 'ar';
       </div>
       
       <LogoCarousel 
-        client:only="react"
+        client:visible
         logos={[
           ...companyData.company.international_linkages.seeds.map(p => ({
             id: p.name,
@@ -105,7 +105,7 @@ const isArabic = lang === 'ar';
       </div>
       
       <LogoCarousel 
-        client:only="react"
+        client:visible
         logos={companyData.customers.map(customer => ({
           id: customer.name,
           src: `/trusted-customer-logos/${customer.logo}`,
@@ -132,7 +132,7 @@ const isArabic = lang === 'ar';
       </div>
       
       <TestimonialCarousel 
-        client:only="react"
+        client:visible
         testimonials={testimonials.map(t => ({
           quote: isArabic ? t.quote.ar : t.quote.en,
           author: isArabic ? t.author.ar : t.author.en,

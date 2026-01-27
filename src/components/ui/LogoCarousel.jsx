@@ -18,7 +18,7 @@ const LogoItem = memo(({ logo }) => (
       width="160"
       height="96"
       className="w-full h-full object-contain"
-      loading="eager"
+      loading="lazy"
       draggable="false"
     />
   </div>
