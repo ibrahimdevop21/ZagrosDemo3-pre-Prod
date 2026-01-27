@@ -1,0 +1,63 @@
+---
+/**
+ * Trust Indicators Component
+ * Metrics strip showing company credibility
+ * Subtle fade-in animation on scroll
+ */
+
+interface Props {
+  indicators: {
+    years_experience: { value: string; label: string };
+    geographic_coverage: { value: string; label: string };
+    international_partners: { value: string; label: string };
+    registered_products: { value: string; label: string };
+  };
+  isArabic: boolean;
+}
+
+const { indicators, isArabic } = Astro.props;
+
+const items = [
+  indicators.years_experience,
+  indicators.geographic_coverage,
+  indicators.international_partners,
+  indicators.registered_products
+];
+---
+
+<section class="py-12 bg-white border-y border-stone-200/60">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {items.map((item, index) => (
+        <div 
+          class="text-center space-y-2 trust-indicator"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class={`text-3xl md:text-4xl font-bold text-brand-primary ${isArabic ? 'font-arabic' : ''}`}>
+            {item.value}
+          </div>
+          <div class={`text-sm md:text-base text-text-secondary ${isArabic ? 'font-arabic' : ''}`}>
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .trust-indicator {
+    animation: fade-in 0.6s ease-out both;
+  }
+</style>

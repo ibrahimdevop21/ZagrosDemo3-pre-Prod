@@ -1,0 +1,51 @@
+---
+/**
+ * CustomersSection - Reusable customers/testimonials display component
+ * Shows trusted customer logos in a grid
+ */
+import PageWrapper from '../layout/PageWrapper.astro';
+import Section from '../layout/Section.astro';
+import Container from '../layout/Container.astro';
+import Stack from '../layout/Stack.astro';
+
+interface Customer {
+  name: string;
+  name_ar: string;
+  logo: string;
+}
+
+interface Props {
+  title: string;
+  customers: Customer[];
+  isArabic?: boolean;
+}
+
+const { title, customers, isArabic = false } = Astro.props;
+---
+
+<Section spacing="sm">
+  <PageWrapper>
+    <Stack spacing="lg">
+      <Container narrow>
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-text-brand">{title}</h2>
+      </Container>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {customers.map(customer => (
+          <div class="group bg-bg-surface rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center transition-all duration-500 hover:shadow-xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-brand-accent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <img 
+              src={`/trusted-customer-logos/${customer.logo}`} 
+              alt={isArabic ? customer.name_ar : customer.name}
+              class="relative z-10 w-28 h-28 object-contain transition-transform duration-500 group-hover:scale-110 mb-4"
+              loading="lazy"
+            />
+            <p class="relative z-10 font-medium text-center text-text-primary group-hover:text-text-brand transition-colors duration-300">
+              {isArabic ? customer.name_ar : customer.name}
+            </p>
+          </div>
+        ))}
+      </div>
+    </Stack>
+  </PageWrapper>
+</Section>

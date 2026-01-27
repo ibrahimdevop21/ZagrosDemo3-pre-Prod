@@ -1,0 +1,99 @@
+---
+/**
+ * Core Business Activities Section
+ * Expanded activity cards with icons and detailed descriptions
+ */
+
+interface Activity {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  activities: Activity[];
+  isArabic: boolean;
+}
+
+const { title, subtitle, activities, isArabic } = Astro.props;
+
+const icons = [
+  // Agricultural Inputs
+  `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+  </svg>`,
+  // Pesticide Registration
+  `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+  </svg>`,
+  // Trade Operations
+  `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>`,
+  // Seeds Production
+  `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+  </svg>`
+];
+---
+
+<section class="py-16 md:py-24 bg-stone-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12 space-y-4">
+      <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
+        {title}
+      </h2>
+      <p class={`text-lg text-text-secondary max-w-3xl mx-auto ${isArabic ? 'font-arabic' : ''}`}>
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Activity Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {activities.map((activity, index) => (
+        <div 
+          class="activity-card bg-white rounded-xl p-6 md:p-8 border-2 border-stone-200/60 hover:border-amber-400 hover:shadow-xl transition-all duration-300"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class={`flex gap-4 ${isArabic ? 'flex-row-reverse text-right' : ''}`}>
+            <!-- Icon -->
+            <div class="flex-shrink-0">
+              <div class="w-14 h-14 rounded-lg bg-emerald-50 flex items-center justify-center text-brand-primary">
+                <Fragment set:html={icons[index]} />
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 space-y-3">
+              <h3 class={`text-xl font-semibold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
+                {activity.title}
+              </h3>
+              <p class={`text-text-secondary leading-relaxed ${isArabic ? 'font-arabic' : ''}`}>
+                {activity.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .activity-card {
+    animation: slide-up 0.6s ease-out both;
+  }
+</style>

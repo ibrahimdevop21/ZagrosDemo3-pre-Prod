@@ -1,0 +1,59 @@
+---
+/**
+ * CoreActivities - Business operations overview
+ * Structured blocks explaining operational scope
+ */
+import Section from '../layout/Section.astro';
+import Container from '../layout/Container.astro';
+import Stack from '../layout/Stack.astro';
+
+interface Activity {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  activities: Activity[];
+  isArabic?: boolean;
+}
+
+const { title, activities, isArabic = false } = Astro.props;
+
+const icons = [
+  'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+  'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'
+];
+---
+
+<Section spacing="lg">
+  <Container>
+    <Stack spacing="xl">
+      <Stack spacing="md" class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary">{title}</h2>
+        <div class="h-1 w-20 bg-bg-brand mx-auto rounded-full"></div>
+      </Stack>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {activities.map((activity, index) => (
+          <div class="group bg-bg-surface rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-border-default">
+            <Stack spacing="md">
+              <div class="p-4 bg-bg-brand-muted rounded-lg w-fit">
+                <svg class="w-10 h-10 text-text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons[index]} />
+                </svg>
+              </div>
+              <h3 class:list={["text-xl font-bold text-text-primary group-hover:text-text-brand transition-colors", { "text-right": isArabic }]}>
+                {activity.title}
+              </h3>
+              <p class:list={["text-text-secondary leading-relaxed", { "text-right": isArabic }]}>
+                {activity.description}
+              </p>
+            </Stack>
+          </div>
+        ))}
+      </div>
+    </Stack>
+  </Container>
+</Section>

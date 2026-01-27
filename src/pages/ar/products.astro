@@ -1,53 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProductList from '../../components/products/ProductList.jsx';
-import pesticidesData from '../../data/pesticides.json';
-import fertilizersData from '../../data/fertilizers.json';
-import { useTranslations } from '../../i18n/utils';
-
-const allProducts = [
-  ...pesticidesData.subcategories.flatMap(subcat => 
-    subcat.products.map(product => ({
-      ...product,
-      categoryId: subcat.id
-    }))
-  ),
-  ...fertilizersData.subcategories.flatMap(subcat => 
-    subcat.products.map(product => ({
-      ...product,
-      categoryId: subcat.id
-    }))
-  )
-];
-
-const categories = [
-  ...pesticidesData.subcategories.map(subcat => ({
-    id: subcat.id,
-    name: subcat.name
-  })),
-  ...fertilizersData.subcategories.map(subcat => ({
-    id: subcat.id,
-    name: subcat.name
-  }))
-];
-
-const t = useTranslations('ar');
+/**
+ * Arabic Products Page
+ * This file exists to create the /ar/products route.
+ * It imports and renders the main products page which handles both languages.
+ */
+import ProductsPage from '../products.astro';
 ---
 
-<Layout title={t('products.title')}>
-  <div class="min-h-screen bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300 rtl">
-    <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-green-900 dark:bg-emerald-900 text-white py-24">
-      <div class="absolute inset-0 bg-[url('/hero-pattern.png')] opacity-10 dark:opacity-5"></div>
-      <div class="container mx-auto px-4 relative">
-        <h1 class="text-5xl md:text-6xl font-bold text-center mb-6">{t('products.heading')}</h1>
-        <p class="text-lg md:text-xl text-center text-green-100 max-w-2xl mx-auto">{t('products.subheading')}</p>
-      </div>
-    </div>
-
-    <!-- Product List Section -->
-    <div class="container mx-auto px-4 py-16">
-      <ProductList client:load products={allProducts} categories={categories} lang="ar" />
-    </div>
-  </div>
-</Layout>
+<ProductsPage />

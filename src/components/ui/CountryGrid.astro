@@ -1,0 +1,60 @@
+---
+/**
+ * CountryGrid Component
+ * Displays country flags with names in a responsive grid
+ * Fully i18n-aware with RTL/LTR support
+ */
+
+interface Country {
+  code: string;
+  name_en: string;
+  name_ar: string;
+}
+
+interface Props {
+  countries: Country[];
+  lang?: 'en' | 'ar';
+}
+
+const { countries, lang = 'en' } = Astro.props;
+const isArabic = lang === 'ar';
+---
+
+<div 
+  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8"
+  dir={isArabic ? 'rtl' : 'ltr'}
+>
+  {countries.map((country) => (
+    <div 
+      class="flex flex-col items-center gap-3 p-4 rounded-lg bg-white border border-stone-200/60 hover:border-stone-300 hover:shadow-sm transition-all duration-200 focus-within:ring-2 focus-within:ring-brand-primary/20"
+      tabindex="0"
+      role="article"
+      aria-label={isArabic ? country.name_ar : country.name_en}
+    >
+      <!-- Flag Container -->
+      <div class="w-16 h-12 flex items-center justify-center overflow-hidden rounded">
+        <img
+          src={`https://flagcdn.com/w80/${country.code}.png`}
+          srcset={`https://flagcdn.com/w160/${country.code}.png 2x`}
+          alt={`${isArabic ? country.name_ar : country.name_en} flag`}
+          class="w-full h-full object-cover"
+          loading="lazy"
+          draggable="false"
+        />
+      </div>
+      
+      <!-- Country Name -->
+      <p class={`text-sm font-medium text-text-secondary text-center leading-tight ${isArabic ? 'font-arabic' : ''}`}>
+        {isArabic ? country.name_ar : country.name_en}
+      </p>
+    </div>
+  ))}
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+</style>

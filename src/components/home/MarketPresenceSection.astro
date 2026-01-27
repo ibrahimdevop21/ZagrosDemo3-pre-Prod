@@ -1,0 +1,115 @@
+---
+/**
+ * Market Presence & Distribution Section
+ * Credibility section with soft green background
+ */
+
+import CountryGrid from '../ui/CountryGrid.astro';
+import { countries } from '../../data/countries';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryMarket: { title: string; description: string };
+  distributionNetwork: { title: string; description: string };
+  internationalReach: { title: string; description: string };
+  isArabic: boolean;
+  lang?: 'en' | 'ar';
+}
+
+const { title, subtitle, primaryMarket, distributionNetwork, internationalReach, isArabic, lang = 'en' } = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-gradient-to-br from-emerald-50/50 to-stone-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12 space-y-4">
+      <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
+        {title}
+      </h2>
+      <p class={`text-lg text-text-secondary max-w-3xl mx-auto ${isArabic ? 'font-arabic' : ''}`}>
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Primary Market -->
+      <div class="market-card bg-white rounded-xl p-6 border-2 border-stone-200/60 hover:border-amber-400 space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center border border-amber-200">
+          <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <h3 class={`text-xl font-semibold text-text-primary ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {primaryMarket.title}
+        </h3>
+        <p class={`text-text-secondary leading-relaxed ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {primaryMarket.description}
+        </p>
+      </div>
+
+      <!-- Distribution Network -->
+      <div class="market-card bg-white rounded-xl p-6 border-2 border-stone-200/60 hover:border-amber-400 space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center border border-amber-200">
+          <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class={`text-xl font-semibold text-text-primary ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {distributionNetwork.title}
+        </h3>
+        <p class={`text-text-secondary leading-relaxed ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {distributionNetwork.description}
+        </p>
+      </div>
+
+      <!-- International Reach -->
+      <div class="market-card bg-white rounded-xl p-6 border-2 border-stone-200/60 hover:border-amber-400 space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center border border-amber-200">
+          <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class={`text-xl font-semibold text-text-primary ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {internationalReach.title}
+        </h3>
+        <p class={`text-text-secondary leading-relaxed ${isArabic ? 'font-arabic text-right' : ''}`}>
+          {internationalReach.description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Country Coverage Grid -->
+    <div class="mt-16">
+      <div class="text-center mb-8">
+        <h3 class={`text-2xl font-semibold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
+          {isArabic ? 'التواجد الدولي' : 'Global Market Coverage'}
+        </h3>
+      </div>
+      <CountryGrid countries={countries} lang={lang} />
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .market-card {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .market-card:nth-child(1) { animation-delay: 0ms; }
+  .market-card:nth-child(2) { animation-delay: 100ms; }
+  .market-card:nth-child(3) { animation-delay: 200ms; }
+</style>

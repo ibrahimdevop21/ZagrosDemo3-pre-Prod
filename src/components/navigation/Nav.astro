@@ -3,7 +3,6 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { getLocalizedPath } from '../../utils/navigation';
 import { companyData } from '../../data/company';
 import LanguageToggle from './LanguageToggle.astro';
-import ThemeToggle from './ThemeToggle.astro';
 import Logo from './Logo.astro';
 
 const lang = getLangFromUrl(Astro.url);
@@ -20,88 +19,93 @@ const navItems = [
 ];
 ---
 
-<header class="fixed w-full top-0 z-50 bg-white/95 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800/50 shadow-sm transition-all duration-300">
-  <nav class="container relative mx-auto px-4" aria-label="Main navigation">
-    <!-- Desktop Navigation -->
-    <div class={`hidden md:flex items-center justify-between h-16 ${isArabic ? 'flex-row-reverse' : ''}`}>
-      <div class="flex-shrink-0">
-        <a href={getLocalizedPath(lang)} class="block transition-transform hover:scale-105">
-          <Logo class="h-8 w-auto" />
-        </a>
-      </div>
+<header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-md shadow-sm">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Desktop Navigation: 3-Zone Grid Layout -->
+    <div class="hidden md:grid md:grid-cols-[auto_1fr_auto] items-center h-16 gap-8">
+      <!-- ZONE A (Start): Logo -->
+      <a href={getLocalizedPath(lang)} class="justify-self-start transition-transform hover:scale-105">
+        <Logo class="h-8 w-auto" />
+      </a>
 
-      <div class={`flex items-center gap-8 ${isArabic ? 'mr-8' : 'ml-8'}`}>
-        <div class="flex items-center gap-2">
-          {navItems.map(({ path, label }) => {
-            const isActive = currentPath === getLocalizedPath(lang, path);
-            return (
-              <a
-                href={getLocalizedPath(lang, path)}
-                class={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${isArabic ? 'font-arabic' : ''} ${
-                  isActive
-                    ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-emerald-600 dark:hover:text-emerald-400'
-                }`}
-              >
-                {t(label)}
-              </a>
-            );
-          })}
-        </div>
-        <div class="flex items-center gap-3 border-l border-gray-200 dark:border-gray-700 pl-6">
-          <ThemeToggle />
-          <LanguageToggle />
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <div class={`flex md:hidden items-center justify-between h-14 ${isArabic ? 'flex-row-reverse' : ''}`}>
-      <div class="flex-shrink-0">
-        <a href={getLocalizedPath(lang)} class="block transition-transform hover:scale-105">
-          <Logo class="h-7 w-auto" />
-        </a>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <ThemeToggle />
-        <LanguageToggle />
-        <button
-          type="button"
-          class="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-lg transition-all"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          id="menu-toggle"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden">
-      <div class={`px-1 py-2 space-y-1 ${isArabic ? 'text-right' : 'text-left'}`}>
+      <!-- ZONE B (Center): Primary Navigation -->
+      <nav class="justify-self-center flex items-center gap-1" aria-label="Main navigation">
         {navItems.map(({ path, label }) => {
           const isActive = currentPath === getLocalizedPath(lang, path);
           return (
             <a
               href={getLocalizedPath(lang, path)}
-              class={`block px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${isArabic ? 'font-arabic' : ''} ${
+              class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isArabic ? 'font-arabic' : ''} ${
                 isActive
-                  ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-emerald-600 dark:hover:text-emerald-400'
+                  ? 'bg-brand-accent text-text-brand'
+                  : 'text-text-secondary hover:bg-bg-surface-hover hover:text-text-brand'
               }`}
             >
               {t(label)}
             </a>
           );
         })}
+      </nav>
+
+      <!-- ZONE C (End): Utilities -->
+      <div class="justify-self-end">
+        <LanguageToggle />
       </div>
     </div>
-  </nav>
+
+    <!-- Mobile Navigation: Grid Layout -->
+    <div class="grid md:hidden grid-cols-[auto_1fr_auto] items-center h-14 gap-3">
+      <!-- Logo -->
+      <a href={getLocalizedPath(lang)} class="justify-self-start transition-transform hover:scale-105">
+        <Logo class="h-7 w-auto" />
+      </a>
+
+      <!-- Spacer -->
+      <div></div>
+
+      <!-- Menu Toggle Button -->
+      <button
+        type="button"
+        class="justify-self-end text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-all"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="menu-toggle"
+      >
+        <span class="sr-only">{isArabic ? 'فتح القائمة' : 'Open menu'}</span>
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu" class="hidden md:hidden bg-bg-surface border-t border-border-default">
+    <!-- Drawer Header with Language Toggle -->
+    <div class="px-6 py-4 border-b border-border-muted flex items-center justify-end">
+      <LanguageToggle />
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="px-4 py-4 space-y-2" aria-label="Mobile navigation">
+      {navItems.map(({ path, label }) => {
+        const isActive = currentPath === getLocalizedPath(lang, path);
+        return (
+          <a
+            href={getLocalizedPath(lang, path)}
+            class={`block px-6 py-4 text-base font-medium rounded-lg transition-all duration-200 ${isArabic ? 'font-arabic text-right' : ''} ${
+              isActive
+                ? 'bg-brand-accent text-text-brand'
+                : 'text-text-secondary hover:bg-bg-surface-hover hover:text-text-brand'
+            }`}
+          >
+            {t(label)}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
 </header>
 
 <script>

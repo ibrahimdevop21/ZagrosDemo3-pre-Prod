@@ -1,0 +1,32 @@
+---
+/**
+ * Container - Content width constraint within sections
+ * 
+ * Responsibilities:
+ * - Apply narrower max-width for readability
+ * - Center content
+ * 
+ * Does NOT control:
+ * - Padding (inherited from PageWrapper)
+ * - Vertical spacing (Section/Stack handle this)
+ */
+
+interface Props {
+  narrow?: boolean;
+  prose?: boolean;
+  class?: string;
+}
+
+const { narrow = false, prose = false, class: className = '' } = Astro.props;
+
+let widthClass = 'max-w-7xl';
+if (prose) {
+  widthClass = 'max-w-prose';
+} else if (narrow) {
+  widthClass = 'max-w-3xl';
+}
+---
+
+<div class={`${widthClass} mx-auto ${className}`}>
+  <slot />
+</div>

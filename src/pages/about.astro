@@ -1,61 +1,192 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { companyData } from '../data/company.js';
+import PageWrapper from '../components/layout/PageWrapper.astro';
+import { companyData } from '../data/company.ts';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isArabic = lang === 'ar';
 ---
 
-<Layout title="About Us">
-	<div class="container mx-auto px-4 py-16">
-		<h1 class="text-4xl font-bold text-center mb-16">About {companyData.company.name}</h1>
-
-		<div class="max-w-3xl mx-auto">
-			<div class="mb-12">
-				<h2 class="text-2xl font-bold mb-4">Our History</h2>
-				<p class="text-gray-700 mb-4">
-					Established in {companyData.company.established}, {companyData.company.name} has been a leading force in the agricultural sector.
-					We operate as {companyData.company.subsidiary}, specializing in {companyData.company.specialization}.
-				</p>
-				<p class="text-gray-700">
-					We are proud members of the {companyData.company.membership}, which reflects our commitment to industry standards and excellence.
-				</p>
-			</div>
-
-			<div class="mb-12">
-				<h2 class="text-2xl font-bold mb-4">Distribution Network</h2>
-				<p class="text-gray-700">{companyData.company.distribution_network}</p>
-			</div>
-
-			<div class="mb-12">
-				<h2 class="text-2xl font-bold mb-4">Management</h2>
-				<p class="text-gray-700">
-					Our company is {companyData.company.management.description}, with a dedicated team of {companyData.company.management.staff} professionals.
-				</p>
-			</div>
-
-			<div class="mb-12">
-				<h2 class="text-2xl font-bold mb-4">International Partners</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-					<div>
-						<h3 class="text-xl font-semibold mb-3">Seeds</h3>
-						<ul class="space-y-2 text-gray-700">
-							<li><strong>Vegetable Seeds:</strong> {companyData.company.international_linkages.vegetable_seeds}</li>
-							<li><strong>Forage Crops Seeds:</strong> {companyData.company.international_linkages.forage_crops_seeds}</li>
-						</ul>
+<Layout title={t('about.title')}>
+	<PageWrapper>
+		<!-- 1. Company Overview -->
+		<section class="py-12 md:py-16">
+			<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+				<div class="space-y-8">
+					<div class="space-y-4 text-center">
+						<h2 class="text-3xl font-bold text-text-primary">{t('about.overview.title')}</h2>
+						<div class="h-1 w-16 bg-bg-brand mx-auto rounded-full"></div>
 					</div>
-					<div>
-						<h3 class="text-xl font-semibold mb-3">Agricultural Inputs</h3>
-						<ul class="space-y-2 text-gray-700">
-							<li><strong>Fertilizers:</strong></li>
-							{companyData.company.international_linkages.fertilizers.map(partner => (
-								<li class="ml-4">- {partner}</li>
+					<p class:list={["text-lg text-text-secondary leading-relaxed text-center", { "text-right": isArabic }]}>
+						{t('about.overview.description')}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- 4. History & Development -->
+		<section class="py-12 md:py-16 bg-stone-50">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="space-y-12">
+					<div class="space-y-4 text-center">
+						<h2 class="text-3xl font-bold text-text-primary">{t('about.history.title')}</h2>
+						<div class="h-1 w-16 bg-bg-brand mx-auto rounded-full"></div>
+					</div>
+
+					<div class="relative">
+						<!-- Timeline line -->
+						<div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-bg-brand hidden md:block"></div>
+
+						<div class="space-y-12">
+							{[
+								{ key: '1987', side: 'left' },
+								{ key: '2009', side: 'right' },
+								{ key: 'present', side: 'left' }
+							].map((item, index) => (
+								<div class:list={[
+									"relative grid md:grid-cols-2 gap-8 items-center",
+									{ "md:flex-row-reverse": item.side === 'right' }
+								]}>
+									{item.side === 'left' && (
+										<>
+											<div class="md:text-right">
+												<div class="bg-bg-surface rounded-xl p-6 shadow-lg border border-border-default">
+													<div class="space-y-3">
+														<div class="flex items-center gap-3 md:justify-end">
+															<div class="px-4 py-2 bg-bg-brand-muted rounded-lg">
+																<span class="text-xl font-bold text-text-brand">{t(`about.history.timeline.${item.key}.year`)}</span>
+															</div>
+														</div>
+														<h3 class:list={["text-xl font-bold text-text-primary", { "md:text-right": !isArabic }]}>
+															{t(`about.history.timeline.${item.key}.title`)}
+														</h3>
+														<p class:list={["text-text-secondary leading-relaxed", { "md:text-right": !isArabic, "text-right": isArabic }]}>
+															{t(`about.history.timeline.${item.key}.description`)}
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="hidden md:block"></div>
+										</>
+									)}
+									{item.side === 'right' && (
+										<>
+											<div class="hidden md:block"></div>
+											<div>
+												<div class="bg-bg-surface rounded-xl p-6 shadow-lg border border-border-default">
+													<div class="space-y-3">
+														<div class="flex items-center gap-3">
+															<div class="px-4 py-2 bg-bg-brand-muted rounded-lg">
+																<span class="text-xl font-bold text-text-brand">{t(`about.history.timeline.${item.key}.year`)}</span>
+															</div>
+														</div>
+														<h3 class:list={["text-xl font-bold text-text-primary", { "text-right": isArabic }]}>
+															{t(`about.history.timeline.${item.key}.title`)}
+														</h3>
+														<p class:list={["text-text-secondary leading-relaxed", { "text-right": isArabic }]}>
+															{t(`about.history.timeline.${item.key}.description`)}
+														</p>
+													</div>
+												</div>
+											</div>
+										</>
+									)}
+									<!-- Timeline dot -->
+									<div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-bg-brand rounded-full border-4 border-bg-surface hidden md:block"></div>
+								</div>
 							))}
-							<li class="mt-2"><strong>Pesticides:</strong></li>
-							{companyData.company.international_linkages.pesticides.map(partner => (
-								<li class="ml-4">- {partner}</li>
-							))}
-						</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
+
+		<!-- 5. Specialization & Operations -->
+		<section class="py-12 md:py-16">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="space-y-12">
+					<div class="space-y-4 text-center">
+						<h2 class="text-3xl font-bold text-text-primary">{t('about.specialization.title')}</h2>
+						<div class="h-1 w-16 bg-bg-brand mx-auto rounded-full"></div>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						{[
+							{ icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', text: t('about.specialization.pesticide_registration') },
+							{ icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4', text: t('about.specialization.fertilizers_seeds') },
+							{ icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', text: t('about.specialization.compliance') }
+						].map(item => (
+							<div class="bg-bg-surface rounded-xl p-6 shadow-md border border-border-default hover:shadow-lg transition-shadow">
+								<div class="flex items-start gap-4">
+									<div class="p-3 bg-bg-brand-muted rounded-lg flex-shrink-0">
+										<svg class="w-6 h-6 text-text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+										</svg>
+									</div>
+									<p class:list={["text-text-secondary leading-relaxed", { "text-right": isArabic }]}>
+										{item.text}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+
+					<div class="bg-brand-accent rounded-xl p-8 text-center">
+						<div class="space-y-3">
+							<p class:list={["text-lg font-semibold text-text-primary", { "text-right": isArabic }]}>
+								{t('about.specialization.registered_products')}
+							</p>
+							<p class:list={["text-text-secondary", { "text-right": isArabic }]}>
+								{t('about.specialization.product_breakdown')}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 6. Professional Affiliations -->
+		<section class="py-12 md:py-16 bg-stone-50">
+			<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+				<div class="space-y-8">
+					<div class="space-y-4 text-center">
+						<h2 class="text-3xl font-bold text-text-primary">{t('about.affiliations.title')}</h2>
+						<div class="h-1 w-16 bg-bg-brand mx-auto rounded-full"></div>
+					</div>
+
+					<div class="bg-bg-surface rounded-xl p-8 shadow-lg border-2 border-border-brand/20">
+						<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+							<div class="w-24 h-24 flex items-center justify-center">
+								<img src="/AFA.svg" alt="Arab Fertilizer Association" class="w-full h-full object-contain" />
+							</div>
+							<p class:list={["text-xl font-semibold text-text-primary text-center md:text-left", { "md:text-right": isArabic, "font-arabic": isArabic }]}>
+								{t('about.affiliations.afa')}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 7. Leadership & Commitment -->
+		<section class="py-12 md:py-16">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="bg-gradient-to-br from-emerald-50/50 to-stone-50 rounded-2xl p-12 md:p-16 text-center">
+					<div class="space-y-8">
+						<div class="space-y-4">
+							<h2 class:list={["text-3xl md:text-4xl font-bold text-text-primary", { "font-arabic": isArabic }]}>
+								{t('about.positioning.title')}
+							</h2>
+							<div class="h-1.5 w-24 bg-bg-brand mx-auto rounded-full"></div>
+						</div>
+						<p class:list={["text-xl text-text-secondary leading-relaxed max-w-4xl mx-auto", { "font-arabic": isArabic }]}>
+							{t('about.positioning.statement')}
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</PageWrapper>
 </Layout>

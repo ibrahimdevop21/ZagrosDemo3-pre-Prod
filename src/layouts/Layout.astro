@@ -3,7 +3,7 @@ import { getLangFromUrl } from '../i18n/utils';
 import Nav from '../components/navigation/Nav.astro';
 import Footer from '../components/footer/Footer.astro';
 import '../styles/global.css';
-import '../styles/animations.css';
+import '../styles/products.css';
 
 interface Props {
   title?: string;
@@ -16,20 +16,6 @@ const isRTL = lang === 'ar';
 
 <!doctype html>
 <html lang={lang} dir={isRTL ? 'rtl' : 'ltr'} class="h-full scroll-smooth">
-  <script is:inline>
-    (function() {
-      const theme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (theme === 'dark' || (!theme && systemPrefersDark)) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    })();
-  </script>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Zagros Trading - Your trusted partner in agricultural solutions. We provide premium fertilizers, pesticides, and agricultural consultancy services." />
@@ -42,7 +28,7 @@ const isRTL = lang === 'ar';
 		<title>{title}</title>
 	</head>
 	<body class:list={[
-		'min-h-full flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300',
+		'min-h-full flex flex-col bg-gray-50 text-gray-900 transition-colors duration-300',
 		{ 'font-arabic': isRTL }
 	]}>
 		<Nav />

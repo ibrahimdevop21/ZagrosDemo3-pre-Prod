@@ -7,11 +7,73 @@
   },
   "home": {
     "hero": {
-      "title": "Zagros Trading",
-      "subtitle": "Your trusted partner in agricultural solutions",
-      "cta": {
-        "products": "Our Products",
-        "contact": "Contact Us"
+      "headline": "Leading Agricultural Trade Partner in Sudan",
+      "subheadline": "Connecting international agricultural solutions with regional markets through trusted distribution networks",
+      "value_proposition": "Over 35 years of operational excellence in agricultural inputs, pesticide registration, and comprehensive trade operations",
+      "cta_primary": "Partner With Us",
+      "cta_secondary": "Explore Products"
+    },
+    "trust_indicators": {
+      "years_experience": {
+        "value": "35+",
+        "label": "Years of Operation"
+      },
+      "geographic_coverage": {
+        "value": "Sudan-Wide",
+        "label": "Distribution Network"
+      },
+      "international_partners": {
+        "value": "20+",
+        "label": "International Partners"
+      },
+      "registered_products": {
+        "value": "19",
+        "label": "Registered Products"
+      }
+    },
+    "snapshot": {
+      "title": "Company Snapshot",
+      "established": "Operations since 1987",
+      "specialization": "Agricultural trade and distribution",
+      "coverage": "Active operations across Sudan",
+      "partnerships": "International partnerships across multiple countries"
+    },
+    "activities": {
+      "title": "Core Business Activities",
+      "subtitle": "Comprehensive agricultural trade solutions backed by international partnerships",
+      "items": [
+        {
+          "title": "Agricultural Inputs Import & Distribution",
+          "description": "Specialized import and distribution of premium fertilizers, certified seeds, and modern agricultural equipment. Direct partnerships with leading international manufacturers ensure quality and compliance."
+        },
+        {
+          "title": "Pesticide Registration & Regulatory Compliance",
+          "description": "Full-service pesticide registration for agricultural and public health applications. 19 registered products including herbicides, insecticides, and fungicides, all meeting national regulatory standards."
+        },
+        {
+          "title": "International Trade Operations",
+          "description": "End-to-end import, export, and distribution services. Established logistics network and customs expertise ensure efficient delivery across Sudan's agricultural regions."
+        },
+        {
+          "title": "Seeds Production & Distribution",
+          "description": "Production and distribution of field crops and forage crops seeds. Quality-controlled seed varieties optimized for regional growing conditions."
+        }
+      ]
+    },
+    "market": {
+      "title": "Market Presence & Distribution Strength",
+      "subtitle": "Established distribution infrastructure serving Sudan's agricultural sector",
+      "primary_market": {
+        "title": "Primary Market: Sudan",
+        "description": "Comprehensive distribution network covering Port Sudan, Al Qadarif, Al Managil, Ad-Damar, and Ad-Daba, with active presence across major agricultural zones."
+      },
+      "distribution_network": {
+        "title": "Wide Distributor Coverage",
+        "description": "Strategic partnerships with regional distributors ensure reliable product availability and technical support throughout Sudan's farming communities."
+      },
+      "international_reach": {
+        "title": "International Partnerships",
+        "description": "Authorized agent and representative for agricultural companies from Spain, Singapore, China, India, Turkey, Egypt, and Saudi Arabia."
       }
     },
     "services": {
@@ -23,13 +85,23 @@
       ]
     },
     "partners": {
-      "title": "International Partners",
+      "title": "International Partnerships & Representations",
+      "subtitle": "Authorized agents and representatives for agricultural companies",
       "seeds": "Seeds & Forage Crops",
       "fertilizers": "Fertilizers",
       "pesticides": "Pesticides"
     },
+    "distribution": {
+      "title": "Distribution & Client Network",
+      "description": "Wide distributor coverage across Sudan serving agricultural sector needs"
+    },
     "customers": {
       "title": "Our Trusted Customers"
+    },
+    "cta": {
+      "title": "Business Inquiries",
+      "description": "Contact us for partnership and distribution opportunities",
+      "button": "Get in Touch"
     }
   },
   "products": {
@@ -47,10 +119,58 @@
   },
   "about": {
     "title": "About Us",
+    "overview": {
+      "title": "Company Overview",
+      "description": "Zagros Trading is an agriculture-focused trade and distribution company operating in Sudan with international partnerships"
+    },
     "history": {
-      "title": "Our History",
-      "established": "Established in",
-      "specialization": "specializing in"
+      "title": "History & Development",
+      "timeline": {
+        "1987": {
+          "year": "1987",
+          "title": "Foundation",
+          "description": "Established as Ouranos Trading and Investment Limited, focusing on import of agricultural inputs, fertilizers, seeds, agricultural equipment, sprayers and irrigation machinery"
+        },
+        "2009": {
+          "year": "2009",
+          "title": "Business Evolution",
+          "description": "Evolved into Zagros Trading, focusing on import, export, and distribution of fertilizers and agricultural crops"
+        },
+        "present": {
+          "year": "Present",
+          "title": "Current Operations",
+          "description": "Active agricultural distribution across Sudan with wide network coverage"
+        }
+      }
+    },
+    "specialization": {
+      "title": "Specialization & Operations",
+      "pesticide_registration": "Registration and import of agricultural and public health pesticides",
+      "fertilizers_seeds": "Fertilizers and seeds trade",
+      "compliance": "Compliance-driven trade activities with regulatory adherence",
+      "registered_products": "19 registered agricultural and public health pesticides",
+      "product_breakdown": "11 herbicides, 6 insecticides, 2 fungicides"
+    },
+    "international": {
+      "title": "International Relationships",
+      "description": "Authorized agent and representative for agricultural chemical companies from:",
+      "countries": [
+        "Spain",
+        "Singapore",
+        "China",
+        "India",
+        "Turkey",
+        "Egypt",
+        "Kingdom of Saudi Arabia"
+      ]
+    },
+    "affiliations": {
+      "title": "Professional Affiliations",
+      "afa": "Member of Arab Fertilizer Association (AFA)"
+    },
+    "positioning": {
+      "title": "Our Position",
+      "statement": "Zagros Trading is a reliable agricultural trade and distribution partner in the region, combining decades of operational experience with international partnerships to serve Sudan's agricultural sector"
     },
     "network": {
       "title": "Distribution Network"

@@ -23,7 +23,19 @@ export interface CompanyData {
             hours: string;
             telephones: string[];
             branches: string[];
+            social: {
+                facebook: string;
+                instagram: string;
+                youtube: string;
+            };
         };
+        branches: Array<{
+            name: string;
+            name_ar: string;
+            type: string;
+            type_ar: string;
+            mapUrl: string;
+        }>;
         international_linkages: {
             vegetable_seeds: Array<{
                 name: string;
@@ -103,11 +115,60 @@ export const companyData: CompanyData = {
         contact: {
             address: "123 Agricultural District, Khartoum, Sudan",
             phone: "+249 183 123456",
-            email: "info@zagros-trading.com",
+            email: "info@zagros-agriculture.com",
             hours: "Sunday - Thursday: 8:00 AM - 5:00 PM",
             telephones: ["+249 183 123456", "+249 183 789012"],
-            branches: ["Khartoum Main Office", "Port Sudan Branch", "El Obeid Branch"]
+            branches: ["Khartoum Main Office", "Port Sudan Branch", "El Obeid Branch"],
+            social: {
+                facebook: "https://facebook.com/zagrosagri",
+                instagram: "https://instagram.com/zagrosagri",
+                youtube: "https://youtube.com/@zagrosagri"
+            }
         },
+        branches: [
+            {
+                name: "Khartoum",
+                name_ar: "الخرطوم",
+                type: "Headquarters",
+                type_ar: "المقر الرئيسي",
+                mapUrl: "https://maps.google.com/?q=Khartoum,Sudan"
+            },
+            {
+                name: "Port Sudan",
+                name_ar: "بورتسودان",
+                type: "Branch",
+                type_ar: "فرع",
+                mapUrl: "https://maps.google.com/?q=Port+Sudan,Sudan"
+            },
+            {
+                name: "Al Qadarif",
+                name_ar: "القضارف",
+                type: "Branch",
+                type_ar: "فرع",
+                mapUrl: "https://maps.google.com/?q=Al+Qadarif,Sudan"
+            },
+            {
+                name: "Al Managil",
+                name_ar: "المناقل",
+                type: "Branch",
+                type_ar: "فرع",
+                mapUrl: "https://maps.google.com/?q=Al+Managil,Sudan"
+            },
+            {
+                name: "Ad-Damar",
+                name_ar: "الدامر",
+                type: "Branch",
+                type_ar: "فرع",
+                mapUrl: "https://maps.google.com/?q=Ad-Damar,Sudan"
+            },
+            {
+                name: "Ad-Daba",
+                name_ar: "الدبة",
+                type: "Branch",
+                type_ar: "فرع",
+                mapUrl: "https://maps.google.com/?q=Ad-Daba,Sudan"
+            }
+        ],
         international_linkages: {
             vegetable_seeds: [
                 {
@@ -181,27 +242,32 @@ export const companyData: CompanyData = {
         {
             name: "Ministry of Agriculture & Natural Resources Sudan",
             name_ar: "وزارة الزراعة و الموارد الطبيعية السودان",
-            logo: "ministry-of-agriculture.webp"
+            logo: "ministry-of-agriculture.svg"
         },
         {
             name: "Alrajihi Agriculture Project",
             name_ar: "مشروع الراجحي الزراعي",
-            logo: "alrajihi.webp"
+            logo: "alrajihi.svg"
         },
         {
             name: "Amtar Agriculture Project",
             name_ar: "مشروع امطار الزراعي",
-            logo: "amtar.webp"
+            logo: "amtaar.svg"
         },
         {
             name: "Dal Agriculture ",
             name_ar: "دال الزراعية",
-            logo: "dal.webp"
+            logo: "dal.svg"
         },
         {
             name: "Paramount Agriculture",
             name_ar: " باراماونت الزراعية",
-            logo: "paramount.webp"
+            logo: "Paramount.svg"
+        },
+        {
+            name: "Premier Farm",
+            name_ar: "بريمير فارم",
+            logo: "premier-farm.webp"
         }
     ]
 }

@@ -1,0 +1,55 @@
+---
+/**
+ * MarketPresence - Geographic framing
+ * Honest representation of market coverage
+ */
+import Section from '../layout/Section.astro';
+import Container from '../layout/Container.astro';
+import Stack from '../layout/Stack.astro';
+
+interface Props {
+  title: string;
+  primary: string;
+  description: string;
+  partnerships: string;
+  isArabic?: boolean;
+}
+
+const { title, primary, description, partnerships, isArabic = false } = Astro.props;
+---
+
+<Section spacing="md" background="muted">
+  <Container narrow>
+    <Stack spacing="lg">
+      <Stack spacing="md" class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary">{title}</h2>
+        <div class="h-1 w-20 bg-gradient-to-r from-emerald-500 to-emerald-300 mx-auto rounded-full"></div>
+      </Stack>
+
+      <div class="bg-bg-surface rounded-xl p-8 shadow-lg border border-border-default">
+        <Stack spacing="lg">
+          <div class="flex items-center gap-4 pb-6 border-b border-border-default">
+            <div class="p-3 bg-bg-brand-muted rounded-lg">
+              <svg class="w-8 h-8 text-text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class:list={["text-2xl font-bold text-text-brand", { "text-right": isArabic }]}>
+              {primary}
+            </h3>
+          </div>
+
+          <Stack spacing="md">
+            <p class:list={["text-lg text-text-primary leading-relaxed", { "text-right": isArabic }]}>
+              {description}
+            </p>
+            <p class:list={["text-text-secondary leading-relaxed", { "text-right": isArabic }]}>
+              {partnerships}
+            </p>
+          </Stack>
+        </Stack>
+      </div>
+    </Stack>
+  </Container>
+</Section>

@@ -98,27 +98,27 @@ const Carousel = ({ isArabic = false }) => {
                 alt={slide.title[isArabic ? 'ar' : 'en']}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-r ${isArabic ? 'from-black/60 dark:from-black/70 to-transparent' : 'from-black/60 dark:from-black/70 to-transparent'}`}>
+              <div className={`absolute inset-0 bg-gradient-to-r ${isArabic ? 'from-black/60 to-transparent' : 'from-black/60 to-transparent'}`}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-                  <div className="max-w-2xl text-white w-full md:w-3/4 lg:w-1/2">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-4 leading-tight">{slide.title[isArabic ? 'ar' : 'en']}</h2>
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed mb-6">{slide.description[isArabic ? 'ar' : 'en']}</p>
+                  <div className="max-w-2xl text-white w-full md:w-3/4 lg:w-1/2 space-y-6">
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight">{slide.title[isArabic ? 'ar' : 'en']}</h2>
+                    <p className="text-lg sm:text-xl md:text-2xl leading-relaxed opacity-95">{slide.description[isArabic ? 'ar' : 'en']}</p>
                     <div className={`flex gap-4 ${isArabic ? 'flex-row-reverse' : 'flex-row'}`}>
                       <a
                         href={isArabic ? '/ar/products' : '/products'}
-                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center"
+                        className="bg-bg-brand hover:bg-bg-brand-hover text-text-inverse px-8 py-4 rounded-[var(--radius-xl)] font-semibold transition-all duration-[var(--duration-normal)] inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105"
                       >
                         {isArabic ? 'تصفح منتجاتنا' : 'Browse Our Products'}
-                        <svg className={`w-5 h-5 ${isArabic ? 'mr-2 rotate-180' : 'ml-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-5 h-5 ${isArabic ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </a>
                       <a
                         href={isArabic ? '/ar/contact' : '/contact'}
-                        className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center"
+                        className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-4 rounded-[var(--radius-xl)] font-semibold transition-all duration-[var(--duration-normal)] inline-flex items-center gap-2 border border-white/30 hover:border-white/50"
                       >
                         {isArabic ? 'تواصل معنا' : 'Contact Us'}
-                        <svg className={`w-5 h-5 ${isArabic ? 'mr-2' : 'ml-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </a>

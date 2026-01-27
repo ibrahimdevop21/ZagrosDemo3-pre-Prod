@@ -1,0 +1,45 @@
+---
+/**
+ * Premium Testimonial Card
+ * For customer feedback display
+ */
+
+interface Props {
+  quote: string;
+  author: string;
+  role: string;
+  location: string;
+  isArabic?: boolean;
+}
+
+const { quote, author, role, location, isArabic = false } = Astro.props;
+---
+
+<div class="bg-bg-surface rounded-[var(--radius-2xl)] p-8 shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] transition-all duration-[var(--duration-normal)] border border-border-muted hover:border-border-brand">
+  <div class:list={["space-y-6", { "text-right": isArabic }]}>
+    <!-- Quote Icon -->
+    <div class:list={["text-text-brand opacity-20", { "flex justify-end": isArabic }]}>
+      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+      </svg>
+    </div>
+
+    <!-- Quote Text -->
+    <p class="text-text-primary text-lg leading-relaxed font-normal">
+      {quote}
+    </p>
+
+    <!-- Author Info -->
+    <div class:list={["pt-4 border-t border-border-muted", { "text-right": isArabic }]}>
+      <p class="font-semibold text-text-primary">{author}</p>
+      <p class="text-sm text-text-secondary mt-1">{role}</p>
+      <p class="text-xs text-text-tertiary mt-1 flex items-center gap-1.5" class:list={{ "justify-end": isArabic }}>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        {location}
+      </p>
+    </div>
+  </div>
+</div>

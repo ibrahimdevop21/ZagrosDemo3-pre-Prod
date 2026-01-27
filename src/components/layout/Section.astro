@@ -1,0 +1,48 @@
+---
+/**
+ * Section - Major page divisions with consistent vertical rhythm
+ * 
+ * Responsibilities:
+ * - Section separation (vertical spacing)
+ * - Optional background color
+ * - Optional max-width override
+ * 
+ * Does NOT control:
+ * - Horizontal padding (PageWrapper handles this)
+ * - Content internal spacing (Stack handles this)
+ */
+
+interface Props {
+  spacing?: 'xs' | 'sm' | 'md' | 'lg';
+  background?: 'base' | 'surface' | 'muted' | 'brand';
+  as?: 'section' | 'div';
+  class?: string;
+}
+
+const { 
+  spacing = 'sm', 
+  background,
+  as: Element = 'section',
+  class: className = '' 
+} = Astro.props;
+
+const spacingClasses = {
+  xs: 'py-section-xs',
+  sm: 'py-section-sm',
+  md: 'py-section-md',
+  lg: 'py-section-lg',
+};
+
+const backgroundClasses = {
+  base: 'bg-bg-base',
+  surface: 'bg-bg-surface',
+  muted: 'bg-bg-surface-muted',
+  brand: 'bg-gradient-to-b from-gray-800 to-gray-900 text-text-inverse',
+};
+
+const bgClass = background ? backgroundClasses[background] : '';
+---
+
+<Element class={`${spacingClasses[spacing]} ${bgClass} ${className}`}>
+  <slot />
+</Element>

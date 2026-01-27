@@ -1,0 +1,37 @@
+---
+/**
+ * Premium Badge Component
+ * For status indicators and labels
+ */
+
+interface Props {
+  variant?: 'brand' | 'neutral' | 'success';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { 
+  variant = 'neutral',
+  size = 'sm',
+  class: className = '',
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center font-medium rounded-[var(--radius-full)] transition-colors duration-[var(--duration-fast)]';
+
+const variants = {
+  brand: 'bg-brand-accent text-text-brand',
+  neutral: 'bg-bg-surface-muted text-text-secondary',
+  success: 'bg-brand-accent text-text-brand',
+};
+
+const sizes = {
+  sm: 'px-2.5 py-0.5 text-xs',
+  md: 'px-3 py-1 text-sm',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>
