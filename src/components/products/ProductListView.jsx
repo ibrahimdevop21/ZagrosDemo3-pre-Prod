@@ -25,24 +25,24 @@ function ProductListItem({ product, lang }) {
   return (
     <div 
       key={product.id} 
-      className="bg-bg-surface rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-amber-400"
+      className="bg-[#F4FBF6] rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-yellow-400/30 hover:border-yellow-400/60"
       dir={isArabic ? 'rtl' : 'ltr'}
     >
       <div className={`flex flex-col ${isArabic ? 'md:flex-row-reverse' : 'md:flex-row'} h-full`}>
-        <div className="relative w-full md:w-48 h-48 md:h-auto flex items-center justify-center bg-stone-100 shrink-0 border-b md:border-b-0 md:border-r border-border-muted">
-          {!imageError && product.image ? (
+        <div className="relative w-full md:w-48 h-48 md:h-auto flex items-center justify-center bg-white shrink-0 border-b md:border-b-0 md:border-r border-yellow-400/20">
+          {imageError || !product.image ? (
+            <img
+              src="/logo.svg"
+              alt="Zagros Agriculture"
+              className="w-24 h-24 object-contain opacity-30"
+            />
+          ) : (
             <img
               src={product.image}
               alt={productName}
               className="w-full h-full object-contain p-2"
               loading="lazy"
               onError={handleImageError}
-            />
-          ) : (
-            <img
-              src="/logo.svg"
-              alt="Zagros Agriculture"
-              className="w-24 h-24 object-contain opacity-30"
             />
           )}
         </div>

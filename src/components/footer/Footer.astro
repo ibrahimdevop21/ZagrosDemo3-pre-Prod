@@ -53,12 +53,14 @@ const navItems = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
       
       <!-- Column 1: Brand & Navigation -->
-      <div class={isArabic ? 'text-right' : ''}>
-        <a href={getLocalizedPath(lang)} class="inline-block mb-6">
-          <Logo class="h-8 w-auto" />
-        </a>
+      <div class={isArabic ? 'text-right' : 'text-left'}>
+        <div class={isArabic ? 'flex justify-end mb-6' : 'mb-6'}>
+          <a href={getLocalizedPath(lang)} class="inline-block">
+            <Logo class="h-8 w-auto" />
+          </a>
+        </div>
         <h3 class={`text-sm font-semibold text-text-primary mb-4 tracking-wide uppercase ${isArabic ? 'font-arabic' : ''}`}>
-          {isArabic ? 'التنقل' : 'Navigation'}
+          {isArabic ? 'روابط سريعة' : 'Quick Links'}
         </h3>
         <nav class="space-y-3">
           {navItems.map(({ path, label }) => (
@@ -73,7 +75,7 @@ const navItems = [
       </div>
 
       <!-- Column 2: Contact -->
-      <div class={isArabic ? 'text-right' : ''}>
+      <div class={isArabic ? 'text-right' : 'text-left'}>
         <h3 class={`text-sm font-semibold text-text-primary mb-4 tracking-wide uppercase ${isArabic ? 'font-arabic' : ''}`}>
           {isArabic ? 'اتصل بنا' : 'Contact'}
         </h3>
@@ -104,7 +106,7 @@ const navItems = [
         
         <!-- Social Media Links -->
         <div class="pt-4 border-t border-stone-200/60">
-          <div class={`flex gap-3 ${isArabic ? 'flex-row-reverse' : ''}`}>
+          <div class={`flex gap-3 ${isArabic ? 'justify-end' : 'justify-start'}`}>
             <a 
               href={companyData.company.contact.social.facebook}
               target="_blank"
@@ -143,7 +145,7 @@ const navItems = [
       </div>
 
       <!-- Column 3: Presence -->
-      <div class={isArabic ? 'text-right' : ''}>
+      <div class={isArabic ? 'text-right' : 'text-left'}>
         <h3 class={`text-sm font-semibold text-text-primary mb-4 tracking-wide uppercase ${isArabic ? 'font-arabic' : ''}`}>
           {isArabic ? 'تواجدنا' : 'Our Presence'}
         </h3>

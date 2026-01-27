@@ -52,7 +52,7 @@ export default function TestimonialCarousel({ testimonials = [], autoPlayInterva
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             className="w-full"
           >
-            <div className="bg-bg-surface rounded-[var(--radius-2xl)] p-8 md:p-12 shadow-[var(--shadow-lg)] border border-border-muted">
+            <div className="bg-[#F4FBF6] rounded-[var(--radius-2xl)] p-8 md:p-12 shadow-[var(--shadow-lg)] border-2 border-yellow-400/30">
               <div className={`space-y-6 ${isArabic ? 'text-right' : ''}`}>
                 {/* Quote Icon */}
                 <div className={`text-text-brand opacity-20 ${isArabic ? 'flex justify-end' : ''}`}>

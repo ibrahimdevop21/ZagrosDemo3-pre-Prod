@@ -29,21 +29,21 @@ function ProductCard({ product = {}, lang = 'en' }) {
   };
 
   return (
-    <div className="bg-bg-surface rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-amber-400 hover:-translate-y-1">
-      <div className="relative h-48 bg-stone-100 flex items-center justify-center">
-        {!imageError && image ? (
+    <div className="bg-[#F4FBF6] rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-yellow-400/30 hover:border-yellow-400/60">
+      <div className="relative h-48 bg-white flex items-center justify-center">
+        {imageError || !image ? (
+          <img
+            src="/logo.svg"
+            alt="Zagros Agriculture"
+            className="w-24 h-24 object-contain opacity-30"
+          />
+        ) : (
           <img
             src={image}
             alt={productName}
             className="w-full h-full object-contain p-2"
             loading="lazy"
             onError={handleImageError}
-          />
-        ) : (
-          <img
-            src="/logo.svg"
-            alt="Zagros Agriculture"
-            className="w-24 h-24 object-contain opacity-30"
           />
         )}
       </div>

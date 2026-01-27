@@ -36,6 +36,12 @@
     --color-accent-dark: 217 119 6; /* amber-600 - darker accent */
     --color-accent-glow: 251 191 36; /* amber-400 - highlights */
     
+    /* Subtle Depth Accents - Light Green + Soft Yellow */
+    --color-green-hint: 244 251 246; /* #F4FBF6 - very light green tint for backgrounds */
+    --color-green-tint: 240 253 244; /* emerald-50 - subtle green for card backgrounds */
+    --color-yellow-outline: 250 204 21; /* yellow-400 - soft yellow for borders */
+    --color-yellow-outline-hover: 234 179 8; /* yellow-500 - slightly stronger on hover */
+    
     /* Utility Colors */
     --color-border-default: 229 231 235; /* gray-200 - standard borders */
     --color-border-muted: 243 244 246; /* gray-100 - subtle dividers */

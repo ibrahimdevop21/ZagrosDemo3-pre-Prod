@@ -48,19 +48,19 @@ export default function LogoCarousel({ logos = [], speed = 20 }) {
   const duplicatedLogos = useMemo(() => [...logos, ...logos, ...logos], [logoIds]);
   
   // Calculate pixel-based animation distance (avoids percentage recalc)
-  // Animate through 2 sets of logos for seamless infinite loop
+  // Animate through 1 set of logos for seamless infinite loop
   // RTL reverses the direction, so we need to flip the sign
   const animationDistance = useMemo(() => {
     // Each logo: 160px width + 48px gap = 208px per item
     const itemWidth = 208;
-    // Animate through 2 complete sets (2/3 of tripled logos)
-    const distance = logos.length * itemWidth * 2;
+    // Animate through 1 complete set (1/3 of tripled logos)
+    const distance = logos.length * itemWidth;
     // In RTL, animation should go positive (right to left visually)
     return isRTL ? distance : -distance;
   }, [logos.length, isRTL]);
 
   return (
-    <div className="relative overflow-hidden py-8">
+    <div className="relative overflow-hidden py-8 border-y border-yellow-400/20">
       {/* Gradient overlays for premium fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
@@ -72,7 +72,7 @@ export default function LogoCarousel({ logos = [], speed = 20 }) {
           x: {
             repeat: Infinity,
             repeatType: "loop",
-            duration: speed * 2,
+            duration: speed,
             ease: "linear",
           },
         }}

@@ -35,7 +35,7 @@ const isArabic = lang === 'ar';
   />
 
   <!-- 2. International Partnerships - Auto-Scroll Carousel -->
-  <section class="py-16 md:py-24 bg-gradient-to-br from-amber-50/30 via-white to-emerald-50/20">
+  <section class="py-16 md:py-24 bg-[#F4FBF6]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12 space-y-4">
         <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
@@ -96,7 +96,7 @@ const isArabic = lang === 'ar';
   />
 
   <!-- 6. Trusted Customers -->
-  <section class="py-16 md:py-24 bg-stone-50">
+  <section class="py-16 md:py-24 bg-[#F4FBF6]">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
@@ -132,7 +132,7 @@ const isArabic = lang === 'ar';
       </div>
       
       <TestimonialCarousel 
-        client:visible
+        client:load
         testimonials={testimonials.map(t => ({
           quote: isArabic ? t.quote.ar : t.quote.en,
           author: isArabic ? t.author.ar : t.author.en,
