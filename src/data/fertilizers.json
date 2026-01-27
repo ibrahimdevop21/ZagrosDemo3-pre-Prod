@@ -42,7 +42,7 @@
                       "en": "Global",
                       "ar": "عالمي"
                   },
-                  "image": "/products/PremiumNPK.webp"
+                  "image": ""
               },
               {
                   "id": "f3",
@@ -70,7 +70,7 @@
                       "en": "United Arab Emirates",
                       "ar": "الإمارات العربية المتحدة"
                   },
-                  "image": "/products/SoluNPK20-20-20.webp"
+                  "image": ""
               },
               {
                 "id": "f4",
@@ -98,7 +98,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/SoluNOP.webp"
+                "image": ""
             },
             {
                 "id": "f5",
@@ -126,7 +126,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/KaliSOP_gran.webp"
+                "image": ""
             },
             {
                 "id": "f6",
@@ -154,7 +154,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/KaliSOP_fine.webp"
+                "image": ""
             },
             {
                 "id": "f7",
@@ -182,7 +182,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/EPSOTop.webp"
+                "image": ""
             },
             {
                 "id": "f8",
@@ -210,7 +210,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/SoluNPK20-20-20.webp"
+                "image": ""
             },
             {
                 "id": "f9",
@@ -238,7 +238,7 @@
                     "en": "United Arab Emirates",
                     "ar": "الإمارات العربية المتحدة"
                 },
-                "image": "/products/SoluNPK12-12-36.webp"
+                "image": ""
             }
         ]
     }

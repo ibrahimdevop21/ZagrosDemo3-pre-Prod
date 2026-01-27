@@ -113,7 +113,7 @@ export const companyData: CompanyData = {
             staff: 50
         },
         contact: {
-            address: "123 Agricultural District, Khartoum, Sudan",
+            address: "Zagros Trading Enterprises, Khartoum Bahry Industrial Zone Block No.8 Plot 1/3 Portsudan - Sudan",
             phone: "+249 183 123456",
             email: "info@zagros-agriculture.com",
             hours: "Sunday - Thursday: 8:00 AM - 5:00 PM",
