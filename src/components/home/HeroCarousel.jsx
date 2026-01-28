@@ -33,11 +33,11 @@ const HeroCarousel = ({ images, interval = 5000 }) => {
           <img
             src={image}
             alt={`Hero slide ${index + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-right md:object-center"
             width="1920"
             height="1080"
             loading={index === 0 ? 'eager' : 'lazy'}
-            fetchPriority={index === 0 ? 'high' : 'low'}
+            fetchpriority={index === 0 ? 'high' : 'low'}
           />
         </div>
       ))}

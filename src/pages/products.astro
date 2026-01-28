@@ -4,6 +4,7 @@ import PageWrapper from '../components/layout/PageWrapper.astro';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import Stack from '../components/layout/Stack.astro';
+import ProductsHero from '../components/products/ProductsHero.astro';
 import ProductList from '../components/products/ProductList.jsx';
 import pesticidesData from '../data/pesticides.json';
 import fertilizersData from '../data/fertilizers.json';
@@ -41,6 +42,14 @@ const categories = [
 ---
 
 <Layout title={t('products.title')}>
+  <!-- Hero Carousel Section -->
+  <ProductsHero 
+    title={isArabic ? 'منتجاتنا الزراعية' : 'Our Agricultural Products'}
+    subtitle={isArabic ? 'حلول متكاملة للبذور والأسمدة والمبيدات من شركاء عالميين موثوقين' : 'Complete solutions for seeds, fertilizers, and pesticides from trusted global partners'}
+    isArabic={isArabic}
+  />
+
+  <!-- Products List Section -->
   <PageWrapper>
     <ProductList client:load products={allProducts} categories={categories} lang={lang} />
   </PageWrapper>

@@ -6,51 +6,70 @@
 @layer base {
   :root {
     /* ============================================
-       COLOR TOKENS - LIGHT MODE
+       CORPORATE AGRICULTURAL COLOR SYSTEM
        ============================================ */
     
-    /* Background Hierarchy - Neutral First */
-    --color-bg-base: 249 250 251; /* gray-50 - calm, clean base */
-    --color-bg-surface: 255 255 255; /* white - cards, containers */
-    --color-bg-surface-hover: 243 244 246; /* gray-100 - subtle hover */
-    --color-bg-surface-muted: 243 244 246; /* gray-100 - secondary surfaces */
-    --color-bg-brand: 5 150 105; /* emerald-600 - PRIMARY ACTION GREEN (darker, grounded) */
-    --color-bg-brand-muted: 240 253 244; /* emerald-50 - subtle green tint for accents */
-    --color-bg-brand-hover: 4 120 87; /* emerald-700 - button hover state */
+    /* PRIMARY BRAND - Deep Agricultural Green */
+    --color-brand-primary: 21 87 36; /* #155724 - Deep forest green, mature & grounded */
+    --color-brand-primary-hover: 13 60 23; /* #0D3C17 - Darker on hover */
+    --color-brand-primary-light: 34 107 52; /* #226B34 - Slightly lighter variant */
+    --color-brand-primary-muted: 46 125 50; /* #2E7D32 - Muted green for icons */
     
-    /* Text Hierarchy - Strong Contrast */
-    --color-text-primary: 17 24 39; /* gray-900 - main content */
-    --color-text-secondary: 75 85 99; /* gray-600 - supporting text */
-    --color-text-tertiary: 156 163 175; /* gray-400 - muted text */
-    --color-text-inverse: 255 255 255; /* white - on dark backgrounds */
-    --color-text-brand: 5 150 105; /* emerald-600 - brand emphasis */
+    /* ACCENT - Warm Agricultural Yellow */
+    --color-accent-primary: 212 163 15; /* #D4A30F - Warm golden yellow, harvest tone */
+    --color-accent-hover: 184 134 11; /* #B8860B - Darker golden on hover */
+    --color-accent-light: 234 192 49; /* #EAC031 - Lighter yellow for highlights */
+    --color-accent-muted: 196 148 20; /* #C49414 - Muted yellow for subtle accents */
     
-    /* Brand Colors - Single Controlled Green */
-    --color-brand-primary: 5 150 105; /* emerald-600 - THE ONLY ACTION GREEN */
-    --color-brand-primary-hover: 4 120 87; /* emerald-700 - hover state */
-    --color-brand-accent: 240 253 244; /* emerald-50 - soft background accent */
+    /* BACKGROUND HIERARCHY - No Pure White */
+    --color-bg-base: 248 247 244; /* #F8F7F4 - Soft warm off-white base */
+    --color-bg-surface: 252 251 248; /* #FCFBF8 - Very light warm surface (cards) */
+    --color-bg-surface-alt: 244 248 242; /* #F4F8F2 - Light green-tinted surface */
+    --color-bg-surface-hover: 242 245 239; /* #F2F5EF - Hover state for surfaces */
+    --color-bg-green-tint: 240 246 238; /* #F0F6EE - Subtle green background for sections */
+    --color-bg-green-light: 237 243 234; /* #EDF3EA - Slightly stronger green tint */
+    --color-bg-yellow-tint: 254 252 245; /* #FEFCF5 - Very subtle yellow warmth */
     
-    /* Accent Colors - Warm Yellow/Amber */
-    --color-accent-primary: 245 158 11; /* amber-500 - warm accent */
-    --color-accent-light: 254 243 199; /* amber-100 - subtle backgrounds */
-    --color-accent-dark: 217 119 6; /* amber-600 - darker accent */
-    --color-accent-glow: 251 191 36; /* amber-400 - highlights */
+    /* BRAND BACKGROUNDS */
+    --color-bg-brand: 21 87 36; /* Deep green - primary CTAs */
+    --color-bg-brand-hover: 13 60 23; /* Darker green hover */
+    --color-bg-brand-muted: 237 243 234; /* Light green for subtle brand sections */
+    --color-bg-brand-soft: 245 250 243; /* Very soft green tint */
     
-    /* Subtle Depth Accents - Light Green + Soft Yellow */
-    --color-green-hint: 244 251 246; /* #F4FBF6 - very light green tint for backgrounds */
-    --color-green-tint: 240 253 244; /* emerald-50 - subtle green for card backgrounds */
-    --color-yellow-outline: 250 204 21; /* yellow-400 - soft yellow for borders */
-    --color-yellow-outline-hover: 234 179 8; /* yellow-500 - slightly stronger on hover */
+    /* TEXT HIERARCHY - No Pure Black */
+    --color-text-primary: 26 32 21; /* #1A2015 - Deep green-black for headings */
+    --color-text-secondary: 52 64 42; /* #34402A - Dark green-gray for body */
+    --color-text-tertiary: 96 108 86; /* #606C56 - Muted green-gray for meta */
+    --color-text-quaternary: 134 142 126; /* #868E7E - Very muted for captions */
+    --color-text-inverse: 252 251 248; /* Off-white for dark backgrounds */
+    --color-text-brand: 21 87 36; /* Deep green for brand emphasis */
+    --color-text-accent: 184 134 11; /* Dark golden for accent text */
     
-    /* Utility Colors */
-    --color-border-default: 229 231 235; /* gray-200 - standard borders */
-    --color-border-muted: 243 244 246; /* gray-100 - subtle dividers */
-    --color-border-brand: 5 150 105; /* emerald-600 - brand borders */
-    --color-border-accent: 245 158 11; /* amber-500 - accent borders */
-    --color-ring-focus: 5 150 105; /* emerald-600 - focus rings */
-    --color-success: 5 150 105; /* emerald-600 - success states */
-    --color-warning: 234 179 8; /* yellow-500 - warnings */
-    --color-error: 239 68 68; /* red-500 - errors */
+    /* BORDER & DIVIDER SYSTEM */
+    --color-border-default: 220 222 215; /* #DCDED7 - Subtle warm gray border */
+    --color-border-muted: 235 237 230; /* #EBEDE6 - Very subtle divider */
+    --color-border-strong: 196 200 189; /* #C4C8BD - Stronger border */
+    --color-border-brand: 21 87 36; /* Deep green border */
+    --color-border-accent: 212 163 15; /* Yellow accent border */
+    --color-border-accent-light: 234 192 49; /* Light yellow outline */
+    
+    /* UTILITY COLORS */
+    --color-ring-focus: 21 87 36; /* Deep green focus ring */
+    --color-success: 46 125 50; /* Success green */
+    --color-warning: 212 163 15; /* Warning yellow */
+    --color-error: 183 28 28; /* Deep red for errors */
+    --color-info: 21 87 36; /* Info uses brand green */
+    
+    /* FOOTER & DARK SECTIONS */
+    --color-footer-bg: 18 46 24; /* #122E18 - Very deep green */
+    --color-footer-text: 196 204 189; /* #C4CCBD - Muted light text */
+    --color-footer-text-muted: 134 142 126; /* #868E7E - Very muted footer text */
+    --color-footer-border: 34 107 52; /* Subtle green border in footer */
+    
+    /* GRADIENT BACKGROUNDS - Subtle Depth */
+    --gradient-green-subtle: linear-gradient(180deg, rgb(248 247 244) 0%, rgb(240 246 238) 100%);
+    --gradient-warm-subtle: linear-gradient(180deg, rgb(254 252 245) 0%, rgb(248 247 244) 100%);
+    --gradient-brand: linear-gradient(135deg, rgb(21 87 36) 0%, rgb(34 107 52) 100%);
     
     /* ============================================
        SPACING TOKENS

@@ -20,7 +20,7 @@ interface Props {
 const { title, subtitle, primaryMarket, distributionNetwork, internationalReach, isArabic, lang = 'en' } = Astro.props;
 ---
 
-<section class="py-16 md:py-24 bg-gradient-to-br from-emerald-50/50 to-stone-50">
+<section class="py-16 md:py-24 bg-gradient-to-br from-bg-green-tint to-bg-surface">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-12 space-y-4">
@@ -35,8 +35,8 @@ const { title, subtitle, primaryMarket, distributionNetwork, internationalReach,
     <!-- Content Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Primary Market -->
-      <div class="market-card bg-[#F4FBF6] rounded-xl p-6 border-2 border-yellow-400/30 hover:border-yellow-400/60 space-y-4 transition-all duration-300 hover:shadow-lg">
-        <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-yellow-400/30">
+      <div class="market-card bg-bg-surface rounded-xl p-6 border-l-4 border-accent-light hover:border-accent-primary space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-bg-green-tint flex items-center justify-center border border-accent-light">
           <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -51,8 +51,8 @@ const { title, subtitle, primaryMarket, distributionNetwork, internationalReach,
       </div>
 
       <!-- Distribution Network -->
-      <div class="market-card bg-[#F4FBF6] rounded-xl p-6 border-2 border-yellow-400/30 hover:border-yellow-400/60 space-y-4 transition-all duration-300 hover:shadow-lg">
-        <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-yellow-400/30">
+      <div class="market-card bg-bg-surface rounded-xl p-6 border-l-4 border-accent-light hover:border-accent-primary space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-bg-green-tint flex items-center justify-center border border-accent-light">
           <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
@@ -66,8 +66,8 @@ const { title, subtitle, primaryMarket, distributionNetwork, internationalReach,
       </div>
 
       <!-- International Reach -->
-      <div class="market-card bg-[#F4FBF6] rounded-xl p-6 border-2 border-yellow-400/30 hover:border-yellow-400/60 space-y-4 transition-all duration-300 hover:shadow-lg">
-        <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center border border-yellow-400/30">
+      <div class="market-card bg-bg-surface rounded-xl p-6 border-l-4 border-accent-light hover:border-accent-primary space-y-4 transition-all duration-300 hover:shadow-lg">
+        <div class="w-12 h-12 rounded-lg bg-bg-green-tint flex items-center justify-center border border-accent-light">
           <svg class="w-6 h-6 text-brand-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
