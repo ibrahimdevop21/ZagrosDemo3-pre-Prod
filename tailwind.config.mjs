@@ -1,82 +1,72 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	darkMode: 'class',
-	theme: {
-		extend: {
-			fontFamily: {
-				arabic: ['Cairo', 'sans-serif'],
-				sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-			},
-			colors: {
-				// Brand colors - Deep Agricultural Green
-				'brand-primary': 'rgb(var(--color-brand-primary) / <alpha-value>)',
-				'brand-primary-hover': 'rgb(var(--color-brand-primary-hover) / <alpha-value>)',
-				'brand-primary-light': 'rgb(var(--color-brand-primary-light) / <alpha-value>)',
-				'brand-primary-muted': 'rgb(var(--color-brand-primary-muted) / <alpha-value>)',
-				
-				// Accent colors - Warm Agricultural Yellow
-				'accent-primary': 'rgb(var(--color-accent-primary) / <alpha-value>)',
-				'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
-				'accent-light': 'rgb(var(--color-accent-light) / <alpha-value>)',
-				'accent-muted': 'rgb(var(--color-accent-muted) / <alpha-value>)',
-				
-				// Background hierarchy
-				'bg-base': 'rgb(var(--color-bg-base) / <alpha-value>)',
-				'bg-surface': 'rgb(var(--color-bg-surface) / <alpha-value>)',
-				'bg-surface-alt': 'rgb(var(--color-bg-surface-alt) / <alpha-value>)',
-				'bg-surface-hover': 'rgb(var(--color-bg-surface-hover) / <alpha-value>)',
-				'bg-green-tint': 'rgb(var(--color-bg-green-tint) / <alpha-value>)',
-				'bg-green-light': 'rgb(var(--color-bg-green-light) / <alpha-value>)',
-				'bg-yellow-tint': 'rgb(var(--color-bg-yellow-tint) / <alpha-value>)',
-				'bg-brand': 'rgb(var(--color-bg-brand) / <alpha-value>)',
-				'bg-brand-hover': 'rgb(var(--color-bg-brand-hover) / <alpha-value>)',
-				'bg-brand-muted': 'rgb(var(--color-bg-brand-muted) / <alpha-value>)',
-				'bg-brand-soft': 'rgb(var(--color-bg-brand-soft) / <alpha-value>)',
-				
-				// Text hierarchy
-				'text-primary': 'rgb(var(--color-text-primary) / <alpha-value>)',
-				'text-secondary': 'rgb(var(--color-text-secondary) / <alpha-value>)',
-				'text-tertiary': 'rgb(var(--color-text-tertiary) / <alpha-value>)',
-				'text-quaternary': 'rgb(var(--color-text-quaternary) / <alpha-value>)',
-				'text-inverse': 'rgb(var(--color-text-inverse) / <alpha-value>)',
-				'text-brand': 'rgb(var(--color-text-brand) / <alpha-value>)',
-				'text-accent': 'rgb(var(--color-text-accent) / <alpha-value>)',
-				
-				// Border system
-				'border-default': 'rgb(var(--color-border-default) / <alpha-value>)',
-				'border-muted': 'rgb(var(--color-border-muted) / <alpha-value>)',
-				'border-strong': 'rgb(var(--color-border-strong) / <alpha-value>)',
-				'border-brand': 'rgb(var(--color-border-brand) / <alpha-value>)',
-				'border-accent': 'rgb(var(--color-border-accent) / <alpha-value>)',
-				'border-accent-light': 'rgb(var(--color-border-accent-light) / <alpha-value>)',
-				
-				// Footer colors
-				'footer-bg': 'rgb(var(--color-footer-bg) / <alpha-value>)',
-				'footer-text': 'rgb(var(--color-footer-text) / <alpha-value>)',
-				'footer-text-muted': 'rgb(var(--color-footer-text-muted) / <alpha-value>)',
-				'footer-border': 'rgb(var(--color-footer-border) / <alpha-value>)',
-			},
-			spacing: {
-				// Section-level spacing
-				'section-xs': 'var(--space-section-xs)',
-				'section-sm': 'var(--space-section-sm)',
-				'section-md': 'var(--space-section-md)',
-				'section-lg': 'var(--space-section-lg)',
-				
-				// Content-level spacing
-				'content-xs': 'var(--space-content-xs)',
-				'content-sm': 'var(--space-content-sm)',
-				'content-md': 'var(--space-content-md)',
-				'content-lg': 'var(--space-content-lg)',
-				'content-xl': 'var(--space-content-xl)',
-			},
-			maxWidth: {
-				'prose': 'var(--prose-width)',
-			},
-		},
-	},
-	plugins: [
-		require('@tailwindcss/forms'),
-	],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  // dark mode is intentionally not configured — single editorial palette per spec §2.2
+  theme: {
+    extend: {
+      fontFamily: {
+        // Display — magazine headlines, hero numerals, wordmark refresh option
+        display: ['Fraunces', 'Georgia', 'serif'],
+        // Serif — for the IBM Plex Serif role (subheads, certain editorial uses)
+        serif: ['"IBM Plex Serif"', 'Georgia', 'serif'],
+        // Body — primary reading typeface
+        sans: ['"IBM Plex Sans Variable"', 'IBM Plex Sans', 'system-ui', 'sans-serif'],
+        // Mono — captions, data labels, kickers
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+        // Arabic — body and display in AR locale; weight differentiates roles
+        arabic: ['"IBM Plex Sans Arabic"', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        // 7-token editorial palette — spec §2.2
+        paper: 'rgb(var(--color-paper) / <alpha-value>)',
+        'paper-light': 'rgb(var(--color-paper-light) / <alpha-value>)',
+        stone: 'rgb(var(--color-stone) / <alpha-value>)',
+        mute: 'rgb(var(--color-mute) / <alpha-value>)',
+        ink: 'rgb(var(--color-ink) / <alpha-value>)',
+        sienna: 'rgb(var(--color-sienna) / <alpha-value>)',
+        field: 'rgb(var(--color-field) / <alpha-value>)',
+        signal: 'rgb(var(--color-signal) / <alpha-value>)',
+        warn: 'rgb(var(--color-warn) / <alpha-value>)',
+
+        // Product brand-coding tokens — used by ProductBag SVG mockups (per source of truth §1)
+        'c-npk':    'rgb(var(--c-npk) / <alpha-value>)',
+        'c-mkp':    'rgb(var(--c-mkp) / <alpha-value>)',
+        'c-map':    'rgb(var(--c-map) / <alpha-value>)',
+        'c-ams':    'rgb(var(--c-ams) / <alpha-value>)',
+        'c-nop':    'rgb(var(--c-nop) / <alpha-value>)',
+        'c-cn':     'rgb(var(--c-cn) / <alpha-value>)',
+        'c-epso':   'rgb(var(--c-epso) / <alpha-value>)',
+        'c-ksop':   'rgb(var(--c-ksop) / <alpha-value>)',
+        'c-rhodes': 'rgb(var(--c-rhodes) / <alpha-value>)',
+        'c-sardi':  'rgb(var(--c-sardi) / <alpha-value>)',
+      },
+      spacing: {
+        // Raw scale — spec §3.1
+        'sp-1': '4px',   'sp-2': '8px',   'sp-3': '12px',  'sp-4': '16px',
+        'sp-5': '24px',  'sp-6': '32px',  'sp-7': '48px',  'sp-8': '64px',
+        'sp-9': '96px',  'sp-10': '144px','sp-11': '200px',
+        // Semantic role tokens — spec §3.2
+        'section-y':       '144px',
+        'section-y-major': '200px',
+        'head-to-content': '96px',
+        'card-photo-gap':  '32px',
+        'card-kicker-gap': '16px',
+        'card-head-gap':   '24px',
+        'card-summary-gap':'32px',
+        'page-x':          '56px',
+      },
+      maxWidth: {
+        prose: '60ch',
+        stage: '1300px',
+      },
+      letterSpacing: {
+        kicker: '0.22em',
+        'kicker-tight': '0.15em',
+        'kicker-wide': '0.26em',
+      },
+    },
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
