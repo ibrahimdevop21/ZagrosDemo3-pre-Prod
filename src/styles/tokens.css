@@ -1,195 +1,38 @@
 /**
- * Design System Tokens
- * Single source of truth for colors, spacing, and typography
+ * Design System Tokens — Zagros redesign 2026
+ * Single source of truth for color and spacing tokens.
+ * Spec: docs/superpowers/specs/2026-05-11-zagros-redesign-design.md §2.2 + §3
+ *
+ * NOTE: Dark mode is intentionally dropped. One editorial palette.
  */
 
 @layer base {
   :root {
-    /* ============================================
-       CORPORATE AGRICULTURAL COLOR SYSTEM
-       ============================================ */
-    
-    /* PRIMARY BRAND - Deep Agricultural Green */
-    --color-brand-primary: 21 87 36; /* #155724 - Deep forest green, mature & grounded */
-    --color-brand-primary-hover: 13 60 23; /* #0D3C17 - Darker on hover */
-    --color-brand-primary-light: 34 107 52; /* #226B34 - Slightly lighter variant */
-    --color-brand-primary-muted: 46 125 50; /* #2E7D32 - Muted green for icons */
-    
-    /* ACCENT - Warm Agricultural Yellow */
-    --color-accent-primary: 212 163 15; /* #D4A30F - Warm golden yellow, harvest tone */
-    --color-accent-hover: 184 134 11; /* #B8860B - Darker golden on hover */
-    --color-accent-light: 234 192 49; /* #EAC031 - Lighter yellow for highlights */
-    --color-accent-muted: 196 148 20; /* #C49414 - Muted yellow for subtle accents */
-    
-    /* BACKGROUND HIERARCHY - No Pure White */
-    --color-bg-base: 248 247 244; /* #F8F7F4 - Soft warm off-white base */
-    --color-bg-surface: 252 251 248; /* #FCFBF8 - Very light warm surface (cards) */
-    --color-bg-surface-alt: 244 248 242; /* #F4F8F2 - Light green-tinted surface */
-    --color-bg-surface-hover: 242 245 239; /* #F2F5EF - Hover state for surfaces */
-    --color-bg-green-tint: 240 246 238; /* #F0F6EE - Subtle green background for sections */
-    --color-bg-green-light: 237 243 234; /* #EDF3EA - Slightly stronger green tint */
-    --color-bg-yellow-tint: 254 252 245; /* #FEFCF5 - Very subtle yellow warmth */
-    
-    /* BRAND BACKGROUNDS */
-    --color-bg-brand: 21 87 36; /* Deep green - primary CTAs */
-    --color-bg-brand-hover: 13 60 23; /* Darker green hover */
-    --color-bg-brand-muted: 237 243 234; /* Light green for subtle brand sections */
-    --color-bg-brand-soft: 245 250 243; /* Very soft green tint */
-    
-    /* TEXT HIERARCHY - No Pure Black */
-    --color-text-primary: 26 32 21; /* #1A2015 - Deep green-black for headings */
-    --color-text-secondary: 52 64 42; /* #34402A - Dark green-gray for body */
-    --color-text-tertiary: 96 108 86; /* #606C56 - Muted green-gray for meta */
-    --color-text-quaternary: 134 142 126; /* #868E7E - Very muted for captions */
-    --color-text-inverse: 252 251 248; /* Off-white for dark backgrounds */
-    --color-text-brand: 21 87 36; /* Deep green for brand emphasis */
-    --color-text-accent: 184 134 11; /* Dark golden for accent text */
-    
-    /* BORDER & DIVIDER SYSTEM */
-    --color-border-default: 220 222 215; /* #DCDED7 - Subtle warm gray border */
-    --color-border-muted: 235 237 230; /* #EBEDE6 - Very subtle divider */
-    --color-border-strong: 196 200 189; /* #C4C8BD - Stronger border */
-    --color-border-brand: 21 87 36; /* Deep green border */
-    --color-border-accent: 212 163 15; /* Yellow accent border */
-    --color-border-accent-light: 234 192 49; /* Light yellow outline */
-    
-    /* UTILITY COLORS */
-    --color-ring-focus: 21 87 36; /* Deep green focus ring */
-    --color-success: 46 125 50; /* Success green */
-    --color-warning: 212 163 15; /* Warning yellow */
-    --color-error: 183 28 28; /* Deep red for errors */
-    --color-info: 21 87 36; /* Info uses brand green */
-    
-    /* FOOTER & DARK SECTIONS */
-    --color-footer-bg: 18 46 24; /* #122E18 - Very deep green */
-    --color-footer-text: 196 204 189; /* #C4CCBD - Muted light text */
-    --color-footer-text-muted: 134 142 126; /* #868E7E - Very muted footer text */
-    --color-footer-border: 34 107 52; /* Subtle green border in footer */
-    
-    /* GRADIENT BACKGROUNDS - Subtle Depth */
-    --gradient-green-subtle: linear-gradient(180deg, rgb(248 247 244) 0%, rgb(240 246 238) 100%);
-    --gradient-warm-subtle: linear-gradient(180deg, rgb(254 252 245) 0%, rgb(248 247 244) 100%);
-    --gradient-brand: linear-gradient(135deg, rgb(21 87 36) 0%, rgb(34 107 52) 100%);
-    
-    /* ============================================
-       SPACING TOKENS
-       ============================================ */
-    
-    /* Section-level spacing (vertical rhythm between major sections) */
-    --space-section-xs: 8rem; /* 128px */
-    --space-section-sm: 10rem; /* 160px */
-    --space-section-md: 12rem; /* 192px */
-    --space-section-lg: 16rem; /* 256px */
-    
-    /* Content-level spacing (within sections) */
-    --space-content-xs: 1rem; /* 16px */
-    --space-content-sm: 1.5rem; /* 24px */
-    --space-content-md: 2rem; /* 32px */
-    --space-content-lg: 3rem; /* 48px */
-    --space-content-xl: 4rem; /* 64px */
-    
-    /* Container padding (horizontal) */
-    --padding-container: 1rem; /* 16px - mobile */
-    
-    /* Navbar height */
-    --navbar-height: 4rem; /* 64px */
-    
-    /* ============================================
-       TYPOGRAPHY TOKENS
-       ============================================ */
-    
-    /* Font families */
-    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-arabic: 'Cairo', system-ui, sans-serif;
-    
-    /* Font sizes - Premium scale */
-    --text-xs: 0.75rem;      /* 12px - meta, captions */
-    --text-sm: 0.875rem;     /* 14px - small body */
-    --text-base: 1rem;       /* 16px - body text */
-    --text-lg: 1.125rem;     /* 18px - large body */
-    --text-xl: 1.25rem;      /* 20px - small headings */
-    --text-2xl: 1.5rem;      /* 24px - section subheadings */
-    --text-3xl: 1.875rem;    /* 30px - section headings */
-    --text-4xl: 2.25rem;     /* 36px - page headings */
-    --text-5xl: 3rem;        /* 48px - hero headings */
-    --text-6xl: 3.75rem;     /* 60px - display */
-    
-    /* Line heights */
-    --leading-tight: 1.25;
-    --leading-snug: 1.375;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.625;
-    --leading-loose: 2;
-    
-    /* Font weights */
-    --font-normal: 400;
-    --font-medium: 500;
-    --font-semibold: 600;
-    --font-bold: 700;
-    
-    /* Letter spacing */
-    --tracking-tight: -0.025em;
-    --tracking-normal: 0;
-    --tracking-wide: 0.025em;
-    
-    /* Max-width for readability */
-    --prose-width: 65ch;
-    
-    /* ============================================
-       MOTION TOKENS
-       ============================================ */
-    
-    /* Durations - Professional timing */
-    --duration-instant: 100ms;
-    --duration-fast: 200ms;
-    --duration-normal: 300ms;
-    --duration-slow: 500ms;
-    --duration-slower: 700ms;
-    
-    /* Easing curves - Premium feel */
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --ease-smooth: cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    
-    /* ============================================
-       ELEVATION TOKENS (SHADOWS)
-       ============================================ */
-    
-    /* Subtle depth for premium feel */
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    
-    /* Border radius - Consistent rounding */
-    --radius-sm: 0.375rem;   /* 6px */
-    --radius-md: 0.5rem;     /* 8px */
-    --radius-lg: 0.75rem;    /* 12px */
-    --radius-xl: 1rem;       /* 16px */
-    --radius-2xl: 1.5rem;    /* 24px */
-    --radius-full: 9999px;
-  }
-  
-  
-  /* ============================================
-     RESPONSIVE OVERRIDES
-     ============================================ */
-  
-  @media (min-width: 768px) {
-    :root {
-      --padding-container: 1.5rem; /* 24px - tablet */
-      --navbar-height: 3.5rem; /* 56px - mobile */
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    :root {
-      --padding-container: 2rem; /* 32px - desktop */
-      --navbar-height: 4rem; /* 64px - desktop */
-    }
+    /* 7-token editorial palette */
+    --color-paper:        242 239 230;   /* #F2EFE6 — warm ivory base */
+    --color-paper-light:  250 248 242;   /* #FAF8F2 — slightly brighter surface */
+    --color-stone:        212 208 197;   /* #D4D0C5 — chalk, dividers */
+    --color-mute:         138 134 120;   /* #8A8678 — captions, tertiary text */
+    --color-ink:          27 26 23;      /* #1B1A17 — primary text, inverted bands */
+    --color-sienna:       90 58 30;      /* #5A3A1E — editorial accent */
+    --color-field:        43 94 62;      /* #2B5E3E — tags, positive deltas, organic */
+    --color-signal:       242 194 51;    /* #F2C233 — single bright; K+S anchor + CTAs */
+    --color-warn:         200 68 60;     /* #C8443C — used sparingly in compatibility matrix */
+
+    /* Product brand-coding (source of truth §1 — used in bag SVG mockups) */
+    --c-npk:    31 42 74;     /* #1F2A4A — soluNPK / soluUP family */
+    --c-mkp:    31 100 112;   /* #1F6470 — soluMKP teal */
+    --c-map:    45 111 92;    /* #2D6F5C — soluMAP green-teal */
+    --c-ams:    110 31 34;    /* #6E1F22 — soluAMS Premium burgundy */
+    --c-nop:    118 198 138;  /* #76C68A — soluNOP mint */
+    --c-cn:     221 232 218;  /* #DDE8DA — soluCN very pale green */
+    --c-epso:   46 112 53;    /* #2E7035 — EPSO Top organic green */
+    --c-ksop:   30 58 138;    /* #1E3A8A — KaliSOP royal blue */
+    --c-rhodes: 74 140 58;    /* #4A8C3A — Rhodes tropical green */
+    --c-sardi:  107 79 187;   /* #6B4FBB — SARDI / Alfamaster lucerne purple */
+
+    /* Layout constants */
+    --stage-max-width: 1300px;
+    --page-margin-x:   56px;
   }
 }
