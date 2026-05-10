@@ -17,7 +17,9 @@ const cropApplication = z.object({
 const products = defineCollection({
   type: 'content',
   schema: z.object({
-    slug: z.string(),
+    // NOTE: `slug` is reserved by Astro for legacy `type: 'content'` collections.
+    // Astro strips it from frontmatter and exposes it as `entry.slug`. Do not add
+    // `slug` here — it will cause "ContentSchemaContainsSlugError" or "slug Required" errors.
     name: z.object({
       en: z.string(),
       ar: z.string(),
