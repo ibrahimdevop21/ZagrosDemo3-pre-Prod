@@ -38,14 +38,31 @@ const products = defineCollection({
       Cl: compositionEntry.optional(),
       trace_elements: z.boolean().optional(),
       chelated_micros: z.boolean().optional(),
-    }),
+    }).optional(),
     form: z.string(),
     packaging: z.string(),
     applications: z.array(z.enum(['foliar', 'fertigation', 'soil', 'pivot', 'hydroponic'])),
-    ideal_stages: z.array(z.enum(['establishment', 'vegetative', 'flowering', 'fruiting', 'post_harvest'])),
-    crops: z.array(cropApplication),
+    ideal_stages: z.array(z.enum([
+      'establishment', 'seedling', 'vegetative', 'flowering',
+      'heading', 'fruiting', 'post_harvest'
+    ])),
+    crops: z.array(cropApplication).optional(),
+    // Forage-seed-specific agronomy (Barenbrug per source-of-truth §4)
+    forage_agronomy: z.object({
+      species: z.string(),                           // e.g., "Chloris gayana"
+      coating: z.string().optional(),                // e.g., "AgriCote"
+      pbr: z.boolean().default(false),               // Plant Breeder Rights
+      rainfall_mm: z.string(),                       // e.g., "500 mm +"
+      ph_range: z.string(),                          // e.g., "5.0 – 8.0"
+      soil_type: z.string(),                         // e.g., "Light to heavy"
+      sowing_rates: z.object({
+        marginal_dryland: z.string().optional(),
+        ideal_dryland: z.string().optional(),
+        irrigated: z.string().optional(),
+      }).optional(),
+    }).optional(),
     compatibility: z.object({
-      compatible: z.string().optional(),
+      compatible: z.array(z.string()).optional(),
       incompatible: z.array(z.string()).default([]),
       notes: z.string().optional(),
     }),
@@ -57,7 +74,7 @@ const products = defineCollection({
     hazard_class: z.string().optional(),
     origin_country: z.string().optional(),
     bag_photo_url: z.string().optional(),       // empty until client provides
-    bag_color_token: z.string(),                 // CSS color token for SVG mockup
+    bag_color_token: z.string().optional(),      // CSS color token for SVG mockup
     brochure_url: z.string().optional(),
   }),
 });
