@@ -68,13 +68,15 @@ Run:
 npm install --save \
   @fontsource/fraunces \
   @fontsource-variable/fraunces \
-  @fontsource-variable/ibm-plex-serif \
+  @fontsource/ibm-plex-serif \
   @fontsource-variable/ibm-plex-sans \
   @fontsource/ibm-plex-mono \
   @fontsource/ibm-plex-sans-arabic
 ```
 
 Expected: 6 packages added to dependencies. `package-lock.json` updates.
+
+> Note: IBM Plex Serif is not published as a variable font on `@fontsource-variable`. We use the static `@fontsource/ibm-plex-serif` and import the specific weights we need in Task 4's `global.css`.
 
 - [ ] **Step 1.2: Add vitest for the data tests in Task 4 & 5**
 
@@ -128,7 +130,7 @@ export default {
         // Display — magazine headlines, hero numerals, wordmark refresh option
         display: ['Fraunces', 'Georgia', 'serif'],
         // Serif — for the IBM Plex Serif role (subheads, certain editorial uses)
-        serif: ['"IBM Plex Serif Variable"', 'IBM Plex Serif', 'Georgia', 'serif'],
+        serif: ['"IBM Plex Serif"', 'Georgia', 'serif'],
         // Body — primary reading typeface
         sans: ['"IBM Plex Sans Variable"', 'IBM Plex Sans', 'system-ui', 'sans-serif'],
         // Mono — captions, data labels, kickers
@@ -288,7 +290,10 @@ Write `src/styles/global.css`:
 ```css
 /* Font imports — installed via @fontsource in Task 1 */
 @import '@fontsource-variable/fraunces';
-@import '@fontsource-variable/ibm-plex-serif';
+@import '@fontsource/ibm-plex-serif/400.css';
+@import '@fontsource/ibm-plex-serif/500.css';
+@import '@fontsource/ibm-plex-serif/600.css';
+@import '@fontsource/ibm-plex-serif/700.css';
 @import '@fontsource-variable/ibm-plex-sans';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
