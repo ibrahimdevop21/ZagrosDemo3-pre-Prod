@@ -1,43 +1,104 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* Font imports — installed via @fontsource in Task 1 */
+@import '@fontsource-variable/fraunces';
+@import '@fontsource/ibm-plex-serif/400.css';
+@import '@fontsource/ibm-plex-serif/500.css';
+@import '@fontsource/ibm-plex-serif/600.css';
+@import '@fontsource/ibm-plex-serif/700.css';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+
 @import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
-    font-family: var(--font-sans);
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    background-color: rgb(var(--color-bg-base));
-    color: rgb(var(--color-text-primary));
-    font-size: var(--text-base);
-    line-height: var(--leading-normal);
-    transition: background-color var(--duration-normal) var(--ease-in-out),
-                color var(--duration-normal) var(--ease-in-out);
+    @apply bg-paper text-ink font-sans;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    line-height: 1.65;
   }
-  
-  /* Respect user motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+
+  /* Arabic locale gets the Arabic family by default */
+  html[dir='rtl'] body {
+    @apply font-arabic;
+  }
+
+  /* Display-class typographic defaults */
+  h1, h2, h3 {
+    @apply font-display;
+    font-variation-settings: 'opsz' 144;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  html[dir='rtl'] h1,
+  html[dir='rtl'] h2,
+  html[dir='rtl'] h3 {
+    @apply font-arabic;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.18;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgb(var(--color-signal));
+    color: rgb(var(--color-ink));
   }
 }
 
-[dir="rtl"] {
-  text-align: right;
-  --tw-space-x-reverse: 1;
-}
+@layer components {
+  /* Paper grain overlay — applied via .paper-grain class on a top-level wrapper */
+  .paper-grain {
+    position: relative;
+  }
+  .paper-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.45;
+    z-index: 5;
+  }
 
-[dir="rtl"] .space-x-6 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 1;
+  /* 14-col stage grid — spec §3.3, reusable on any section root */
+  .stage-grid {
+    display: grid;
+    grid-template-columns:
+      minmax(var(--page-margin-x), 1fr)
+      repeat(12, 1fr)
+      minmax(var(--page-margin-x), 1fr);
+    column-gap: 24px;
+  }
+
+  /* Kicker — small caps mono label with leading bar */
+  .kicker {
+    @apply font-mono text-[11px] uppercase text-mute;
+    letter-spacing: 0.26em;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+  }
 }
