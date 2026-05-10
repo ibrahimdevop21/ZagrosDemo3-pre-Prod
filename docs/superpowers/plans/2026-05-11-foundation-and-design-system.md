@@ -1713,7 +1713,8 @@ describe('product content collection', () => {
 
   it('exposes all 11 K+S fertilizer slugs', async () => {
     const products = await getCollection('products');
-    const ksSlugs = products.filter((p) => p.data.brand === 'K+S').map((p) => p.data.slug);
+    // Astro auto-derives `slug` from the filename; it's exposed as p.slug, NOT p.data.slug.
+    const ksSlugs = products.filter((p) => p.data.brand === 'K+S').map((p) => p.slug);
     expect(ksSlugs).toEqual(expect.arrayContaining([
       'solu-up',
       'solu-npk-20-20-20',
@@ -1732,7 +1733,7 @@ describe('product content collection', () => {
 
   it('exposes all 3 Barenbrug forage slugs', async () => {
     const products = await getCollection('products');
-    const bbSlugs = products.filter((p) => p.data.brand === 'Barenbrug').map((p) => p.data.slug);
+    const bbSlugs = products.filter((p) => p.data.brand === 'Barenbrug').map((p) => p.slug);
     expect(bbSlugs).toEqual(expect.arrayContaining([
       'superfine-rhodes',
       'sardi-10-series-2',
@@ -1744,15 +1745,17 @@ describe('product content collection', () => {
   it('every product has bilingual name', async () => {
     const products = await getCollection('products');
     for (const p of products) {
-      expect(p.data.name.en, `${p.data.slug} missing EN name`).toBeTruthy();
-      expect(p.data.name.ar, `${p.data.slug} missing AR name`).toBeTruthy();
+      expect(p.data.name.en, `${p.slug} missing EN name`).toBeTruthy();
+      expect(p.data.name.ar, `${p.slug} missing AR name`).toBeTruthy();
     }
   });
 
-  it('every product has a bag_color_token', async () => {
+  it('every fertilizer has a bag_color_token (forage seeds may omit it)', async () => {
     const products = await getCollection('products');
     for (const p of products) {
-      expect(p.data.bag_color_token, `${p.data.slug} missing bag_color_token`).toBeTruthy();
+      if (p.data.category === 'fertilizer') {
+        expect(p.data.bag_color_token, `${p.slug} missing bag_color_token`).toBeTruthy();
+      }
     }
   });
 });
