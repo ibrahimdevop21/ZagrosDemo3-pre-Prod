@@ -74,7 +74,7 @@ const skuCount = partner.data.stats?.products_carried ?? partner.data.product_li
             ? 'الكتالوج قيد الإعداد'
             : 'Catalog forthcoming'}
       </span>
-      <a href={`${lang === 'ar' ? '/ar' : ''}/partners/${partner.slug}`} class="text-ink border-b border-ink pb-0.5 no-underline">
+      <a href={`${lang === 'ar' ? '/ar' : ''}/partners/${partner.slug}`} class="inline-flex items-center min-h-[44px] text-ink border-b border-ink pb-0.5 no-underline">
         {t('common.view')} →
       </a>
     </div>

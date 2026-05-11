@@ -16,13 +16,13 @@ const hours = isRTL ? contact.hours_ar : contact.hours_en;
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
         <dt class="text-paper/55">{t('contact.direct_phone')}</dt>
         <dd class="text-paper m-0 text-end">
-          {contact.phone ? <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} class="text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone}</a> : pending}
+          {contact.phone ? <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} class="inline-flex items-center min-h-[44px] text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone}</a> : pending}
         </dd>
       </div>
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
         <dt class="text-paper/55">{t('contact.direct_whatsapp')}</dt>
         <dd class="text-paper m-0 text-end">
-          {contact.whatsapp ? <a href={`https://wa.me/${contact.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noreferrer" class="text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone ?? contact.whatsapp}</a> : pending}
+          {contact.whatsapp ? <a href={`https://wa.me/${contact.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noreferrer" class="inline-flex items-center min-h-[44px] text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone ?? contact.whatsapp}</a> : pending}
         </dd>
       </div>
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">

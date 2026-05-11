@@ -40,7 +40,7 @@ const facetGroups = [
 <aside class="lg:sticky lg:top-[120px] lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto p-sp-6 border-e border-stone" aria-label={t('products.filters.label')}>
   <header class="flex items-center justify-between mb-sp-7">
     <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink m-0">{t('products.filters.label')}</h2>
-    <button type="button" data-products-reset class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
+    <button type="button" data-products-reset class="inline-flex items-center min-h-[44px] font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
       {t('products.filters.reset')}
     </button>
   </header>
@@ -65,7 +65,7 @@ const facetGroups = [
       <ul class="list-none p-0 m-0 space-y-2">
         {group.items.map((item) => (
           <li>
-            <label class="inline-flex items-center gap-2.5 font-sans text-sm text-ink cursor-pointer">
+            <label class="inline-flex items-center gap-2.5 py-2 min-h-[44px] font-sans text-base text-ink cursor-pointer">
               <input type="checkbox" data-facet={group.id} value={item.value} class="accent-signal" />
               <span class="capitalize">{item.label}</span>
             </label>
