@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  partner: CollectionEntry<'partners'>;
+}
+
+const { partner } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const tagline = partner.data.tagline[lang as 'en' | 'ar'];
+const tileBg = partner.slug === 'k-plus-s' ? 'bg-signal text-ink' : 'bg-field text-paper';
+---
+
+<article class="flex flex-col bg-paper border border-stone">
+  <div class:list={['flex items-center justify-center px-sp-6 py-sp-8', tileBg]}>
+    <img src={partner.data.logo_path} alt={partner.data.name} class="block max-h-16 w-auto" />
+  </div>
+
+  <div class="flex flex-col flex-1 p-sp-6">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+      {partner.data.country} · est. {partner.data.since_year}
+    </span>
+    <h3 class="font-display text-3xl text-ink mt-sp-3 mb-sp-5">{partner.data.name}</h3>
+    <p class="font-sans text-base leading-relaxed text-ink/80 mb-sp-6">{tagline}</p>
+
+    <ul class="list-none p-0 m-0 mb-sp-7 space-y-3">
+      {partner.data.product_lines.map((line) => (
+        <li class="flex items-baseline gap-3 font-sans text-sm text-ink/85">
+          <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute min-w-[10ch]">{line.name}</span>
+          <span>{line.grade}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-auto pt-sp-5 border-t border-dashed border-stone flex items-end justify-between gap-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+      <span>{partner.data.stats.years_in_partnership} yrs · {partner.data.stats.products_carried} SKUs</span>
+      <a href={`${lang === 'ar' ? '/ar' : ''}/partners/${partner.slug}`} class="text-ink border-b border-ink pb-0.5 no-underline">
+        {t('common.view')} →
+      </a>
+    </div>
+  </div>
+</article>
