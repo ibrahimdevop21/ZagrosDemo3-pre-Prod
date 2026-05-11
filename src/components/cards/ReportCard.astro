@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Kicker from '../editorial/Kicker.astro';
+import PhotoStamp from '../editorial/PhotoStamp.astro';
+
+interface Props {
+  report: CollectionEntry<'field-reports'>;
+  variant?: 'grid' | 'featured';
+}
+
+const { report, variant = 'grid' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const localized = report.data.title[lang as 'en' | 'ar'];
+const summary = report.data.summary[lang as 'en' | 'ar'];
+const href = `${lang === 'ar' ? '/ar' : ''}/field-reports/${report.slug}`;
+const dateLabel = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(report.data.date);
+---
+
+<article class:list={['flex flex-col bg-paper', variant === 'featured' && 'lg:flex-row gap-sp-7']}>
+  <div class:list={['relative shrink-0', variant === 'featured' ? 'lg:w-1/2' : '']}>
+    <img
+      src={report.data.hero_image}
+      alt={`Illustrative photo for ${localized}`}
+      class="block w-full aspect-[4/3] object-cover"
+    />
+    <PhotoStamp issue={String(report.data.issue).padStart(2, '0')} year={String(report.data.date.getFullYear())} edition={report.data.crop} />
+  </div>
+
+  <div class:list={['flex flex-col mt-sp-6', variant === 'featured' ? 'lg:mt-0 lg:flex-1' : 'flex-1']}>
+    <Kicker label={`${dateLabel} · ${report.data.crop}`} />
+    <h3 class:list={['font-display leading-tight text-ink mt-sp-4 mb-sp-5', variant === 'featured' ? 'text-4xl' : 'text-2xl']}>
+      <a href={href} class="text-ink no-underline hover:underline decoration-signal decoration-2 underline-offset-4">{localized}</a>
+    </h3>
+    <p class="font-sans text-base leading-relaxed text-ink/80 mb-sp-6 flex-1 max-w-[58ch]">
+      {summary}
+    </p>
+
+    {report.data.stat_line && (
+      <div class="min-h-[96px] pt-sp-5 border-t border-stone flex items-end justify-between gap-sp-5">
+        <span class="font-display italic text-3xl text-sienna leading-none">{report.data.stat_line}</span>
+        <a href={href} class="font-mono text-[11px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5">
+          {t('common.read_more')} →
+        </a>
+      </div>
+    )}
+  </div>
+</article>
