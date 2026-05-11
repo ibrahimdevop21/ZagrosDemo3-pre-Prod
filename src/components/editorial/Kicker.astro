@@ -1,0 +1,12 @@
+---
+interface Props {
+  label: string;
+  accent?: 'signal' | 'sienna';
+}
+const { label, accent = 'signal' } = Astro.props;
+const barColor = accent === 'signal' ? 'bg-signal' : 'bg-sienna';
+---
+<span class="inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.24em] uppercase text-ink/80">
+  <span class:list={[barColor, 'inline-block h-[2px] w-7']} aria-hidden="true"></span>
+  {label}
+</span>

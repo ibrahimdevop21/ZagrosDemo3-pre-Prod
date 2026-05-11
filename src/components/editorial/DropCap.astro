@@ -1,0 +1,16 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const isAR = lang === 'ar';
+---
+<span
+  class:list={[
+    'float-start',
+    isAR
+      ? 'text-sienna font-display text-4xl me-3 mt-1 leading-none'
+      : 'font-display text-[88px] leading-[0.85] text-sienna me-2 -mt-1 [font-variation-settings:"opsz"_144]'
+  ]}
+  aria-hidden="true"
+>
+  {isAR ? '◆' : <slot />}
+</span>

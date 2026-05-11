@@ -1,0 +1,13 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+interface Props {
+  text?: string;
+}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { text = t('common.pending_audit') } = Astro.props;
+---
+<span class="inline-flex items-center gap-2 px-3 py-1.5 border border-mute/40 rounded-full font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute bg-paper">
+  <span class="w-1.5 h-1.5 rounded-full bg-mute inline-block" aria-hidden="true"></span>
+  {text}
+</span>

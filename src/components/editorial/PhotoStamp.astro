@@ -1,0 +1,11 @@
+---
+interface Props {
+  issue: string;
+  year: string;
+  edition: string;
+}
+const { issue, year, edition } = Astro.props;
+---
+<div class="absolute top-sp-6 end-sp-6 bg-paper px-3 py-2 font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink shadow-sm">
+  Issue {issue} · {year} · {edition}
+</div>

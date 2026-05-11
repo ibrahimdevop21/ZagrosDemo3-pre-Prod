@@ -1,0 +1,13 @@
+---
+interface Props {
+  value: string;
+  variant?: 'outline' | 'solid';
+}
+const { value, variant = 'outline' } = Astro.props;
+const klass = variant === 'outline'
+  ? 'text-transparent [-webkit-text-stroke:1px_var(--color-ink)]'
+  : 'text-ink';
+---
+<span class:list={['font-display italic font-light leading-none', klass, 'text-[clamp(72px,12vw,180px)]']}>
+  {value}
+</span>

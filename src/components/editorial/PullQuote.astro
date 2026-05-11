@@ -1,0 +1,12 @@
+---
+interface Props {
+  accent?: 'signal' | 'sienna';
+}
+const { accent = 'signal' } = Astro.props;
+const ruleColor = accent === 'signal' ? 'border-signal' : 'border-sienna';
+---
+<blockquote class:list={['border-s-4 ps-6 my-sp-7', ruleColor]}>
+  <p class="font-display italic text-2xl leading-snug text-ink m-0">
+    <slot />
+  </p>
+</blockquote>
