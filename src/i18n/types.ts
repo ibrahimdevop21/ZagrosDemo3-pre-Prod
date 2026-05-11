@@ -10,6 +10,7 @@ export interface UITranslations {
     products: string;
     field_reports: string;
     partners: string;
+    customers: string;
     about: string;
     contact: string;
     cta_primary: string;
@@ -128,6 +129,14 @@ export interface UITranslations {
     kicker: string;
     headline: string;
     deck: string;
+  };
+  customers: {
+    page: {
+      title: string;
+      kicker: string;
+      headline: string;
+      deck: string;
+    };
   };
   report_detail: {
     brief: {
@@ -347,6 +356,11 @@ export interface UITranslations {
       kicker: string;
       headline_a: string;
       headline_b: string;
+    };
+    customers: {
+      kicker: string;
+      headline: string;
+      cta: string;
     };
     numbers: {
       kicker: string;

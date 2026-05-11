@@ -10,6 +10,7 @@
     "products": "Products",
     "field_reports": "Field Reports",
     "partners": "Partners",
+    "customers": "Customers",
     "about": "About",
     "contact": "Contact",
     "cta_primary": "Request a quote",
@@ -31,7 +32,7 @@
     "col_company": "Company",
     "copyright": "© 2026 Zagros Trading",
     "colophon_label": "Colophon",
-    "colophon_section": "09 / 09"
+    "colophon_section": "10 / 10"
   },
   "about": {
     "title": "About",
@@ -128,6 +129,14 @@
     "kicker": "Sources · seven international houses",
     "headline": "Where the seed, the chemistry, and the protection come from.",
     "deck": "Zagros sources from seven international suppliers across six countries. Each house was chosen for technical credentials, regulatory standing, and agronomic fit with Sudanese farms."
+  },
+  "customers": {
+    "page": {
+      "title": "Customers",
+      "kicker": "Customer wall · references",
+      "headline": "Sudan's farms — ministry to family operation.",
+      "deck": "Six anchor customers whose orders span national agricultural projects, commercial farms, and the agriculture ministry's procurement. Names and logos carried with permission from sixteen years of trading."
+    }
   },
   "report_detail": {
     "brief": {
@@ -347,6 +356,11 @@
       "kicker": "Sources · seven international houses",
       "headline_a": "Seven international suppliers across six countries —",
       "headline_b": "one Sudanese operator."
+    },
+    "customers": {
+      "kicker": "Customer wall",
+      "headline": "Sudan's farms trust the catalog — ministry to family operation.",
+      "cta": "View the customer wall →"
     },
     "numbers": {
       "kicker": "By the numbers",

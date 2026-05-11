@@ -1,0 +1,49 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import type { Customer } from '../../data/customers';
+
+interface Props {
+  customer: Customer;
+}
+
+const { customer } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const isRTL = lang === 'ar';
+
+const displayName = isRTL ? customer.name.ar : customer.name.en;
+const altText = `${customer.name.en} — ${customer.name.ar}`;
+
+const sectorLabel = customer.sector === 'government'
+  ? (isRTL ? 'قطاع حكومي' : 'Government')
+  : (isRTL ? 'مزرعة تجارية' : 'Commercial farm');
+---
+
+<article class="flex flex-col bg-paper border border-stone">
+  <div class="flex items-center justify-center bg-paper-light px-sp-7 py-sp-9 h-[180px] border-b border-stone">
+    <img
+      src={customer.logo}
+      alt={altText}
+      class="block max-h-[96px] max-w-[200px] w-auto h-auto object-contain"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="flex flex-col flex-1 p-sp-6">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">
+      {sectorLabel}
+    </span>
+    <h3 class="font-display text-2xl text-ink leading-tight max-w-[24ch] m-0">
+      {displayName}
+    </h3>
+    {isRTL ? (
+      <p class="font-mono text-[11px] tracking-[0.04em] text-ink/55 mt-sp-3 m-0" dir="ltr">
+        {customer.name.en}
+      </p>
+    ) : (
+      <p class="font-mono text-[11px] tracking-[0.04em] text-ink/55 mt-sp-3 m-0" dir="rtl">
+        {customer.name.ar}
+      </p>
+    )}
+  </div>
+</article>

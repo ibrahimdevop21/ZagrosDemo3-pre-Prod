@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { customers } from '../../data/customers';
+import Kicker from '../editorial/Kicker.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const customersHref = isRTL ? '/ar/customers' : '/customers';
+---
+
+<section class="py-section-y bg-paper">
+  <div class="stage-grid">
+    <header class="col-span-12 col-start-2 mb-sp-9">
+      <Kicker label={t('home.customers.kicker')} accent="sienna" />
+      <div class="mt-sp-5 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-sp-7">
+        <h2 class="font-display text-[clamp(32px,4.5vw,56px)] leading-[1.05] text-ink max-w-[24ch] m-0">
+          {t('home.customers.headline')}
+        </h2>
+        <a
+          href={customersHref}
+          class="font-mono text-[11px] tracking-[0.24em] uppercase text-ink border-b border-ink pb-1 no-underline self-start lg:self-end whitespace-nowrap"
+        >
+          {t('home.customers.cta')}
+        </a>
+      </div>
+    </header>
+
+    <div class="col-span-12 col-start-2 border-t border-b border-stone">
+      <ul class="list-none m-0 p-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+        {customers.map((customer, i) => {
+          const altText = `${customer.name.en} — ${customer.name.ar}`;
+          const lastInRow = (i + 1) % 6 === 0;
+          return (
+            <li
+              class:list={[
+                'flex items-center justify-center bg-paper-light h-[120px] px-sp-5 py-sp-5 border-stone',
+                'border-b sm:border-b-0',
+                {
+                  'border-e sm:border-e': !lastInRow,
+                },
+              ]}
+            >
+              <img
+                src={customer.logo}
+                alt={altText}
+                class="block max-h-[64px] max-w-[140px] w-auto h-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </div>
+</section>
