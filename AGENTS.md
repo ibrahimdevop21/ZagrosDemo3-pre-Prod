@@ -78,6 +78,18 @@ All routes mirrored under /ar/
 - **AR agricultural terminology:** lucerne = البرسيم الحجازي (NOT جرجير), fertigation = تسميد بالري, pest control = حلول مكافحة الآفات, pesticide = مبيد, fertilizer = سماد, forage = أعلاف.
 - **Commit messages:** `plan-N: error N — <change>` for plan-driven work. Co-author tag on Claude commits.
 
+## Mobile-first conventions (Plan 7)
+
+- **All base styles target mobile.** Tailwind utility prefixes `sm:` `md:` `lg:` `xl:` `2xl:` scale UP only — never down. Avoid `max-w-screen-sm` patterns that shrink layouts at larger viewports.
+- **Breakpoints (Tailwind defaults):** `sm: 640`, `md: 768`, `lg: 1024`, `xl: 1280`, `2xl: 1536`. No custom `xs` breakpoint needed.
+- **Element swaps** (mobile drawer vs desktop nav) use paired classes: one element is `hidden lg:flex`, its mobile counterpart is `flex lg:hidden`. The `lg:` breakpoint is the nav fold point.
+- **Grids:** start 1-column on mobile, grow via `sm:grid-cols-2 lg:grid-cols-3`. Never start at 3 columns and shrink.
+- **Touch targets:** every interactive element gets minimum 44×44px hit area. Use `min-h-[44px]` + `min-w-[44px]` for icon-only buttons, or padding to expand smaller visible elements.
+- **Form inputs:** explicit `text-base` (16px) to prevent iOS Safari auto-zoom on focus.
+- **Drawers:** HTML `<dialog>` with `transform: translateX(...)` slide animations (RTL-aware via `dir` attribute on `<html>`). No JS framework required — small inline `<script>` opens/closes via `showModal()` / `close()`.
+- **Color tokens for product cards:** use Tailwind `bg-c-{token}` classes (defined in `tailwind.config.mjs:33-44` against `--c-*` CSS variables in `src/styles/tokens.css:23-32`). Do NOT use inline `var(--color-c-*)` — those variables do not exist; the prefix is `--c-` not `--color-c-`.
+- **Viewport meta:** `<meta name="viewport" content="width=device-width, initial-scale=1">` is in `src/layouts/Layout.astro:35`. Do not change.
+
 ## What's still pending (see `REMAINING_GAPS.md`)
 
 Items the client must provide before launch:
