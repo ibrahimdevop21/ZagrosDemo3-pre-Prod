@@ -14,19 +14,16 @@ const cropApplication = z.object({
   stage: z.string(),
 });
 
-const products = defineCollection({
+// NOTE: `slug` is reserved by Astro for legacy `type: 'content'` collections.
+// Astro strips it from frontmatter and exposes it as `entry.slug`. Do not add
+// `slug` here — it will cause "ContentSchemaContainsSlugError" or "slug Required" errors.
+
+const fertilizers = defineCollection({
   type: 'content',
   schema: z.object({
-    // NOTE: `slug` is reserved by Astro for legacy `type: 'content'` collections.
-    // Astro strips it from frontmatter and exposes it as `entry.slug`. Do not add
-    // `slug` here — it will cause "ContentSchemaContainsSlugError" or "slug Required" errors.
-    name: z.object({
-      en: z.string(),
-      ar: z.string(),
-    }),
-    brand: z.enum(['K+S', 'Barenbrug']),
-    supplier: z.string(),
-    category: z.enum(['fertilizer', 'forage_seed']),
+    name: z.object({ en: z.string(), ar: z.string() }),
+    brand: z.enum(['K+S', 'Agro Dragon']),
+    supplier_slug: z.enum(['k-plus-s', 'agro-dragon']),
     subcategory: z.string(),
     grade: z.string(),
     composition: z.object({
@@ -49,20 +46,6 @@ const products = defineCollection({
       'heading', 'fruiting', 'post_harvest'
     ])),
     crops: z.array(cropApplication).optional(),
-    // Forage-seed-specific agronomy (Barenbrug per source-of-truth §4)
-    forage_agronomy: z.object({
-      species: z.string(),                           // e.g., "Chloris gayana"
-      coating: z.string().optional(),                // e.g., "AgriCote"
-      pbr: z.boolean().default(false),               // Plant Breeder Rights
-      rainfall_mm: z.string(),                       // e.g., "500 mm +"
-      ph_range: z.string(),                          // e.g., "5.0 – 8.0"
-      soil_type: z.string(),                         // e.g., "Light to heavy"
-      sowing_rates: z.object({
-        marginal_dryland: z.string().optional(),
-        ideal_dryland: z.string().optional(),
-        irrigated: z.string().optional(),
-      }).optional(),
-    }).optional(),
     compatibility: z.object({
       compatible: z.array(z.string()).optional(),
       incompatible: z.array(z.string()).default([]),
@@ -75,9 +58,56 @@ const products = defineCollection({
     acidifying: z.boolean().default(false),
     hazard_class: z.string().optional(),
     origin_country: z.string().optional(),
-    bag_photo_url: z.string().optional(),       // empty until client provides
-    bag_color_token: z.string().optional(),      // CSS color token for SVG mockup
+    bag_photo_url: z.string().optional(),
+    bag_color_token: z.string().optional(),
     brochure_url: z.string().optional(),
+    stock_confirmation: z.enum(['confirmed', 'pending_client']).default('confirmed'),
+  }),
+});
+
+const seeds = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.object({ en: z.string(), ar: z.string() }),
+    brand: z.enum(['Barenbrug', 'East West Seeds']),
+    supplier_slug: z.enum(['barenbrug', 'east-west-seeds']),
+    subcategory: z.enum(['forage', 'vegetable']),
+    species: z.string(),
+    coating: z.string().optional(),
+    pbr: z.boolean().default(false),
+    rainfall_mm: z.string().optional(),
+    ph_range: z.string().optional(),
+    soil_type: z.string().optional(),
+    sowing_rates: z.object({
+      marginal_dryland: z.string().optional(),
+      ideal_dryland: z.string().optional(),
+      irrigated: z.string().optional(),
+    }).optional(),
+    key_features: z.array(z.object({ en: z.string(), ar: z.string() })).default([]),
+    origin_country: z.string(),
+    image_url: z.string().optional(),
+    datasheet_url: z.string().optional(),
+  }),
+});
+
+const pesticides = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.object({ en: z.string(), ar: z.string() }),
+    code: z.object({ en: z.string(), ar: z.string() }),
+    subcategory: z.enum(['insecticide', 'herbicide', 'fungicide']),
+    type: z.object({ en: z.string(), ar: z.string() }),
+    form: z.object({ en: z.string(), ar: z.string() }),
+    active_ingredient: z.string(),
+    active_ingredient_content: z.object({ en: z.string(), ar: z.string() }),
+    manufacturer: z.object({ en: z.string(), ar: z.string() }),
+    origin_country: z.string(),
+    description: z.object({ en: z.string(), ar: z.string() }),
+    recommendation: z.object({ en: z.string(), ar: z.string() }).optional(),
+    efficacy: z.object({ en: z.string(), ar: z.string() }).optional(),
+    target_pests: z.array(z.string()).default([]),
+    target_crops: z.array(z.string()).default([]),
+    image_url: z.string().optional(),
   }),
 });
 
@@ -127,4 +157,10 @@ const partners = defineCollection({
   }),
 });
 
-export const collections = { products, 'field-reports': fieldReports, partners };
+export const collections = {
+  fertilizers,
+  seeds,
+  pesticides,
+  'field-reports': fieldReports,
+  partners,
+};
