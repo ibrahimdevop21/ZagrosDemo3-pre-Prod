@@ -23,7 +23,7 @@ const flag = (code: string) =>
   <div class="stage-grid">
     <div class:list={['col-span-2 col-start-2 flex items-center justify-center aspect-square', tileBg]}>
       {hasLogo ? (
-        <img src={partner.data.logo_path!} alt={partner.data.name} class="block max-h-24 w-auto" />
+        <img src={partner.data.logo_path!} alt={partner.data.name} width="240" height="96" fetchpriority="high" decoding="async" class="block max-h-24 w-auto" />
       ) : (
         <span class="text-7xl leading-none" aria-hidden="true">{flag(partner.data.country_code)}</span>
       )}

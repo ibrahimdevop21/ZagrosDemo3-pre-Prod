@@ -31,7 +31,7 @@ const skuCount = partner.data.stats?.products_carried ?? partner.data.product_li
 <article class="flex flex-col bg-paper border border-stone">
   {hasLogo ? (
     <div class:list={['flex items-center justify-center px-sp-6 py-sp-8', tileBg]}>
-      <img src={partner.data.logo_path!} alt={partner.data.name} class="block max-h-16 w-auto" />
+      <img src={partner.data.logo_path!} alt={partner.data.name} width="200" height="64" loading="lazy" decoding="async" class="block max-h-16 w-auto" />
     </div>
   ) : (
     <div class:list={['flex items-center justify-between px-sp-6 py-sp-8', tileBg]}>

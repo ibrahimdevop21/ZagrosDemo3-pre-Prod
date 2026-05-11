@@ -22,6 +22,10 @@ const datalineItems = statsData.stats.map((s) => ({
     <img
       src="/photos/illustrative-hero-canal.jpg"
       alt={t('home.hero.photo_alt')}
+      width="1600"
+      height="900"
+      fetchpriority="high"
+      decoding="async"
       class="block w-full h-[min(78vh,820px)] object-cover"
     />
     <PhotoStamp issue="03" year="2026" edition={t('home.hero.edition_label')} />

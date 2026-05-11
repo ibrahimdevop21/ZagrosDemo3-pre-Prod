@@ -27,7 +27,7 @@ const dateLabel = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { d
 </header>
 
 <figure class="relative">
-  <img src={report.data.hero_image} alt={`Illustrative hero for ${title}`} class="block w-full h-[min(60vh,640px)] object-cover" />
+  <img src={report.data.hero_image} alt={`Illustrative hero for ${title}`} width="1600" height="900" fetchpriority="high" decoding="async" class="block w-full h-[min(60vh,640px)] object-cover" />
   <PhotoStamp issue={String(report.data.issue).padStart(2, '0')} year={String(report.data.date.getFullYear())} edition={report.data.crop} />
   <div class="absolute top-sp-6 start-sp-6"><DisclaimerChip /></div>
 </figure>
