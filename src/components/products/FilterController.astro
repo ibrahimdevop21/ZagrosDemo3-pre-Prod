@@ -1,0 +1,122 @@
+---
+// Inline script island. Placed once on the products index page.
+---
+<script>
+  import { parseStateFromQuery, serializeState, matchesProduct, cardFromElement } from '../../lib/products-filter';
+  import type { FacetState } from '../../lib/products-filter';
+
+  function getState(): FacetState {
+    return parseStateFromQuery(location.search);
+  }
+
+  function writeState(state: FacetState) {
+    const q = serializeState(state);
+    history.replaceState(null, '', q ? `?${q}` : location.pathname);
+  }
+
+  function renderPills(state: FacetState) {
+    const container = document.querySelector<HTMLElement>('[data-products-pills-container]');
+    const wrapper = document.querySelector<HTMLElement>('[data-products-pills]');
+    if (!container || !wrapper) return;
+    container.innerHTML = '';
+    let count = 0;
+    for (const [facet, values] of Object.entries(state)) {
+      if (facet === 'q') continue;
+      for (const v of values) {
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'inline-flex items-center gap-2 px-3 py-1 border border-ink text-ink bg-paper';
+        pill.dataset.removeFacet = facet;
+        pill.dataset.removeValue = v;
+        pill.innerHTML = `${facet} · ${v} <span aria-hidden="true">×</span>`;
+        container.appendChild(pill);
+        count++;
+      }
+    }
+    wrapper.classList.toggle('hidden', count === 0);
+  }
+
+  function apply() {
+    const state = getState();
+    const searchInput = document.querySelector<HTMLInputElement>('[data-products-search]');
+    const search = searchInput?.value ?? '';
+    let visible = 0;
+    const cards = document.querySelectorAll<HTMLElement>('[data-product-slug]');
+    cards.forEach((cardEl) => {
+      const card = cardFromElement(cardEl);
+      const ok = matchesProduct(card, state, search);
+      cardEl.toggleAttribute('hidden', !ok);
+      if (ok) visible++;
+    });
+    const countEl = document.querySelector('[data-products-count]');
+    if (countEl) {
+      // each SKU appears in cards + compact sections, so divide by 2
+      countEl.textContent = String(Math.ceil(visible / 2));
+    }
+    renderPills(state);
+  }
+
+  function syncCheckboxes() {
+    const state = getState();
+    document.querySelectorAll<HTMLInputElement>('input[data-facet]').forEach((input) => {
+      const facet = input.dataset.facet!;
+      const values = state[facet];
+      input.checked = !!(values && values.has(input.value));
+    });
+  }
+
+  document.addEventListener('change', (e) => {
+    const input = e.target as HTMLInputElement;
+    if (input.matches('input[data-facet]')) {
+      const state = getState();
+      const facet = input.dataset.facet!;
+      if (!state[facet]) state[facet] = new Set();
+      input.checked ? state[facet].add(input.value) : state[facet].delete(input.value);
+      writeState(state);
+      apply();
+    }
+  });
+
+  document.addEventListener('input', (e) => {
+    if ((e.target as HTMLElement).matches('[data-products-search]')) apply();
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const pill = target.closest<HTMLElement>('[data-remove-facet]');
+    if (pill) {
+      const state = getState();
+      state[pill.dataset.removeFacet!]?.delete(pill.dataset.removeValue!);
+      writeState(state);
+      syncCheckboxes();
+      apply();
+      return;
+    }
+    if (target.closest('[data-products-clear-all]') || target.closest('[data-products-reset]')) {
+      history.replaceState(null, '', location.pathname);
+      const search = document.querySelector<HTMLInputElement>('[data-products-search]');
+      if (search) search.value = '';
+      syncCheckboxes();
+      apply();
+      return;
+    }
+    const view = target.closest<HTMLElement>('[data-products-view]');
+    if (view) {
+      const mode = view.dataset.productsView!;
+      document.querySelectorAll<HTMLElement>('[data-products-view]').forEach((b) => {
+        const active = b.dataset.productsView === mode;
+        b.setAttribute('aria-pressed', String(active));
+        b.classList.toggle('bg-ink', active);
+        b.classList.toggle('text-paper', active);
+        b.classList.toggle('bg-paper', !active);
+        b.classList.toggle('text-ink', !active);
+      });
+      document.querySelectorAll<HTMLElement>('[data-products-view-section]').forEach((sec) => {
+        sec.classList.toggle('hidden', sec.dataset.productsViewSection !== mode);
+      });
+    }
+  });
+
+  syncCheckboxes();
+  apply();
+</script>
