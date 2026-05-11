@@ -51,6 +51,9 @@ export interface UITranslations {
       kpi_years: string;
       kpi_categories: string;
     };
+    featured: {
+      kicker: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;
