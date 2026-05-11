@@ -1,10 +1,6 @@
 ---
-// NOTE: This component is being rewritten in Plan 6 / Task 2 to query
-// real data across the three new collections. For now it is patched
-// minimally to unbreak the homepage build — it queries `fertilizers`
-// only (the largest line) so the homepage still renders. Task 2 will
-// replace this with a proper 3-line catalog teaser pulling from seeds,
-// fertilizers, and pesticides.
+// Catalog teaser — three product lines mapped from the three content collections.
+// Counts are derived from collection length so they stay in sync with the catalog.
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Kicker from '../editorial/Kicker.astro';
@@ -13,25 +9,47 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isAR = lang === 'ar';
 
-const products = await getCollection('fertilizers');
-const subcategories = [
-  { id: 'water-soluble-npk', label_en: 'K+S · Water-soluble NPK',  label_ar: 'K+S · أسمدة قابلة للذوبان' },
-  { id: 'phosphate-sources', label_en: 'K+S · Phosphate sources',  label_ar: 'K+S · مصادر الفوسفور' },
-  { id: 'nitrogen-sources',  label_en: 'K+S · Nitrogen sources',   label_ar: 'K+S · مصادر النيتروجين' },
-  { id: 'potassium-sulphate',label_en: 'K+S · Potassium sulphate', label_ar: 'K+S · سلفات البوتاسيوم' },
+const [seedsCol, fertilizersCol, pesticidesCol] = await Promise.all([
+  getCollection('seeds'),
+  getCollection('fertilizers'),
+  getCollection('pesticides'),
+]);
+
+const lines = [
+  {
+    slug: 'seeds',
+    count: seedsCol.length,
+    label_en: 'Seeds',
+    label_ar: 'البذور',
+    deck_en: 'Forage and vegetable seed lines.',
+    deck_ar: 'خطوط بذور الأعلاف والخضار.',
+    sources_en: 'Barenbrug · East West Seeds',
+    sources_ar: 'Barenbrug · East West Seeds',
+  },
+  {
+    slug: 'fertilizers',
+    count: fertilizersCol.length,
+    label_en: 'Fertilizers',
+    label_ar: 'الأسمدة',
+    deck_en: 'Water-soluble and specialty fertilizers.',
+    deck_ar: 'أسمدة قابلة للذوبان وأسمدة خاصة.',
+    sources_en: 'K+S · Agro Dragon',
+    sources_ar: 'K+S · Agro Dragon',
+  },
+  {
+    slug: 'pesticides',
+    count: pesticidesCol.length,
+    label_en: 'Pesticides',
+    label_ar: 'المبيدات',
+    deck_en: 'Insecticides, herbicides, fungicides.',
+    deck_ar: 'مبيدات حشرية، أعشاب، فطرية.',
+    sources_en: 'SAF · KZ · Kafr El Zayat',
+    sources_ar: 'SAF · KZ · Kafr El Zayat',
+  },
 ];
 
-const matches: Record<string, { count: number; samples: { name: string; grade: string }[] }> = {};
-for (const { id } of subcategories) matches[id] = { count: 0, samples: [] };
-
-for (const p of products) {
-  const bucket = p.data.subcategory;
-  if (!matches[bucket]) continue;
-  matches[bucket].count++;
-  if (matches[bucket].samples.length < 3) {
-    matches[bucket].samples.push({ name: p.data.name[lang as 'en' | 'ar'], grade: p.data.grade });
-  }
-}
+const productsHref = isAR ? '/ar/products' : '/products';
+const lineHref = (slug: string) => (isAR ? `/ar/products/${slug}` : `/products/${slug}`);
 ---
 
 <section class="py-section-y bg-paper">
@@ -39,38 +57,41 @@ for (const p of products) {
     <header class="col-span-12 col-start-2 mb-sp-9 flex items-end justify-between flex-wrap gap-sp-5">
       <div>
         <Kicker label={t('home.catalog.kicker')} />
-        <h2 class="font-display text-5xl text-ink mt-sp-5 max-w-[20ch] leading-tight">{t('home.catalog.headline')}</h2>
+        <h2 class="font-display text-5xl text-ink mt-sp-5 max-w-[22ch] leading-tight">
+          {t('home.catalog.headline')}
+        </h2>
       </div>
-      <a href={lang === 'ar' ? '/ar/products' : '/products'} class="font-mono text-[11px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5">
+      <a
+        href={productsHref}
+        class="font-mono text-[11px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5"
+      >
         {t('home.catalog.full_catalog')} →
       </a>
     </header>
 
-    <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-sp-6 border-t border-ink pt-sp-7">
-      {subcategories.map((sub, i) => {
-        const data = matches[sub.id];
-        return (
-          <div class="flex flex-col border-t border-stone pt-sp-5">
-            <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
-              {String(i + 1).padStart(2, '0')} · {data.count} SKU{data.count === 1 ? '' : 's'}
-            </span>
-            <h3 class="font-display text-2xl text-ink mt-sp-3 mb-sp-5 leading-tight">
-              {isAR ? sub.label_ar : sub.label_en}
-            </h3>
-            <ul class="list-none p-0 m-0 mb-sp-7 flex-1 space-y-3">
-              {data.samples.map((s) => (
-                <li>
-                  <div class="font-sans text-sm text-ink">{s.name}</div>
-                  <div class="font-mono text-[10.5px] tracking-[0.16em] uppercase text-mute mt-1">{s.grade}</div>
-                </li>
-              ))}
-            </ul>
-            <a href={lang === 'ar' ? '/ar/products' : '/products'} class="mt-auto font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start">
-              {t('common.open_category')} →
-            </a>
+    <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-7 border-t border-ink pt-sp-7">
+      {lines.map((line, i) => (
+        <article class="flex flex-col border-t border-stone pt-sp-5">
+          <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+            {String(i + 1).padStart(2, '0')} · {line.count} SKU{line.count === 1 ? '' : 's'}
+          </span>
+          <h3 class="font-display text-3xl text-ink mt-sp-3 mb-sp-4 leading-tight">
+            {isAR ? line.label_ar : line.label_en}
+          </h3>
+          <p class="font-sans text-base text-ink/80 leading-relaxed mb-sp-5 max-w-[34ch]">
+            {isAR ? line.deck_ar : line.deck_en}
+          </p>
+          <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mb-sp-7">
+            {isAR ? line.sources_ar : line.sources_en}
           </div>
-        );
-      })}
+          <a
+            href={lineHref(line.slug)}
+            class="mt-auto font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start"
+          >
+            {t('common.open_category')} →
+          </a>
+        </article>
+      ))}
     </div>
   </div>
 </section>

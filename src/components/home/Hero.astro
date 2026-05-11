@@ -1,20 +1,20 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import { companyData } from '../../data/company';
+import statsData from '../../data/home-stats.json';
 import PhotoStamp from '../editorial/PhotoStamp.astro';
 import MonoDataline from '../editorial/MonoDataline.astro';
-import DisclaimerChip from '../editorial/DisclaimerChip.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const isAR = lang === 'ar';
 
-const yearsActive = new Date().getFullYear() - (companyData.established_year ?? new Date().getFullYear());
-const datalineItems = [
-  { label: t('home.hero.kpi_partners'),   value: '2'  },
-  { label: t('home.hero.kpi_skus'),       value: '14' },
-  { label: t('home.hero.kpi_years'),      value: String(yearsActive) },
-  { label: t('home.hero.kpi_categories'), value: '5'  },
-];
+// All four KPI tiles are derived from real company data via home-stats.json.
+// Source of truth: src/data/company.ts (years, branches, suppliers) and
+// the three product collections (skus). Source-note inside home-stats.json.
+const datalineItems = statsData.stats.map((s) => ({
+  label: isAR ? s.label_ar : s.label_en,
+  value: s.value,
+}));
 ---
 
 <section class="relative bg-paper">
@@ -25,9 +25,6 @@ const datalineItems = [
       class="block w-full h-[min(78vh,820px)] object-cover"
     />
     <PhotoStamp issue="03" year="2026" edition={t('home.hero.edition_label')} />
-    <div class="absolute top-sp-6 start-sp-6">
-      <DisclaimerChip />
-    </div>
   </div>
 
   <div class="stage-grid -mt-sp-9 relative">
