@@ -114,3 +114,17 @@
     background: currentColor;
   }
 }
+
+/* Plan 7 — mobile nav and filter drawer dialog reset */
+dialog[data-mobile-nav-drawer],
+dialog[data-filter-drawer] {
+  max-height: 100dvh;
+}
+dialog[data-mobile-nav-drawer][open],
+dialog[data-filter-drawer][open] {
+  display: flex;
+  flex-direction: column;
+}
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+}

@@ -1,0 +1,126 @@
+---
+/**
+ * Plan 7 Task C — Mobile navigation drawer.
+ *
+ * Renders an HTML `<dialog>` containing the full primary nav for viewports
+ * below `lg:` (1024px). Triggered by the HamburgerButton via `showModal()`,
+ * which gives a free focus trap, Escape-to-close, and `::backdrop` styling.
+ *
+ * Layout (top → bottom):
+ *   - Logo (start) + close button (end), each at least 44×44
+ *   - Language toggle pill (44px min-h)
+ *   - 6 nav links, display-typeset, 44px+ tall each
+ *   - "Request a quote" CTA, full-width pill, 52px min-h
+ *
+ * RTL handling:
+ *   - `inset-y-0 end-0` uses logical inline-end positioning, so the drawer
+ *     anchors right in LTR (EN) and left in RTL (AR). No JS required;
+ *     Tailwind logical properties read `dir` off `<html>`.
+ *
+ * Dismissal:
+ *   - Close button → `drawer.close()`
+ *   - Backdrop click → `drawer.close()` (target equals dialog element)
+ *   - Escape key → native `<dialog>` behaviour
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const altLocaleHref = isRTL
+  ? Astro.url.pathname.replace(/^\/ar/, '') || '/'
+  : `/ar${Astro.url.pathname}`;
+
+const navLinks = [
+  { route: '/products',      label: t('nav.products') },
+  { route: '/field-reports', label: t('nav.field_reports') },
+  { route: '/partners',      label: t('nav.partners') },
+  { route: '/customers',     label: t('nav.customers') },
+  { route: '/about',         label: t('nav.about') },
+  { route: '/contact',       label: t('nav.contact') },
+];
+
+const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
+---
+<dialog
+  id="mobile-nav-drawer"
+  data-mobile-nav-drawer
+  class="lg:hidden p-0 m-0 fixed inset-y-0 end-0 start-auto h-full max-h-full w-[88vw] max-w-[420px] bg-paper text-ink border-0 [&::backdrop]:bg-ink/40"
+>
+  <div class="flex flex-col h-full p-sp-7">
+    <header class="flex items-center justify-between mb-sp-7">
+      <a href={isRTL ? '/ar/' : '/'} class="block">
+        <img
+          src="/zagros-dark.png"
+          alt={t('site.name')}
+          class="h-10 w-auto"
+          style="mix-blend-mode: multiply;"
+        />
+      </a>
+      <button
+        type="button"
+        aria-label={closeLabel}
+        data-mobile-nav-close
+        class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mx-2 text-ink"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="square"
+          aria-hidden="true"
+        >
+          <line x1="3" y1="3" x2="17" y2="17"></line>
+          <line x1="17" y1="3" x2="3" y2="17"></line>
+        </svg>
+      </button>
+    </header>
+
+    <a
+      href={altLocaleHref}
+      class="self-start font-mono text-[11px] tracking-[0.18em] px-3.5 py-2.5 border border-stone rounded-full text-ink no-underline mb-sp-7 min-h-[44px] inline-flex items-center"
+    >
+      {t('nav.language')}
+    </a>
+
+    <ul class="list-none m-0 p-0 flex flex-col gap-sp-4 flex-1">
+      {navLinks.map(({ route, label }) => (
+        <li>
+          <a
+            href={isRTL ? `/ar${route}` : route}
+            class="block font-display text-3xl text-ink no-underline min-h-[44px] py-1 leading-tight"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href={isRTL ? '/ar/contact' : '/contact'}
+      class="bg-ink text-paper font-sans font-medium text-[15px] px-sp-5 py-sp-4 rounded-full no-underline inline-flex items-center justify-center gap-2 min-h-[52px] mt-sp-7"
+    >
+      {t('nav.cta_primary')} {isRTL ? '←' : '→'}
+    </a>
+  </div>
+</dialog>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('[data-mobile-nav-trigger]');
+  const drawer = document.querySelector<HTMLDialogElement>('[data-mobile-nav-drawer]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-mobile-nav-close]');
+
+  trigger?.addEventListener('click', () => drawer?.showModal());
+  closeBtn?.addEventListener('click', () => drawer?.close());
+
+  // Backdrop click closes the dialog. The backdrop is the dialog element
+  // itself (clicks on inner content bubble up with `e.target` set to that
+  // inner element, not the dialog).
+  drawer?.addEventListener('click', (e) => {
+    if (e.target === drawer) drawer.close();
+  });
+</script>
