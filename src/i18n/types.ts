@@ -44,6 +44,25 @@ export interface UITranslations {
       view_cards: string;
       view_compact: string;
     };
+    filters: {
+      label: string;
+      reset: string;
+    };
+    facets: {
+      category: string;
+      subcategory: string;
+      nutrient: string;
+      application: string;
+      crop_stage: string;
+      crop_category: string;
+      special_props: string;
+      special: {
+        organic: string;
+        chloride_free: string;
+        sodium_free: string;
+        acidifying: string;
+      };
+    };
   };
   common: {
     read_more: string;

@@ -43,6 +43,25 @@
       "view_label": "View",
       "view_cards": "Cards",
       "view_compact": "Compact"
+    },
+    "filters": {
+      "label": "Filters",
+      "reset": "Reset"
+    },
+    "facets": {
+      "category": "Category",
+      "subcategory": "Subcategory",
+      "nutrient": "Nutrient",
+      "application": "Application",
+      "crop_stage": "Crop stage",
+      "crop_category": "Crop category",
+      "special_props": "Special properties",
+      "special": {
+        "organic": "Organic certified",
+        "chloride_free": "Chloride-free",
+        "sodium_free": "Sodium-free",
+        "acidifying": "Acidifying"
+      }
     }
   },
   "common": {

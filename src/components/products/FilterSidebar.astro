@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const products = await getCollection('products');
+
+const categories = ['fertilizer', 'forage_seed'] as const;
+const subcategories = Array.from(new Set(products.map(p => p.data.subcategory))).sort();
+const nutrients = ['N', 'P2O5', 'K2O', 'Ca', 'MgO', 'S'];
+const applications = ['foliar', 'fertigation', 'soil', 'pivot', 'hydroponic'];
+const cropStages = ['establishment', 'seedling', 'vegetative', 'flowering', 'heading', 'fruiting', 'post_harvest'];
+const cropCategories = ['field_crops', 'vegetables', 'fruit_trees', 'forages', 'oilseeds'];
+const specialProps = [
+  { key: 'organic_certified', label: t('products.facets.special.organic') },
+  { key: 'chloride_free',     label: t('products.facets.special.chloride_free') },
+  { key: 'sodium_free',       label: t('products.facets.special.sodium_free') },
+  { key: 'acidifying',        label: t('products.facets.special.acidifying') },
+];
+
+const facetGroups = [
+  { id: 'category',      title: t('products.facets.category'),      items: categories.map(v => ({ value: v, label: v.replace('_', ' ') })) },
+  { id: 'subcategory',   title: t('products.facets.subcategory'),   items: subcategories.map(v => ({ value: v, label: v })) },
+  { id: 'application',   title: t('products.facets.application'),   items: applications.map(v => ({ value: v, label: v })) },
+  { id: 'crop_stage',    title: t('products.facets.crop_stage'),    items: cropStages.map(v => ({ value: v, label: v.replace('_', ' ') })) },
+  { id: 'crop_category', title: t('products.facets.crop_category'), items: cropCategories.map(v => ({ value: v, label: v.replace('_', ' ') })) },
+  { id: 'special',       title: t('products.facets.special_props'), items: specialProps.map(p => ({ value: p.key, label: p.label })) },
+];
+---
+
+<aside class="lg:sticky lg:top-[120px] lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto p-sp-6 border-e border-stone" aria-label={t('products.filters.label')}>
+  <header class="flex items-center justify-between mb-sp-7">
+    <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink m-0">{t('products.filters.label')}</h2>
+    <button type="button" data-products-reset class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
+      {t('products.filters.reset')}
+    </button>
+  </header>
+
+  <fieldset class="mb-sp-7 border-0 p-0 m-0">
+    <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">{t('products.facets.nutrient')}</legend>
+    <div class="grid grid-cols-3 gap-2">
+      {nutrients.map((n) => (
+        <label class="cursor-pointer">
+          <input type="checkbox" data-facet="nutrient" value={n} class="peer sr-only" />
+          <span class="flex aspect-square flex-col items-center justify-center border border-stone bg-paper peer-checked:border-ink peer-checked:bg-signal peer-checked:text-ink transition-colors">
+            <span class="font-display italic text-2xl text-ink leading-none">{n}</span>
+          </span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  {facetGroups.map((group) => (
+    <fieldset class="mb-sp-6 border-0 p-0 m-0">
+      <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-3">{group.title}</legend>
+      <ul class="list-none p-0 m-0 space-y-2">
+        {group.items.map((item) => (
+          <li>
+            <label class="inline-flex items-center gap-2.5 font-sans text-sm text-ink cursor-pointer">
+              <input type="checkbox" data-facet={group.id} value={item.value} class="accent-signal" />
+              <span class="capitalize">{item.label}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+    </fieldset>
+  ))}
+</aside>

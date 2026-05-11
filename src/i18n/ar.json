@@ -43,6 +43,25 @@
       "view_label": "عرض",
       "view_cards": "بطاقات",
       "view_compact": "مدمج"
+    },
+    "filters": {
+      "label": "المرشّحات",
+      "reset": "إعادة"
+    },
+    "facets": {
+      "category": "الفئة",
+      "subcategory": "الفرعية",
+      "nutrient": "العنصر",
+      "application": "طريقة التطبيق",
+      "crop_stage": "مرحلة المحصول",
+      "crop_category": "نوع المحصول",
+      "special_props": "خصائص خاصة",
+      "special": {
+        "organic": "معتمد عضوياً",
+        "chloride_free": "خالٍ من الكلور",
+        "sodium_free": "خالٍ من الصوديوم",
+        "acidifying": "مُحمِّض"
+      }
     }
   },
   "common": {
