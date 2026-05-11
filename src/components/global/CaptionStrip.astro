@@ -1,0 +1,19 @@
+---
+interface Props {
+  sectionNumber?: string;
+  label: string;
+  subLabel?: string;
+}
+
+const { sectionNumber, label, subLabel } = Astro.props;
+---
+
+<div class="bg-ink text-paper px-page-x py-4 font-mono text-[10.5px] tracking-[0.25em] uppercase text-paper/55 flex justify-between items-center">
+  <span>
+    {sectionNumber && (
+      <>Section · {sectionNumber} · </>
+    )}
+    <b class="text-paper font-medium">{label}</b>
+  </span>
+  {subLabel && <span>{subLabel}</span>}
+</div>
