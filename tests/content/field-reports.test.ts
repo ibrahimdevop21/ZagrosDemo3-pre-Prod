@@ -29,10 +29,18 @@ describe('field-reports collection', () => {
     }
   });
 
-  it('related_products reference real catalog SKUs', async () => {
+  it('related_products reference real catalog SKUs across all 3 collections', async () => {
     const reports = await getCollection('field-reports');
-    const products = await getCollection('products');
-    const validSlugs = new Set(products.map(p => p.slug));
+    const [fertilizers, seeds, pesticides] = await Promise.all([
+      getCollection('fertilizers'),
+      getCollection('seeds'),
+      getCollection('pesticides'),
+    ]);
+    const validSlugs = new Set([
+      ...fertilizers.map(p => p.slug),
+      ...seeds.map(p => p.slug),
+      ...pesticides.map(p => p.slug),
+    ]);
     for (const r of reports) {
       for (const slug of r.data.related_products) {
         expect(validSlugs.has(slug), `${r.slug} references missing product ${slug}`).toBe(true);
