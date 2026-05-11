@@ -1,49 +1,62 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
-import Nav from '../components/navigation/Nav.astro';
-import Footer from '../components/footer/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Nav from '../components/global/Nav.astro';
+import Footer from '../components/global/Footer.astro';
 import '../styles/global.css';
-import '../styles/products.css';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
+  paperGrain?: boolean;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description,
+  ogImage = '/og-default.png',
+  paperGrain = true,
+} = Astro.props;
+
 const lang = getLangFromUrl(Astro.url);
 const isRTL = lang === 'ar';
+const t = useTranslations(lang);
+
+const fullTitle = title
+  ? `${title} — ${t('site.name')}`
+  : `${t('site.name')} — ${t('site.tagline')}`;
+const metaDescription = description ?? t('site.meta_description');
 ---
 
 <!doctype html>
 <html lang={lang} dir={isRTL ? 'rtl' : 'ltr'} class="h-full scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Zagros Trading - Your trusted partner in agricultural solutions. We provide premium fertilizers, pesticides, and agricultural consultancy services." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet" />
-		<title>{title}</title>
-	</head>
-	<body class:list={[
-		'min-h-full flex flex-col bg-gray-50 text-gray-900 transition-colors duration-300',
-		{ 'font-arabic': isRTL }
-	]}>
-		<Nav />
-		<main class="flex-1">
-			<slot />
-		</main>
-		<Footer />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
-</style>
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'ar' ? 'ar_AR' : 'en_US'} />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="en" href={Astro.url.href.replace('/ar/', '/')} />
+    <link rel="alternate" hreflang="ar" href={Astro.url.href.includes('/ar/') ? Astro.url.href : `/ar${Astro.url.pathname}`} />
+  </head>
+  <body class:list={['min-h-full flex flex-col bg-paper text-ink', { 'paper-grain': paperGrain }]}>
+    <Nav />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
