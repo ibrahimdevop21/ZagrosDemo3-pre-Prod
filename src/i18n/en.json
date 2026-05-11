@@ -70,6 +70,11 @@
       "regions_label": "Distribution footprint — illustrative",
       "audit_chip": "Region map · pending client audit"
     },
+    "catalog": {
+      "kicker": "The catalog — categories",
+      "headline": "Four shelves, fourteen SKUs, one operator",
+      "full_catalog": "Full catalog"
+    },
     "editors_note": {
       "kicker": "Editor's note · Issue 03",
       "headline": "What separates an input distributor from a soil partner",

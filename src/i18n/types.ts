@@ -70,6 +70,11 @@ export interface UITranslations {
       regions_label: string;
       audit_chip: string;
     };
+    catalog: {
+      kicker: string;
+      headline: string;
+      full_catalog: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;
