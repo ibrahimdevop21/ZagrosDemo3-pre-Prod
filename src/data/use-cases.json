@@ -1,0 +1,26 @@
+{
+  "_default": {
+    "en": [
+      { "title": "Yield protection", "body": "Closes the nutrient gap most likely to cap yield on the target crop." },
+      { "title": "Operational fit",  "body": "Works with the irrigation pattern Zagros customers actually run." },
+      { "title": "Stand-alone or stack", "body": "Mixes cleanly with the complementary catalog members — see compatibility above." }
+    ],
+    "ar": [
+      { "title": "حماية الإنتاج",    "body": "يسدّ فجوة التغذية الأكثر تأثيراً على سقف إنتاج المحصول." },
+      { "title": "ملاءمة العمليات",   "body": "يعمل مع نمط الري الذي يديره فعلاً عملاء زاغروس." },
+      { "title": "مفرد أو ضمن خلطة",  "body": "يمتزج نظيفاً مع باقي الكتالوج — راجع الجدول أعلاه." }
+    ]
+  },
+  "solu-cn": {
+    "en": [
+      { "title": "Blossom-end rot",      "body": "Direct calcium delivery to fruit-set stage closes the BER feedback loop tomatoes and peppers run on saline drip." },
+      { "title": "Saline correction",     "body": "Drip-applied calcium displaces sodium on cation-exchange sites without leaching." },
+      { "title": "Storage and shelf life","body": "Calcium-supplemented fruit holds firmness through cold-chain — a packing-house economics shift." }
+    ],
+    "ar": [
+      { "title": "عفن طرف الزهرة",       "body": "توصيل الكالسيوم مباشرةً عند عقد الثمار يقفل دورة BER التي تركض عليها الطماطم والفلفل تحت ري مالح." },
+      { "title": "تصحيح الملوحة",         "body": "الكالسيوم المطبَّق بالتنقيط يزيح الصوديوم من مواقع التبادل الكاتيوني دون رشحٍ للأعماق." },
+      { "title": "صلابة الثمار في التخزين","body": "الثمرة المدعومة بالكالسيوم تحافظ على صلابتها عبر سلسلة التبريد — تحوّلٌ في اقتصاديات محطة التعبئة." }
+    ]
+  }
+}

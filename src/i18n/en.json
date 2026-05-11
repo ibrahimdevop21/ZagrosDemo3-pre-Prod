@@ -77,6 +77,10 @@
       "brochure": "Brochure",
       "brochure_download": "Download PDF"
     },
+    "why": {
+      "kicker": "Why this matters",
+      "headline": "What it earns you in the field"
+    },
     "rates": {
       "label": "Application rates",
       "kicker": "Application rates · per donum",
