@@ -6,6 +6,7 @@ export interface UITranslations {
     meta_description: string;
   };
   nav: {
+    home: string;
     products: string;
     field_reports: string;
     partners: string;
@@ -33,6 +34,23 @@ export interface UITranslations {
     colophon_section: string;
   };
   products: {
+    page: {
+      title: string;
+      headline: string;
+      deck: string;
+      stat_skus: string;
+      stat_partners: string;
+      stat_subcats: string;
+    };
+    results: {
+      label: string;
+    };
+    compact: {
+      col_brand: string;
+      col_name: string;
+      col_composition: string;
+      col_applications: string;
+    };
     toolbar: {
       search_label: string;
       search_placeholder: string;

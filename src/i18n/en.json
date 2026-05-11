@@ -6,6 +6,7 @@
     "meta_description": "Authorized Middle East distributor of K+S fertilizers and Barenbrug forage seeds. Water-soluble NPK, calcium, magnesium, potassium, and organic-certified inputs for vegetables, fruit trees, field crops, and forages."
   },
   "nav": {
+    "home": "Home",
     "products": "Products",
     "field_reports": "Field Reports",
     "partners": "Partners",
@@ -33,6 +34,23 @@
     "colophon_section": "09 / 09"
   },
   "products": {
+    "page": {
+      "title": "Products",
+      "headline": "Fourteen SKUs, two partner houses, one operator.",
+      "deck": "Filter the catalog by nutrient, application method, crop stage, or special property. Every product card links to a full spec sheet with composition, compatibility, application rates, and use-case notes.",
+      "stat_skus": "SKUs",
+      "stat_partners": "Partner houses",
+      "stat_subcats": "Subcategories"
+    },
+    "results": {
+      "label": "Results"
+    },
+    "compact": {
+      "col_brand": "House",
+      "col_name": "Name",
+      "col_composition": "Composition",
+      "col_applications": "Applications"
+    },
     "toolbar": {
       "search_label": "Search",
       "search_placeholder": "Name · grade · composition · crop",

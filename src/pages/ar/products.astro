@@ -1,19 +1,89 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Breadcrumb from '../../components/global/Breadcrumb.astro';
+import CaptionStrip from '../../components/global/CaptionStrip.astro';
+import FilterSidebar from '../../components/products/FilterSidebar.astro';
+import FilterPills from '../../components/products/FilterPills.astro';
+import ProductsToolbar from '../../components/products/ProductsToolbar.astro';
+import ProductCard from '../../components/products/ProductCard.astro';
+import ProductCardCompact from '../../components/products/ProductCardCompact.astro';
+import FilterController from '../../components/products/FilterController.astro';
 
-const pageName = 'المنتجات';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const all = await getCollection('products');
+const ks = all.filter(p => p.data.brand === 'K+S');
+const bb = all.filter(p => p.data.brand === 'Barenbrug');
+const subcatsKs = Array.from(new Set(ks.map(p => p.data.subcategory)));
+const subcatsBb = Array.from(new Set(bb.map(p => p.data.subcategory)));
 ---
 
-<Layout title={pageName}>
-  <section class="stage-grid py-section-y">
-    <div class="col-span-12 col-start-2 text-center">
-      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
-        قسم · توضيحي · بانتظار الخطط القادمة
-      </p>
-      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
-        تم إرساء الأساس. ستحلّ هذه الصفحة بمحتواها الكامل في خطة التنفيذ المخصصة لها.
-      </p>
+<Layout title={t('products.page.title')}>
+  <Breadcrumb items={[
+    { label: t('nav.home'), href: '/ar/' },
+    { label: t('nav.products') },
+  ]} />
+
+  <header class="px-page-x pb-sp-9">
+    <h1 class="font-display text-[clamp(48px,7vw,96px)] leading-[0.95] text-ink max-w-[18ch] mb-sp-7">{t('products.page.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7">{t('products.page.deck')}</p>
+    <div class="flex gap-sp-9 flex-wrap font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+      <span>{all.length} {t('products.page.stat_skus')}</span>
+      <span>2 {t('products.page.stat_partners')}</span>
+      <span>{subcatsKs.length + subcatsBb.length} {t('products.page.stat_subcats')}</span>
     </div>
-  </section>
+  </header>
+
+  <ProductsToolbar />
+  <FilterPills />
+
+  <CaptionStrip label={t('products.results.label')} subLabel={`${all.length} / ${all.length}`} />
+
+  <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr]">
+    <FilterSidebar />
+
+    <div class="p-page-x">
+      <div data-products-view-section="cards">
+        {ks.length > 0 && (
+          <section class="mb-section-y">
+            <header class="flex items-baseline justify-between mb-sp-7 border-b border-ink pb-sp-3">
+              <h2 class="font-display italic text-3xl text-ink">§ K+S · {ks.length} SKUs</h2>
+              <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">K Plus S Middle East FZE</span>
+            </header>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-6">
+              {ks.map(p => <ProductCard product={p} />)}
+            </div>
+          </section>
+        )}
+
+        {bb.length > 0 && (
+          <section>
+            <header class="flex items-baseline justify-between mb-sp-7 border-b border-ink pb-sp-3">
+              <h2 class="font-display italic text-3xl text-ink">§ Barenbrug · {bb.length} SKUs</h2>
+              <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">Forage seed</span>
+            </header>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-6">
+              {bb.map(p => <ProductCard product={p} />)}
+            </div>
+          </section>
+        )}
+      </div>
+
+      <div data-products-view-section="compact" class="hidden">
+        <header class="grid grid-cols-[auto_2fr_1.5fr_1.5fr_auto] gap-sp-5 border-b-2 border-ink py-sp-3 font-mono text-[10px] tracking-[0.22em] uppercase text-mute">
+          <span class="w-12 text-center">{t('products.compact.col_brand')}</span>
+          <span>{t('products.compact.col_name')}</span>
+          <span>{t('products.compact.col_composition')}</span>
+          <span>{t('products.compact.col_applications')}</span>
+          <span>{t('common.view')}</span>
+        </header>
+        {[...ks, ...bb].map(p => <ProductCardCompact product={p} />)}
+      </div>
+    </div>
+  </div>
+
+  <FilterController />
 </Layout>
