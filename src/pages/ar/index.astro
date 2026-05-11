@@ -1,10 +1,19 @@
 ---
-/**
- * Arabic Home Page
- * This file exists to create the /ar route.
- * It imports and renders the main index page which handles both languages.
- */
-import IndexPage from '../index.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const pageName = 'الرئيسية';
 ---
 
-<IndexPage />
+<Layout title={pageName}>
+  <section class="stage-grid py-section-y">
+    <div class="col-span-12 col-start-2 text-center">
+      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
+        قسم · توضيحي · بانتظار الخطط القادمة
+      </p>
+      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
+        تم إرساء الأساس. ستحلّ هذه الصفحة بمحتواها الكامل في خطة التنفيذ المخصصة لها.
+      </p>
+    </div>
+  </section>
+</Layout>

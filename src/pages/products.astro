@@ -1,56 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageWrapper from '../components/layout/PageWrapper.astro';
-import Section from '../components/layout/Section.astro';
-import Container from '../components/layout/Container.astro';
-import Stack from '../components/layout/Stack.astro';
-import ProductsHero from '../components/products/ProductsHero.astro';
-import ProductList from '../components/products/ProductList.jsx';
-import pesticidesData from '../data/pesticides.json';
-import fertilizersData from '../data/fertilizers.json';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const isArabic = lang === 'ar';
-
-const allProducts = [
-  ...pesticidesData.subcategories.flatMap(subcat => 
-    subcat.products.map(product => ({
-      ...product,
-      categoryId: subcat.id
-    }))
-  ),
-  ...fertilizersData.subcategories.flatMap(subcat => 
-    subcat.products.map(product => ({
-      ...product,
-      categoryId: subcat.id
-    }))
-  )
-];
-
-const categories = [
-  ...pesticidesData.subcategories.map(subcat => ({
-    id: subcat.id,
-    name: subcat.name
-  })),
-  ...fertilizersData.subcategories.map(subcat => ({
-    id: subcat.id,
-    name: subcat.name
-  }))
-];
+const pageName = 'Products';
 ---
 
-<Layout title={t('products.title')}>
-  <!-- Hero Carousel Section -->
-  <ProductsHero 
-    title={isArabic ? 'منتجاتنا الزراعية' : 'Our Agricultural Products'}
-    subtitle={isArabic ? 'حلول متكاملة للبذور والأسمدة والمبيدات من شركاء عالميين موثوقين' : 'Complete solutions for seeds, fertilizers, and pesticides from trusted global partners'}
-    isArabic={isArabic}
-  />
-
-  <!-- Products List Section -->
-  <PageWrapper>
-    <ProductList client:load products={allProducts} categories={categories} lang={lang} />
-  </PageWrapper>
+<Layout title={pageName}>
+  <section class="stage-grid py-section-y">
+    <div class="col-span-12 col-start-2 text-center">
+      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
+        Section · placeholder · pending Plan 2+
+      </p>
+      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
+        Foundation plan landed. This page is replaced by the dedicated implementation plan for {pageName.toLowerCase()}.
+      </p>
+    </div>
+  </section>
 </Layout>

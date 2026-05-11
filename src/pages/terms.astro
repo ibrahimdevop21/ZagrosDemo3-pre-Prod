@@ -1,160 +1,19 @@
 ---
-/**
- * Terms & Conditions Page - English
- * Comprehensive terms and conditions for Zagros Trading
- */
-
 import Layout from '../layouts/Layout.astro';
-import { getLangFromUrl } from '../i18n/utils';
 
-const lang = getLangFromUrl(Astro.url);
+const pageName = 'Terms';
 ---
 
-<Layout title="Terms & Conditions - Zagros Trading">
-  <div class="bg-white py-16 md:py-24">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      
-      <!-- Header -->
-      <div class="mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">Terms & Conditions</h1>
-        <p class="text-text-secondary">Last updated: January 2026</p>
-      </div>
-
-      <!-- Content -->
-      <div class="prose prose-lg max-w-none space-y-8">
-        
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">1. Agreement to Terms</h2>
-          <p class="text-text-secondary leading-relaxed">
-            By accessing and using the Zagros Trading website and services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you may not access our website or use our services.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">2. Business Services</h2>
-          <h3 class="text-xl font-semibold text-text-primary mb-3">2.1 Products and Services</h3>
-          <p class="text-text-secondary leading-relaxed mb-4">
-            Zagros Trading provides agricultural products and services including:
-          </p>
-          <ul class="list-disc list-inside text-text-secondary space-y-2 ml-4">
-            <li>Import and distribution of agricultural inputs (fertilizers, seeds, pesticides)</li>
-            <li>Pesticide registration and regulatory compliance services</li>
-            <li>International trade operations</li>
-            <li>Agricultural consultancy services</li>
-          </ul>
-
-          <h3 class="text-xl font-semibold text-text-primary mb-3 mt-6">2.2 Product Information</h3>
-          <p class="text-text-secondary leading-relaxed">
-            We strive to provide accurate product information, specifications, and pricing. However, we do not warrant that product descriptions, pricing, or other content on our website is accurate, complete, reliable, current, or error-free.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">3. Business Transactions</h2>
-          <h3 class="text-xl font-semibold text-text-primary mb-3">3.1 Quotations and Orders</h3>
-          <p class="text-text-secondary leading-relaxed">
-            All quotations provided are valid for the period specified and are subject to availability. Orders are subject to acceptance and confirmation by Zagros Trading.
-          </p>
-
-          <h3 class="text-xl font-semibold text-text-primary mb-3 mt-6">3.2 Pricing and Payment</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Prices are subject to change without notice. Payment terms will be specified in individual contracts or purchase orders. All prices are exclusive of applicable taxes unless otherwise stated.
-          </p>
-
-          <h3 class="text-xl font-semibold text-text-primary mb-3 mt-6">3.3 Delivery</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Delivery terms, timelines, and responsibilities will be specified in individual contracts. We are not liable for delays caused by circumstances beyond our reasonable control.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">4. Product Quality and Warranties</h2>
-          <h3 class="text-xl font-semibold text-text-primary mb-3">4.1 Quality Standards</h3>
-          <p class="text-text-secondary leading-relaxed">
-            All products supplied by Zagros Trading meet applicable quality standards and regulatory requirements. Products are sourced from reputable international manufacturers.
-          </p>
-
-          <h3 class="text-xl font-semibold text-text-primary mb-3 mt-6">4.2 Warranties</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Product warranties, if any, are provided by the manufacturers. Zagros Trading will facilitate warranty claims but is not directly responsible for manufacturer warranties.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">5. Intellectual Property</h2>
-          <p class="text-text-secondary leading-relaxed">
-            All content on this website, including text, graphics, logos, images, and software, is the property of Zagros Trading or its content suppliers and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">6. Limitation of Liability</h2>
-          <p class="text-text-secondary leading-relaxed mb-4">
-            To the fullest extent permitted by law:
-          </p>
-          <ul class="list-disc list-inside text-text-secondary space-y-2 ml-4">
-            <li>Zagros Trading shall not be liable for any indirect, incidental, special, or consequential damages</li>
-            <li>Our total liability shall not exceed the amount paid by you for the specific product or service</li>
-            <li>We are not liable for delays or failures due to circumstances beyond our reasonable control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">7. Indemnification</h2>
-          <p class="text-text-secondary leading-relaxed">
-            You agree to indemnify and hold harmless Zagros Trading, its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses arising from your use of our services or violation of these terms.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">8. Regulatory Compliance</h2>
-          <p class="text-text-secondary leading-relaxed">
-            Customers are responsible for ensuring compliance with all applicable laws and regulations in their jurisdiction regarding the use, storage, and application of agricultural products purchased from Zagros Trading.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">9. Termination</h2>
-          <p class="text-text-secondary leading-relaxed">
-            We reserve the right to terminate or suspend access to our services immediately, without prior notice, for any breach of these Terms and Conditions.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">10. Governing Law</h2>
-          <p class="text-text-secondary leading-relaxed">
-            These Terms and Conditions are governed by and construed in accordance with the laws of Sudan. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Sudan.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">11. Changes to Terms</h2>
-          <p class="text-text-secondary leading-relaxed">
-            We reserve the right to modify these Terms and Conditions at any time. Changes will be effective immediately upon posting on this website. Your continued use of our services constitutes acceptance of the modified terms.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">12. Severability</h2>
-          <p class="text-text-secondary leading-relaxed">
-            If any provision of these Terms and Conditions is found to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-text-primary mb-4">13. Contact Information</h2>
-          <p class="text-text-secondary leading-relaxed mb-4">
-            For questions regarding these Terms and Conditions, please contact us:
-          </p>
-          <div class="bg-stone-50 p-6 rounded-lg">
-            <p class="text-text-secondary"><strong>Zagros Trading</strong></p>
-            <p class="text-text-secondary">Email: info@zagros-agriculture.com</p>
-            <p class="text-text-secondary">Phone: +249 123 456 789</p>
-            <p class="text-text-secondary">Address: Khartoum, Sudan</p>
-          </div>
-        </section>
-
-      </div>
+<Layout title={pageName}>
+  <section class="stage-grid py-section-y">
+    <div class="col-span-12 col-start-2 text-center">
+      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
+        Section · placeholder · pending Plan 2+
+      </p>
+      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
+        Foundation plan landed. This page is replaced by the dedicated implementation plan for {pageName.toLowerCase()}.
+      </p>
     </div>
-  </div>
+  </section>
 </Layout>

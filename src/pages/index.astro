@@ -1,149 +1,19 @@
 ---
-/**
- * Homepage - Professional Corporate Landing Page
- * Complete rebuild with trust indicators, expanded activities, and testimonials
- */
-
 import Layout from '../layouts/Layout.astro';
-import { companyData } from '../data/company.ts';
-import { testimonials } from '../data/testimonials.js';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import HeroSection from '../components/home/HeroSection.astro';
-import TrustIndicators from '../components/home/TrustIndicators.astro';
-import ActivitiesSection from '../components/home/ActivitiesSection.astro';
-import MarketPresenceSection from '../components/home/MarketPresenceSection.astro';
-import LogoCarousel from '../components/ui/LogoCarousel.jsx';
-import TestimonialCarousel from '../components/ui/TestimonialCarousel.jsx';
-import BusinessCTA from '../components/home/BusinessCTA.astro';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const isArabic = lang === 'ar';
+const pageName = 'Home';
 ---
 
-<Layout title={isArabic ? 'أعمال زاغروس للتجارة - الشريك الرائد في التجارة الزراعية' : 'Zagros Trading - Leading Agricultural Trade Partner'}>
-  
-  <!-- 1. Hero Section -->
-  <HeroSection 
-    headline={t('home.hero.headline')}
-    subheadline={t('home.hero.subheadline')}
-    valueProposition={t('home.hero.value_proposition')}
-    ctaPrimary={t('home.hero.cta_primary')}
-    ctaSecondary={t('home.hero.cta_secondary')}
-    isArabic={isArabic}
-    lang={lang}
-  />
-
-  <!-- 2. International Partnerships - Auto-Scroll Carousel -->
-  <section class="py-16 md:py-24 bg-bg-green-tint">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 space-y-4">
-        <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
-          {t('home.partners.title')}
-        </h2>
-        <p class={`text-lg text-text-secondary max-w-3xl mx-auto ${isArabic ? 'font-arabic' : ''}`}>
-          {t('home.partners.subtitle')}
-        </p>
-      </div>
-      
-      <LogoCarousel 
-        client:visible
-        logos={[
-          ...companyData.company.international_linkages.seeds.map(p => ({
-            id: p.name,
-            src: `/partners/${p.logo}`,
-            alt: isArabic ? p.name_ar : p.name
-          })),
-          ...companyData.company.international_linkages.fertilizers.map(p => ({
-            id: p.name,
-            src: `/partners/${p.logo}`,
-            alt: isArabic ? p.name_ar : p.name
-          })),
-          ...companyData.company.international_linkages.pesticides.map(p => ({
-            id: p.name,
-            src: `/partners/${p.logo}`,
-            alt: isArabic ? p.name_ar : p.name
-          }))
-        ]}
-        speed={20}
-      />
+<Layout title={pageName}>
+  <section class="stage-grid py-section-y">
+    <div class="col-span-12 col-start-2 text-center">
+      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
+        Section · placeholder · pending Plan 2+
+      </p>
+      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
+        Foundation plan landed. This page is replaced by the dedicated implementation plan for {pageName.toLowerCase()}.
+      </p>
     </div>
   </section>
-
-  <!-- 3. Trust Indicators / Company Snapshot -->
-  <TrustIndicators 
-    indicators={t('home.trust_indicators')}
-    isArabic={isArabic}
-  />
-
-  <!-- 4. Core Business Activities (Expanded) -->
-  <ActivitiesSection 
-    title={t('home.activities.title')}
-    subtitle={t('home.activities.subtitle')}
-    activities={t('home.activities.items')}
-    isArabic={isArabic}
-  />
-
-  <!-- 5. Market Presence & Distribution Strength -->
-  <MarketPresenceSection 
-    title={t('home.market.title')}
-    subtitle={t('home.market.subtitle')}
-    primaryMarket={t('home.market.primary_market')}
-    distributionNetwork={t('home.market.distribution_network')}
-    internationalReach={t('home.market.international_reach')}
-    isArabic={isArabic}
-    lang={lang}
-  />
-
-  <!-- 6. Trusted Customers -->
-  <section class="py-16 md:py-24 bg-bg-green-light">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
-          {t('home.customers.title')}
-        </h2>
-      </div>
-      
-      <LogoCarousel 
-        client:visible
-        logos={companyData.customers.map(customer => ({
-          id: customer.name,
-          src: `/trusted-customer-logos/${customer.logo}`,
-          alt: isArabic ? customer.name_ar : customer.name
-        }))}
-        speed={25}
-      />
-    </div>
-  </section>
-
-  <!-- 7. Testimonials / Partner Feedback -->
-  <section class="py-16 md:py-24 bg-bg-surface">
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 space-y-4">
-        <h2 class={`text-3xl md:text-4xl font-bold text-text-primary ${isArabic ? 'font-arabic' : ''}`}>
-          {isArabic ? 'ماذا يقول شركاؤنا' : 'What Our Partners Say'}
-        </h2>
-        <p class={`text-lg text-text-secondary max-w-2xl mx-auto ${isArabic ? 'font-arabic' : ''}`}>
-          {isArabic 
-            ? 'آراء موثوقة من الموزعين والشركاء في جميع أنحاء السودان والشرق الأوسط'
-            : 'Trusted feedback from distributors and partners across Sudan and the Middle East'
-          }
-        </p>
-      </div>
-      
-      <TestimonialCarousel 
-        client:load
-        testimonials={testimonials.map(t => ({
-          quote: isArabic ? t.quote.ar : t.quote.en,
-          author: isArabic ? t.author.ar : t.author.en,
-          role: isArabic ? t.role.ar : t.role.en,
-          location: isArabic ? t.location.ar : t.location.en
-        }))}
-        autoPlayInterval={7000}
-        isArabic={isArabic}
-      />
-    </div>
-  </section>
-
-
 </Layout>
