@@ -38,5 +38,18 @@
     "section": "Section",
     "back": "Back",
     "pending_audit": "Illustrative figures · pending audit"
+  },
+  "home": {
+    "hero": {
+      "edition_label": "Yield",
+      "photo_alt": "Irrigation canal at late-afternoon — illustrative photography pending client assets.",
+      "headline_a": "The operator's catalog —",
+      "headline_b": "yield is the only metric.",
+      "deck": "Authorized Middle East distributor of K+S fertilizers and Barenbrug forage seeds. Specs forward, data first, no marketing fog.",
+      "kpi_partners": "Partner houses",
+      "kpi_skus": "SKUs in catalog",
+      "kpi_years": "Years operating",
+      "kpi_categories": "Crop categories"
+    }
   }
 }

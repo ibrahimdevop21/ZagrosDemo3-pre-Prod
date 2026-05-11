@@ -39,4 +39,17 @@ export interface UITranslations {
     back: string;
     pending_audit: string;
   };
+  home: {
+    hero: {
+      edition_label: string;
+      photo_alt: string;
+      headline_a: string;
+      headline_b: string;
+      deck: string;
+      kpi_partners: string;
+      kpi_skus: string;
+      kpi_years: string;
+      kpi_categories: string;
+    };
+  };
 }

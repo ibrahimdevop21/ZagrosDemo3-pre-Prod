@@ -1,0 +1,49 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { companyData } from '../../data/company';
+import PhotoStamp from '../editorial/PhotoStamp.astro';
+import MonoDataline from '../editorial/MonoDataline.astro';
+import DisclaimerChip from '../editorial/DisclaimerChip.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const yearsActive = new Date().getFullYear() - (companyData.established_year ?? new Date().getFullYear());
+const datalineItems = [
+  { label: t('home.hero.kpi_partners'),   value: '2'  },
+  { label: t('home.hero.kpi_skus'),       value: '14' },
+  { label: t('home.hero.kpi_years'),      value: String(yearsActive) },
+  { label: t('home.hero.kpi_categories'), value: '5'  },
+];
+---
+
+<section class="relative bg-paper">
+  <div class="relative w-full">
+    <img
+      src="/photos/illustrative-hero-canal.jpg"
+      alt={t('home.hero.photo_alt')}
+      class="block w-full h-[min(78vh,820px)] object-cover"
+    />
+    <PhotoStamp issue="03" year="2026" edition={t('home.hero.edition_label')} />
+    <div class="absolute top-sp-6 start-sp-6">
+      <DisclaimerChip />
+    </div>
+  </div>
+
+  <div class="stage-grid -mt-sp-9 relative">
+    <h1
+      class="col-span-12 col-start-2 font-display text-[clamp(56px,8vw,128px)] leading-[0.92] text-ink m-0 mb-sp-7 max-w-[18ch]"
+    >
+      {t('home.hero.headline_a')}
+      <em class="italic font-light text-sienna"> {t('home.hero.headline_b')}</em>
+    </h1>
+
+    <p class="col-span-7 col-start-2 font-sans text-lg leading-relaxed text-ink/80 max-w-[60ch] mb-sp-7">
+      {t('home.hero.deck')}
+    </p>
+
+    <div class="col-span-12 col-start-2 bg-ink text-paper px-page-x py-sp-6 -mx-page-x mt-sp-6">
+      <MonoDataline items={datalineItems} />
+    </div>
+  </div>
+</section>
