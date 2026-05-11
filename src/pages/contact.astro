@@ -1,19 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Breadcrumb from '../components/global/Breadcrumb.astro';
+import Kicker from '../components/editorial/Kicker.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import DirectContact from '../components/contact/DirectContact.astro';
 
-const pageName = 'Contact';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const homeHref = lang === 'ar' ? '/ar/' : '/';
 ---
+<Layout title={t('contact.title')}>
+  <Breadcrumb items={[{ label: t('nav.home'), href: homeHref }, { label: t('contact.title') }]} />
 
-<Layout title={pageName}>
-  <section class="stage-grid py-section-y">
-    <div class="col-span-12 col-start-2 text-center">
-      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
-        Section · placeholder · pending Plan 2+
-      </p>
-      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
-        Foundation plan landed. This page is replaced by the dedicated implementation plan for {pageName.toLowerCase()}.
-      </p>
+  <header class="px-page-x pb-sp-9">
+    <Kicker label={t('contact.kicker')} accent="signal" />
+    <h1 class="font-display text-[clamp(40px,6vw,84px)] leading-[1.02] text-ink mt-sp-5 max-w-[24ch] mb-sp-7">{t('contact.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('contact.deck')}</p>
+  </header>
+
+  <section class="px-page-x pb-section-y">
+    <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-sp-9">
+      <ContactForm />
+      <DirectContact />
     </div>
   </section>
 </Layout>

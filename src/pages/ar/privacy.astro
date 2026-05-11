@@ -1,19 +1,39 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Breadcrumb from '../../components/global/Breadcrumb.astro';
+import DisclaimerChip from '../../components/editorial/DisclaimerChip.astro';
 
-const pageName = 'الخصوصية';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const homeHref = lang === 'ar' ? '/ar/' : '/';
+
+const sections = [
+  { num: '٠١', key: 'section_intro' },
+  { num: '٠٢', key: 'section_data' },
+  { num: '٠٣', key: 'section_use' },
+  { num: '٠٤', key: 'section_sharing' },
+  { num: '٠٥', key: 'section_rights' },
+  { num: '٠٦', key: 'section_contact' },
+];
 ---
+<Layout title={t('legal.privacy_title')}>
+  <Breadcrumb items={[{ label: t('nav.home'), href: homeHref }, { label: t('legal.privacy_title') }]} />
 
-<Layout title={pageName}>
-  <section class="stage-grid py-section-y">
-    <div class="col-span-12 col-start-2 text-center">
-      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
-        قسم · توضيحي · بانتظار الخطط القادمة
-      </p>
-      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
-        تم إرساء الأساس. ستحلّ هذه الصفحة بمحتواها الكامل في خطة التنفيذ المخصصة لها.
-      </p>
+  <header class="px-page-x pb-section-y">
+    <DisclaimerChip text={t('legal.pending_review')} />
+    <h1 class="font-display text-[clamp(40px,6vw,84px)] leading-[1.02] text-ink mt-sp-5 max-w-[24ch]">{t('legal.privacy_headline')}</h1>
+  </header>
+
+  <article class="stage-grid pb-section-y">
+    <div class="col-span-8 col-start-3 max-w-[60ch] font-sans text-base text-ink/85 leading-relaxed space-y-sp-8">
+      {sections.map((s) => (
+        <section>
+          <div class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-3">§ {s.num}</div>
+          <h2 class="font-display text-3xl text-ink mb-sp-4 leading-tight">{t(`legal.${s.key}` as any)}</h2>
+          <p class="m-0">{t('legal.boilerplate_body')}</p>
+        </section>
+      ))}
     </div>
-  </section>
+  </article>
 </Layout>

@@ -1,19 +1,57 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Breadcrumb from '../../components/global/Breadcrumb.astro';
+import CaptionStrip from '../../components/global/CaptionStrip.astro';
+import Kicker from '../../components/editorial/Kicker.astro';
+import DisclaimerChip from '../../components/editorial/DisclaimerChip.astro';
 
-const pageName = 'عن زاغروس';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const homeHref = lang === 'ar' ? '/ar/' : '/';
 ---
+<Layout title={t('about.title')}>
+  <Breadcrumb items={[{ label: t('nav.home'), href: homeHref }, { label: t('about.title') }]} />
 
-<Layout title={pageName}>
-  <section class="stage-grid py-section-y">
-    <div class="col-span-12 col-start-2 text-center">
-      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
-        قسم · توضيحي · بانتظار الخطط القادمة
-      </p>
-      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
-        تم إرساء الأساس. ستحلّ هذه الصفحة بمحتواها الكامل في خطة التنفيذ المخصصة لها.
-      </p>
+  <header class="px-page-x pb-section-y">
+    <Kicker label={t('about.kicker')} accent="sienna" />
+    <h1 class="font-display text-[clamp(48px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{t('about.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[64ch] leading-relaxed">{t('about.deck')}</p>
+  </header>
+
+  <CaptionStrip sectionNumber="٠١ / ٠٥" label={t('about.pillars_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-7 border-t border-ink pt-sp-7">
+        {[1, 2, 3].map((i) => (
+          <article class="flex flex-col">
+            <span class="font-display italic font-light text-sienna text-5xl leading-none">{['٠١', '٠٢', '٠٣'][i - 1]}</span>
+            <h3 class="font-display text-2xl text-ink mt-sp-4 mb-sp-4">{t(`about.pillar_${i}_title` as any)}</h3>
+            <p class="font-sans text-base text-ink/80 leading-relaxed">{t(`about.pillar_${i}_body` as any)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CaptionStrip sectionNumber="٠٢ / ٠٥" label={t('about.branches_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-9 col-start-2"><DisclaimerChip text={t('about.branches_pending')} /></div>
+    </div>
+  </section>
+
+  <CaptionStrip sectionNumber="٠٣ / ٠٥" label={t('about.team_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-9 col-start-2"><DisclaimerChip text={t('about.team_pending')} /></div>
+    </div>
+  </section>
+
+  <CaptionStrip sectionNumber="٠٤ / ٠٥" label={t('about.affiliations_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-9 col-start-2"><DisclaimerChip text={t('about.affiliations_pending')} /></div>
     </div>
   </section>
 </Layout>

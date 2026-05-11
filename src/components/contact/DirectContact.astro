@@ -1,0 +1,49 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { companyData } from '../../data/company';
+import DisclaimerChip from '../editorial/DisclaimerChip.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { contact, branches } = companyData;
+const pending = t('contact.direct_pending');
+---
+<aside class="flex flex-col gap-sp-7">
+  <div class="bg-ink text-paper p-sp-6">
+    <header class="flex items-center justify-between mb-sp-5">
+      <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/65 m-0">{t('contact.direct_label')}</h3>
+      <DisclaimerChip text={pending} />
+    </header>
+    <dl class="space-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase">
+      <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('contact.direct_phone')}</dt><dd class="text-paper m-0 text-end">{contact.phone ?? pending}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('contact.direct_email')}</dt><dd class="text-paper m-0 text-end">{contact.email ?? pending}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('contact.direct_whatsapp')}</dt><dd class="text-paper m-0 text-end">{contact.whatsapp ?? pending}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-4">
+        <dt class="text-paper/55">{t('contact.direct_hours')}</dt><dd class="text-paper m-0 text-end">{contact.hours}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="bg-paper border border-stone p-sp-6">
+    <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-5 m-0">{t('contact.branches_label')}</h3>
+    {branches.length === 0 ? (
+      <p class="font-sans text-sm text-mute m-0">{pending}</p>
+    ) : (
+      <ul class="list-none p-0 m-0 space-y-3">
+        {branches.map((b) => (
+          <li>
+            <div class="font-display italic text-xl text-ink">{b.name}</div>
+            <div class="font-sans text-sm text-ink/75 mt-1">{b.address}</div>
+            {b.phone && <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-1">{b.phone}</div>}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</aside>

@@ -1,0 +1,43 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<form class="bg-paper border border-stone p-sp-7 flex flex-col gap-sp-5" action="mailto:info@zagros" method="post" enctype="text/plain">
+  <fieldset class="border-0 p-0 m-0">
+    <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">{t('contact.form_route_label')}</legend>
+    <select name="route" class="w-full bg-transparent border border-stone px-3 py-3 font-sans text-base text-ink">
+      <option value="sales">{t('contact.form_route_sales')}</option>
+      <option value="agronomy">{t('contact.form_route_agronomy')}</option>
+      <option value="press">{t('contact.form_route_press')}</option>
+      <option value="careers">{t('contact.form_route_careers')}</option>
+    </select>
+  </fieldset>
+
+  <label class="flex flex-col gap-2">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('contact.form_name')}</span>
+    <input type="text" name="name" required class="bg-transparent border-b border-stone focus:border-ink py-2 font-sans text-base text-ink outline-none" />
+  </label>
+
+  <label class="flex flex-col gap-2">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('contact.form_email')}</span>
+    <input type="email" name="email" required class="bg-transparent border-b border-stone focus:border-ink py-2 font-sans text-base text-ink outline-none" />
+  </label>
+
+  <label class="flex flex-col gap-2">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('contact.form_org')}</span>
+    <input type="text" name="org" class="bg-transparent border-b border-stone focus:border-ink py-2 font-sans text-base text-ink outline-none" />
+  </label>
+
+  <label class="flex flex-col gap-2">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('contact.form_message')}</span>
+    <textarea name="message" rows="6" required class="bg-transparent border border-stone focus:border-ink p-3 font-sans text-base text-ink outline-none resize-y"></textarea>
+  </label>
+
+  <div class="flex items-center justify-between gap-sp-5 flex-wrap mt-sp-4">
+    <p class="font-mono text-[10px] tracking-[0.18em] uppercase text-mute m-0 max-w-[40ch]">{t('contact.form_disclaimer')}</p>
+    <button type="submit" class="bg-ink text-paper font-sans font-medium text-base px-7 py-3 inline-flex items-center gap-3">
+      {t('contact.form_submit')} →
+    </button>
+  </div>
+</form>
