@@ -48,6 +48,10 @@
       "label": "Filters",
       "reset": "Reset"
     },
+    "pills": {
+      "active_label": "Active filters",
+      "clear_all": "Clear all"
+    },
     "facets": {
       "category": "Category",
       "subcategory": "Subcategory",

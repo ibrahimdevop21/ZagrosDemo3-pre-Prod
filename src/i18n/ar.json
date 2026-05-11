@@ -48,6 +48,10 @@
       "label": "المرشّحات",
       "reset": "إعادة"
     },
+    "pills": {
+      "active_label": "المرشّحات النشطة",
+      "clear_all": "مسح الكل"
+    },
     "facets": {
       "category": "الفئة",
       "subcategory": "الفرعية",

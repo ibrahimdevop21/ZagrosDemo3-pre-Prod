@@ -48,6 +48,10 @@ export interface UITranslations {
       label: string;
       reset: string;
     };
+    pills: {
+      active_label: string;
+      clear_all: string;
+    };
     facets: {
       category: string;
       subcategory: string;
