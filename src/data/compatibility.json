@@ -1,0 +1,78 @@
+{
+  "_universal_rule": "Always perform a small tank-mix compatibility test before any new combination. Watch for precipitation, color change, or temperature change.",
+  "_chemistry_notes": {
+    "ca-phosphate": "Ca²⁺ + phosphate → calcium phosphate precipitate (clogs drippers)",
+    "ca-sulphate": "Ca²⁺ + sulphate → calcium sulphate precipitate (gypsum)",
+    "ammonium-lime": "Ammonium + free lime/Ca → ammonia gas loss"
+  },
+  "solu-up": {
+    "incompatible": ["solu-cn", "epso-top"],
+    "reasons": {
+      "solu-cn": "ca-phosphate",
+      "epso-top": "Mg + acidic phosphate combination"
+    },
+    "notes": "Acidic MAP. Caution when mixing with calcium-containing or magnesium sulphate products."
+  },
+  "solu-map": {
+    "incompatible": ["solu-cn", "epso-top"],
+    "reasons": {
+      "solu-cn": "ca-phosphate",
+      "epso-top": "Mg + phosphate combination"
+    },
+    "notes": "Same risks as soluMKP/soluUP. Caution with Ca and Mg. Tank-mix test first."
+  },
+  "solu-mkp": {
+    "incompatible": ["solu-cn"],
+    "reasons": {
+      "solu-cn": "ca-phosphate"
+    },
+    "notes": "Caution when mixing with Ca²⁺ and Mg²⁺ — run tank-mix test first."
+  },
+  "solu-ams-premium": {
+    "incompatible": ["solu-cn"],
+    "reasons": {
+      "solu-cn": "ca-sulphate"
+    },
+    "notes": "Mixes with all water-soluble fertilizers EXCEPT calcium. DO NOT mix with pesticides."
+  },
+  "solu-nop": {
+    "incompatible": [],
+    "notes": "Generally compatible with most fertilizers. Both nitrate and chloride-free."
+  },
+  "solu-cn": {
+    "incompatible": ["solu-up", "solu-map", "solu-mkp", "epso-top", "solu-ams-premium"],
+    "reasons": {
+      "solu-up": "ca-phosphate",
+      "solu-map": "ca-phosphate",
+      "solu-mkp": "ca-phosphate",
+      "epso-top": "ca-sulphate",
+      "solu-ams-premium": "ca-sulphate"
+    },
+    "notes": "Calcium is incompatible with phosphate sources and sulphate sources. Universal rule: tank-mix test before any new combination."
+  },
+  "epso-top": {
+    "incompatible": ["solu-cn", "solu-up", "solu-map"],
+    "reasons": {
+      "solu-cn": "ca-sulphate",
+      "solu-up": "Mg + acidic phosphate combination",
+      "solu-map": "Mg + phosphate combination"
+    },
+    "notes": "Any P + Ca + Mg combination is risky. Tank-mix test mandatory."
+  },
+  "solu-npk-20-20-20": {
+    "incompatible": [],
+    "notes": "Balanced NPK with chelated micros — broadly compatible. Always test new combinations."
+  },
+  "solu-npk-12-12-36": {
+    "incompatible": [],
+    "notes": "Balanced NPK with chelated micros — broadly compatible. Always test new combinations."
+  },
+  "kalisop-fine": {
+    "incompatible": [],
+    "notes": "Generally compatible. Test combinations with calcium-containing products."
+  },
+  "kalisop-gran": {
+    "incompatible": [],
+    "notes": "Generally compatible. Test combinations with calcium-containing products."
+  }
+}
