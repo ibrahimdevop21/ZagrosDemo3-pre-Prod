@@ -2,8 +2,8 @@
   "site": {
     "name": "Zagros",
     "wordmark": "Zagros",
-    "tagline": "Agricultural Trade · Est. 1987",
-    "meta_description": "Authorized Middle East distributor of K+S fertilizers and Barenbrug forage seeds. Water-soluble NPK, calcium, magnesium, potassium, and organic-certified inputs for vegetables, fruit trees, field crops, and forages."
+    "tagline": "Agricultural inputs · Est. 2010",
+    "meta_description": "Sudan's trusted partner for agricultural inputs since 2010. Seeds from Thailand and Australia, fertilizers from Germany and the Netherlands, pesticides from Egypt, Switzerland, the UK, India, and China."
   },
   "nav": {
     "home": "Home",
@@ -17,9 +17,9 @@
     "language": "العربية"
   },
   "utility": {
-    "service_area": "Middle East",
+    "service_area": "Sudan",
     "hours_label": "Sun–Thu 8–5",
-    "partners_label": "K+S · Barenbrug"
+    "partners_label": "7 suppliers · 6 countries"
   },
   "footer": {
     "newsletter_label": "Field Updates · monthly",
@@ -36,15 +36,15 @@
   "about": {
     "title": "About",
     "kicker": "About Zagros",
-    "headline": "An operator, not a brand house.",
-    "deck": "Zagros is an authorized Middle East distributor of K+S Group fertilizers and Barenbrug forage seeds. We do not manufacture — we operate. The job is to put the right input into the right field at the right rate, and to back that with technical service.",
+    "headline": "Sudan's full-input agricultural-solutions partner since 2010.",
+    "deck": "Zagros Trading has served Sudanese farms — from ministry-scale projects to family operations — for sixteen years. Six branches, seven international suppliers, three product lines under one roof. Consultancy, distribution, and after-sales support.",
     "pillars_label": "How we operate",
     "pillar_1_title": "Technical excellence",
     "pillar_1_body": "Agronomy desk on every order over a soil report's worth of complexity. Composition-first, not catalog-first.",
     "pillar_2_title": "Regional fit",
-    "pillar_2_body": "Salt-stress, high-pH, low-rainfall, hot summers — the catalog is curated for what the region's fields actually face.",
+    "pillar_2_body": "Salt-stress, high-pH, low-rainfall, hot summers — the catalog is curated for what Sudanese fields actually face.",
     "pillar_3_title": "International standards",
-    "pillar_3_body": "K+S German chemistry. Barenbrug global breeding. EU Organic certifications where the brief calls for them.",
+    "pillar_3_body": "Seven international suppliers across six countries. K+S German chemistry, Barenbrug Australian breeding, East West Thai vegetable hybrids. EU Organic certifications where the brief calls for them.",
     "branches_label": "Where we operate",
     "branches_pending": "Branch list pending client confirmation.",
     "team_label": "The team",
@@ -94,21 +94,21 @@
     "section_liability": "Liability",
     "section_jurisdiction": "Jurisdiction",
     "boilerplate_body": "This page is a placeholder template. Legal copy must be reviewed and adapted by counsel before launch.",
-    "pending_review": "Legal review required before launch"
+    "pending_review": "Pending legal review before launch"
   },
   "field_reports": {
     "page": {
       "title": "Field Reports",
       "kicker": "The Field Report · audited trials",
       "headline": "What the desk is reading this quarter",
-      "deck": "Every issue collects trials our agronomy desk audited under real Middle East operating conditions. Salt-stress, foliar protocols, side-by-side yield reads — the things customers ask us about before the bag goes out."
+      "deck": "Every issue collects trials our agronomy desk audited under real Sudanese operating conditions. Salt-stress, foliar protocols, side-by-side yield reads — the things customers ask us about before the bag goes out."
     }
   },
   "partners_page": {
     "title": "Partners",
-    "kicker": "Sources · two houses",
-    "headline": "Where the chemistry and the genetics come from.",
-    "deck": "Zagros is an authorized distributor — not a manufacturer. The catalog reflects two partner houses chosen for international credentials and operational fit in the region."
+    "kicker": "Sources · seven international houses",
+    "headline": "Where the seed, the chemistry, and the protection come from.",
+    "deck": "Zagros sources from seven international suppliers across six countries. Each house was chosen for technical credentials, regulatory standing, and agronomic fit with Sudanese farms."
   },
   "report_detail": {
     "brief": {
@@ -120,7 +120,7 @@
     },
     "site": {
       "label": "Trial site",
-      "placeholder": "Service area pending client confirmation"
+      "placeholder": "Trial site pending client confirmation"
     },
     "partner": {
       "label": "Partner"
@@ -132,7 +132,7 @@
     "stat_lines": "Product lines",
     "stat_country": "HQ",
     "stat_crops": "Crop categories",
-    "lines_headline": "What we carry from this house",
+    "lines_headline": "What we carry from this supplier",
     "reports_headline": "In the field — recent trials"
   },
   "products": {
@@ -158,7 +158,7 @@
       "fertilizers": {
         "label": "Fertilizers",
         "headline": "Premium water-soluble and specialty fertilizers",
-        "deck": "K+S German chemistry, plus Agro Dragon Netherlands specialty lines. Eleven SKUs across four subcategories — NPK, phosphate sources, nitrogen, potassium, magnesium.",
+        "deck": "K+S German chemistry plus Agro Dragon Netherlands specialty lines. Eleven SKUs across four subcategories — NPK, phosphate sources, nitrogen, potassium, magnesium.",
         "empty_state": "Line catalog pending client confirmation.",
         "agro_dragon_pending": "Agro Dragon (Netherlands) catalog pending client confirmation.",
         "stat_suppliers": "Suppliers",
@@ -168,7 +168,7 @@
       "pesticides": {
         "label": "Pesticides",
         "headline": "Insecticides, herbicides, fungicides",
-        "deck": "Sixteen SKUs across three subcategories, sourced from Egyptian, Indian, and Chinese manufacturers and rebranded under the Agro- and Or- lines.",
+        "deck": "Sixteen SKUs across three subcategories — insecticides, herbicides, fungicides — sourced from Egyptian, Swiss, British, Indian, and Chinese manufacturers and supplied under the Agro- and Or- lines.",
         "empty_state": "Line catalog pending client confirmation.",
         "stat_suppliers": "Suppliers",
         "stat_skus": "SKUs",
@@ -179,7 +179,7 @@
       "label": "Results"
     },
     "compact": {
-      "col_brand": "House",
+      "col_brand": "Supplier",
       "col_name": "Name",
       "col_composition": "Composition",
       "col_applications": "Applications"
@@ -190,7 +190,7 @@
       "sort_label": "Sort",
       "sort_catalog": "Catalog order",
       "sort_name": "Name (A–Z)",
-      "sort_brand": "By brand",
+      "sort_brand": "By supplier",
       "view_label": "View",
       "view_cards": "Cards",
       "view_compact": "Compact"
@@ -302,19 +302,19 @@
     "browse_archive": "Browse the archive",
     "section": "Section",
     "back": "Back",
-    "pending_audit": "Illustrative figures · pending audit"
+    "pending_audit": "Figures pending client audit"
   },
   "home": {
     "hero": {
       "edition_label": "Yield",
-      "photo_alt": "Irrigation canal at late-afternoon — illustrative photography pending client assets.",
-      "headline_a": "The operator's catalog —",
-      "headline_b": "yield is the only metric.",
-      "deck": "Authorized Middle East distributor of K+S fertilizers and Barenbrug forage seeds. Specs forward, data first, no marketing fog.",
-      "kpi_partners": "Partner houses",
+      "photo_alt": "Sudanese agricultural landscape — Zagros field operations",
+      "headline_a": "Sudan's trusted partner —",
+      "headline_b": "for agricultural inputs since 2010.",
+      "deck": "Six branches across Sudan, seven international suppliers, full input portfolio. Seeds, fertilizers, pesticides — specs forward, agronomically backed.",
+      "kpi_partners": "International suppliers",
       "kpi_skus": "SKUs in catalog",
       "kpi_years": "Years operating",
-      "kpi_categories": "Crop categories"
+      "kpi_categories": "Product lines"
     },
     "featured": {
       "kicker": "Featured · Issue 03"
@@ -324,20 +324,21 @@
       "headline": "Three trials our desk audited this quarter"
     },
     "sources": {
-      "runner": "Sources · Issue 03",
-      "kicker": "Sources · Partner houses",
-      "headline_a": "Two houses do the chemistry —",
-      "headline_b": "we do the operating."
+      "runner": "Sources · Suppliers",
+      "kicker": "Sources · seven international houses",
+      "headline_a": "Seven international suppliers across six countries —",
+      "headline_b": "one Sudanese operator."
     },
     "numbers": {
       "kicker": "By the numbers",
       "headline": "What the operation actually looks like",
-      "regions_label": "Distribution footprint — illustrative",
-      "audit_chip": "Region map · pending client audit"
+      "regions_label": "Branch network — six locations across Sudan",
+      "audit_chip": "Branch network · Sudan"
     },
     "catalog": {
-      "kicker": "The catalog — categories",
-      "headline": "Four shelves, fourteen SKUs, one operator",
+      "kicker": "The catalog — three lines",
+      "headline": "Seeds, fertilizers, pesticides — three lines, 30+ SKUs",
+      "headline_short": "Three lines · 30+ SKUs",
       "full_catalog": "Full catalog"
     },
     "cta": {
@@ -354,7 +355,7 @@
       "kicker": "Editor's note · Issue 03",
       "headline": "What separates an input distributor from a soil partner",
       "first_letter": "T",
-      "para1_body": "he difference shows up at the second cut, not the bag. Anyone can move a pallet — fewer can tell you which K source won't lock out the calcium you'll need at fruit set, or why the Mediterranean lucerne block needs a different rate sheet than the irrigated one next door.",
+      "para1_body": "he difference shows up at the second cut, not the bag. Anyone can move a pallet — fewer can tell you which K source won't lock out the calcium you'll need at fruit set, or why the irrigated lucerne block needs a different rate sheet than the rainfed one next door.",
       "para2": "Issue 03 is built around three trials our agronomy desk audited in the last quarter — salt-stress tomato, citrus magnesium, and a side-by-side lucerne yield read. Each one is here because a customer asked us the question first.",
       "pull_quote": "Specs forward. Data first. The bag arrives last.",
       "para3": "If the catalog reads more like a service manual than a brochure, that's on purpose. Yield is the metric. Everything else is footnotes."

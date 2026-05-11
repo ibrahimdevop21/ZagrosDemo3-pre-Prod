@@ -338,6 +338,7 @@ export interface UITranslations {
     catalog: {
       kicker: string;
       headline: string;
+      headline_short: string;
       full_catalog: string;
     };
     cta: {
