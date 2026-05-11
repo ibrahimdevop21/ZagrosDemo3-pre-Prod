@@ -54,6 +54,10 @@ export interface UITranslations {
     featured: {
       kicker: string;
     };
+    reports: {
+      kicker: string;
+      headline: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;
