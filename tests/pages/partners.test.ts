@@ -54,7 +54,9 @@ describe('partners deep-dive', () => {
     for (const partner of partners) {
       const html = await container.renderToString(Detail, { props: { partner } });
       expect(html, `${partner.slug} failed to render`).toContain('</html>');
-      expect(html).toContain(partner.data.name);
+      // HTML-encode & for the Kafr El Zayat name (Pesticides & Chemical Co.)
+      const nameEncoded = partner.data.name.replace(/&/g, '&amp;');
+      expect(html).toContain(nameEncoded);
       expect(html).toContain(partner.data.country);
     }
   });
