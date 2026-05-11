@@ -103,6 +103,15 @@
       "kicker": "Related products",
       "headline": "Often paired with this SKU"
     },
+    "header": {
+      "supplied_via": "Supplied via"
+    },
+    "badges": {
+      "organic": "Organic certified",
+      "chloride_free": "Chloride-free",
+      "sodium_free": "Sodium-free",
+      "acidifying": "Acidifying"
+    },
     "rates": {
       "label": "Application rates",
       "kicker": "Application rates · per donum",

@@ -1,0 +1,65 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import Breadcrumb from '../../../components/global/Breadcrumb.astro';
+import CompositionCard from '../../../components/products/CompositionCard.astro';
+import CompatibilityMatrix from '../../../components/products/CompatibilityMatrix.astro';
+import ApplicationRatesTable from '../../../components/products/ApplicationRatesTable.astro';
+import WhyThisMatters from '../../../components/products/WhyThisMatters.astro';
+import RelatedProducts from '../../../components/products/RelatedProducts.astro';
+import BagMockup from '../../../components/products/BagMockup.astro';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(p => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+interface Props { product: CollectionEntry<'products'>; }
+const { product } = Astro.props;
+const lang: 'en' | 'ar' = 'ar';
+const t = useTranslations(lang);
+const name = product.data.name[lang];
+
+const badges: string[] = [];
+if (product.data.organic_certified) badges.push(t('product.badges.organic'));
+if (product.data.chloride_free) badges.push(t('product.badges.chloride_free'));
+if (product.data.sodium_free) badges.push(t('product.badges.sodium_free'));
+if (product.data.acidifying) badges.push(t('product.badges.acidifying'));
+---
+
+<Layout title={name}>
+  <Breadcrumb items={[
+    { label: t('nav.home'),     href: '/ar/' },
+    { label: t('nav.products'), href: '/ar/products' },
+    { label: product.data.brand },
+    { label: name },
+  ]} />
+
+  <header class="stage-grid pt-sp-7 pb-section-y">
+    <div class="col-span-7 col-start-2">
+      <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+        {product.data.brand} · {t('product.header.supplied_via')} · {product.data.supplier}
+      </span>
+      <h1 class="font-display italic font-light text-[clamp(48px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{name}</h1>
+      <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{product.data.grade}</p>
+
+      {badges.length > 0 && (
+        <ul class="list-none p-0 m-0 mb-sp-7 flex flex-wrap gap-2">
+          {badges.map((b) => <li class="font-mono text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border border-sienna/60 text-sienna">· {b}</li>)}
+        </ul>
+      )}
+
+      <BagMockup name={name} grade={product.data.grade} brand={product.data.brand} colorToken={product.data.bag_color_token} />
+    </div>
+
+    <div class="col-span-4 col-start-10 mt-sp-7 lg:mt-0">
+      <CompositionCard product={product} />
+    </div>
+  </header>
+
+  <CompatibilityMatrix productSlug={product.slug} />
+  <ApplicationRatesTable product={product} />
+  <WhyThisMatters product={product} />
+  <RelatedProducts product={product} />
+</Layout>

@@ -103,6 +103,15 @@ export interface UITranslations {
       kicker: string;
       headline: string;
     };
+    header: {
+      supplied_via: string;
+    };
+    badges: {
+      organic: string;
+      chloride_free: string;
+      sodium_free: string;
+      acidifying: string;
+    };
     rates: {
       label: string;
       kicker: string;
