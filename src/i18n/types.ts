@@ -81,6 +81,10 @@ export interface UITranslations {
       kicker: string;
       headline: string;
     };
+    related: {
+      kicker: string;
+      headline: string;
+    };
     rates: {
       label: string;
       kicker: string;

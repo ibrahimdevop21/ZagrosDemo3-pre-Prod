@@ -81,6 +81,10 @@
       "kicker": "Why this matters",
       "headline": "What it earns you in the field"
     },
+    "related": {
+      "kicker": "Related products",
+      "headline": "Often paired with this SKU"
+    },
     "rates": {
       "label": "Application rates",
       "kicker": "Application rates · per donum",
