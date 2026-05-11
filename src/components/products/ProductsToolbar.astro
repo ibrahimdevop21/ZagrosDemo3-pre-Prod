@@ -1,0 +1,38 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<div class="bg-paper border-y border-stone py-sp-4 px-page-x flex items-center justify-between gap-sp-5 flex-wrap" data-products-toolbar>
+  <div class="flex items-center gap-sp-5 flex-1 min-w-[260px]">
+    <label class="inline-flex items-center gap-3 border-b border-ink/30 focus-within:border-ink py-1 flex-1 max-w-[480px]">
+      <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute">{t('products.toolbar.search_label')}</span>
+      <input
+        type="search"
+        data-products-search
+        placeholder={t('products.toolbar.search_placeholder')}
+        class="bg-transparent border-none font-sans text-base text-ink outline-none flex-1 placeholder:text-mute"
+      />
+    </label>
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute hidden md:inline-flex items-center gap-2">
+      <span data-products-count>14</span>
+      <span>/ 14</span>
+    </span>
+  </div>
+
+  <div class="flex items-center gap-sp-5">
+    <label class="inline-flex items-center gap-3 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+      {t('products.toolbar.sort_label')}
+      <select data-products-sort class="bg-transparent border border-stone px-3 py-2 font-mono text-[11px] tracking-[0.18em] uppercase text-ink">
+        <option value="catalog">{t('products.toolbar.sort_catalog')}</option>
+        <option value="name">{t('products.toolbar.sort_name')}</option>
+        <option value="brand">{t('products.toolbar.sort_brand')}</option>
+      </select>
+    </label>
+
+    <div class="inline-flex border border-stone" role="group" aria-label={t('products.toolbar.view_label')}>
+      <button type="button" data-products-view="cards" aria-pressed="true" class="px-3 py-2 font-mono text-[10.5px] tracking-[0.22em] uppercase bg-ink text-paper">{t('products.toolbar.view_cards')}</button>
+      <button type="button" data-products-view="compact" aria-pressed="false" class="px-3 py-2 font-mono text-[10.5px] tracking-[0.22em] uppercase bg-paper text-ink">{t('products.toolbar.view_compact')}</button>
+    </div>
+  </div>
+</div>

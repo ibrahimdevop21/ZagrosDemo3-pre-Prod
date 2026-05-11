@@ -32,6 +32,19 @@
     "colophon_label": "Colophon",
     "colophon_section": "09 / 09"
   },
+  "products": {
+    "toolbar": {
+      "search_label": "Search",
+      "search_placeholder": "Name · grade · composition · crop",
+      "sort_label": "Sort",
+      "sort_catalog": "Catalog order",
+      "sort_name": "Name (A–Z)",
+      "sort_brand": "By brand",
+      "view_label": "View",
+      "view_cards": "Cards",
+      "view_compact": "Compact"
+    }
+  },
   "common": {
     "read_more": "Read",
     "view": "View",

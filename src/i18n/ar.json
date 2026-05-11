@@ -32,6 +32,19 @@
     "colophon_label": "الخاتمة",
     "colophon_section": "٠٩ / ٠٩"
   },
+  "products": {
+    "toolbar": {
+      "search_label": "بحث",
+      "search_placeholder": "الاسم · التركيب · المحصول",
+      "sort_label": "ترتيب",
+      "sort_catalog": "ترتيب الكتالوج",
+      "sort_name": "الاسم (أ–ي)",
+      "sort_brand": "حسب الشركة",
+      "view_label": "عرض",
+      "view_cards": "بطاقات",
+      "view_compact": "مدمج"
+    }
+  },
   "common": {
     "read_more": "اقرأ",
     "view": "عرض",

@@ -32,6 +32,19 @@ export interface UITranslations {
     colophon_label: string;
     colophon_section: string;
   };
+  products: {
+    toolbar: {
+      search_label: string;
+      search_placeholder: string;
+      sort_label: string;
+      sort_catalog: string;
+      sort_name: string;
+      sort_brand: string;
+      view_label: string;
+      view_cards: string;
+      view_compact: string;
+    };
+  };
   common: {
     read_more: string;
     view: string;
