@@ -1,19 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const pageName = 'Home';
+import Hero from '../components/home/Hero.astro';
+import OpsTicker from '../components/home/OpsTicker.astro';
+import EditorsNote from '../components/home/EditorsNote.astro';
+import FeaturedReport from '../components/home/FeaturedReport.astro';
+import ThreeReportsGrid from '../components/home/ThreeReportsGrid.astro';
+import SourcesSection from '../components/home/SourcesSection.astro';
+import ByTheNumbers from '../components/home/ByTheNumbers.astro';
+import CatalogTable from '../components/home/CatalogTable.astro';
+import HomeCTA from '../components/home/HomeCTA.astro';
+import CaptionStrip from '../components/global/CaptionStrip.astro';
 ---
 
-<Layout title={pageName}>
-  <section class="stage-grid py-section-y">
-    <div class="col-span-12 col-start-2 text-center">
-      <p class="font-mono text-[11px] tracking-[0.26em] uppercase text-mute mb-4">
-        Section · placeholder · pending Plan 2+
-      </p>
-      <h1 class="font-display text-5xl text-ink mb-6">{pageName}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-prose mx-auto">
-        Foundation plan landed. This page is replaced by the dedicated implementation plan for {pageName.toLowerCase()}.
-      </p>
-    </div>
-  </section>
+<Layout>
+  <Hero />
+  <CaptionStrip sectionNumber="01 / 09" label="Operations" subLabel="Live · this week" />
+  <OpsTicker />
+  <CaptionStrip sectionNumber="02 / 09" label="Editor's note" subLabel="Issue 03 · 2026 · Yield" />
+  <EditorsNote />
+  <CaptionStrip sectionNumber="03 / 09" label="Featured field report" />
+  <FeaturedReport />
+  <CaptionStrip sectionNumber="04 / 09" label="More from the field" subLabel="Three reports · this issue" />
+  <ThreeReportsGrid />
+  <CaptionStrip sectionNumber="05 / 09" label="Sources · Partner houses" />
+  <SourcesSection />
+  <CaptionStrip sectionNumber="06 / 09" label="By the numbers" subLabel="Operations + footprint" />
+  <ByTheNumbers />
+  <CaptionStrip sectionNumber="07 / 09" label="The catalog" subLabel="Four shelves · 14 SKUs" />
+  <CatalogTable />
+  <CaptionStrip sectionNumber="08 / 09" label="Send the soil report" />
+  <HomeCTA />
 </Layout>
