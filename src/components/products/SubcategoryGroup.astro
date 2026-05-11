@@ -47,7 +47,7 @@ if (!caption && entries.length > 0) {
     )}
   </header>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-6">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5 sm:gap-sp-6">
     {line === 'fertilizers' && entries.map((e) => (
       <ProductCard product={e as CollectionEntry<'fertilizers'>} />
     ))}

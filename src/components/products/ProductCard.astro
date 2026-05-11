@@ -1,97 +1,15 @@
 ---
+/**
+ * Backward-compat facade.
+ *
+ * The real card lives in FertilizerCard.astro. This file is kept so
+ * existing import sites (`import ProductCard from './ProductCard.astro'`)
+ * continue to work without churn.
+ */
 import type { CollectionEntry } from 'astro:content';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import BagMockup from './BagMockup.astro';
+import FertilizerCard from './FertilizerCard.astro';
 
-interface Props {
-  product: CollectionEntry<'fertilizers'>;
-}
+interface Props { product: CollectionEntry<'fertilizers'>; }
 const { product } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const localized = product.data.name[lang as 'en' | 'ar'];
-const href = `${lang === 'ar' ? '/ar' : ''}/products/fertilizers/${product.slug}`;
-
-const comp = product.data.composition;
-const compEntries: string[] = [];
-if (comp) {
-  for (const [k, v] of Object.entries(comp)) {
-    if (typeof v === 'object' && v !== null && 'value' in v) {
-      compEntries.push(`${k} ${(v as any).value}`);
-    }
-  }
-}
-const compositionLine = compEntries.slice(0, 4).join(' · ');
-
-const badges: string[] = [];
-if (product.data.organic_certified) badges.push('Organic');
-if (product.data.chloride_free) badges.push('Cl-free');
-if (product.data.acidifying) badges.push('Acidifying');
-
-const facetAttrs = {
-  'data-facet-line': 'fertilizers',
-  'data-facet-subcategory': product.data.subcategory,
-  'data-facet-application': product.data.applications.join(' '),
-  'data-facet-crop_stage': product.data.ideal_stages.join(' '),
-  'data-facet-crop_category': product.data.crops?.map(c => c.category).join(' ') ?? '',
-  'data-facet-supplier': product.data.supplier_slug,
-  'data-facet-special': [
-    product.data.organic_certified && 'organic_certified',
-    product.data.chloride_free && 'chloride_free',
-    product.data.sodium_free && 'sodium_free',
-    product.data.acidifying && 'acidifying',
-  ].filter(Boolean).join(' '),
-  'data-facet-nutrient': product.data.composition
-    ? Object.entries(product.data.composition)
-        .filter(([_, v]) => typeof v === 'object' && v !== null && 'value' in v)
-        .map(([k]) => k)
-        .join(' ')
-    : '',
-};
 ---
-<article
-  class="flex flex-col bg-paper border border-stone"
-  data-product-slug={product.slug}
-  data-brand={product.data.brand}
-  {...facetAttrs}
->
-  <a href={href} class="block no-underline text-inherit">
-    <BagMockup
-      name={localized}
-      grade={product.data.grade}
-      brand={product.data.brand}
-      colorToken={product.data.bag_color_token}
-    />
-  </a>
-
-  <div class="flex flex-col flex-1 p-sp-5">
-    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
-      {product.data.subcategory}
-    </span>
-    <h3 class="font-display text-2xl text-ink mt-sp-3 mb-sp-3 leading-tight">
-      <a href={href} class="text-ink no-underline">{localized}</a>
-    </h3>
-    <p class="font-mono text-[11px] tracking-[0.16em] uppercase text-mute mb-sp-5">{product.data.grade}</p>
-
-    {compositionLine && (
-      <p class="font-mono text-[11.5px] tracking-[0.10em] text-ink mb-sp-5">{compositionLine}</p>
-    )}
-
-    {product.data.applications.length > 0 && (
-      <ul class="list-none p-0 m-0 mb-sp-5 flex flex-wrap gap-2">
-        {product.data.applications.map((app) => (
-          <li class="font-mono text-[10px] tracking-[0.16em] uppercase px-2 py-1 border border-stone text-ink/85">{app}</li>
-        ))}
-      </ul>
-    )}
-
-    <div class="mt-auto pt-sp-4 border-t border-stone flex items-end justify-between gap-sp-4">
-      <div class="flex flex-wrap gap-2 font-mono text-[9.5px] tracking-[0.18em] uppercase text-sienna">
-        {badges.map((b) => <span>· {b}</span>)}
-      </div>
-      <a href={href} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5">
-        {t('common.view')} →
-      </a>
-    </div>
-  </div>
-</article>
+<FertilizerCard product={product} />

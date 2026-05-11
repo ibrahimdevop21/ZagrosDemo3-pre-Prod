@@ -1,0 +1,94 @@
+---
+/**
+ * HTML+CSS hero zone for product cards and detail headers.
+ * Replaces the SVG BagMockup. Uses Tailwind's bg-c-* tokens directly
+ * (resolved via tailwind.config.mjs:33-44) instead of inline var().
+ *
+ * Background of the BagMockup bug:
+ *   BagMockup.astro:9 built `var(--color-c-npk, var(--color-signal))`. The
+ *   tokens are `--c-npk` (no `--color-` prefix), so that lookup misses, and
+ *   the fallback `--color-signal` is a space-separated RGB triple — not a
+ *   valid `fill` value. Browsers fell back to black.
+ *
+ * Color tokens (from src/styles/tokens.css §22):
+ *   c-npk c-mkp c-map c-ams c-nop c-cn c-epso c-ksop c-rhodes c-sardi
+ */
+interface Props {
+  name: string;          // localized display name
+  grade: string;         // e.g. "17-44-00", short technical label
+  brand: string;         // K+S, Agro Dragon, Barenbrug, East West Seeds
+  colorToken: string;    // "c-npk" | "c-mkp" | ... — used as bg-{colorToken}
+  classification?: string;  // e.g. "EC FERT NP", "INSECTICIDE", "FORAGE SEED"
+  packaging?: string;    // e.g. "25 KG", "BULK SEED"
+  supplierPill?: string; // e.g. "K+S", "Barenbrug"
+}
+const {
+  name,
+  grade,
+  brand,
+  colorToken,
+  classification,
+  packaging = '25 KG',
+  supplierPill,
+} = Astro.props;
+
+// Map colorToken -> Tailwind class as a literal string so the JIT scanner
+// catches each class. Dynamic `bg-${tokenClass}` would be invisible to
+// content scanning and the class wouldn't be emitted.
+const bgClassMap: Record<string, string> = {
+  'c-npk':    'bg-c-npk',
+  'c-mkp':    'bg-c-mkp',
+  'c-map':    'bg-c-map',
+  'c-ams':    'bg-c-ams',
+  'c-nop':    'bg-c-nop',
+  'c-cn':     'bg-c-cn',
+  'c-epso':   'bg-c-epso',
+  'c-ksop':   'bg-c-ksop',
+  'c-rhodes': 'bg-c-rhodes',
+  'c-sardi':  'bg-c-sardi',
+};
+const bgClass = bgClassMap[colorToken] ?? bgClassMap['c-cn'];
+const resolvedToken = bgClassMap[colorToken] ? colorToken : 'c-cn';
+
+// Text color: most SKU colors are dark, use cream text. soluCN, soluNOP and
+// Rhodes are pale → use ink.
+const darkBgTokens = new Set(['c-npk', 'c-mkp', 'c-map', 'c-ams', 'c-epso', 'c-ksop', 'c-sardi']);
+const isDarkBg = darkBgTokens.has(resolvedToken);
+const textCls = isDarkBg ? 'text-paper' : 'text-ink';
+const dimCls = isDarkBg ? 'text-paper/65' : 'text-ink/60';
+const borderCls = isDarkBg ? 'border-paper/30' : 'border-ink/25';
+const gradeCls = isDarkBg ? 'text-signal' : 'text-sienna';
+---
+<div
+  class:list={[
+    'flex flex-col gap-sp-5 p-sp-5 sm:p-sp-6',
+    bgClass,
+    textCls,
+    'min-h-[220px] sm:min-h-[260px]',
+  ]}
+>
+  <header class="flex items-start justify-between gap-sp-3">
+    {supplierPill && (
+      <span class:list={['font-mono text-[10px] tracking-[0.2em] uppercase px-2.5 py-1 border', borderCls]}>
+        {supplierPill}
+      </span>
+    )}
+    <span class:list={['font-mono text-[9.5px] tracking-[0.18em] uppercase px-2.5 py-1 border ms-auto', borderCls, dimCls]}>
+      BAG · PENDING
+    </span>
+  </header>
+
+  <div class="flex-1 flex flex-col justify-center">
+    <h3 class="font-display italic font-light text-3xl sm:text-4xl leading-[1.05] m-0">{name}</h3>
+    {grade && (
+      <p class:list={['mt-sp-3 font-mono text-[11.5px] tracking-[0.18em] uppercase', gradeCls]}>
+        {grade}
+      </p>
+    )}
+  </div>
+
+  <footer class:list={['flex items-end justify-between font-mono text-[10px] tracking-[0.2em] uppercase', dimCls]}>
+    <span>{packaging}</span>
+    {classification && <span>{classification}</span>}
+  </footer>
+</div>

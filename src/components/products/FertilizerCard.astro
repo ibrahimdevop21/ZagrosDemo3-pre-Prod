@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import ProductHero from './ProductHero.astro';
+
+interface Props {
+  product: CollectionEntry<'fertilizers'>;
+}
+const { product } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const localized = product.data.name[lang as 'en' | 'ar'];
+const href = `${lang === 'ar' ? '/ar' : ''}/products/fertilizers/${product.slug}`;
+
+const comp = product.data.composition;
+const compEntries: string[] = [];
+if (comp) {
+  for (const [k, v] of Object.entries(comp)) {
+    if (typeof v === 'object' && v !== null && 'value' in v) {
+      compEntries.push(`${k} ${(v as any).value}`);
+    }
+  }
+}
+const compositionLine = compEntries.slice(0, 4).join(' · ');
+
+const tags = product.data.crops?.map((c) => c.category) ?? [];
+
+const classification = (product.data.subcategory ?? '')
+  .replace(/-/g, ' ')
+  .toUpperCase();
+
+const facetAttrs = {
+  'data-facet-line': 'fertilizers',
+  'data-facet-subcategory': product.data.subcategory,
+  'data-facet-application': product.data.applications.join(' '),
+  'data-facet-crop_stage': product.data.ideal_stages.join(' '),
+  'data-facet-crop_category': tags.join(' '),
+  'data-facet-supplier': product.data.supplier_slug,
+  'data-facet-special': [
+    product.data.organic_certified && 'organic_certified',
+    product.data.chloride_free && 'chloride_free',
+    product.data.sodium_free && 'sodium_free',
+    product.data.acidifying && 'acidifying',
+  ].filter(Boolean).join(' '),
+  'data-facet-nutrient': product.data.composition
+    ? Object.entries(product.data.composition)
+        .filter(([_, v]) => typeof v === 'object' && v !== null && 'value' in v)
+        .map(([k]) => k)
+        .join(' ')
+    : '',
+};
+---
+<article
+  class="flex flex-col bg-paper border border-stone overflow-hidden max-w-full"
+  data-product-slug={product.slug}
+  data-brand={product.data.brand}
+  {...facetAttrs}
+>
+  <a href={href} class="block no-underline text-inherit">
+    <ProductHero
+      name={localized}
+      grade={product.data.grade}
+      brand={product.data.brand}
+      colorToken={product.data.bag_color_token ?? 'c-cn'}
+      classification={classification}
+      supplierPill={product.data.brand}
+    />
+  </a>
+
+  <div class="flex flex-col flex-1 gap-sp-4 p-sp-5 sm:p-sp-6 bg-paper-light">
+    <header class="flex flex-col gap-sp-3">
+      <span class="font-mono text-[10px] tracking-[0.24em] uppercase text-mute">
+        {product.slug.toUpperCase()}
+      </span>
+      <h4 class="font-display text-2xl text-ink leading-tight m-0">
+        <a href={href} class="text-ink no-underline">{localized}</a>
+      </h4>
+    </header>
+
+    {compositionLine && (
+      <p class="font-mono text-[11.5px] tracking-[0.10em] text-ink m-0">{compositionLine}</p>
+    )}
+
+    {tags.length > 0 && (
+      <ul class="list-none p-0 m-0 flex flex-wrap gap-2">
+        {tags.slice(0, 4).map((tag) => (
+          <li class="font-mono text-[9.5px] tracking-[0.18em] uppercase px-2 py-1 border border-stone text-ink/85 bg-paper">
+            {tag.replace(/_/g, ' ')}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-auto pt-sp-3 flex items-end justify-end">
+      <a
+        href={href}
+        class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 min-h-[44px] inline-flex items-center"
+      >
+        {t('common.view')} →
+      </a>
+    </div>
+  </div>
+</article>

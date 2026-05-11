@@ -8,7 +8,7 @@ import CompatibilityMatrix from '../../../components/products/CompatibilityMatri
 import ApplicationRatesTable from '../../../components/products/ApplicationRatesTable.astro';
 import WhyThisMatters from '../../../components/products/WhyThisMatters.astro';
 import RelatedProducts from '../../../components/products/RelatedProducts.astro';
-import BagMockup from '../../../components/products/BagMockup.astro';
+import ProductHero from '../../../components/products/ProductHero.astro';
 import SeedDetail from '../../../components/products/SeedDetail.astro';
 import PesticideDetail from '../../../components/products/PesticideDetail.astro';
 
@@ -79,7 +79,14 @@ if (fert) {
           </ul>
         )}
 
-        <BagMockup name={name} grade={fert.data.grade} brand={fert.data.brand} colorToken={fert.data.bag_color_token} />
+        <ProductHero
+          name={name}
+          grade={fert.data.grade}
+          brand={fert.data.brand}
+          colorToken={fert.data.bag_color_token ?? 'c-cn'}
+          classification={(fert.data.subcategory ?? '').replace(/-/g, ' ').toUpperCase()}
+          supplierPill={fert.data.brand}
+        />
       </div>
 
       <div class="col-span-4 col-start-10 mt-sp-7 lg:mt-0">
