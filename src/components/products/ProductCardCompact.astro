@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+const { product } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const localized = product.data.name[lang as 'en' | 'ar'];
+const href = `${lang === 'ar' ? '/ar' : ''}/products/${product.slug}`;
+
+const comp = product.data.composition;
+const compEntries: string[] = [];
+if (comp) {
+  for (const [k, v] of Object.entries(comp)) {
+    if (typeof v === 'object' && v !== null && 'value' in v) {
+      compEntries.push(`${k} ${(v as any).value}`);
+    }
+  }
+}
+const compositionLine = compEntries.slice(0, 3).join(' · ');
+
+const facetAttrs = {
+  'data-facet-category': product.data.category,
+  'data-facet-subcategory': product.data.subcategory,
+  'data-facet-application': product.data.applications.join(' '),
+  'data-facet-crop_stage': product.data.ideal_stages.join(' '),
+  'data-facet-crop_category': product.data.crops?.map(c => c.category).join(' ') ?? '',
+  'data-facet-special': [
+    product.data.organic_certified && 'organic_certified',
+    product.data.chloride_free && 'chloride_free',
+    product.data.sodium_free && 'sodium_free',
+    product.data.acidifying && 'acidifying',
+  ].filter(Boolean).join(' '),
+  'data-facet-nutrient': product.data.composition
+    ? Object.entries(product.data.composition)
+        .filter(([_, v]) => typeof v === 'object' && v !== null && 'value' in v)
+        .map(([k]) => k)
+        .join(' ')
+    : '',
+};
+---
+<a
+  href={href}
+  class="grid grid-cols-[auto_2fr_1.5fr_1.5fr_auto] items-center gap-sp-5 border-b border-stone py-sp-4 hover:bg-stone/30 no-underline text-inherit transition-colors"
+  data-product-slug={product.slug}
+  data-brand={product.data.brand}
+  {...facetAttrs}
+>
+  <span class="font-mono text-[9.5px] tracking-[0.18em] uppercase text-sienna w-12 text-center">{product.data.brand === 'K+S' ? 'K+S' : 'BN'}</span>
+  <div>
+    <div class="font-display text-lg text-ink leading-tight">{localized}</div>
+    <div class="font-mono text-[10px] tracking-[0.16em] uppercase text-mute mt-1">{product.data.subcategory}</div>
+  </div>
+  <span class="font-mono text-[11px] tracking-[0.10em] text-ink">{compositionLine || product.data.grade}</span>
+  <span class="font-mono text-[10px] tracking-[0.16em] uppercase text-ink/75 truncate">{product.data.applications.join(' · ')}</span>
+  <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink border-b border-ink pb-0.5">{t('common.view')} →</span>
+</a>
