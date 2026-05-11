@@ -1,0 +1,21 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { companyData } from '../../data/company';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const phone = companyData.contact.phone ?? '+XXX XXX XXX';
+const email = companyData.contact.email ?? 'info@zagros';
+---
+
+<div class="bg-ink text-paper/60 px-page-x py-2.5 font-mono text-[11px] uppercase tracking-[0.22em] flex justify-between items-center">
+  <span class="inline-flex items-center gap-2.5">
+    <span class="w-1.5 h-1.5 bg-signal rounded-full inline-block"></span>
+    <span>{t('utility.service_area')} · {t('utility.hours_label')}</span>
+  </span>
+  <span class="hidden md:flex gap-5 opacity-90">
+    <span>{phone}</span>
+    <span>{email}</span>
+  </span>
+</div>
