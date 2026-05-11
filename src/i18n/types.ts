@@ -77,6 +77,15 @@ export interface UITranslations {
       brochure: string;
       brochure_download: string;
     };
+    rates: {
+      label: string;
+      kicker: string;
+      headline: string;
+      col_crop: string;
+      col_examples: string;
+      col_rate: string;
+      col_stage: string;
+    };
     compatibility: {
       label: string;
       kicker: string;

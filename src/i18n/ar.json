@@ -77,6 +77,15 @@
       "brochure": "كرّاسة المنتج",
       "brochure_download": "تنزيل PDF"
     },
+    "rates": {
+      "label": "معدّلات التطبيق",
+      "kicker": "معدّلات التطبيق · للدونم",
+      "headline": "ما تطبّقه، أين، ومتى",
+      "col_crop": "المحصول",
+      "col_examples": "أمثلة",
+      "col_rate": "المعدّل",
+      "col_stage": "المرحلة"
+    },
     "compatibility": {
       "label": "توافق الخلط في الخزان",
       "kicker": "التوافق · للعمل الحقلي فقط",

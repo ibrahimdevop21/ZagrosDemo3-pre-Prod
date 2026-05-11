@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+const { product } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const rows = product.data.crops ?? [];
+---
+
+{rows.length > 0 && (
+  <section class="py-section-y bg-paper" aria-label={t('product.rates.label')}>
+    <div class="stage-grid">
+      <header class="col-span-12 col-start-2 mb-sp-7">
+        <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('product.rates.kicker')}</span>
+        <h2 class="font-display text-4xl text-ink mt-sp-3 leading-tight max-w-[24ch]">{t('product.rates.headline')}</h2>
+      </header>
+
+      <div class="col-span-12 col-start-2 overflow-x-auto">
+        <table class="w-full text-start">
+          <thead>
+            <tr class="border-b border-ink">
+              <th class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute text-start py-sp-4 ps-sp-5">{t('product.rates.col_crop')}</th>
+              <th class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute text-start py-sp-4">{t('product.rates.col_examples')}</th>
+              <th class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute text-start py-sp-4">{t('product.rates.col_rate')}</th>
+              <th class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute text-start py-sp-4 pe-sp-5">{t('product.rates.col_stage')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr class="border-b border-dashed border-stone align-baseline">
+                <td class="py-sp-5 ps-sp-5 font-sans text-base text-ink capitalize">{r.category.replace('_', ' ')}</td>
+                <td class="py-sp-5 font-sans text-sm text-ink/80">{r.examples.join(', ')}</td>
+                <td class="py-sp-5 font-mono text-[12px] text-ink">
+                  {r.fertigation_rate && <div>F: {r.fertigation_rate}</div>}
+                  {r.foliar_rate     && <div>L: {r.foliar_rate}</div>}
+                  {r.soil_rate       && <div>S: {r.soil_rate}</div>}
+                </td>
+                <td class="py-sp-5 pe-sp-5 font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute">{r.stage}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+)}

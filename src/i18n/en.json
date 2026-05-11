@@ -77,6 +77,15 @@
       "brochure": "Brochure",
       "brochure_download": "Download PDF"
     },
+    "rates": {
+      "label": "Application rates",
+      "kicker": "Application rates · per donum",
+      "headline": "What to apply, where, and when",
+      "col_crop": "Crop",
+      "col_examples": "Examples",
+      "col_rate": "Rate",
+      "col_stage": "Stage"
+    },
     "compatibility": {
       "label": "Tank-mix compatibility",
       "kicker": "Compatibility · field-relevant only",
