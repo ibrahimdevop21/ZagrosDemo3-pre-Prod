@@ -140,8 +140,10 @@ const partners = defineCollection({
     // NOTE: `slug` auto-derived from filename. See note above on fieldReports.
     name: z.string(),
     country: z.string(),
-    since_year: z.number(),
-    logo_path: z.string(),
+    country_code: z.string(),
+    category: z.enum(['vegetable_seeds', 'forage_seeds', 'fertilizers', 'pesticides']),
+    since_year: z.number().nullable(),
+    logo_path: z.string().nullable(),
     tagline: z.object({ en: z.string(), ar: z.string() }),
     product_lines: z.array(z.object({
       name: z.string(),
@@ -149,11 +151,11 @@ const partners = defineCollection({
       crops: z.array(z.string()),
     })),
     stats: z.object({
-      years_in_partnership: z.number(),
+      years_in_partnership: z.number().optional(),
       products_carried: z.number(),
       tons_2024: z.number().optional(),
       states_served: z.number().optional(),
-    }),
+    }).nullable(),
   }),
 });
 

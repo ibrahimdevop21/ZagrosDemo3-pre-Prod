@@ -5,22 +5,36 @@ interface Props { partner: CollectionEntry<'partners'>; }
 const { partner } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const hasLines = partner.data.product_lines.length > 0;
 ---
 <section class="py-section-y bg-paper">
   <div class="stage-grid">
     <h2 class="col-span-5 col-start-2 font-display text-5xl text-ink leading-tight">{t('partner_page.lines_headline')}</h2>
     <div class="col-span-6 col-start-8">
-      <table class="w-full">
-        <tbody>
-          {partner.data.product_lines.map((line) => (
-            <tr class="border-b border-stone align-baseline">
-              <td class="py-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute w-[12ch]">{line.name}</td>
-              <td class="py-sp-5 font-display italic text-xl text-ink">{line.grade}</td>
-              <td class="py-sp-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mute text-end">{line.crops.join(' · ')}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {hasLines ? (
+        <table class="w-full">
+          <tbody>
+            {partner.data.product_lines.map((line) => (
+              <tr class="border-b border-stone align-baseline">
+                <td class="py-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute w-[12ch]">{line.name}</td>
+                <td class="py-sp-5 font-display italic text-xl text-ink">{line.grade}</td>
+                <td class="py-sp-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mute text-end">{line.crops.join(' · ')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div class="border-t border-b border-stone py-sp-7">
+          <p class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-3">
+            {lang === 'ar' ? 'الكتالوج قيد الإعداد' : 'Catalog forthcoming'}
+          </p>
+          <p class="font-sans text-base text-ink/75 max-w-[50ch] leading-relaxed">
+            {lang === 'ar'
+              ? 'قائمة المنتجات لهذا المورّد بانتظار تأكيد العميل. تواصل مع المكتب للحصول على آخر تفاصيل التشكيلة.'
+              : 'Product list for this supplier is pending client confirmation. Contact the desk for the latest line-up.'}
+          </p>
+        </div>
+      )}
     </div>
   </div>
 </section>
