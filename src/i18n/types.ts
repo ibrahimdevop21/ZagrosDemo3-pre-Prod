@@ -58,6 +58,12 @@ export interface UITranslations {
       kicker: string;
       headline: string;
     };
+    sources: {
+      runner: string;
+      kicker: string;
+      headline_a: string;
+      headline_b: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;

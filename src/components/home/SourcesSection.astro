@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import PartnerCard from '../cards/PartnerCard.astro';
+import Kicker from '../editorial/Kicker.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const partners = await getCollection('partners');
+---
+
+<section class="py-section-y bg-paper relative">
+  <div class="stage-grid">
+    <div class="col-span-1 col-start-1 hidden lg:flex justify-end pe-sp-5">
+      <span class="font-mono text-[10.5px] tracking-[0.4em] uppercase text-mute [writing-mode:vertical-rl] rotate-180">
+        {t('home.sources.runner')}
+      </span>
+    </div>
+
+    <header class="col-span-8 col-start-2">
+      <Kicker label={t('home.sources.kicker')} accent="sienna" />
+      <h2 class="font-display text-5xl text-ink mt-sp-5 max-w-[22ch] leading-tight">
+        {t('home.sources.headline_a')}
+        <em class="italic font-light text-sienna"> {t('home.sources.headline_b')}</em>
+      </h2>
+    </header>
+
+    <div class="col-span-12 col-start-2 mt-sp-9 grid grid-cols-1 lg:grid-cols-2 gap-sp-7">
+      {partners.map((partner) => <PartnerCard partner={partner} />)}
+    </div>
+  </div>
+</section>
