@@ -33,6 +33,45 @@
     "colophon_label": "Colophon",
     "colophon_section": "09 / 09"
   },
+  "field_reports": {
+    "page": {
+      "title": "Field Reports",
+      "kicker": "The Field Report · audited trials",
+      "headline": "What the desk is reading this quarter",
+      "deck": "Every issue collects trials our agronomy desk audited under real Middle East operating conditions. Salt-stress, foliar protocols, side-by-side yield reads — the things customers ask us about before the bag goes out."
+    }
+  },
+  "partners_page": {
+    "title": "Partners",
+    "kicker": "Sources · two houses",
+    "headline": "Where the chemistry and the genetics come from.",
+    "deck": "Zagros is an authorized distributor — not a manufacturer. The catalog reflects two partner houses chosen for international credentials and operational fit in the region."
+  },
+  "report_detail": {
+    "brief": {
+      "label": "Trial in brief",
+      "crop": "Crop",
+      "date": "Date",
+      "read_time": "Read time",
+      "author": "Author"
+    },
+    "site": {
+      "label": "Trial site",
+      "placeholder": "Service area pending client confirmation"
+    },
+    "partner": {
+      "label": "Partner"
+    }
+  },
+  "partner_page": {
+    "kicker": "Partner",
+    "stat_skus": "SKUs carried",
+    "stat_lines": "Product lines",
+    "stat_country": "HQ",
+    "stat_crops": "Crop categories",
+    "lines_headline": "What we carry from this house",
+    "reports_headline": "In the field — recent trials"
+  },
   "products": {
     "page": {
       "title": "Products",

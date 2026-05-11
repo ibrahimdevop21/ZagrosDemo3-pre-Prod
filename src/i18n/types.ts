@@ -33,6 +33,45 @@ export interface UITranslations {
     colophon_label: string;
     colophon_section: string;
   };
+  field_reports: {
+    page: {
+      title: string;
+      kicker: string;
+      headline: string;
+      deck: string;
+    };
+  };
+  partners_page: {
+    title: string;
+    kicker: string;
+    headline: string;
+    deck: string;
+  };
+  report_detail: {
+    brief: {
+      label: string;
+      crop: string;
+      date: string;
+      read_time: string;
+      author: string;
+    };
+    site: {
+      label: string;
+      placeholder: string;
+    };
+    partner: {
+      label: string;
+    };
+  };
+  partner_page: {
+    kicker: string;
+    stat_skus: string;
+    stat_lines: string;
+    stat_country: string;
+    stat_crops: string;
+    lines_headline: string;
+    reports_headline: string;
+  };
   products: {
     page: {
       title: string;

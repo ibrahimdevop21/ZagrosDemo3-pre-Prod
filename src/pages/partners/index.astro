@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Breadcrumb from '../../components/global/Breadcrumb.astro';
+import PartnerCard from '../../components/cards/PartnerCard.astro';
+import Kicker from '../../components/editorial/Kicker.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const partners = await getCollection('partners');
+---
+<Layout title={t('partners_page.title')}>
+  <Breadcrumb items={[{ label: t('nav.home'), href: '/' }, { label: t('nav.partners') }]} />
+  <header class="px-page-x pb-sp-9">
+    <Kicker label={t('partners_page.kicker')} accent="sienna" />
+    <h1 class="font-display text-[clamp(48px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[24ch] mb-sp-7">{t('partners_page.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('partners_page.deck')}</p>
+  </header>
+  <section class="px-page-x pb-section-y">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-sp-7">
+      {partners.map(p => <PartnerCard partner={p} />)}
+    </div>
+  </section>
+</Layout>

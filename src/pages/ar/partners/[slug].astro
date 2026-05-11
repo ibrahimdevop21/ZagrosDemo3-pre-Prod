@@ -1,0 +1,28 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+import Breadcrumb from '../../../components/global/Breadcrumb.astro';
+import PartnerHero from '../../../components/partners/PartnerHero.astro';
+import ProductLinesTable from '../../../components/partners/ProductLinesTable.astro';
+import ReportsByPartner from '../../../components/partners/ReportsByPartner.astro';
+
+export async function getStaticPaths() {
+  const partners = await getCollection('partners');
+  return partners.map(p => ({ params: { slug: p.slug }, props: { partner: p } }));
+}
+interface Props { partner: CollectionEntry<'partners'>; }
+const { partner } = Astro.props;
+const lang: 'en' | 'ar' = 'ar';
+const t = useTranslations(lang);
+---
+<Layout title={partner.data.name}>
+  <Breadcrumb items={[
+    { label: t('nav.home'), href: '/ar/' },
+    { label: t('nav.partners'), href: '/ar/partners' },
+    { label: partner.data.name },
+  ]} />
+  <PartnerHero partner={partner} />
+  <ProductLinesTable partner={partner} />
+  <ReportsByPartner partnerSlug={partner.slug} />
+</Layout>

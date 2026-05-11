@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+interface Props { report: CollectionEntry<'field-reports'>; }
+const { report } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const dateLabel = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(report.data.date);
+---
+<aside class="bg-ink text-paper p-sp-6">
+  <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-5 m-0">{t('report_detail.brief.label')}</h3>
+  <dl class="space-y-sp-4 font-mono text-[11px] tracking-[0.16em] uppercase">
+    <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+      <dt class="text-paper/55">{t('report_detail.brief.crop')}</dt><dd class="text-paper m-0 text-end">{report.data.crop}</dd>
+    </div>
+    <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+      <dt class="text-paper/55">{t('report_detail.brief.date')}</dt><dd class="text-paper m-0 text-end">{dateLabel}</dd>
+    </div>
+    <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
+      <dt class="text-paper/55">{t('report_detail.brief.read_time')}</dt><dd class="text-paper m-0 text-end">{report.data.read_time_minutes} min</dd>
+    </div>
+    <div class="flex justify-between gap-sp-4">
+      <dt class="text-paper/55">{t('report_detail.brief.author')}</dt><dd class="text-paper m-0 text-end">{report.data.author}</dd>
+    </div>
+  </dl>
+</aside>

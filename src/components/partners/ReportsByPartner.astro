@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import ReportCard from '../cards/ReportCard.astro';
+interface Props { partnerSlug: string; }
+const { partnerSlug } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const reports = await getCollection('field-reports', ({ data }) => data.related_partners.includes(partnerSlug));
+---
+{reports.length > 0 && (
+  <section class="py-section-y bg-stone/30">
+    <div class="stage-grid">
+      <h2 class="col-span-12 col-start-2 font-display text-4xl text-ink mb-sp-7">{t('partner_page.reports_headline')}</h2>
+      <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-6">
+        {reports.slice(0, 3).map(r => <ReportCard report={r} />)}
+      </div>
+    </div>
+  </section>
+)}

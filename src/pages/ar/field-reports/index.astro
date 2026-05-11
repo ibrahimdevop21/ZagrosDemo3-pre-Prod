@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import Breadcrumb from '../../../components/global/Breadcrumb.astro';
+import ReportCard from '../../../components/cards/ReportCard.astro';
+import Kicker from '../../../components/editorial/Kicker.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const reports = (await getCollection('field-reports')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Layout title={t('field_reports.page.title')}>
+  <Breadcrumb items={[{ label: t('nav.home'), href: '/ar/' }, { label: t('nav.field_reports') }]} />
+  <header class="px-page-x pb-sp-9">
+    <Kicker label={t('field_reports.page.kicker')} accent="sienna" />
+    <h1 class="font-display text-[clamp(48px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[22ch] mb-sp-7">{t('field_reports.page.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('field_reports.page.deck')}</p>
+  </header>
+  <section class="px-page-x pb-section-y">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sp-7">
+      {reports.map(r => <ReportCard report={r} />)}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl } from '../../i18n/utils';
+import PhotoStamp from '../editorial/PhotoStamp.astro';
+import DisclaimerChip from '../editorial/DisclaimerChip.astro';
+
+interface Props { report: CollectionEntry<'field-reports'>; }
+const { report } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const title = report.data.title[lang as 'en' | 'ar'];
+const dateLabel = new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(report.data.date);
+---
+<header class="stage-grid pb-sp-9 pt-sp-7">
+  <div class="col-span-2 col-start-2 hidden lg:block">
+    <span class="font-display italic font-light text-sienna text-[clamp(96px,14vw,200px)] leading-none">{String(report.data.issue).padStart(2, '0')}</span>
+  </div>
+  <div class="col-span-9 col-start-5">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">Issue {String(report.data.issue).padStart(2, '0')} · {report.data.crop}</span>
+    <h1 class="font-display text-[clamp(40px,6vw,84px)] leading-[1.02] text-ink mt-sp-5 max-w-[24ch]">{title}</h1>
+    <div class="flex flex-wrap gap-sp-5 mt-sp-7 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+      <span>{report.data.author}</span>
+      <span>{dateLabel}</span>
+      <span>{report.data.location}</span>
+      <span>{report.data.read_time_minutes} min read</span>
+    </div>
+  </div>
+</header>
+
+<figure class="relative">
+  <img src={report.data.hero_image} alt={`Illustrative hero for ${title}`} class="block w-full h-[min(60vh,640px)] object-cover" />
+  <PhotoStamp issue={String(report.data.issue).padStart(2, '0')} year={String(report.data.date.getFullYear())} edition={report.data.crop} />
+  <div class="absolute top-sp-6 start-sp-6"><DisclaimerChip /></div>
+</figure>

@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+interface Props { partner: CollectionEntry<'partners'>; }
+const { partner } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="py-section-y bg-paper">
+  <div class="stage-grid">
+    <h2 class="col-span-5 col-start-2 font-display text-5xl text-ink leading-tight">{t('partner_page.lines_headline')}</h2>
+    <div class="col-span-6 col-start-8">
+      <table class="w-full">
+        <tbody>
+          {partner.data.product_lines.map((line) => (
+            <tr class="border-b border-stone align-baseline">
+              <td class="py-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute w-[12ch]">{line.name}</td>
+              <td class="py-sp-5 font-display italic text-xl text-ink">{line.grade}</td>
+              <td class="py-sp-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mute text-end">{line.crops.join(' · ')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

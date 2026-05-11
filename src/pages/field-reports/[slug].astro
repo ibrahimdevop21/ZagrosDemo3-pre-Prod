@@ -1,0 +1,43 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import Breadcrumb from '../../components/global/Breadcrumb.astro';
+import ReportHero from '../../components/reports/ReportHero.astro';
+import TrialInBrief from '../../components/reports/TrialInBrief.astro';
+import TrialSitePanel from '../../components/reports/TrialSitePanel.astro';
+import PartnerSidePanel from '../../components/reports/PartnerSidePanel.astro';
+
+export async function getStaticPaths() {
+  const reports = await getCollection('field-reports');
+  return reports.map(r => ({ params: { slug: r.slug }, props: { report: r } }));
+}
+interface Props { report: CollectionEntry<'field-reports'>; }
+const { report } = Astro.props;
+const lang: 'en' | 'ar' = 'en';
+const t = useTranslations(lang);
+const { Content } = await report.render();
+const title = report.data.title[lang];
+---
+<Layout title={title}>
+  <Breadcrumb items={[
+    { label: t('nav.home'), href: '/' },
+    { label: t('nav.field_reports'), href: '/field-reports' },
+    { label: `Issue ${String(report.data.issue).padStart(2, '0')}` },
+    { label: title },
+  ]} />
+
+  <ReportHero report={report} />
+
+  <article class="stage-grid py-section-y">
+    <aside class="col-span-3 col-start-2 flex flex-col gap-sp-6">
+      <TrialInBrief report={report} />
+      <TrialSitePanel report={report} />
+      <PartnerSidePanel report={report} />
+    </aside>
+
+    <div class="col-span-7 col-start-6 prose-editorial">
+      <Content />
+    </div>
+  </article>
+</Layout>
