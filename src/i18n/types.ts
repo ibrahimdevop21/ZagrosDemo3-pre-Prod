@@ -144,6 +144,37 @@ export interface UITranslations {
       stat_partners: string;
       stat_subcats: string;
     };
+    lines: {
+      seeds: {
+        label: string;
+        headline: string;
+        deck: string;
+        empty_state: string;
+        vegetable_pending: string;
+        stat_suppliers: string;
+        stat_skus: string;
+        stat_subcats: string;
+      };
+      fertilizers: {
+        label: string;
+        headline: string;
+        deck: string;
+        empty_state: string;
+        agro_dragon_pending: string;
+        stat_suppliers: string;
+        stat_skus: string;
+        stat_subcats: string;
+      };
+      pesticides: {
+        label: string;
+        headline: string;
+        deck: string;
+        empty_state: string;
+        stat_suppliers: string;
+        stat_skus: string;
+        stat_subcats: string;
+      };
+    };
     results: {
       label: string;
     };
@@ -232,6 +263,36 @@ export interface UITranslations {
       universal_rule_label: string;
       seed_note_headline: string;
       seed_note_body: string;
+    };
+    seed: {
+      agronomy_label: string;
+      species: string;
+      coating: string;
+      pbr: string;
+      rainfall: string;
+      ph_range: string;
+      soil_type: string;
+      origin: string;
+      sowing_label: string;
+      sowing_marginal: string;
+      sowing_ideal: string;
+      sowing_irrigated: string;
+      features_label: string;
+    };
+    pesticide: {
+      spec_label: string;
+      active_ingredient: string;
+      ai_content: string;
+      type: string;
+      form: string;
+      code: string;
+      manufacturer: string;
+      origin: string;
+      target_pests: string;
+      target_crops: string;
+      recommendation_label: string;
+      efficacy_label: string;
+      description_label: string;
     };
   };
   common: {

@@ -1,0 +1,98 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import Breadcrumb from '../../../components/global/Breadcrumb.astro';
+import CompositionCard from '../../../components/products/CompositionCard.astro';
+import CompatibilityMatrix from '../../../components/products/CompatibilityMatrix.astro';
+import ApplicationRatesTable from '../../../components/products/ApplicationRatesTable.astro';
+import WhyThisMatters from '../../../components/products/WhyThisMatters.astro';
+import RelatedProducts from '../../../components/products/RelatedProducts.astro';
+import BagMockup from '../../../components/products/BagMockup.astro';
+import SeedDetail from '../../../components/products/SeedDetail.astro';
+import PesticideDetail from '../../../components/products/PesticideDetail.astro';
+
+type Line = 'seeds' | 'fertilizers' | 'pesticides';
+type AnyEntry =
+  | CollectionEntry<'fertilizers'>
+  | CollectionEntry<'seeds'>
+  | CollectionEntry<'pesticides'>;
+
+export async function getStaticPaths() {
+  const [seeds, fertilizers, pesticides] = await Promise.all([
+    getCollection('seeds'),
+    getCollection('fertilizers'),
+    getCollection('pesticides'),
+  ]);
+
+  const paths: Array<{ params: { line: string; slug: string }; props: { line: Line; entry: AnyEntry } }> = [];
+  for (const e of seeds)       paths.push({ params: { line: 'seeds',       slug: e.slug }, props: { line: 'seeds',       entry: e } });
+  for (const e of fertilizers) paths.push({ params: { line: 'fertilizers', slug: e.slug }, props: { line: 'fertilizers', entry: e } });
+  for (const e of pesticides)  paths.push({ params: { line: 'pesticides',  slug: e.slug }, props: { line: 'pesticides',  entry: e } });
+  return paths;
+}
+
+interface Props { line: Line; entry: AnyEntry; }
+const { line, entry } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const name = entry.data.name[lang as 'en' | 'ar'];
+const homeHref = lang === 'ar' ? '/ar/' : '/';
+const productsHref = lang === 'ar' ? '/ar/products' : '/products';
+const lineHref = lang === 'ar' ? `/ar/products/${line}` : `/products/${line}`;
+const lineLabel = t(`products.lines.${line}.label`);
+
+// Cast once per line to keep template clean
+const fert      = line === 'fertilizers' ? (entry as CollectionEntry<'fertilizers'>) : null;
+const seed      = line === 'seeds'       ? (entry as CollectionEntry<'seeds'>)       : null;
+const pesticide = line === 'pesticides'  ? (entry as CollectionEntry<'pesticides'>)  : null;
+
+const fertBadges: string[] = [];
+if (fert) {
+  if (fert.data.organic_certified) fertBadges.push(t('product.badges.organic'));
+  if (fert.data.chloride_free)     fertBadges.push(t('product.badges.chloride_free'));
+  if (fert.data.sodium_free)       fertBadges.push(t('product.badges.sodium_free'));
+  if (fert.data.acidifying)        fertBadges.push(t('product.badges.acidifying'));
+}
+---
+<Layout title={name}>
+  <Breadcrumb items={[
+    { label: t('nav.home'),     href: homeHref },
+    { label: t('nav.products'), href: productsHref },
+    { label: lineLabel,         href: lineHref },
+    { label: name },
+  ]} />
+
+  {fert && (
+    <header class="stage-grid pt-sp-7 pb-section-y">
+      <div class="col-span-7 col-start-2">
+        <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+          {fert.data.brand} · {t('product.header.supplied_via')} · {fert.data.supplier_slug}
+        </span>
+        <h1 class="font-display italic font-light text-[clamp(48px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{name}</h1>
+        <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{fert.data.grade}</p>
+
+        {fertBadges.length > 0 && (
+          <ul class="list-none p-0 m-0 mb-sp-7 flex flex-wrap gap-2">
+            {fertBadges.map((b) => <li class="font-mono text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border border-sienna/60 text-sienna">· {b}</li>)}
+          </ul>
+        )}
+
+        <BagMockup name={name} grade={fert.data.grade} brand={fert.data.brand} colorToken={fert.data.bag_color_token} />
+      </div>
+
+      <div class="col-span-4 col-start-10 mt-sp-7 lg:mt-0">
+        <CompositionCard product={fert} />
+      </div>
+    </header>
+  )}
+  {fert && <CompatibilityMatrix productSlug={fert.slug} />}
+  {fert && <ApplicationRatesTable product={fert} />}
+  {fert && <WhyThisMatters product={fert} />}
+  {fert && <RelatedProducts product={fert} />}
+
+  {seed && <SeedDetail seed={seed} />}
+
+  {pesticide && <PesticideDetail pesticide={pesticide} />}
+</Layout>

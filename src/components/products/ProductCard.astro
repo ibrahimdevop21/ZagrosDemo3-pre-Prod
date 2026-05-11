@@ -4,13 +4,13 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import BagMockup from './BagMockup.astro';
 
 interface Props {
-  product: CollectionEntry<'products'>;
+  product: CollectionEntry<'fertilizers'>;
 }
 const { product } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const localized = product.data.name[lang as 'en' | 'ar'];
-const href = `${lang === 'ar' ? '/ar' : ''}/products/${product.slug}`;
+const href = `${lang === 'ar' ? '/ar' : ''}/products/fertilizers/${product.slug}`;
 
 const comp = product.data.composition;
 const compEntries: string[] = [];
@@ -29,11 +29,12 @@ if (product.data.chloride_free) badges.push('Cl-free');
 if (product.data.acidifying) badges.push('Acidifying');
 
 const facetAttrs = {
-  'data-facet-category': product.data.category,
+  'data-facet-line': 'fertilizers',
   'data-facet-subcategory': product.data.subcategory,
   'data-facet-application': product.data.applications.join(' '),
   'data-facet-crop_stage': product.data.ideal_stages.join(' '),
   'data-facet-crop_category': product.data.crops?.map(c => c.category).join(' ') ?? '',
+  'data-facet-supplier': product.data.supplier_slug,
   'data-facet-special': [
     product.data.organic_certified && 'organic_certified',
     product.data.chloride_free && 'chloride_free',

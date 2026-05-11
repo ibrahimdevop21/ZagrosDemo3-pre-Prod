@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  pesticide: CollectionEntry<'pesticides'>;
+}
+const { pesticide } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+const localized = pesticide.data.name[lang as 'en' | 'ar'];
+const code = pesticide.data.code[lang as 'en' | 'ar'];
+const type = pesticide.data.type[lang as 'en' | 'ar'];
+const href = `${lang === 'ar' ? '/ar' : ''}/products/pesticides/${pesticide.slug}`;
+
+const accent =
+  pesticide.data.subcategory === 'insecticide' ? 'border-sienna/60 text-sienna' :
+  pesticide.data.subcategory === 'herbicide' ? 'border-field/60 text-field' :
+  'border-signal/60 text-ink';
+---
+<article
+  class="flex flex-col bg-paper border border-stone min-h-[360px]"
+  data-product-slug={pesticide.slug}
+  data-facet-line="pesticides"
+  data-facet-subcategory={pesticide.data.subcategory}
+  data-facet-active_ingredient={pesticide.data.active_ingredient.toLowerCase()}
+  data-facet-target_crops={pesticide.data.target_crops.join(' ')}
+>
+  <a href={href} class="flex flex-col flex-1 p-sp-6 no-underline text-inherit">
+    <header class="flex items-baseline justify-between mb-sp-5">
+      <span class={`font-mono text-[9.5px] tracking-[0.20em] uppercase px-2 py-1 border ${accent}`}>
+        {type}
+      </span>
+      <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute">
+        {pesticide.data.origin_country.toUpperCase()}
+      </span>
+    </header>
+
+    <h3 class="font-display text-2xl text-ink leading-tight mb-sp-3">{localized}</h3>
+    <p class="font-mono text-[11px] tracking-[0.10em] text-ink/80 mb-sp-5">{code}</p>
+
+    <dl class="grid grid-cols-1 gap-y-sp-3 mb-sp-5 font-mono text-[10.5px] tracking-[0.10em] text-ink/85">
+      <div>
+        <dt class="text-[10px] tracking-[0.22em] uppercase text-mute mb-1">{t('product.pesticide.active_ingredient')}</dt>
+        <dd class="m-0">{pesticide.data.active_ingredient} · {pesticide.data.active_ingredient_content[lang as 'en' | 'ar']}</dd>
+      </div>
+    </dl>
+
+    {pesticide.data.target_pests.length > 0 && (
+      <ul class="list-none p-0 m-0 mb-sp-5 flex flex-wrap gap-2">
+        {pesticide.data.target_pests.slice(0, 3).map((p) => (
+          <li class="font-mono text-[10px] tracking-[0.14em] uppercase px-2 py-1 border border-stone text-ink/80">{p}</li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-auto pt-sp-4 border-t border-stone flex items-end justify-between gap-sp-4">
+      <span class="font-mono text-[10px] tracking-[0.18em] uppercase text-mute truncate max-w-[60%]">
+        {pesticide.data.manufacturer[lang as 'en' | 'ar']}
+      </span>
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink border-b border-ink pb-0.5">
+        {t('common.view')} →
+      </span>
+    </div>
+  </a>
+</article>

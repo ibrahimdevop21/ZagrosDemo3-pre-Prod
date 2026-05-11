@@ -1,0 +1,109 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  seed: CollectionEntry<'seeds'>;
+}
+const { seed } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const name = seed.data.name[lang as 'en' | 'ar'];
+
+const rows = seed.data.sowing_rates;
+const hasSowing = rows && (rows.marginal_dryland || rows.ideal_dryland || rows.irrigated);
+---
+<header class="stage-grid pt-sp-7 pb-section-y">
+  <div class="col-span-7 col-start-2">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+      {seed.data.brand} · {seed.data.subcategory} · {seed.data.origin_country.toUpperCase()}
+    </span>
+    <h1 class="font-display italic font-light text-[clamp(48px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{name}</h1>
+    <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{seed.data.species}</p>
+
+    {seed.data.pbr && (
+      <ul class="list-none p-0 m-0 mb-sp-7 flex flex-wrap gap-2">
+        <li class="font-mono text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border border-sienna/60 text-sienna">· {t('product.seed.pbr')}</li>
+      </ul>
+    )}
+
+    {seed.data.key_features.length > 0 && (
+      <section class="mt-sp-7" aria-label={t('product.seed.features_label')}>
+        <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-5">{t('product.seed.features_label')}</h2>
+        <ul class="list-none p-0 m-0 space-y-sp-4">
+          {seed.data.key_features.map((f, i) => (
+            <li class="flex gap-sp-5 items-baseline border-b border-dashed border-stone pb-sp-4">
+              <span class="font-display italic font-light text-sienna text-2xl leading-none">0{i + 1}</span>
+              <span class="font-sans text-base text-ink leading-relaxed">{f[lang as 'en' | 'ar']}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
+
+  <aside class="col-span-4 col-start-10 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.seed.agronomy_label')}>
+    <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-5 m-0">{t('product.seed.agronomy_label')}</h2>
+
+    <dl class="grid grid-cols-1 gap-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase mb-sp-7">
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.seed.species')}</dt>
+        <dd class="text-paper m-0 text-end normal-case italic font-sans tracking-normal text-sm">{seed.data.species}</dd>
+      </div>
+      {seed.data.coating && (
+        <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+          <dt class="text-paper/55">{t('product.seed.coating')}</dt>
+          <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{seed.data.coating}</dd>
+        </div>
+      )}
+      {seed.data.rainfall_mm && (
+        <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+          <dt class="text-paper/55">{t('product.seed.rainfall')}</dt>
+          <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{seed.data.rainfall_mm}</dd>
+        </div>
+      )}
+      {seed.data.ph_range && (
+        <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+          <dt class="text-paper/55">{t('product.seed.ph_range')}</dt>
+          <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{seed.data.ph_range}</dd>
+        </div>
+      )}
+      {seed.data.soil_type && (
+        <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+          <dt class="text-paper/55">{t('product.seed.soil_type')}</dt>
+          <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{seed.data.soil_type}</dd>
+        </div>
+      )}
+      <div class="flex justify-between gap-sp-5">
+        <dt class="text-paper/55">{t('product.seed.origin')}</dt>
+        <dd class="text-paper m-0 text-end">{seed.data.origin_country.toUpperCase()}</dd>
+      </div>
+    </dl>
+
+    {hasSowing && (
+      <div class="border-t border-paper/15 pt-sp-5">
+        <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-4">{t('product.seed.sowing_label')}</h3>
+        <dl class="grid grid-cols-1 gap-y-sp-3 font-mono text-[11px] tracking-[0.10em]">
+          {rows?.marginal_dryland && (
+            <div>
+              <dt class="text-paper/55 uppercase tracking-[0.18em] text-[10px] mb-1">{t('product.seed.sowing_marginal')}</dt>
+              <dd class="text-paper m-0 normal-case text-sm font-sans">{rows.marginal_dryland}</dd>
+            </div>
+          )}
+          {rows?.ideal_dryland && (
+            <div>
+              <dt class="text-paper/55 uppercase tracking-[0.18em] text-[10px] mb-1">{t('product.seed.sowing_ideal')}</dt>
+              <dd class="text-paper m-0 normal-case text-sm font-sans">{rows.ideal_dryland}</dd>
+            </div>
+          )}
+          {rows?.irrigated && (
+            <div>
+              <dt class="text-paper/55 uppercase tracking-[0.18em] text-[10px] mb-1">{t('product.seed.sowing_irrigated')}</dt>
+              <dd class="text-paper m-0 normal-case text-sm font-sans">{rows.irrigated}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    )}
+  </aside>
+</header>

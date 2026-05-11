@@ -1,4 +1,10 @@
 ---
+// NOTE: This component is being rewritten in Plan 6 / Task 2 to query
+// real data across the three new collections. For now it is patched
+// minimally to unbreak the homepage build — it queries `fertilizers`
+// only (the largest line) so the homepage still renders. Task 2 will
+// replace this with a proper 3-line catalog teaser pulling from seeds,
+// fertilizers, and pesticides.
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Kicker from '../editorial/Kicker.astro';
@@ -7,24 +13,20 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isAR = lang === 'ar';
 
-const products = await getCollection('products');
+const products = await getCollection('fertilizers');
 const subcategories = [
   { id: 'water-soluble-npk', label_en: 'K+S · Water-soluble NPK',  label_ar: 'K+S · أسمدة قابلة للذوبان' },
   { id: 'phosphate-sources', label_en: 'K+S · Phosphate sources',  label_ar: 'K+S · مصادر الفوسفور' },
-  { id: 'nitrogen-mg-k',     label_en: 'K+S · Nitrogen + Mg + K',  label_ar: 'K+S · نيتروجين + مغنيسيوم + بوتاسيوم' },
-  { id: 'barenbrug-forage',  label_en: 'Barenbrug · Forage',       label_ar: 'Barenbrug · أعلاف' },
+  { id: 'nitrogen-sources',  label_en: 'K+S · Nitrogen sources',   label_ar: 'K+S · مصادر النيتروجين' },
+  { id: 'potassium-sulphate',label_en: 'K+S · Potassium sulphate', label_ar: 'K+S · سلفات البوتاسيوم' },
 ];
 
 const matches: Record<string, { count: number; samples: { name: string; grade: string }[] }> = {};
 for (const { id } of subcategories) matches[id] = { count: 0, samples: [] };
 
 for (const p of products) {
-  const slug = p.slug;
-  const bucket =
-    p.data.brand === 'Barenbrug' ? 'barenbrug-forage'
-    : ['solu-npk-20-20-20', 'solu-npk-12-12-36'].includes(slug) ? 'water-soluble-npk'
-    : ['solu-up', 'solu-map', 'solu-mkp'].includes(slug) ? 'phosphate-sources'
-    : 'nitrogen-mg-k';
+  const bucket = p.data.subcategory;
+  if (!matches[bucket]) continue;
   matches[bucket].count++;
   if (matches[bucket].samples.length < 3) {
     matches[bucket].samples.push({ name: p.data.name[lang as 'en' | 'ar'], grade: p.data.grade });

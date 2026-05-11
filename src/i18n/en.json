@@ -138,11 +138,42 @@
   "products": {
     "page": {
       "title": "Products",
-      "headline": "Fourteen SKUs, two partner houses, one operator.",
-      "deck": "Filter the catalog by nutrient, application method, crop stage, or special property. Every product card links to a full spec sheet with composition, compatibility, application rates, and use-case notes.",
+      "headline": "Seeds, fertilizers, pesticides — sourced for Sudanese farms.",
+      "deck": "Three product lines, seven international suppliers, full agronomy support across the catalog. Browse by line below.",
       "stat_skus": "SKUs",
-      "stat_partners": "Partner houses",
+      "stat_partners": "Suppliers",
       "stat_subcats": "Subcategories"
+    },
+    "lines": {
+      "seeds": {
+        "label": "Seeds",
+        "headline": "Vegetable and forage seed lines",
+        "deck": "Forage cultivars from Barenbrug (Australia) for cut-and-carry alfalfa, lucerne, and Rhodes grass. Vegetable hybrids from East West Seeds (Thailand) pending catalog confirmation.",
+        "empty_state": "Line catalog pending client confirmation.",
+        "vegetable_pending": "Vegetable seed catalog pending — variety list expected from East West Seeds before publication.",
+        "stat_suppliers": "Suppliers",
+        "stat_skus": "SKUs",
+        "stat_subcats": "Subcategories"
+      },
+      "fertilizers": {
+        "label": "Fertilizers",
+        "headline": "Premium water-soluble and specialty fertilizers",
+        "deck": "K+S German chemistry, plus Agro Dragon Netherlands specialty lines. Eleven SKUs across four subcategories — NPK, phosphate sources, nitrogen, potassium, magnesium.",
+        "empty_state": "Line catalog pending client confirmation.",
+        "agro_dragon_pending": "Agro Dragon (Netherlands) catalog pending client confirmation.",
+        "stat_suppliers": "Suppliers",
+        "stat_skus": "SKUs",
+        "stat_subcats": "Subcategories"
+      },
+      "pesticides": {
+        "label": "Pesticides",
+        "headline": "Insecticides, herbicides, fungicides",
+        "deck": "Sixteen SKUs across three subcategories, sourced from Egyptian, Indian, and Chinese manufacturers and rebranded under the Agro- and Or- lines.",
+        "empty_state": "Line catalog pending client confirmation.",
+        "stat_suppliers": "Suppliers",
+        "stat_skus": "SKUs",
+        "stat_subcats": "Subcategories"
+      }
     },
     "results": {
       "label": "Results"
@@ -232,6 +263,36 @@
       "universal_rule_label": "Universal rule",
       "seed_note_headline": "Seed — tank-mix N/A",
       "seed_note_body": "Tank-mix compatibility applies to liquid-feed and foliar inputs, not coated seed. The universal rule below still holds for any product introduced to a mixed tank in this rotation."
+    },
+    "seed": {
+      "agronomy_label": "Agronomy",
+      "species": "Species",
+      "coating": "Coating",
+      "pbr": "Plant breeder's rights",
+      "rainfall": "Rainfall",
+      "ph_range": "pH range",
+      "soil_type": "Soil",
+      "origin": "Origin",
+      "sowing_label": "Sowing rates",
+      "sowing_marginal": "Marginal dryland",
+      "sowing_ideal": "Ideal dryland",
+      "sowing_irrigated": "Irrigated",
+      "features_label": "Key features"
+    },
+    "pesticide": {
+      "spec_label": "Specification",
+      "active_ingredient": "Active ingredient",
+      "ai_content": "AI content",
+      "type": "Type",
+      "form": "Formulation",
+      "code": "Code",
+      "manufacturer": "Manufacturer",
+      "origin": "Origin",
+      "target_pests": "Target pests",
+      "target_crops": "Target crops",
+      "recommendation_label": "Recommendation",
+      "efficacy_label": "Efficacy",
+      "description_label": "Description"
     }
   },
   "common": {

@@ -4,14 +4,14 @@ import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import ProductCard from './ProductCard.astro';
 
-interface Props { product: CollectionEntry<'products'>; }
+interface Props { product: CollectionEntry<'fertilizers'>; }
 const { product } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const all = await getCollection('products');
+const all = await getCollection('fertilizers');
 const sameSubcat = all.filter(p => p.slug !== product.slug && p.data.subcategory === product.data.subcategory);
-const fallback = all.filter(p => p.slug !== product.slug && p.data.category === product.data.category);
+const fallback = all.filter(p => p.slug !== product.slug && p.data.supplier_slug === product.data.supplier_slug);
 const pool = sameSubcat.length >= 3 ? sameSubcat : [...sameSubcat, ...fallback.filter(p => !sameSubcat.includes(p))];
 const picks = pool.slice(0, 3);
 ---

@@ -1,26 +1,36 @@
 import { describe, it, expect } from 'vitest';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import ProductsIndex from '../../src/pages/products.astro';
+import ProductsIndex from '../../src/pages/products/index.astro';
 
-describe('products index page', () => {
+describe('/products line picker', () => {
   it('renders without throwing', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(ProductsIndex);
     expect(html).toContain('</html>');
   });
 
-  it('renders all 14 SKUs into the static HTML', async () => {
+  it('renders 3 line cards with accurate SKU counts and no invented framing', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(ProductsIndex);
-    const matches = html.match(/data-product-slug="[^"]+"/g) ?? [];
-    const uniqueSlugs = new Set(matches.map(m => m.replace(/.*data-product-slug="([^"]+)".*/, '$1')));
-    expect(uniqueSlugs.size).toBe(14);
+    expect(html).toContain('Seeds');
+    expect(html).toContain('Fertilizers');
+    expect(html).toContain('Pesticides');
+    // Counts: 3 forage seeds, 11 K+S fertilizers, 16 pesticides
+    expect(html).toMatch(/>3<\/dd>/);   // seed count
+    expect(html).toMatch(/>11<\/dd>/);  // fertilizer count
+    expect(html).toMatch(/>16<\/dd>/);  // pesticide count
+    // Banned framing
+    expect(html).not.toMatch(/14 SKUs/);
+    expect(html).not.toMatch(/14 منتجاً/);
+    expect(html).not.toMatch(/partner houses/);
+    expect(html).not.toMatch(/operator, not a brand/);
   });
 
-  it('renders the partner-anchored section headers (K+S + Barenbrug)', async () => {
+  it('links to the three line pages', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(ProductsIndex);
-    expect(html).toMatch(/§\s*K\+S\s*·\s*11/);
-    expect(html).toMatch(/§\s*Barenbrug\s*·\s*3/);
+    expect(html).toContain('/products/seeds');
+    expect(html).toContain('/products/fertilizers');
+    expect(html).toContain('/products/pesticides');
   });
 });

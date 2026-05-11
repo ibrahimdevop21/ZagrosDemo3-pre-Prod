@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 interface Props {
-  product: CollectionEntry<'products'>;
+  product: CollectionEntry<'fertilizers'>;
 }
 const { product } = Astro.props;
 const lang = getLangFromUrl(Astro.url);

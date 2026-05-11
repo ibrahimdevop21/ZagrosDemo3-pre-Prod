@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { type Language } from '../../i18n/utils';
+import ProductCard from './ProductCard.astro';
+import SeedCard from './SeedCard.astro';
+import PesticideCard from './PesticideCard.astro';
+
+type Line = 'seeds' | 'fertilizers' | 'pesticides';
+type Entry =
+  | CollectionEntry<'fertilizers'>
+  | CollectionEntry<'seeds'>
+  | CollectionEntry<'pesticides'>;
+
+interface Props {
+  line: Line;
+  subcategory: string;
+  entries: Entry[];
+  lang: Language;
+  supplierLabel?: string;
+}
+
+const { line, subcategory, entries, supplierLabel } = Astro.props;
+
+// Compute a nice subcategory display label
+const subcatLabel = subcategory.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+
+// Right-side caption: pull from first entry where possible
+let caption = supplierLabel ?? '';
+if (!caption && entries.length > 0) {
+  const first = entries[0];
+  if (line === 'fertilizers') {
+    caption = (first as CollectionEntry<'fertilizers'>).data.brand;
+  } else if (line === 'seeds') {
+    caption = (first as CollectionEntry<'seeds'>).data.brand;
+  } else if (line === 'pesticides') {
+    caption = (first as CollectionEntry<'pesticides'>).data.origin_country.toUpperCase();
+  }
+}
+---
+<section class="mb-section-y" data-subcategory-group={subcategory}>
+  <header class="flex items-baseline justify-between mb-sp-7 border-b border-ink pb-sp-3 flex-wrap gap-sp-4">
+    <h2 class="font-display italic text-3xl text-ink">
+      § {subcatLabel} · {entries.length} SKU{entries.length === 1 ? '' : 's'}
+    </h2>
+    {caption && (
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{caption}</span>
+    )}
+  </header>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-6">
+    {line === 'fertilizers' && entries.map((e) => (
+      <ProductCard product={e as CollectionEntry<'fertilizers'>} />
+    ))}
+    {line === 'seeds' && entries.map((e) => (
+      <SeedCard seed={e as CollectionEntry<'seeds'>} />
+    ))}
+    {line === 'pesticides' && entries.map((e) => (
+      <PesticideCard pesticide={e as CollectionEntry<'pesticides'>} />
+    ))}
+  </div>
+</section>

@@ -1,13 +1,20 @@
 ---
+// NOTE: This sidebar is currently unused. The /products tree no longer
+// renders a single filterable page (it now branches into /products,
+// /products/[line], /products/[line]/[slug]). The filter system needs
+// re-scoping to the line-page level (deferred — Subtask 1.4 / Plan 6
+// follow-up). The component is left in place but rewritten to read
+// from the `fertilizers` collection so it does not crash imports if
+// referenced from a future line page.
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const products = await getCollection('products');
+const products = await getCollection('fertilizers');
 
-const categories = ['fertilizer', 'forage_seed'] as const;
+const categories = ['fertilizers', 'seeds', 'pesticides'] as const;
 const subcategories = Array.from(new Set(products.map(p => p.data.subcategory))).sort();
 const nutrients = ['N', 'P2O5', 'K2O', 'Ca', 'MgO', 'S'];
 const applications = ['foliar', 'fertigation', 'soil', 'pivot', 'hydroponic'];

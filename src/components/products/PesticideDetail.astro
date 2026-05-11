@@ -1,0 +1,108 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  pesticide: CollectionEntry<'pesticides'>;
+}
+const { pesticide } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const localized = pesticide.data.name[lang as 'en' | 'ar'];
+const code = pesticide.data.code[lang as 'en' | 'ar'];
+const type = pesticide.data.type[lang as 'en' | 'ar'];
+const form = pesticide.data.form[lang as 'en' | 'ar'];
+const aiContent = pesticide.data.active_ingredient_content[lang as 'en' | 'ar'];
+const manufacturer = pesticide.data.manufacturer[lang as 'en' | 'ar'];
+const description = pesticide.data.description[lang as 'en' | 'ar'];
+const recommendation = pesticide.data.recommendation?.[lang as 'en' | 'ar'];
+const efficacy = pesticide.data.efficacy?.[lang as 'en' | 'ar'];
+---
+<header class="stage-grid pt-sp-7 pb-section-y">
+  <div class="col-span-7 col-start-2">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+      {type} · {pesticide.data.origin_country.toUpperCase()}
+    </span>
+    <h1 class="font-display italic font-light text-[clamp(48px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{localized}</h1>
+    <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{code}</p>
+
+    <section class="mt-sp-7" aria-label={t('product.pesticide.description_label')}>
+      <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-4">{t('product.pesticide.description_label')}</h2>
+      <p class="font-sans text-base text-ink/85 leading-relaxed max-w-[60ch]">{description}</p>
+    </section>
+
+    {recommendation && (
+      <section class="mt-sp-7" aria-label={t('product.pesticide.recommendation_label')}>
+        <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-4">{t('product.pesticide.recommendation_label')}</h2>
+        <p class="font-sans text-base text-ink/85 leading-relaxed max-w-[60ch]">{recommendation}</p>
+      </section>
+    )}
+
+    {efficacy && (
+      <section class="mt-sp-7" aria-label={t('product.pesticide.efficacy_label')}>
+        <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-4">{t('product.pesticide.efficacy_label')}</h2>
+        <p class="font-sans text-base text-ink/85 leading-relaxed max-w-[60ch]">{efficacy}</p>
+      </section>
+    )}
+
+    {(pesticide.data.target_pests.length > 0 || pesticide.data.target_crops.length > 0) && (
+      <section class="mt-sp-7 grid grid-cols-1 md:grid-cols-2 gap-sp-7">
+        {pesticide.data.target_pests.length > 0 && (
+          <div>
+            <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-4">{t('product.pesticide.target_pests')}</h2>
+            <ul class="list-none p-0 m-0 flex flex-wrap gap-2">
+              {pesticide.data.target_pests.map((p) => (
+                <li class="font-mono text-[10.5px] tracking-[0.16em] uppercase px-3 py-1.5 border border-stone text-ink/85">{p}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {pesticide.data.target_crops.length > 0 && (
+          <div>
+            <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-4">{t('product.pesticide.target_crops')}</h2>
+            <ul class="list-none p-0 m-0 flex flex-wrap gap-2">
+              {pesticide.data.target_crops.map((c) => (
+                <li class="font-mono text-[10.5px] tracking-[0.16em] uppercase px-3 py-1.5 border border-stone text-ink/85">{c}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
+    )}
+  </div>
+
+  <aside class="col-span-4 col-start-10 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.pesticide.spec_label')}>
+    <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-5 m-0">{t('product.pesticide.spec_label')}</h2>
+
+    <dl class="grid grid-cols-1 gap-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase">
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.type')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{type}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.form')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{form}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.active_ingredient')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{pesticide.data.active_ingredient}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.ai_content')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{aiContent}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.code')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{code}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5 border-b border-dashed border-paper/15 pb-2">
+        <dt class="text-paper/55">{t('product.pesticide.manufacturer')}</dt>
+        <dd class="text-paper m-0 text-end normal-case tracking-normal text-sm">{manufacturer}</dd>
+      </div>
+      <div class="flex justify-between gap-sp-5">
+        <dt class="text-paper/55">{t('product.pesticide.origin')}</dt>
+        <dd class="text-paper m-0 text-end">{pesticide.data.origin_country.toUpperCase()}</dd>
+      </div>
+    </dl>
+  </aside>
+</header>

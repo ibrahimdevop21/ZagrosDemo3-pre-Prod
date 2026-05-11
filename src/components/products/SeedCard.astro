@@ -1,0 +1,65 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  seed: CollectionEntry<'seeds'>;
+}
+const { seed } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const localized = seed.data.name[lang as 'en' | 'ar'];
+const href = `${lang === 'ar' ? '/ar' : ''}/products/seeds/${seed.slug}`;
+---
+<article
+  class="flex flex-col bg-paper border border-stone min-h-[360px]"
+  data-product-slug={seed.slug}
+  data-brand={seed.data.brand}
+  data-facet-line="seeds"
+  data-facet-subcategory={seed.data.subcategory}
+  data-facet-supplier={seed.data.supplier_slug}
+>
+  <a href={href} class="flex flex-col flex-1 p-sp-6 no-underline text-inherit">
+    <header class="flex items-baseline justify-between mb-sp-5">
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+        {seed.data.subcategory} · {seed.data.brand}
+      </span>
+      {seed.data.pbr && (
+        <span class="font-mono text-[9.5px] tracking-[0.18em] uppercase px-2 py-1 border border-sienna/60 text-sienna">
+          PBR
+        </span>
+      )}
+    </header>
+
+    <h3 class="font-display text-2xl text-ink leading-tight mb-sp-3">{localized}</h3>
+    <p class="font-mono text-[11px] tracking-[0.10em] text-ink/70 italic mb-sp-5">{seed.data.species}</p>
+
+    <dl class="grid grid-cols-2 gap-x-sp-5 gap-y-sp-3 mb-sp-5 font-mono text-[10.5px] tracking-[0.12em] text-ink/85">
+      {seed.data.rainfall_mm && (
+        <div>
+          <dt class="text-[10px] tracking-[0.22em] uppercase text-mute mb-1">{t('product.seed.rainfall')}</dt>
+          <dd class="m-0">{seed.data.rainfall_mm}</dd>
+        </div>
+      )}
+      {seed.data.ph_range && (
+        <div>
+          <dt class="text-[10px] tracking-[0.22em] uppercase text-mute mb-1">{t('product.seed.ph_range')}</dt>
+          <dd class="m-0">{seed.data.ph_range}</dd>
+        </div>
+      )}
+      {seed.data.sowing_rates?.irrigated && (
+        <div class="col-span-2">
+          <dt class="text-[10px] tracking-[0.22em] uppercase text-mute mb-1">{t('product.seed.sowing_irrigated')}</dt>
+          <dd class="m-0">{seed.data.sowing_rates.irrigated}</dd>
+        </div>
+      )}
+    </dl>
+
+    <div class="mt-auto pt-sp-4 border-t border-stone flex items-end justify-between gap-sp-4">
+      <span class="font-mono text-[9.5px] tracking-[0.18em] uppercase text-mute">{seed.data.origin_country.toUpperCase()}</span>
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink border-b border-ink pb-0.5">
+        {t('common.view')} →
+      </span>
+    </div>
+  </a>
+</article>

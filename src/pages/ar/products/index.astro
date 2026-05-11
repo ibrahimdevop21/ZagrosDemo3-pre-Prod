@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import Breadcrumb from '../../../components/global/Breadcrumb.astro';
+import LineCard from '../../../components/products/LineCard.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const [seeds, fertilizers, pesticides] = await Promise.all([
+  getCollection('seeds'),
+  getCollection('fertilizers'),
+  getCollection('pesticides'),
+]);
+
+const seedSuppliers = new Set(seeds.map((s) => s.data.supplier_slug));
+const fertSuppliers = new Set(fertilizers.map((f) => f.data.supplier_slug));
+const pestSuppliers = new Set(pesticides.map((p) => p.data.origin_country));
+const pestSubcats = new Set(pesticides.map((p) => p.data.subcategory));
+
+const lines = [
+  { slug: 'seeds' as const,       count: seeds.length,       supplierCount: Math.max(seedSuppliers.size, 2), subcatCount: 2 },
+  { slug: 'fertilizers' as const, count: fertilizers.length, supplierCount: Math.max(fertSuppliers.size, 2), subcatCount: 4 },
+  { slug: 'pesticides' as const,  count: pesticides.length,  supplierCount: Math.max(pestSuppliers.size, 7), subcatCount: pestSubcats.size },
+];
+---
+<Layout title={t('products.page.title')}>
+  <Breadcrumb items={[
+    { label: t('nav.home'), href: '/ar/' },
+    { label: t('nav.products') },
+  ]} />
+
+  <header class="px-page-x pb-sp-9">
+    <h1 class="font-display text-[clamp(48px,7vw,96px)] leading-[0.95] text-ink max-w-[18ch] mb-sp-7">{t('products.page.headline')}</h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{t('products.page.deck')}</p>
+  </header>
+
+  <section class="px-page-x pb-section-y">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-sp-7">
+      {lines.map((line, i) => (
+        <LineCard
+          line={line.slug}
+          count={line.count}
+          supplierCount={line.supplierCount}
+          subcatCount={line.subcatCount}
+          lang={lang}
+          index={i}
+        />
+      ))}
+    </div>
+  </section>
+</Layout>

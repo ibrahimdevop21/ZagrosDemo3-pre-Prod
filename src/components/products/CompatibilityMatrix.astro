@@ -10,9 +10,9 @@ const { productSlug } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const allProducts = await getCollection('products');
-const current = allProducts.find(p => p.slug === productSlug);
-const isSeed = current?.data.category === 'forage_seed';
+// CompatibilityMatrix applies only to fertilizers (chemical tank-mix logic).
+const allProducts = await getCollection('fertilizers');
+const isSeed = false;
 
 const entry = (compatibilityData as Record<string, any>)[productSlug];
 const incompatibleSlugs: string[] = entry?.incompatible ?? [];

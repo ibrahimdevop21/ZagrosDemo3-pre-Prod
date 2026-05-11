@@ -4,7 +4,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import UseCaseCard from './UseCaseCard.astro';
 import useCases from '../../data/use-cases.json';
 
-interface Props { product: CollectionEntry<'products'>; }
+interface Props { product: CollectionEntry<'fertilizers'>; }
 const { product } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
