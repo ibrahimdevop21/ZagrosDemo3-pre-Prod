@@ -68,6 +68,16 @@ export interface UITranslations {
       };
     };
   };
+  product: {
+    composition: {
+      label: string;
+      form: string;
+      packaging: string;
+      applications: string;
+      brochure: string;
+      brochure_download: string;
+    };
+  };
   common: {
     read_more: string;
     view: string;

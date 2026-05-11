@@ -68,6 +68,16 @@
       }
     }
   },
+  "product": {
+    "composition": {
+      "label": "Composition",
+      "form": "Form",
+      "packaging": "Packaging",
+      "applications": "Applications",
+      "brochure": "Brochure",
+      "brochure_download": "Download PDF"
+    }
+  },
   "common": {
     "read_more": "Read",
     "view": "View",

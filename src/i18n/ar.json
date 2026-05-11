@@ -68,6 +68,16 @@
       }
     }
   },
+  "product": {
+    "composition": {
+      "label": "التركيب",
+      "form": "الشكل",
+      "packaging": "التعبئة",
+      "applications": "طرق التطبيق",
+      "brochure": "كرّاسة المنتج",
+      "brochure_download": "تنزيل PDF"
+    }
+  },
   "common": {
     "read_more": "اقرأ",
     "view": "عرض",
