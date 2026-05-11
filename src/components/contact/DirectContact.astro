@@ -5,8 +5,10 @@ import DisclaimerChip from '../editorial/DisclaimerChip.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const isRTL = lang === 'ar';
 const { contact, branches } = companyData;
 const pending = t('contact.direct_pending');
+const hours = isRTL ? contact.hours_ar : contact.hours_en;
 ---
 <aside class="flex flex-col gap-sp-7">
   <div class="bg-ink text-paper p-sp-6">
@@ -25,7 +27,7 @@ const pending = t('contact.direct_pending');
         <dt class="text-paper/55">{t('contact.direct_whatsapp')}</dt><dd class="text-paper m-0 text-end">{contact.whatsapp ?? pending}</dd>
       </div>
       <div class="flex justify-between gap-sp-4">
-        <dt class="text-paper/55">{t('contact.direct_hours')}</dt><dd class="text-paper m-0 text-end">{contact.hours}</dd>
+        <dt class="text-paper/55">{t('contact.direct_hours')}</dt><dd class="text-paper m-0 text-end">{hours}</dd>
       </div>
     </dl>
   </div>
@@ -38,8 +40,8 @@ const pending = t('contact.direct_pending');
       <ul class="list-none p-0 m-0 space-y-3">
         {branches.map((b) => (
           <li>
-            <div class="font-display italic text-xl text-ink">{b.name}</div>
-            <div class="font-sans text-sm text-ink/75 mt-1">{b.address}</div>
+            <div class="font-display italic text-xl text-ink">{isRTL ? b.name.ar : b.name.en}</div>
+            {b.address && <div class="font-sans text-sm text-ink/75 mt-1">{b.address}</div>}
             {b.phone && <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-1">{b.phone}</div>}
           </li>
         ))}

@@ -71,7 +71,7 @@ const branches = companyData.branches;
         {branches.length === 0 ? (
           <li class="text-paper/55 font-mono text-[12px] leading-[2.15]">— pending —</li>
         ) : branches.map((b) => (
-          <li class="text-paper/85 font-sans text-[15px] leading-[2.15]">{b.name}</li>
+          <li class="text-paper/85 font-sans text-[15px] leading-[2.15]">{isRTL ? b.name.ar : b.name.en}</li>
         ))}
       </ul>
     </div>
