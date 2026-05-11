@@ -75,6 +75,16 @@
       "headline": "Four shelves, fourteen SKUs, one operator",
       "full_catalog": "Full catalog"
     },
+    "cta": {
+      "kicker": "Send the soil report",
+      "headline_a": "Bring us your soil report.",
+      "headline_b": "We'll bring the inputs.",
+      "primary": "Request a quote",
+      "secondary": "Browse the catalog",
+      "meta_hours": "Sun-Thu · 8-17",
+      "meta_response": "Response · same-day",
+      "meta_languages": "EN · AR · technical desk available"
+    },
     "editors_note": {
       "kicker": "Editor's note · Issue 03",
       "headline": "What separates an input distributor from a soil partner",

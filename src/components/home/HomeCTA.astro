@@ -1,0 +1,37 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Kicker from '../editorial/Kicker.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+---
+
+<section class="bg-signal text-ink py-section-y">
+  <div class="stage-grid">
+    <div class="col-span-9 col-start-2">
+      <Kicker label={t('home.cta.kicker')} accent="sienna" />
+      <h2 class="font-display text-[clamp(48px,7vw,96px)] leading-[0.95] text-ink mt-sp-6 max-w-[22ch]">
+        {t('home.cta.headline_a')}
+        <em class="italic font-light"> {t('home.cta.headline_b')}</em>
+      </h2>
+
+      <div class="mt-sp-9 flex items-center gap-sp-5 flex-wrap">
+        <a href={isAR ? '/ar/contact' : '/contact'}
+           class="bg-ink text-paper font-sans font-medium text-base px-7 py-4 no-underline inline-flex items-center gap-3">
+          {t('home.cta.primary')} →
+        </a>
+        <a href={isAR ? '/ar/products' : '/products'}
+           class="bg-transparent border border-ink text-ink font-sans font-medium text-base px-7 py-4 no-underline inline-flex items-center gap-3">
+          {t('home.cta.secondary')} →
+        </a>
+      </div>
+    </div>
+
+    <aside class="col-span-3 col-start-12 hidden lg:flex flex-col gap-sp-5 border-s border-ink/20 ps-sp-6 font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink/85">
+      <span>{t('home.cta.meta_hours')}</span>
+      <span>{t('home.cta.meta_response')}</span>
+      <span>{t('home.cta.meta_languages')}</span>
+    </aside>
+  </div>
+</section>

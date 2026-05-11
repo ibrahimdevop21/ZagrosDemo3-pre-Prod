@@ -75,6 +75,16 @@ export interface UITranslations {
       headline: string;
       full_catalog: string;
     };
+    cta: {
+      kicker: string;
+      headline_a: string;
+      headline_b: string;
+      primary: string;
+      secondary: string;
+      meta_hours: string;
+      meta_response: string;
+      meta_languages: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;
