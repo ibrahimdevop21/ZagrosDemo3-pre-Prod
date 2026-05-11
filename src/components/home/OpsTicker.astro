@@ -1,0 +1,46 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import opsData from '../../data/ops-ticker.json';
+
+const lang = getLangFromUrl(Astro.url);
+const items = opsData.items.map(item => item[lang as 'en' | 'ar']);
+const doubled = [...items, ...items];
+---
+
+<section class="bg-signal text-ink overflow-hidden border-y border-ink/10" aria-label="Operations ticker">
+  <div class="flex items-center gap-3 px-page-x py-3.5">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase shrink-0 pe-4 border-e border-ink/30">
+      Live Ops
+    </span>
+    <div class="marquee flex-1 overflow-hidden">
+      <div class="marquee-track flex gap-sp-8 whitespace-nowrap">
+        {doubled.map((item) => (
+          <span class="font-mono text-[12px] tracking-[0.16em] uppercase">
+            <span class="inline-block w-1.5 h-1.5 bg-ink rounded-full me-2.5 align-middle"></span>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+  }
+  [dir='rtl'] .marquee-track {
+    animation: marquee-rtl 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes marquee-rtl {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
+  }
+</style>
