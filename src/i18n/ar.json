@@ -28,7 +28,9 @@
     "col_reports": "التقارير",
     "col_branches": "الفروع",
     "col_company": "الشركة",
-    "copyright": "© ٢٠٢٦ زاغروس للتجارة"
+    "copyright": "© ٢٠٢٦ زاغروس للتجارة",
+    "colophon_label": "الخاتمة",
+    "colophon_section": "٠٩ / ٠٩"
   },
   "common": {
     "read_more": "اقرأ",

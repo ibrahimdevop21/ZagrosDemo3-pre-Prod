@@ -28,7 +28,9 @@
     "col_reports": "Reports",
     "col_branches": "Branches",
     "col_company": "Company",
-    "copyright": "© 2026 Zagros Trading"
+    "copyright": "© 2026 Zagros Trading",
+    "colophon_label": "Colophon",
+    "colophon_section": "09 / 09"
   },
   "common": {
     "read_more": "Read",

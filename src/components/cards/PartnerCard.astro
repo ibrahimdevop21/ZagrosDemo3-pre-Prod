@@ -21,7 +21,7 @@ const tileBg = partner.slug === 'k-plus-s' ? 'bg-signal text-ink' : 'bg-field te
 
   <div class="flex flex-col flex-1 p-sp-6">
     <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
-      {partner.data.country} · est. {partner.data.since_year}
+      {partner.data.country}
     </span>
     <h3 class="font-display text-3xl text-ink mt-sp-3 mb-sp-5">{partner.data.name}</h3>
     <p class="font-sans text-base leading-relaxed text-ink/80 mb-sp-6">{tagline}</p>
@@ -36,7 +36,7 @@ const tileBg = partner.slug === 'k-plus-s' ? 'bg-signal text-ink' : 'bg-field te
     </ul>
 
     <div class="mt-auto pt-sp-5 border-t border-dashed border-stone flex items-end justify-between gap-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
-      <span>{partner.data.stats.years_in_partnership} yrs · {partner.data.stats.products_carried} SKUs</span>
+      <span>{partner.data.stats.products_carried} SKUs</span>
       <a href={`${lang === 'ar' ? '/ar' : ''}/partners/${partner.slug}`} class="text-ink border-b border-ink pb-0.5 no-underline">
         {t('common.view')} →
       </a>

@@ -29,6 +29,8 @@ export interface UITranslations {
     col_branches: string;
     col_company: string;
     copyright: string;
+    colophon_label: string;
+    colophon_section: string;
   };
   common: {
     read_more: string;

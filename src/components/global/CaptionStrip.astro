@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
 interface Props {
   sectionNumber?: string;
   label: string;
@@ -6,12 +8,14 @@ interface Props {
 }
 
 const { sectionNumber, label, subLabel } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="bg-ink text-paper px-page-x py-4 font-mono text-[10.5px] tracking-[0.25em] uppercase text-paper/55 flex justify-between items-center">
   <span>
     {sectionNumber && (
-      <>Section · {sectionNumber} · </>
+      <>{t('common.section')} · {sectionNumber} · </>
     )}
     <b class="text-paper font-medium">{label}</b>
   </span>
