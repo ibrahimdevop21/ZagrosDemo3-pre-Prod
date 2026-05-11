@@ -1,0 +1,40 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import SectionNumber from '../editorial/SectionNumber.astro';
+import Kicker from '../editorial/Kicker.astro';
+import PullQuote from '../editorial/PullQuote.astro';
+import DropCap from '../editorial/DropCap.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="py-section-y bg-paper">
+  <div class="stage-grid">
+    <aside class="col-span-2 col-start-2 hidden lg:block">
+      <SectionNumber value="02" />
+    </aside>
+
+    <div class="col-span-7 col-start-5">
+      <Kicker label={t('home.editors_note.kicker')} accent="sienna" />
+      <h2 class="font-display text-5xl leading-[1.05] text-ink mt-sp-5 mb-sp-7 max-w-[20ch]">
+        {t('home.editors_note.headline')}
+      </h2>
+
+      <div class="font-sans text-lg leading-relaxed text-ink/85 space-y-sp-5">
+        <p>
+          <DropCap>{t('home.editors_note.first_letter')}</DropCap>{t('home.editors_note.para1_body')}
+        </p>
+        <p>{t('home.editors_note.para2')}</p>
+      </div>
+
+      <PullQuote accent="signal">
+        {t('home.editors_note.pull_quote')}
+      </PullQuote>
+
+      <p class="font-sans text-lg leading-relaxed text-ink/85">
+        {t('home.editors_note.para3')}
+      </p>
+    </div>
+  </div>
+</section>
