@@ -1,0 +1,30 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+
+const services = [
+  { key: 'consultancy', ordinal_en: '01', ordinal_ar: '٠١' },
+  { key: 'fertilizers', ordinal_en: '02', ordinal_ar: '٠٢' },
+  { key: 'pesticides',  ordinal_en: '03', ordinal_ar: '٠٣' },
+  { key: 'seeds',       ordinal_en: '04', ordinal_ar: '٠٤' },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-sp-7">
+  {services.map((s) => (
+    <article class="border-t border-ink pt-sp-5 flex flex-col">
+      <span class="font-display italic font-light text-sienna text-5xl leading-none">
+        {isAR ? s.ordinal_ar : s.ordinal_en}
+      </span>
+      <h3 class="font-display text-2xl text-ink mt-sp-4 mb-sp-4 leading-tight">
+        {t(`about.services.${s.key}_title`)}
+      </h3>
+      <p class="font-sans text-base text-ink/80 leading-relaxed">
+        {t(`about.services.${s.key}_body`)}
+      </p>
+    </article>
+  ))}
+</div>

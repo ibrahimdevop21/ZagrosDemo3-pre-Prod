@@ -1,0 +1,57 @@
+---
+import { companyData } from '../../data/company';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+
+const yearsActive = new Date().getFullYear() - companyData.established_year;
+
+// Convert Western digits to Arabic-Indic digits for AR rendering.
+const toArabicDigits = (s: string | number) =>
+  String(s).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+
+const foundedYearDisplay = isAR ? toArabicDigits(companyData.established_year) : String(companyData.established_year);
+const yearsDisplay = isAR ? toArabicDigits(yearsActive) : String(yearsActive);
+const staffDisplay = isAR ? `~${toArabicDigits(companyData.staff_count)}` : `~${companyData.staff_count}`;
+const parentDisplay = isAR ? 'مجموعة زاغروس' : companyData.parent_company;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-sp-7 border-t border-ink pt-sp-7">
+  <div class="flex flex-col">
+    <span class="font-display italic text-sienna text-[clamp(56px,7vw,96px)] leading-none">
+      {foundedYearDisplay}
+    </span>
+    <div class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mt-sp-4">
+      {t('about.timeline.founded_label')}
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <span class="font-display italic text-sienna text-[clamp(56px,7vw,96px)] leading-none">
+      {yearsDisplay}
+    </span>
+    <div class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mt-sp-4">
+      {t('about.timeline.years_label')}
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <span class="font-display italic text-sienna text-[clamp(56px,7vw,96px)] leading-none">
+      {staffDisplay}
+    </span>
+    <div class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mt-sp-4">
+      {t('about.timeline.staff_label')}
+    </div>
+  </div>
+
+  <div class="flex flex-col">
+    <span class="font-display text-3xl text-ink leading-tight">
+      {parentDisplay}
+    </span>
+    <div class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mt-sp-4">
+      {t('about.timeline.parent_label')}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+---
+import { companyData } from '../../data/company';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+const branches = companyData.branches;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sp-6">
+  {branches.map((b) => (
+    <a
+      href={`https://www.google.com/maps/search/?api=1&query=${b.map_query}`}
+      target="_blank"
+      rel="noreferrer"
+      class="block border border-stone p-sp-5 hover:border-ink transition-colors no-underline group"
+    >
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">
+        {b.type === 'HQ' ? t('about.branches.hq_label') : t('about.branches.branch_label')}
+      </span>
+      <div class="font-display italic text-3xl text-ink mt-sp-4 leading-tight group-hover:text-sienna transition-colors">
+        {isAR ? b.name.ar : b.name.en}
+      </div>
+      <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-ink/55 mt-sp-3">
+        {isAR ? b.city_ar : b.city_en}
+      </div>
+      {b.phone && (
+        <div class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-4 pt-sp-3 border-t border-stone/60">
+          {b.phone}
+        </div>
+      )}
+    </a>
+  ))}
+</div>

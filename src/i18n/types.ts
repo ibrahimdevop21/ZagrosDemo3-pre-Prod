@@ -38,19 +38,38 @@ export interface UITranslations {
     kicker: string;
     headline: string;
     deck: string;
-    pillars_label: string;
-    pillar_1_title: string;
-    pillar_1_body: string;
-    pillar_2_title: string;
-    pillar_2_body: string;
-    pillar_3_title: string;
-    pillar_3_body: string;
+    timeline_label: string;
+    timeline: {
+      founded_label: string;
+      years_label: string;
+      staff_label: string;
+      parent_label: string;
+    };
+    services_label: string;
+    services: {
+      consultancy_title: string;
+      consultancy_body: string;
+      fertilizers_title: string;
+      fertilizers_body: string;
+      pesticides_title: string;
+      pesticides_body: string;
+      seeds_title: string;
+      seeds_body: string;
+    };
     branches_label: string;
-    branches_pending: string;
+    branches: {
+      hq_label: string;
+      branch_label: string;
+    };
     team_label: string;
     team_pending: string;
     affiliations_label: string;
-    affiliations_pending: string;
+    affiliations: {
+      iata: string;
+      additional_pending: string;
+    };
+    story_label: string;
+    story_pending: string;
   };
   contact: {
     title: string;

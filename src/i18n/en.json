@@ -38,19 +38,38 @@
     "kicker": "About Zagros",
     "headline": "Sudan's full-input agricultural-solutions partner since 2010.",
     "deck": "Zagros Trading has served Sudanese farms — from ministry-scale projects to family operations — for sixteen years. Six branches, seven international suppliers, three product lines under one roof. Consultancy, distribution, and after-sales support.",
-    "pillars_label": "How we operate",
-    "pillar_1_title": "Technical excellence",
-    "pillar_1_body": "Agronomy desk on every order over a soil report's worth of complexity. Composition-first, not catalog-first.",
-    "pillar_2_title": "Regional fit",
-    "pillar_2_body": "Salt-stress, high-pH, low-rainfall, hot summers — the catalog is curated for what Sudanese fields actually face.",
-    "pillar_3_title": "International standards",
-    "pillar_3_body": "Seven international suppliers across six countries. K+S German chemistry, Barenbrug Australian breeding, East West Thai vegetable hybrids. EU Organic certifications where the brief calls for them.",
-    "branches_label": "Where we operate",
-    "branches_pending": "Branch list pending client confirmation.",
-    "team_label": "The team",
+    "timeline_label": "Established",
+    "timeline": {
+      "founded_label": "Founded in Khartoum",
+      "years_label": "Years operating",
+      "staff_label": "Team across Sudan",
+      "parent_label": "Parent company"
+    },
+    "services_label": "Services",
+    "services": {
+      "consultancy_title": "Agricultural consultancy",
+      "consultancy_body": "Soil reports, application planning, crop diagnostics. The agronomy desk is on every order more complex than a single tank-mix — before the order, not after a problem.",
+      "fertilizers_title": "Premium fertilizers",
+      "fertilizers_body": "Water-soluble K+S German chemistry plus Agro Dragon (Netherlands) specialty lines. Foliar, fertigation, and soil application across NPK, phosphate, nitrogen, potassium, and magnesium sources.",
+      "pesticides_title": "Pest control solutions",
+      "pesticides_body": "Insecticides, herbicides, fungicides — sourced from Egyptian, Swiss, British, Indian, and Chinese manufacturers and supplied under the Agro- and Or- house lines.",
+      "seeds_title": "Quality seeds",
+      "seeds_body": "Vegetable hybrids from East West Seeds (Thailand) and forage cultivars from Barenbrug (Australia) — varieties chosen for the heat, salinity, and pH profiles Sudanese fields actually face."
+    },
+    "branches_label": "Branches across Sudan",
+    "branches": {
+      "hq_label": "Headquarters",
+      "branch_label": "Branch"
+    },
+    "team_label": "Leadership",
     "team_pending": "Team profiles pending client headshots and bios.",
-    "affiliations_label": "Affiliations",
-    "affiliations_pending": "Local certifications and affiliations pending client confirmation."
+    "affiliations_label": "Memberships",
+    "affiliations": {
+      "iata": "International Agricultural Trade Association",
+      "additional_pending": "Additional certifications and local memberships pending client confirmation."
+    },
+    "story_label": "Our story",
+    "story_pending": "Founding-story narrative pending client interview."
   },
   "contact": {
     "title": "Contact",

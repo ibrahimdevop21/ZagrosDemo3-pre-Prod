@@ -5,6 +5,9 @@ import Breadcrumb from '../components/global/Breadcrumb.astro';
 import CaptionStrip from '../components/global/CaptionStrip.astro';
 import Kicker from '../components/editorial/Kicker.astro';
 import DisclaimerChip from '../components/editorial/DisclaimerChip.astro';
+import FoundedTimeline from '../components/about/FoundedTimeline.astro';
+import ServicesList from '../components/about/ServicesList.astro';
+import BranchesGrid from '../components/about/BranchesGrid.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -19,41 +22,60 @@ const homeHref = lang === 'ar' ? '/ar/' : '/';
     <p class="font-sans text-lg text-ink/80 max-w-[64ch] leading-relaxed">{t('about.deck')}</p>
   </header>
 
-  <CaptionStrip sectionNumber="01 / 05" label={t('about.pillars_label')} />
+  <CaptionStrip sectionNumber="01 / 06" label={t('about.timeline_label')} />
   <section class="py-section-y bg-paper">
     <div class="stage-grid">
-      <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-7 border-t border-ink pt-sp-7">
-        {[1, 2, 3].map((i) => (
-          <article class="flex flex-col">
-            <span class="font-display italic font-light text-sienna text-5xl leading-none">0{i}</span>
-            <h3 class="font-display text-2xl text-ink mt-sp-4 mb-sp-4">{t(`about.pillar_${i}_title` as any)}</h3>
-            <p class="font-sans text-base text-ink/80 leading-relaxed">{t(`about.pillar_${i}_body` as any)}</p>
-          </article>
-        ))}
+      <div class="col-span-12 col-start-2">
+        <FoundedTimeline />
       </div>
     </div>
   </section>
 
-  <CaptionStrip sectionNumber="02 / 05" label={t('about.branches_label')} />
+  <CaptionStrip sectionNumber="02 / 06" label={t('about.services_label')} />
   <section class="py-section-y bg-paper">
     <div class="stage-grid">
-      <div class="col-span-9 col-start-2 flex items-center gap-sp-5 flex-wrap">
-        <DisclaimerChip text={t('about.branches_pending')} />
+      <div class="col-span-12 col-start-2">
+        <ServicesList />
       </div>
     </div>
   </section>
 
-  <CaptionStrip sectionNumber="03 / 05" label={t('about.team_label')} />
+  <CaptionStrip sectionNumber="03 / 06" label={t('about.branches_label')} />
   <section class="py-section-y bg-paper">
     <div class="stage-grid">
-      <div class="col-span-9 col-start-2"><DisclaimerChip text={t('about.team_pending')} /></div>
+      <div class="col-span-12 col-start-2">
+        <BranchesGrid />
+      </div>
     </div>
   </section>
 
-  <CaptionStrip sectionNumber="04 / 05" label={t('about.affiliations_label')} />
+  <CaptionStrip sectionNumber="04 / 06" label={t('about.team_label')} />
   <section class="py-section-y bg-paper">
     <div class="stage-grid">
-      <div class="col-span-9 col-start-2"><DisclaimerChip text={t('about.affiliations_pending')} /></div>
+      <div class="col-span-9 col-start-2">
+        <DisclaimerChip text={t('about.team_pending')} />
+      </div>
+    </div>
+  </section>
+
+  <CaptionStrip sectionNumber="05 / 06" label={t('about.affiliations_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-9 col-start-2 border-t border-ink pt-sp-7">
+        <div class="font-display text-3xl text-ink mb-sp-5 max-w-[40ch] leading-tight">
+          {t('about.affiliations.iata')}
+        </div>
+        <DisclaimerChip text={t('about.affiliations.additional_pending')} />
+      </div>
+    </div>
+  </section>
+
+  <CaptionStrip sectionNumber="06 / 06" label={t('about.story_label')} />
+  <section class="py-section-y bg-paper">
+    <div class="stage-grid">
+      <div class="col-span-9 col-start-2">
+        <DisclaimerChip text={t('about.story_pending')} />
+      </div>
     </div>
   </section>
 </Layout>
