@@ -76,6 +76,16 @@
       "applications": "Applications",
       "brochure": "Brochure",
       "brochure_download": "Download PDF"
+    },
+    "compatibility": {
+      "label": "Tank-mix compatibility",
+      "kicker": "Compatibility · field-relevant only",
+      "headline": "What it mixes with — and what it does not",
+      "compatible": "Compatible with",
+      "incompatible": "Do not mix with",
+      "universal_rule_label": "Universal rule",
+      "seed_note_headline": "Seed — tank-mix N/A",
+      "seed_note_body": "Tank-mix compatibility applies to liquid-feed and foliar inputs, not coated seed. The universal rule below still holds for any product introduced to a mixed tank in this rotation."
     }
   },
   "common": {

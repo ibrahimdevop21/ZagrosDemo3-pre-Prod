@@ -77,6 +77,16 @@ export interface UITranslations {
       brochure: string;
       brochure_download: string;
     };
+    compatibility: {
+      label: string;
+      kicker: string;
+      headline: string;
+      compatible: string;
+      incompatible: string;
+      universal_rule_label: string;
+      seed_note_headline: string;
+      seed_note_body: string;
+    };
   };
   common: {
     read_more: string;
