@@ -84,7 +84,9 @@ const products = defineCollection({
 const fieldReports = defineCollection({
   type: 'content',
   schema: z.object({
-    slug: z.string(),
+    // NOTE: `slug` is reserved by Astro for `type: 'content'` collections —
+    // it's auto-derived from the filename and exposed as `entry.slug`.
+    // Do not add it here (will cause "slug Required" or schema errors).
     issue: z.number(),
     title: z.object({ en: z.string(), ar: z.string() }),
     summary: z.object({ en: z.string(), ar: z.string() }),
@@ -96,13 +98,16 @@ const fieldReports = defineCollection({
     related_partners: z.array(z.string()),    // partner slugs
     crop: z.string(),
     hero_image: z.string(),
+    illustrative: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    stat_line: z.string().optional(),
   }),
 });
 
 const partners = defineCollection({
   type: 'content',
   schema: z.object({
-    slug: z.string(),
+    // NOTE: `slug` auto-derived from filename. See note above on fieldReports.
     name: z.string(),
     country: z.string(),
     since_year: z.number(),
