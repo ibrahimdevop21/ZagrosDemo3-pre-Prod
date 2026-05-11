@@ -1,0 +1,20 @@
+{
+  "_illustrative": true,
+  "_note": "14 placeholder MENA regions pending client confirmation of actual service area (source-of-truth gap #3).",
+  "regions": [
+    { "code": "R01", "name_en": "Region 01", "name_ar": "المنطقة ٠١", "hub": true  },
+    { "code": "R02", "name_en": "Region 02", "name_ar": "المنطقة ٠٢", "hub": false },
+    { "code": "R03", "name_en": "Region 03", "name_ar": "المنطقة ٠٣", "hub": false },
+    { "code": "R04", "name_en": "Region 04", "name_ar": "المنطقة ٠٤", "hub": true  },
+    { "code": "R05", "name_en": "Region 05", "name_ar": "المنطقة ٠٥", "hub": false },
+    { "code": "R06", "name_en": "Region 06", "name_ar": "المنطقة ٠٦", "hub": false },
+    { "code": "R07", "name_en": "Region 07", "name_ar": "المنطقة ٠٧", "hub": false },
+    { "code": "R08", "name_en": "Region 08", "name_ar": "المنطقة ٠٨", "hub": false },
+    { "code": "R09", "name_en": "Region 09", "name_ar": "المنطقة ٠٩", "hub": true  },
+    { "code": "R10", "name_en": "Region 10", "name_ar": "المنطقة ١٠", "hub": false },
+    { "code": "R11", "name_en": "Region 11", "name_ar": "المنطقة ١١", "hub": false },
+    { "code": "R12", "name_en": "Region 12", "name_ar": "المنطقة ١٢", "hub": false },
+    { "code": "R13", "name_en": "Region 13", "name_ar": "المنطقة ١٣", "hub": false },
+    { "code": "R14", "name_en": "Region 14", "name_ar": "المنطقة ١٤", "hub": false }
+  ]
+}

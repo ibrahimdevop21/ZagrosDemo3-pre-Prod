@@ -1,0 +1,9 @@
+{
+  "_source_note": "All four stats are derivable from real data: founding year (1987), partner count, product count, crop category count. Region count is illustrative pending audit.",
+  "stats": [
+    { "key": "years",      "value": "39",  "label_en": "Years operating",   "label_ar": "سنة من النشاط",       "context_en": "since 1987",                          "context_ar": "منذ ١٩٨٧" },
+    { "key": "partners",   "value": "2",   "label_en": "Partner houses",    "label_ar": "بيوت الشراكة",        "context_en": "K+S · Barenbrug",                     "context_ar": "K+S · Barenbrug" },
+    { "key": "skus",       "value": "14",  "label_en": "SKUs in catalog",   "label_ar": "منتج في الكتالوج",    "context_en": "11 K+S · 3 Barenbrug",                "context_ar": "١١ K+S · ٣ Barenbrug" },
+    { "key": "categories", "value": "5",   "label_en": "Crop categories",   "label_ar": "فئات محاصيل",          "context_en": "veg · trees · field · forage · oil",  "context_ar": "خضار · أشجار · حقلية · أعلاف · زيتية" }
+  ]
+}

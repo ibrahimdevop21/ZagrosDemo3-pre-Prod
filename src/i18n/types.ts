@@ -64,6 +64,12 @@ export interface UITranslations {
       headline_a: string;
       headline_b: string;
     };
+    numbers: {
+      kicker: string;
+      headline: string;
+      regions_label: string;
+      audit_chip: string;
+    };
     editors_note: {
       kicker: string;
       headline: string;

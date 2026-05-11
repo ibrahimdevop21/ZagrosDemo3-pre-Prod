@@ -1,0 +1,52 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import statsData from '../../data/home-stats.json';
+import regionsData from '../../data/regions.json';
+import Kicker from '../editorial/Kicker.astro';
+import DisclaimerChip from '../editorial/DisclaimerChip.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isAR = lang === 'ar';
+---
+
+<section class="bg-ink text-paper py-section-y relative">
+  <div class="stage-grid">
+    <header class="col-span-12 col-start-2 mb-sp-9 flex items-end justify-between flex-wrap gap-sp-5">
+      <div>
+        <Kicker label={t('home.numbers.kicker')} accent="signal" />
+        <h2 class="font-display text-5xl text-paper mt-sp-5 max-w-[22ch] leading-tight">
+          {t('home.numbers.headline')}
+        </h2>
+      </div>
+      <DisclaimerChip text={t('home.numbers.audit_chip')} />
+    </header>
+
+    <div class="col-span-12 col-start-2 grid grid-cols-2 lg:grid-cols-4 gap-sp-7 mb-section-y">
+      {statsData.stats.map((stat) => (
+        <div class="border-t border-paper/20 pt-sp-5">
+          <span class="font-display italic text-paper text-[clamp(64px,8vw,112px)] leading-none">{stat.value}</span>
+          <div class="mt-sp-4 font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/75">
+            {isAR ? stat.label_ar : stat.label_en}
+          </div>
+          <div class="mt-2 font-sans text-sm text-paper/55">
+            {isAR ? stat.context_ar : stat.context_en}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="col-span-12 col-start-2">
+      <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/55 mb-sp-5">{t('home.numbers.regions_label')}</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+        {regionsData.regions.map((r) => (
+          <div class:list={['p-3 border', r.hub ? 'border-signal bg-signal/10' : 'border-paper/15']}>
+            <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-paper/55">{r.code}</div>
+            <div class="font-sans text-sm text-paper mt-1">{isAR ? r.name_ar : r.name_en}</div>
+            {r.hub && <div class="mt-2 font-mono text-[9px] tracking-[0.22em] uppercase text-signal">Hub</div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
