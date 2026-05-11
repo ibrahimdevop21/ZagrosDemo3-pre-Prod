@@ -66,7 +66,7 @@ export const companyData: CompanyData = {
     en: 'Authorized Middle East distributor of K+S Group fertilizers and Barenbrug forage seeds.',
     ar: 'الموزع المعتمد لأسمدة K+S وبذور الأعلاف Barenbrug في الشرق الأوسط.',
   },
-  established_year: null,
+  established_year: 1987,
   partners: [
     { slug: 'k-plus-s',  name: 'K+S Group', country: 'Germany',     since_year: 2014, category: 'fertilizers' },
     { slug: 'barenbrug', name: 'Barenbrug', country: 'Netherlands', since_year: 2019, category: 'forage_seeds' },
