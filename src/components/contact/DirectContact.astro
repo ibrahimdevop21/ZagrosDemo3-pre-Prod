@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import { companyData } from '../../data/company';
-import DisclaimerChip from '../editorial/DisclaimerChip.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,19 +11,23 @@ const hours = isRTL ? contact.hours_ar : contact.hours_en;
 ---
 <aside class="flex flex-col gap-sp-7">
   <div class="bg-ink text-paper p-sp-6">
-    <header class="flex items-center justify-between mb-sp-5">
-      <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/65 m-0">{t('contact.direct_label')}</h3>
-      <DisclaimerChip text={pending} />
-    </header>
+    <h3 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/65 m-0 mb-sp-5">{t('contact.direct_label')}</h3>
     <dl class="space-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase">
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
-        <dt class="text-paper/55">{t('contact.direct_phone')}</dt><dd class="text-paper m-0 text-end">{contact.phone ?? pending}</dd>
+        <dt class="text-paper/55">{t('contact.direct_phone')}</dt>
+        <dd class="text-paper m-0 text-end">
+          {contact.phone ? <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} class="text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone}</a> : pending}
+        </dd>
       </div>
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
-        <dt class="text-paper/55">{t('contact.direct_email')}</dt><dd class="text-paper m-0 text-end">{contact.email ?? pending}</dd>
+        <dt class="text-paper/55">{t('contact.direct_whatsapp')}</dt>
+        <dd class="text-paper m-0 text-end">
+          {contact.whatsapp ? <a href={`https://wa.me/${contact.whatsapp.replace(/[^\d]/g, '')}`} target="_blank" rel="noreferrer" class="text-paper no-underline border-b border-paper/30 hover:border-paper">{contact.phone ?? contact.whatsapp}</a> : pending}
+        </dd>
       </div>
       <div class="flex justify-between gap-sp-4 border-b border-dashed border-paper/15 pb-2">
-        <dt class="text-paper/55">{t('contact.direct_whatsapp')}</dt><dd class="text-paper m-0 text-end">{contact.whatsapp ?? pending}</dd>
+        <dt class="text-paper/55">{t('contact.direct_email')}</dt>
+        <dd class="text-paper/55 m-0 text-end italic">{contact.email ?? pending}</dd>
       </div>
       <div class="flex justify-between gap-sp-4">
         <dt class="text-paper/55">{t('contact.direct_hours')}</dt><dd class="text-paper m-0 text-end">{hours}</dd>
