@@ -19,6 +19,12 @@ export interface Customer {
   name: { en: string; ar: string };
   logo: string;
   sector: CustomerSector;
+  /** Optional v3 pull-quote. Leave undefined until client confirms a real quote.
+      Never invent — see PRODUCT.md anti-AI-slop discipline. */
+  pull_quote?: {
+    text: { en: string; ar: string };
+    attribution: { en: string; ar: string };
+  };
 }
 
 export const customers: Customer[] = [

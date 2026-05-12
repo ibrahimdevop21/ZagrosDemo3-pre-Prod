@@ -1,0 +1,67 @@
+---
+/**
+ * Zagros v3 — Section 07 customers wall (ink ground).
+ *
+ * Chapter contrast against neighbouring paper sections. Pull quote in
+ * Plex Serif italic with signal-yellow opening quotation mark. Falls
+ * back to a visible "pending" marker when no real quote is set — per
+ * PRODUCT.md anti-AI-slop discipline, NEVER invent a customer quote.
+ *
+ * Logo wall: 6 tiles. On hover the hovered logo brightens while others
+ * dim slightly (CSS only via group-hover semantics).
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { customers } from '../../data/customers';
+import Placeholder from '../editorial/Placeholder.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const customerWithQuote = customers.find((c) => c.pull_quote);
+const quote = customerWithQuote?.pull_quote;
+---
+<section class="px-page-x py-section-y bg-ink text-paper">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="w-6 h-px bg-paper/60 inline-block"></span>
+    {t('home.v3customers.label')}
+  </span>
+
+  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-paper max-w-[24ch] mb-sp-7" data-reveal style="--reveal-delay: 100ms;">
+    {t('home.v3customers.headline_phrase')} <span class="text-signal not-italic">{t('home.v3customers.headline_accent')}</span>
+  </h2>
+
+  <div class="max-w-[44ch] mb-sp-9" data-reveal style="--reveal-delay: 200ms;">
+    {quote ? (
+      <>
+        <div class="font-display italic font-light text-[60px] leading-[0.4] text-signal mb-sp-3">"</div>
+        <p class="font-serif italic text-[clamp(18px,2.5vw,24px)] leading-[1.35] text-paper m-0">
+          {quote.text[lang as 'en' | 'ar']}
+        </p>
+        <p class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/70 mt-sp-4 m-0">
+          — {quote.attribution[lang as 'en' | 'ar']}
+        </p>
+      </>
+    ) : (
+      <p class="font-serif italic text-[clamp(18px,2.5vw,24px)] leading-[1.35] text-paper/70 m-0">
+        {t('home.v3customers.pull_quote_pending')}
+      </p>
+    )}
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-sp-3">
+    {customers.map((c) => (
+      <div data-customer-logo class="bg-paper/5 border border-paper/15 aspect-[5/3] flex items-center justify-center p-sp-3 hover:bg-paper/10 transition-colors" data-reveal>
+        {c.logo ? (
+          <img src={c.logo} alt={c.name.en} width="120" height="48" loading="lazy" decoding="async" class="max-w-full max-h-full object-contain opacity-85 hover:opacity-100 transition-opacity" />
+        ) : (
+          <Placeholder kind="logo" label={`${c.name.en} — logo pending`} dark={true} aspectRatio="5 / 3" />
+        )}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { observeReveal } from '../../lib/motion';
+  observeReveal();
+</script>
