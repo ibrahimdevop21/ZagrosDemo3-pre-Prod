@@ -8,18 +8,18 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isRTL = lang === 'ar';
 
-const path = Astro.url.pathname.replace(/^\/ar/, '');
-const isActive = (route: string) => path === route || path.startsWith(`${route}/`);
+const path = Astro.url.pathname.replace(/^\/ar/, '') || '/';
+const isActive = (route: string) =>
+  route === '/' ? path === '/' : path === route || path.startsWith(`${route}/`);
 
 const altLocaleHref = isRTL
   ? Astro.url.pathname.replace(/^\/ar/, '') || '/'
   : `/ar${Astro.url.pathname}`;
 
 const navLinks = [
+  { route: '/',              label: t('nav.home') },
   { route: '/products',      label: t('nav.products') },
   { route: '/field-reports', label: t('nav.field_reports') },
-  { route: '/partners',      label: t('nav.partners') },
-  { route: '/customers',     label: t('nav.customers') },
   { route: '/about',         label: t('nav.about') },
   { route: '/contact',       label: t('nav.contact') },
 ];
