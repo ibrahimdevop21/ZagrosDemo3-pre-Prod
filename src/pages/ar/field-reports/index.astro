@@ -14,7 +14,7 @@ const reports = (await getCollection('field-reports')).sort((a, b) => b.data.dat
   <Breadcrumb items={[{ label: t('nav.home'), href: '/ar/' }, { label: t('nav.field_reports') }]} />
   <header class="px-page-x pb-sp-9">
     <Kicker label={t('field_reports.page.kicker')} accent="sienna" />
-    <h1 class="font-display text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[22ch] mb-sp-7">{t('field_reports.page.headline')}</h1>
+    <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[22ch] mb-sp-7">{t('field_reports.page.headline')}</h1>
     <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('field_reports.page.deck')}</p>
   </header>
   <section class="px-page-x pb-section-y">
