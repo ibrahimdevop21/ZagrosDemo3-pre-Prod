@@ -1,36 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/home/Hero.astro';
-import OpsTicker from '../../components/home/OpsTicker.astro';
-import EditorsNote from '../../components/home/EditorsNote.astro';
-import FeaturedReport from '../../components/home/FeaturedReport.astro';
-import ThreeReportsGrid from '../../components/home/ThreeReportsGrid.astro';
-import SourcesSection from '../../components/home/SourcesSection.astro';
-import CustomersStrip from '../../components/home/CustomersStrip.astro';
-import ByTheNumbers from '../../components/home/ByTheNumbers.astro';
-import CatalogTable from '../../components/home/CatalogTable.astro';
-import HomeCTA from '../../components/home/HomeCTA.astro';
-import CaptionStrip from '../../components/global/CaptionStrip.astro';
+import HeroV3 from '../../components/home/HeroV3.astro';
+import OpsTickerMarquee from '../../components/home/OpsTickerMarquee.astro';
+import ByTheNumbersV3 from '../../components/home/ByTheNumbersV3.astro';
+import CatalogStrips from '../../components/home/CatalogStrips.astro';
+import PartnersSection from '../../components/home/PartnersSection.astro';
+import FieldReportsTeaser from '../../components/home/FieldReportsTeaser.astro';
+import CustomersWall from '../../components/home/CustomersWall.astro';
+import BranchesMap from '../../components/home/BranchesMap.astro';
+import QuoteCTA from '../../components/home/QuoteCTA.astro';
 ---
 
 <Layout>
-  <Hero />
-  <CaptionStrip sectionNumber="٠١ / ١٠" label="العمليات" subLabel="مباشر · هذا الأسبوع" />
-  <OpsTicker />
-  <CaptionStrip sectionNumber="٠٢ / ١٠" label="افتتاحية المحرّر" subLabel="إصدار ٠٣ · ٢٠٢٦ · العائد" />
-  <EditorsNote />
-  <CaptionStrip sectionNumber="٠٣ / ١٠" label="تقرير حقلي مميّز" />
-  <FeaturedReport />
-  <CaptionStrip sectionNumber="٠٤ / ١٠" label="من الحقل" subLabel="ثلاثة تقارير · هذا الإصدار" />
-  <ThreeReportsGrid />
-  <CaptionStrip sectionNumber="٠٥ / ١٠" label="المصادر · سبع شراكات دولية" />
-  <SourcesSection />
-  <CaptionStrip sectionNumber="٠٦ / ١٠" label="جدار العملاء" subLabel="ستة عملاء مرجعيون · السودان" />
-  <CustomersStrip />
-  <CaptionStrip sectionNumber="٠٧ / ١٠" label="بالأرقام" subLabel="الفروع والانتشار" />
-  <ByTheNumbers />
-  <CaptionStrip sectionNumber="٠٨ / ١٠" label="الكتالوج" subLabel="ثلاثة خطوط · بذور وأسمدة ومبيدات" />
-  <CatalogTable />
-  <CaptionStrip sectionNumber="٠٩ / ١٠" label="أرسل تقرير التربة" />
-  <HomeCTA />
+  <HeroV3 />
+  <OpsTickerMarquee />
+  <ByTheNumbersV3 />
+  <CatalogStrips />
+  <PartnersSection />
+  <FieldReportsTeaser />
+  <CustomersWall />
+  <BranchesMap />
+  <QuoteCTA />
 </Layout>

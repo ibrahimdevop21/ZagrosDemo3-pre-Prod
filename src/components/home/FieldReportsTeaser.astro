@@ -50,7 +50,7 @@ function fmtDate(d: Date): string {
   <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
     {featured && (
       <a href={arHref(featured.slug)} data-reveal class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
-        <img src={featured.data.hero_image} alt="" width="800" height="500" loading="lazy" decoding="async" class="block w-full aspect-[16/10] object-cover" />
+        <img src={featured.data.hero_image} alt="" role="presentation" aria-hidden="true" width="800" height="500" loading="lazy" decoding="async" class="block w-full aspect-[16/10] object-cover" />
         <div class="p-sp-5 sm:p-sp-6">
           <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(featured.data.date)}</span>
           <h3 class="font-display italic text-[clamp(22px,3.5vw,30px)] leading-tight text-ink m-0 mb-sp-3">
@@ -62,7 +62,7 @@ function fmtDate(d: Date): string {
     )}
     {rest.map((report, idx) => (
       <a href={arHref(report.slug)} data-reveal style={`--reveal-delay: ${(idx + 1) * 120}ms;`} class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
-        <img src={report.data.hero_image} alt="" width="600" height="450" loading="lazy" decoding="async" class="block w-full aspect-[4/3] object-cover" />
+        <img src={report.data.hero_image} alt="" role="presentation" aria-hidden="true" width="600" height="450" loading="lazy" decoding="async" class="block w-full aspect-[4/3] object-cover" />
         <div class="p-sp-5">
           <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(report.data.date)}</span>
           <h3 class="font-display italic text-[20px] leading-tight text-ink m-0 mb-sp-2">

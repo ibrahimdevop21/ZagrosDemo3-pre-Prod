@@ -27,10 +27,12 @@ const slides = [
   <!-- Slideshow stack -->
   <div class="hero-slideshow absolute inset-0 z-0">
     {slides.map((s, i) => (
-      <div class="slide absolute inset-0 will-change-[opacity]">
+      <div class="slide absolute inset-0 will-change-[opacity]" aria-hidden="true">
         <img
           src={s.src}
           alt=""
+          role="presentation"
+          aria-hidden="true"
           width="1920"
           height="1080"
           loading="eager"

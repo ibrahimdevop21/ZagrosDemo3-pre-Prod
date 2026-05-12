@@ -1,36 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/home/Hero.astro';
-import OpsTicker from '../components/home/OpsTicker.astro';
-import EditorsNote from '../components/home/EditorsNote.astro';
-import FeaturedReport from '../components/home/FeaturedReport.astro';
-import ThreeReportsGrid from '../components/home/ThreeReportsGrid.astro';
-import SourcesSection from '../components/home/SourcesSection.astro';
-import CustomersStrip from '../components/home/CustomersStrip.astro';
-import ByTheNumbers from '../components/home/ByTheNumbers.astro';
-import CatalogTable from '../components/home/CatalogTable.astro';
-import HomeCTA from '../components/home/HomeCTA.astro';
-import CaptionStrip from '../components/global/CaptionStrip.astro';
+import HeroV3 from '../components/home/HeroV3.astro';
+import OpsTickerMarquee from '../components/home/OpsTickerMarquee.astro';
+import ByTheNumbersV3 from '../components/home/ByTheNumbersV3.astro';
+import CatalogStrips from '../components/home/CatalogStrips.astro';
+import PartnersSection from '../components/home/PartnersSection.astro';
+import FieldReportsTeaser from '../components/home/FieldReportsTeaser.astro';
+import CustomersWall from '../components/home/CustomersWall.astro';
+import BranchesMap from '../components/home/BranchesMap.astro';
+import QuoteCTA from '../components/home/QuoteCTA.astro';
 ---
 
 <Layout>
-  <Hero />
-  <CaptionStrip sectionNumber="01 / 10" label="Operations" subLabel="Live · this week" />
-  <OpsTicker />
-  <CaptionStrip sectionNumber="02 / 10" label="Editor's note" subLabel="Issue 03 · 2026 · Yield" />
-  <EditorsNote />
-  <CaptionStrip sectionNumber="03 / 10" label="Featured field report" />
-  <FeaturedReport />
-  <CaptionStrip sectionNumber="04 / 10" label="More from the field" subLabel="Three reports · this issue" />
-  <ThreeReportsGrid />
-  <CaptionStrip sectionNumber="05 / 10" label="Sources · seven international houses" />
-  <SourcesSection />
-  <CaptionStrip sectionNumber="06 / 10" label="Customer wall" subLabel="Six anchor customers · Sudan" />
-  <CustomersStrip />
-  <CaptionStrip sectionNumber="07 / 10" label="By the numbers" subLabel="Branches + footprint" />
-  <ByTheNumbers />
-  <CaptionStrip sectionNumber="08 / 10" label="The catalog" subLabel="Three lines · seeds, fertilizers, pesticides" />
-  <CatalogTable />
-  <CaptionStrip sectionNumber="09 / 10" label="Send the soil report" />
-  <HomeCTA />
+  <HeroV3 />
+  <OpsTickerMarquee />
+  <ByTheNumbersV3 />
+  <CatalogStrips />
+  <PartnersSection />
+  <FieldReportsTeaser />
+  <CustomersWall />
+  <BranchesMap />
+  <QuoteCTA />
 </Layout>
