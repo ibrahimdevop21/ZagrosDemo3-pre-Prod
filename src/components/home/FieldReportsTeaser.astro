@@ -1,0 +1,87 @@
+---
+/**
+ * Zagros v3 — Section 06 field reports teaser.
+ *
+ * 1.6fr/1fr/1fr grid. Featured report on the left (16:10 image), two
+ * smaller reports on the right (4:3). Sorted by date desc, take 3.
+ * Stagger reveal. Uses Placeholder when image is illustrative-only and
+ * we want the placeholder honesty marker — but real photos for the
+ * existing 3 reports already exist (per content/field-reports/*.mdx).
+ */
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const all = await getCollection('field-reports');
+const sorted = all.sort((a, b) => {
+  const da = new Date(a.data.date).getTime();
+  const db = new Date(b.data.date).getTime();
+  return db - da;
+});
+const reports = sorted.slice(0, 3);
+const [featured, ...rest] = reports;
+
+function arHref(slug: string) {
+  return isRTL ? `/ar/field-reports/${slug}` : `/field-reports/${slug}`;
+}
+function localized(entry: CollectionEntry<'field-reports'>, field: 'title' | 'summary'): string {
+  const v = entry.data[field];
+  if (typeof v === 'object' && v !== null) return v[lang as 'en' | 'ar'] ?? v.en ?? '';
+  return String(v ?? '');
+}
+function fmtDate(d: Date): string {
+  const iso = d.toISOString();
+  return iso.slice(0, 7);
+}
+---
+<section class="px-page-x py-section-y bg-paper-light border-t border-ink">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="w-6 h-px bg-mute inline-block"></span>
+    {t('home.v3reports.label')}
+  </span>
+
+  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-sp-9" data-reveal style="--reveal-delay: 100ms;">
+    {t('home.v3reports.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3reports.headline_accent')}</span>
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
+    {featured && (
+      <a href={arHref(featured.slug)} data-reveal class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
+        <img src={featured.data.hero_image} alt="" width="800" height="500" loading="lazy" decoding="async" class="block w-full aspect-[16/10] object-cover" />
+        <div class="p-sp-5 sm:p-sp-6">
+          <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(featured.data.date)}</span>
+          <h3 class="font-display italic text-[clamp(22px,3.5vw,30px)] leading-tight text-ink m-0 mb-sp-3">
+            {localized(featured, 'title')}
+          </h3>
+          <p class="font-sans text-[14px] leading-relaxed text-ink m-0">{localized(featured, 'summary')}</p>
+        </div>
+      </a>
+    )}
+    {rest.map((report, idx) => (
+      <a href={arHref(report.slug)} data-reveal style={`--reveal-delay: ${(idx + 1) * 120}ms;`} class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
+        <img src={report.data.hero_image} alt="" width="600" height="450" loading="lazy" decoding="async" class="block w-full aspect-[4/3] object-cover" />
+        <div class="p-sp-5">
+          <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(report.data.date)}</span>
+          <h3 class="font-display italic text-[20px] leading-tight text-ink m-0 mb-sp-2">
+            {localized(report, 'title')}
+          </h3>
+          <p class="font-sans text-[13px] leading-relaxed text-ink m-0">{localized(report, 'summary')}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="mt-sp-9">
+    <a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 inline-flex items-center min-h-[44px]">
+      {t('home.v3reports.read_all')} {isRTL ? '←' : '→'}
+    </a>
+  </div>
+</section>
+
+<script>
+  import { observeReveal } from '../../lib/motion';
+  observeReveal();
+</script>
