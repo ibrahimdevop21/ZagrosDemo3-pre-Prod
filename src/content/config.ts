@@ -156,6 +156,7 @@ const partners = defineCollection({
       tons_2024: z.number().optional(),
       states_served: z.number().optional(),
     }).nullable(),
+    featured: z.boolean().default(false),
   }),
 });
 

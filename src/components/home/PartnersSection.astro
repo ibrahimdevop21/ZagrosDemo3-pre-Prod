@@ -1,0 +1,79 @@
+---
+/**
+ * Zagros v3 — Section 05 partners (folded in).
+ *
+ * Layout: 1.4fr / 1fr / 1fr grid. Spotlight (K+S, featured: true) spans
+ * 2 rows on the left. Six other partners as tiles in the 2x3 right grid.
+ * Mobile: spotlight on top, tiles in 2-col grid below.
+ *
+ * Each tile links to /partners/[slug] (deep-link page survives).
+ */
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import PartnerSpotlight from '../partners/PartnerSpotlight.astro';
+import Placeholder from '../editorial/Placeholder.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const allPartners = await getCollection('partners');
+const featured = allPartners.find((p) => p.data.featured) ?? allPartners[0];
+const tiles = allPartners.filter((p) => p.slug !== featured.slug);
+
+function arHref(slug: string) {
+  return isRTL ? `/ar/partners/${slug}` : `/partners/${slug}`;
+}
+---
+<section class="px-page-x py-section-y bg-paper border-t border-ink">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="w-6 h-px bg-mute inline-block"></span>
+    {t('home.v3partners.label')}
+  </span>
+
+  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[24ch] mb-sp-9" data-reveal style="--reveal-delay: 100ms;">
+    {t('home.v3partners.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3partners.headline_accent')}</span>
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
+    <!-- Spotlight (spans 2 rows on lg) -->
+    <div class="lg:row-span-2" data-reveal>
+      <PartnerSpotlight partner={featured} variant="home" />
+    </div>
+
+    <!-- Tiles -->
+    {tiles.map((partner, idx) => {
+      const name = partner.data.name;
+      const country = partner.data.country;
+      const countryCode = partner.data.country_code?.toUpperCase() ?? '';
+      const categoryLabel = partner.data.category?.replace(/_/g, ' ') ?? '';
+      const logoPath = partner.data.logo_path;
+      return (
+        <a
+          href={arHref(partner.slug)}
+          data-partner-tile
+          class="flex flex-col gap-sp-3 p-sp-4 bg-paper-light border border-stone hover:border-ink transition-colors duration-200 min-h-[160px] no-underline text-inherit"
+          data-reveal
+          style={`--reveal-delay: ${(idx + 1) * 80}ms;`}
+        >
+          <div class="flex-1 flex items-center justify-center min-h-[64px]">
+            {logoPath ? (
+              <img src={logoPath} alt={name} width="160" height="48" loading="lazy" decoding="async" class="block max-h-12 w-auto" />
+            ) : (
+              <Placeholder kind="logo" label={`${name} — logo pending`} aspectRatio="5 / 2" class="max-h-16" />
+            )}
+          </div>
+          <div class="flex items-baseline justify-between mt-auto gap-sp-3 flex-wrap">
+            <span class="font-display italic text-[16px] text-ink">{name}</span>
+            <span class="font-mono text-[9.5px] tracking-[0.2em] uppercase text-mute">{countryCode} · {categoryLabel}</span>
+          </div>
+        </a>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  import { observeReveal } from '../../lib/motion';
+  observeReveal();
+</script>

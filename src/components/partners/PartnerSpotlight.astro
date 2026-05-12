@@ -1,0 +1,64 @@
+---
+/**
+ * Zagros v3 — shared partner spotlight card.
+ *
+ * Used in two places:
+ *   1. Home Section 05 spotlight (left column, 2 rows tall)
+ *   2. /partners/[slug] hero (wider variant)
+ *
+ * Ink ground, country flag/code mono caption, partner name in Fraunces
+ * italic display, photo placeholder (Placeholder.astro until client
+ * provides), bilingual tagline, signal "Read partner story →" link.
+ */
+import type { CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Placeholder from '../editorial/Placeholder.astro';
+
+interface Props {
+  partner: CollectionEntry<'partners'>;
+  variant?: 'home' | 'detail';
+}
+
+const { partner, variant = 'home' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const name = partner.data.name;
+const country = partner.data.country;
+const countryCode = partner.data.country_code?.toUpperCase() ?? '';
+const tagline = partner.data.tagline?.[lang as 'en' | 'ar'] ?? partner.data.tagline?.en ?? '';
+const categoryLabel = partner.data.category?.replace(/_/g, ' ').toUpperCase() ?? '';
+
+const href = isRTL ? `/ar/partners/${partner.slug}` : `/partners/${partner.slug}`;
+const minHeight = variant === 'detail' ? 'min-h-[480px]' : 'min-h-[420px] lg:min-h-[460px]';
+---
+<article class:list={['relative bg-ink text-paper p-sp-6 sm:p-sp-7 flex flex-col gap-sp-5', minHeight]}>
+  <div class="flex items-baseline justify-between gap-sp-3 flex-wrap">
+    <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/70">
+      {t('home.v3partners.spotlight_label')} · {countryCode} · {country}
+    </span>
+    <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-paper/50">
+      {categoryLabel}
+    </span>
+  </div>
+
+  <h3 class="font-display italic font-light text-[clamp(28px,4vw,40px)] leading-[1] text-paper m-0">
+    {name}
+  </h3>
+
+  <Placeholder
+    kind="partner"
+    label={`${name} — facility, product range, or team photo pending`}
+    dark={true}
+    class="flex-1 max-h-[260px]"
+  />
+
+  <p class="font-sans text-[14px] leading-relaxed text-paper/85 max-w-[44ch] m-0">
+    {tagline}
+  </p>
+
+  <a href={href} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal no-underline border-b border-signal/40 hover:border-signal pb-0.5 self-start min-h-[44px] inline-flex items-center">
+    {t('home.v3partners.read_story')} {isRTL ? '←' : '→'}
+  </a>
+</article>
