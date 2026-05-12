@@ -1,9 +1,11 @@
 {
   "_illustrative": true,
   "items": [
-    { "en": "K+S potash arriving · Port pending · 14 May",     "ar": "وصول بوتاس K+S · ميناء بانتظار التأكيد · ١٤ مايو" },
-    { "en": "Barenbrug Rhodes seed window · sowing 1-30 Jun",  "ar": "نافذة بذور رودس Barenbrug · زراعة ١-٣٠ يونيو" },
-    { "en": "soluCN trial · greenhouse tomato · concluded",    "ar": "تجربة soluCN · طماطم البيوت · مكتملة" },
-    { "en": "EPSO Top foliar window · citrus · ongoing",        "ar": "نافذة EPSO Top الورقية · موالح · جارية" }
+    { "en": "Khartoum HQ open · Sun–Thu 8–5",                  "ar": "المقر الرئيسي بالخرطوم مفتوح · الأحد إلى الخميس · ٨–٥" },
+    { "en": "K+S soluNPK 20-20-20 · in stock",                  "ar": "K+S سولو NPK ٢٠-٢٠-٢٠ · متوفر" },
+    { "en": "Field report · Alfalfa, Al Managil · 2026-04",     "ar": "تقرير ميداني · البرسيم الحجازي، المناقل · ٢٠٢٦-٠٤" },
+    { "en": "16 pesticide SKUs across 3 subcategories",         "ar": "١٦ مبيداً ضمن ٣ فئات فرعية" },
+    { "en": "Branch · Port Sudan · operational",                "ar": "فرع · بورتسودان · يعمل" },
+    { "en": "Barenbrug forage seeds · 3 confirmed varieties",   "ar": "بذور الأعلاف باربنرغ · ٣ أنواع معتمدة" }
   ]
 }

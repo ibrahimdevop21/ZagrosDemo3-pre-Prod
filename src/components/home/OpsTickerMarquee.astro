@@ -1,0 +1,34 @@
+---
+/**
+ * Zagros v3 — Section 02 ops ticker (CSS marquee).
+ *
+ * Slim ink band. Items doubled in markup so loop is seamless. RTL-aware
+ * via `dir` attribute on parent. Pauses on hover. Respects
+ * prefers-reduced-motion (motion.css gates the keyframes).
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import ticker from '../../data/ops-ticker.json';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const items = ticker.items.map((i) => i[lang as 'en' | 'ar']);
+const stream = [...items, ...items];
+---
+<aside
+  class="marquee-wrap bg-ink text-paper overflow-hidden border-y border-paper/10"
+  aria-label={t('home.ticker.label')}
+>
+  <div class="px-page-x py-3 flex items-center gap-sp-5">
+    <span class="inline-flex items-center gap-2 font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal flex-shrink-0">
+      <span class="blink-signal w-[6px] h-[6px] rounded-full bg-signal inline-block"></span>
+      {t('home.ticker.label')}
+    </span>
+    <div class="overflow-hidden flex-1">
+      <div class="marquee-track font-mono text-[10.5px] tracking-[0.18em] uppercase text-paper/80">
+        {stream.map((item) => (
+          <span class="inline-block">· {item}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</aside>
