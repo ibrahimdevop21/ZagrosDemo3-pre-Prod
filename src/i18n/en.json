@@ -225,7 +225,10 @@
     },
     "filters": {
       "label": "Filters",
-      "reset": "Reset"
+      "reset": "Reset",
+      "stub_open": "Filter",
+      "stub_close": "Close",
+      "stub_message": "Filtering by nutrient, crop stage, and supplier is coming back in the next iteration. For now, the full catalog is grouped by subcategory below."
     },
     "pills": {
       "active_label": "Active filters",

@@ -1,0 +1,87 @@
+---
+/**
+ * Plan 7 Task D (scope-down stub) — Filter drawer placeholder.
+ *
+ * Native HTML `<dialog>` slid in from the inline-end edge (RTL-aware
+ * via `inset-y-0 end-0 start-auto`). Visible only below `lg:`. Renders a
+ * placeholder body explaining that full filtering (nutrient, crop stage,
+ * supplier) is being restored in a follow-up iteration. The line page
+ * shows the full catalog grouped by subcategory underneath, so the
+ * absence of filters does not block discovery.
+ *
+ * Dismissal:
+ *   - Close button → `drawer.close()`
+ *   - Backdrop click → `drawer.close()` (target equals dialog element)
+ *   - Escape key → native `<dialog>` behaviour
+ *
+ * Tap targets: every interactive element is ≥44×44 (WCAG 2.5.5).
+ *
+ * If/when the full filter UI returns, swap the placeholder body for the
+ * existing FilterSidebar markup (with a `variant="drawer"` prop) and wire
+ * the FilterController script island that already lives at
+ * src/components/products/FilterController.astro.
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+---
+<dialog
+  id="filter-drawer"
+  data-filter-drawer
+  class="lg:hidden p-0 m-0 fixed inset-y-0 end-0 start-auto h-full max-h-full w-[88vw] max-w-[420px] bg-paper text-ink border-0 [&::backdrop]:bg-ink/40"
+>
+  <div class="flex flex-col h-full p-sp-7">
+    <header class="flex items-center justify-between mb-sp-7">
+      <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink m-0">
+        {t('products.filters.label')}
+      </h2>
+      <button
+        type="button"
+        aria-label={t('products.filters.stub_close')}
+        data-filter-drawer-close
+        class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mx-2 text-ink"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" aria-hidden="true">
+          <line x1="3" y1="3" x2="17" y2="17"></line>
+          <line x1="17" y1="3" x2="3" y2="17"></line>
+        </svg>
+      </button>
+    </header>
+
+    <div class="flex-1 flex flex-col justify-center gap-sp-5">
+      <p class="font-display italic font-light text-3xl leading-tight text-ink m-0 max-w-[20ch]">
+        {t('products.filters.stub_message')}
+      </p>
+      <div class="h-px bg-stone w-16"></div>
+      <p class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute m-0">
+        {isRTL ? 'الكتالوج الكامل أدناه' : 'Full catalog below'}
+      </p>
+    </div>
+
+    <button
+      type="button"
+      data-filter-drawer-close
+      class="bg-ink text-paper font-sans font-medium text-[15px] px-sp-5 py-sp-4 inline-flex items-center justify-center gap-2 min-h-[52px] mt-sp-7 border-0"
+    >
+      {t('products.filters.stub_close')}
+    </button>
+  </div>
+</dialog>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('[data-filter-drawer-trigger]');
+  const drawer = document.querySelector<HTMLDialogElement>('[data-filter-drawer]');
+
+  trigger?.addEventListener('click', () => drawer?.showModal());
+
+  document.querySelectorAll<HTMLButtonElement>('[data-filter-drawer-close]')
+    .forEach((btn) => btn.addEventListener('click', () => drawer?.close()));
+
+  // Backdrop click closes the dialog (clicks on inner content bubble up
+  // with `e.target` pointing at the inner element, not the dialog itself).
+  drawer?.addEventListener('click', (e) => {
+    if (e.target === drawer) drawer.close();
+  });
+</script>

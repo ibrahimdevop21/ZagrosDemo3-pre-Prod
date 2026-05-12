@@ -1,0 +1,31 @@
+---
+/**
+ * Plan 7 Task D (scope-down stub) — Filter trigger button.
+ *
+ * Visible below `lg:` and opens FilterDrawer. The drawer itself is a
+ * placeholder explaining the full filter UI is coming back in the next
+ * iteration — current line pages render the full catalog grouped by
+ * subcategory, no filtering applied. See FilterDrawer.astro and the
+ * audit at docs/superpowers/plans/plan-7-status.md.
+ *
+ * Spec note: 44×44 minimum tap target (WCAG 2.5.5). Inline-flex with
+ * gap matches the existing toolbar button styling on /products line pages.
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<button
+  type="button"
+  aria-controls="filter-drawer"
+  data-filter-drawer-trigger
+  class="lg:hidden inline-flex items-center gap-2.5 min-h-[44px] px-4 py-2 border border-ink bg-paper text-ink font-mono text-[10.5px] tracking-[0.22em] uppercase"
+>
+  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+    <line x1="0" y1="1" x2="14" y2="1"></line>
+    <line x1="3" y1="5" x2="11" y2="5"></line>
+    <line x1="5" y1="9" x2="9" y2="9"></line>
+  </svg>
+  {t('products.filters.stub_open')}
+</button>

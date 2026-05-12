@@ -5,6 +5,8 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Breadcrumb from '../../components/global/Breadcrumb.astro';
 import SubcategoryGroup from '../../components/products/SubcategoryGroup.astro';
 import DisclaimerChip from '../../components/editorial/DisclaimerChip.astro';
+import FilterButton from '../../components/products/FilterButton.astro';
+import FilterDrawer from '../../components/products/FilterDrawer.astro';
 
 export async function getStaticPaths() {
   return ['seeds', 'fertilizers', 'pesticides'].map((line) => ({ params: { line } }));
@@ -67,6 +69,10 @@ const lineDeck = t(`products.lines.${line}.deck`);
     </div>
   </header>
 
+  <div class="px-page-x pb-sp-5 flex lg:hidden">
+    <FilterButton />
+  </div>
+
   <section class="px-page-x pb-section-y">
     {orderedSubcats.map((subcat) => (
       <SubcategoryGroup
@@ -97,4 +103,6 @@ const lineDeck = t(`products.lines.${line}.deck`);
       </div>
     )}
   </section>
+
+  <FilterDrawer />
 </Layout>

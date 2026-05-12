@@ -226,6 +226,9 @@ export interface UITranslations {
     filters: {
       label: string;
       reset: string;
+      stub_open: string;
+      stub_close: string;
+      stub_message: string;
     };
     pills: {
       active_label: string;
