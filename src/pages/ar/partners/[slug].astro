@@ -3,7 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import { useTranslations } from '../../../i18n/utils';
 import Breadcrumb from '../../../components/global/Breadcrumb.astro';
-import PartnerHero from '../../../components/partners/PartnerHero.astro';
+import PartnerSpotlight from '../../../components/partners/PartnerSpotlight.astro';
 import ProductLinesTable from '../../../components/partners/ProductLinesTable.astro';
 import ReportsByPartner from '../../../components/partners/ReportsByPartner.astro';
 
@@ -21,7 +21,9 @@ const t = useTranslations(lang);
     { label: t('nav.home'), href: '/ar/' },
     { label: partner.data.name },
   ]} />
-  <PartnerHero partner={partner} />
+  <div class="px-page-x py-section-y">
+    <PartnerSpotlight partner={partner} variant="detail" />
+  </div>
   <ProductLinesTable partner={partner} />
   <ReportsByPartner partnerSlug={partner.slug} />
 </Layout>
