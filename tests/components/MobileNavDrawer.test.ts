@@ -29,18 +29,18 @@ describe('Nav (mobile)', () => {
     expect(html).toMatch(/lg:hidden/);
   });
 
-  it('renders a <dialog> with all 6 nav links, language toggle, and CTA', async () => {
+  it('renders a <dialog> with all 5 nav links, language toggle, and CTA', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(Nav);
 
     expect(html).toContain('<dialog');
     expect(html).toMatch(/data-mobile-nav-drawer/);
 
-    // All 6 localized nav labels appear inside the rendered markup
+    // v3 nav: Partners + Customers are folded into homepage sections.
+    // Drawer surfaces Home + Products + Field Reports + About + Contact.
+    expect(html).toMatch(/Home|الرئيسية/);
     expect(html).toMatch(/Products|المنتجات/);
     expect(html).toMatch(/Field Reports|التقارير الميدانية/);
-    expect(html).toMatch(/Partners|الشركاء/);
-    expect(html).toMatch(/Customers|العملاء/);
     expect(html).toMatch(/About|عن زاغروس/);
     expect(html).toMatch(/Contact|تواصل/);
 

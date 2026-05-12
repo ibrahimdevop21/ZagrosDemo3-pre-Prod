@@ -17,4 +17,10 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+  redirects: {
+    '/partners':     { status: 301, destination: '/' },
+    '/customers':    { status: 301, destination: '/' },
+    '/ar/partners':  { status: 301, destination: '/ar/' },
+    '/ar/customers': { status: 301, destination: '/ar/' },
+  },
 });

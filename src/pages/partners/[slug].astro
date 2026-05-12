@@ -19,7 +19,6 @@ const t = useTranslations(lang);
 <Layout title={partner.data.name}>
   <Breadcrumb items={[
     { label: t('nav.home'), href: '/' },
-    { label: t('nav.partners'), href: '/partners' },
     { label: partner.data.name },
   ]} />
   <PartnerHero partner={partner} />
