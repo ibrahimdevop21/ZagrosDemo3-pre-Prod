@@ -112,7 +112,7 @@ Wait — directive Phase 4 specifies a specific commit order: A → B → C → 
 
 #### Steps
 
-- [ ] **Step A.1: Audit downward-scaling patterns**
+- [x] **Step A.1: Audit downward-scaling patterns**
 
 Run:
 ```bash
@@ -127,7 +127,7 @@ Read each hit. Classify:
 
 Expected: most hits are pairs like "X is `hidden md:flex` and Y is `flex md:hidden`" which together implement a mobile/desktop element swap. That's fine.
 
-- [ ] **Step A.2: Append to AGENTS.md**
+- [x] **Step A.2: Append to AGENTS.md**
 
 Add a `## Mobile-first conventions` section:
 
@@ -144,7 +144,7 @@ Add a `## Mobile-first conventions` section:
 - **Viewport meta:** `<meta name="viewport" content="width=device-width, initial-scale=1">` is in `src/layouts/Layout.astro:35`. Do not change.
 ```
 
-- [ ] **Step A.3: Commit**
+- [x] **Step A.3: Commit**
 
 ```bash
 git add AGENTS.md
@@ -205,7 +205,7 @@ Mobile: 1 column, full-width. Tablet (sm:640+): 2 columns. Desktop (lg:1024+): 3
 
 #### Steps
 
-- [ ] **Step B.1: Write failing snapshot-style test for FertilizerCard**
+- [x] **Step B.1: Write failing snapshot-style test for FertilizerCard**
 
 Create `tests/components/FertilizerCard.test.ts`:
 
@@ -254,7 +254,7 @@ describe('FertilizerCard', () => {
 });
 ```
 
-- [ ] **Step B.2: Run test, expect failure**
+- [x] **Step B.2: Run test, expect failure**
 
 ```bash
 npm test -- FertilizerCard
@@ -262,7 +262,7 @@ npm test -- FertilizerCard
 
 Expected: module not found.
 
-- [ ] **Step B.3: Create ProductHero component**
+- [x] **Step B.3: Create ProductHero component**
 
 `src/components/products/ProductHero.astro`:
 
@@ -343,7 +343,7 @@ const borderCls = isDarkBg ? 'border-paper/30' : 'border-ink/25';
 </div>
 ```
 
-- [ ] **Step B.4: Create FertilizerCard component**
+- [x] **Step B.4: Create FertilizerCard component**
 
 `src/components/products/FertilizerCard.astro`:
 
@@ -440,7 +440,7 @@ const facetAttrs = {
 </article>
 ```
 
-- [ ] **Step B.5: Rewrite `src/components/products/ProductCard.astro` as a thin forwarder**
+- [x] **Step B.5: Rewrite `src/components/products/ProductCard.astro` as a thin forwarder**
 
 ```astro
 ---
@@ -455,7 +455,7 @@ const { product } = Astro.props;
 
 This keeps existing imports working (`import ProductCard from './ProductCard.astro'` still functions) without code duplication.
 
-- [ ] **Step B.6: Update fertilizer detail page hero**
+- [x] **Step B.6: Update fertilizer detail page hero**
 
 `src/pages/products/[line]/[slug].astro` — in the fertilizer branch (currently `<BagMockup>`), replace:
 
@@ -478,7 +478,7 @@ with:
 
 Mirror in `src/pages/ar/products/[line]/[slug].astro`.
 
-- [ ] **Step B.7: Update SubcategoryGroup grid for mobile-first**
+- [x] **Step B.7: Update SubcategoryGroup grid for mobile-first**
 
 `src/components/products/SubcategoryGroup.astro` — wrap the entries in a grid that starts 1col, grows to 2 at `sm:`, 3 at `lg:`:
 
@@ -487,7 +487,7 @@ Find the grid container in that file, change `grid-cols-1 md:grid-cols-2 lg:grid
 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5 sm:gap-sp-6
 ```
 
-- [ ] **Step B.8: Run tests**
+- [x] **Step B.8: Run tests**
 
 ```bash
 npm test -- FertilizerCard
@@ -500,7 +500,7 @@ npm test
 ```
 Note: pre-existing `experimental_AstroContainer` content-collection issue may surface — same as Plan 6 task 9. If those tests fail vacuously, document and proceed. The new FertilizerCard test is specifically robust against that bug because it explicitly does `getCollection` then renders.
 
-- [ ] **Step B.9: Verify build**
+- [x] **Step B.9: Verify build**
 
 ```bash
 npm run build
@@ -509,7 +509,7 @@ Build must complete without warnings about the SVG fill issue (the SVG is gone).
 
 Inspect `dist/products/fertilizers/solu-up/index.html` — confirm `bg-c-npk` class appears, no `BAG MOCKUP · PENDING REAL PHOTO` SVG text, ProductHero markup present.
 
-- [ ] **Step B.10: Commit**
+- [x] **Step B.10: Commit**
 
 ```bash
 git add src/components/products/ProductHero.astro \
@@ -580,7 +580,7 @@ desktop (≥ lg):
 
 #### Steps
 
-- [ ] **Step C.1: Write failing test**
+- [x] **Step C.1: Write failing test**
 
 ```ts
 // tests/components/MobileNavDrawer.test.ts
@@ -619,14 +619,14 @@ describe('Nav (mobile)', () => {
 });
 ```
 
-- [ ] **Step C.2: Run test, expect failure**
+- [x] **Step C.2: Run test, expect failure**
 
 ```bash
 npm test -- MobileNavDrawer
 ```
 Expected: FAIL — components don't exist.
 
-- [ ] **Step C.3: Create HamburgerButton**
+- [x] **Step C.3: Create HamburgerButton**
 
 `src/components/global/HamburgerButton.astro`:
 
@@ -652,7 +652,7 @@ const label = lang === 'ar' ? 'فتح القائمة' : 'Open menu';
 </button>
 ```
 
-- [ ] **Step C.4: Create MobileNavDrawer**
+- [x] **Step C.4: Create MobileNavDrawer**
 
 `src/components/global/MobileNavDrawer.astro`:
 
@@ -744,7 +744,7 @@ const closeLabel = isRTL ? 'إغلاق' : 'Close';
 </script>
 ```
 
-- [ ] **Step C.5: Update Nav to render drawer + hamburger**
+- [x] **Step C.5: Update Nav to render drawer + hamburger**
 
 `src/components/global/Nav.astro`:
 
@@ -823,7 +823,7 @@ const navLinks = [
 <MobileNavDrawer />
 ```
 
-- [ ] **Step C.6: Add dialog reset styles to global.css**
+- [x] **Step C.6: Add dialog reset styles to global.css**
 
 Append to `src/styles/global.css`:
 
@@ -843,7 +843,7 @@ dialog::backdrop {
 }
 ```
 
-- [ ] **Step C.7: Run test, expect pass**
+- [x] **Step C.7: Run test, expect pass**
 
 ```bash
 npm test -- MobileNavDrawer
@@ -851,7 +851,7 @@ npm run build
 ```
 Build: 104 pages, no errors.
 
-- [ ] **Step C.8: Commit**
+- [x] **Step C.8: Commit**
 
 ```bash
 git add src/components/global/HamburgerButton.astro \
@@ -924,7 +924,7 @@ desktop (≥ lg):
 
 #### Steps (scoped-down path)
 
-- [ ] **Step D.1: Skip this task or write a stub**
+- [x] **Step D.1: Skip this task or write a stub**
 
 If skipping: note in commit log and proceed to Task E.
 
@@ -932,7 +932,7 @@ If stubbing: create a `FilterButton.astro` that's visually present but inert bel
 
 #### Steps (full path — only if implementer has bandwidth)
 
-- [ ] **Step D.1 (full): Write failing test**
+- [ ] **Step D.1 (full): Write failing test**  *(deferred — scope-down stub shipped instead; see plan-7-status.md)*
 
 ```ts
 // tests/components/FilterDrawer.test.ts
@@ -956,15 +956,15 @@ describe('Filter drawer', () => {
 });
 ```
 
-- [ ] **Step D.2 (full): Implement FilterButton + FilterDrawer**
+- [ ] **Step D.2 (full): Implement FilterButton + FilterDrawer**  *(deferred — stub shipped)*
 
 (Implementation similar to MobileNavDrawer pattern in Task C — dialog with transform-based slide, action bar at bottom, `<script>` for open/close.)
 
-- [ ] **Step D.3 (full): Wire facet filters to drawer**
+- [ ] **Step D.3 (full): Wire facet filters to drawer**  *(deferred)*
 
 Reuse the existing facet system already present in `FilterSidebar.astro` (it's just hidden from view). Move the facet logic into the drawer for mobile; replicate inline for `lg:`.
 
-- [ ] **Step D.4 (full): Commit**
+- [ ] **Step D.4 (full): Commit**  *(deferred)*
 
 ```
 plan-7: D — filter sidebar drawer for narrow viewports
@@ -993,7 +993,7 @@ Every clickable element on every page has at least 44×44 hit area. Form inputs 
 
 #### Steps
 
-- [ ] **Step E.1: Audit current tap-target offenders**
+- [x] **Step E.1: Audit current tap-target offenders**
 
 ```bash
 grep -rn 'href="\|<button\|<input' src/components/ src/pages/ | head -100
@@ -1003,7 +1003,7 @@ For each interactive element, check:
 - Does the wrapping `<a>` or `<button>` have explicit padding or min-h?
 - If the visible element is small (e.g. icon), is there enough invisible hit area?
 
-- [ ] **Step E.2: Sweep components for `min-h-[44px]`**
+- [x] **Step E.2: Sweep components for `min-h-[44px]`**
 
 Update each interactive element to include either:
 - `min-h-[44px]` (and `min-w-[44px]` for icon-only)
@@ -1021,7 +1021,7 @@ Specific files to touch:
 - `src/components/cards/PartnerCard.astro` — same
 - Mobile drawer nav links (done in Task C)
 
-- [ ] **Step E.3: Test tap-to-call + WhatsApp**
+- [x] **Step E.3: Test tap-to-call + WhatsApp**
 
 Verify in `dist/contact/index.html`:
 ```bash
@@ -1029,7 +1029,7 @@ grep -E 'tel:\+249912338559|wa\.me/249912338559' dist/contact/index.html dist/ar
 ```
 Expected: both links present in both locales.
 
-- [ ] **Step E.4: Add viewport-smoke test**
+- [x] **Step E.4: Add viewport-smoke test**
 
 ```ts
 // tests/pages/viewport-smoke.test.ts (new file)
@@ -1057,7 +1057,7 @@ describe('viewport smoke checks', () => {
 });
 ```
 
-- [ ] **Step E.5: Run tests + commit**
+- [x] **Step E.5: Run tests + commit**
 
 ```bash
 npm test
@@ -1098,7 +1098,7 @@ Use `clamp()` for fluid scaling where appropriate; use Tailwind utility steps wh
 
 #### Steps
 
-- [ ] **Step F.1: Audit current hero clamps**
+- [x] **Step F.1: Audit current hero clamps**
 
 ```bash
 grep -rn "clamp(" src/pages/ src/components/ | head
@@ -1106,13 +1106,13 @@ grep -rn "clamp(" src/pages/ src/components/ | head
 
 Existing patterns like `clamp(48px,7vw,96px)` — the 48px floor is fine for 360px width unless content has many wide characters.
 
-- [ ] **Step F.2: Adjust offending clamps**
+- [x] **Step F.2: Adjust offending clamps**
 
 For each hero h1, lower the floor to ~36px on mobile so AR/long-EN don't overflow:
 
 Example: `clamp(48px,7vw,96px)` → `clamp(36px,8vw,96px)` (floor down to 36, but increase the vw share so growth is smooth).
 
-- [ ] **Step F.3: AR line-height adjustment**
+- [x] **Step F.3: AR line-height adjustment**
 
 Append to `src/styles/global.css`:
 
@@ -1122,14 +1122,14 @@ html[lang="ar"] body { line-height: 1.65; }
 html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3 { line-height: 1.2; }
 ```
 
-- [ ] **Step F.4: Run build + visual spot-check via dist**
+- [x] **Step F.4: Run build + visual spot-check via dist**
 
 ```bash
 npm run build
 grep -A1 'h1 class="font-display' dist/index.html | head
 ```
 
-- [ ] **Step F.5: Commit**
+- [x] **Step F.5: Commit**
 
 ```bash
 git commit -m "plan-7: F — responsive typography scaling
@@ -1164,13 +1164,13 @@ All `<img>` elements have explicit `width` and `height` attributes (matching act
 
 #### Steps
 
-- [ ] **Step G.1: Inventory all `<img>` tags**
+- [x] **Step G.1: Inventory all `<img>` tags**
 
 ```bash
 grep -rn "<img " src/components/ src/pages/ | head -40
 ```
 
-- [ ] **Step G.2: Update each `<img>` per the table**
+- [x] **Step G.2: Update each `<img>` per the table**
 
 For each image found, add appropriate attributes. Example for a partner logo:
 
@@ -1199,11 +1199,11 @@ For the hero (Hero.astro):
 />
 ```
 
-- [ ] **Step G.3: Test no layout shift**
+- [x] **Step G.3: Test no layout shift**
 
 This requires real browser. Code change verification: `grep -c "loading=\"lazy\"" dist/index.html` should show several hits below the fold.
 
-- [ ] **Step G.4: Commit**
+- [x] **Step G.4: Commit**
 
 ```bash
 git commit -m "plan-7: G — lazy loading and LCP optimization
@@ -1218,11 +1218,11 @@ git commit -m "plan-7: G — lazy loading and LCP optimization
 
 ### Task H — Final tag + verification report
 
-- [ ] **Step H.1: Update AGENTS.md (already done in Task A; verify)**
+- [x] **Step H.1: Update AGENTS.md (already done in Task A; verify)**
 
 Confirm AGENTS.md has the mobile-first conventions section.
 
-- [ ] **Step H.2: Run full verification**
+- [x] **Step H.2: Run full verification**
 
 ```bash
 npm test
@@ -1242,7 +1242,7 @@ Expected:
 - lazy loading hits in homepage
 - min-h-[44px] hits in products page
 
-- [ ] **Step H.3: Tag final commit**
+- [ ] **Step H.3: Tag final commit**  *(awaiting user review before tagging)*
 
 ```bash
 git tag plan-7-mobile-first
@@ -1301,3 +1301,9 @@ Automated checks:
 - New component tests for FertilizerCard, MobileNavDrawer, viewport-smoke all pass
 
 Lighthouse mobile and real-device viewport pass remain manual — flagged in the verification report. User should run them and report scores before final merge.
+
+---
+
+## Changelog
+
+**2026-05-12 — Closeout pass (audit + remaining gaps).** Audit at `docs/superpowers/plans/plan-7-status.md` walked every checkbox and found six of eight tasks (A, B, C, E, F, G) already shipped across commits `4fdd06e`…`b033a8b`. Three remaining gaps were closed in this session: (1) `--page-margin-x` got a `@media (max-width: 639px)` override dropping the mobile gutter from 56px to 20px so `.stage-grid` and `px-page-x` stop crowding content at 360px; (2) Task D shipped as a scope-down stub — new `FilterButton.astro` (lg:hidden trigger) plus `FilterDrawer.astro` (native `<dialog>` placeholder explaining filtering is coming back) mounted on `/products/[line]` and the AR mirror, with bilingual stub copy; (3) Plan-doc checkboxes flipped and verification grep run against `dist/` — all banned strings (`BAG MOCKUP · PENDING`, `14 SKUs`, `بيتا شراكة`, `بيت ماركة`, "operator, not a brand", "partner houses") return zero hits, `tel:+249912338559` + `wa.me/249912338559` present on both contact pages, 84/84 vitest specs pass, 104 pages build clean. Final tag (`plan-7-mobile-first`) and full filter-UI restoration are deferred pending user review and the Phase 3 follow-up plan respectively.
