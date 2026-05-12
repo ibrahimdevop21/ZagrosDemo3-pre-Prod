@@ -1,0 +1,94 @@
+---
+/**
+ * Zagros v3 — honest image placeholder.
+ *
+ * Striped diagonal-hatch tile labeled with the kind of photo needed.
+ * Used everywhere a real image is pending. Per PRODUCT.md anti-AI-slop
+ * discipline: visible "PENDING" markers signal gaps; plausible stock
+ * photos hide them. Swap inline for <img> when client provides the asset.
+ */
+type Kind = 'hero' | 'partner' | 'field-photo' | 'portrait' | 'map' | 'product' | 'logo';
+
+interface Props {
+  kind: Kind;
+  label?: string;
+  aspectRatio?: string;
+  dark?: boolean;
+  class?: string;
+}
+
+const {
+  kind,
+  label = '',
+  aspectRatio,
+  dark = false,
+  class: extraClass = '',
+} = Astro.props;
+
+const defaultRatio: Record<Kind, string> = {
+  hero: '16 / 9',
+  partner: '4 / 3',
+  'field-photo': '4 / 3',
+  portrait: '3 / 4',
+  map: '5 / 4',
+  product: '1 / 1',
+  logo: '5 / 3',
+};
+
+const ratio = aspectRatio ?? defaultRatio[kind];
+const variant = dark ? 'dark' : 'light';
+const a11yLabel = `Pending image: ${kind}${label ? ` — ${label}` : ''}`;
+---
+<div
+  role="img"
+  aria-label={a11yLabel}
+  data-variant={variant}
+  class:list={[
+    'ph-tile relative w-full overflow-hidden flex flex-col items-center justify-center text-center',
+    'gap-2 p-sp-5',
+    extraClass,
+  ]}
+  style={`aspect-ratio: ${ratio};`}
+>
+  <span class="ph-mark font-mono text-[10.5px] tracking-[0.22em] uppercase">
+    PLACEHOLDER · {kind.toUpperCase()}
+  </span>
+  {label && (
+    <span class="ph-sub font-mono text-[9px] tracking-[0.18em] uppercase max-w-[28ch] opacity-80">
+      {label}
+    </span>
+  )}
+</div>
+
+<style>
+  .ph-tile[data-variant="light"] {
+    background:
+      repeating-linear-gradient(135deg,
+        rgb(var(--color-stone)) 0 14px,
+        rgb(212 208 197 / 0.7) 14px 28px);
+    color: rgb(var(--color-ink));
+  }
+  .ph-tile[data-variant="light"]::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgb(var(--color-ink) / 0.35);
+    pointer-events: none;
+  }
+  .ph-tile[data-variant="dark"] {
+    background:
+      repeating-linear-gradient(135deg,
+        rgb(var(--color-paper) / 0.08) 0 14px,
+        rgb(var(--color-paper) / 0.04) 14px 28px);
+    color: rgb(var(--color-paper));
+  }
+  .ph-tile[data-variant="dark"]::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgb(var(--color-paper) / 0.25);
+    pointer-events: none;
+  }
+  .ph-tile .ph-mark { color: rgb(var(--color-sienna)); font-weight: 500; }
+  .ph-tile[data-variant="dark"] .ph-mark { color: rgb(var(--color-signal)); }
+</style>
