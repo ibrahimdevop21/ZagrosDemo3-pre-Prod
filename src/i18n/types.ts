@@ -337,6 +337,13 @@ export interface UITranslations {
   };
   home: {
     hero: {
+      kicker: string;
+      est_pill: string;
+      headline_phrase: string;
+      headline_accent: string;
+      meta_suppliers: string;
+      meta_hours: string;
+      meta_phone: string;
       edition_label: string;
       photo_alt: string;
       headline_a: string;
@@ -346,6 +353,60 @@ export interface UITranslations {
       kpi_skus: string;
       kpi_years: string;
       kpi_categories: string;
+    };
+    ticker: { label: string };
+    v3numbers: {
+      label: string;
+      big_copy: string;
+      suppliers: string;
+      branches: string;
+      skus: string;
+    };
+    v3catalog: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      open: string;
+      lines: {
+        seeds:       { title: string; supplier_caption: string; skus: string; subcat: string; body: string };
+        fertilizers: { title: string; supplier_caption: string; skus: string; subcat: string; body: string };
+        pesticides:  { title: string; supplier_caption: string; skus: string; subcat: string; body: string };
+      };
+    };
+    v3partners: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      spotlight_label: string;
+      read_story: string;
+    };
+    v3reports: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      read_all: string;
+    };
+    v3customers: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      pull_quote_pending: string;
+    };
+    v3branches: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      hq: string;
+      branch: string;
+    };
+    v3cta: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      primary: string;
+      phone_label: string;
+      whatsapp_label: string;
+      footer_address: string;
     };
     featured: {
       kicker: string;

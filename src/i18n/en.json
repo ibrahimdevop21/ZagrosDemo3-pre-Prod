@@ -337,6 +337,13 @@
   },
   "home": {
     "hero": {
+      "kicker": "Zagros Trading · Khartoum",
+      "est_pill": "Est · 2010",
+      "headline_phrase": "Seeds, fertilizers, pesticides, sourced for",
+      "headline_accent": "Sudanese soil.",
+      "meta_suppliers": "7 suppliers · 6 countries",
+      "meta_hours": "Sun–Thu 8–5",
+      "meta_phone": "+249 91 233 8559",
       "edition_label": "Yield",
       "photo_alt": "Sudanese agricultural landscape — Zagros field operations",
       "headline_a": "Sudan's trusted partner —",
@@ -346,6 +353,80 @@
       "kpi_skus": "SKUs in catalog",
       "kpi_years": "Years operating",
       "kpi_categories": "Product lines"
+    },
+    "ticker": {
+      "label": "Live"
+    },
+    "v3numbers": {
+      "label": "By the numbers",
+      "big_copy": "years moving inputs into Sudanese farms, established 2010 in Khartoum.",
+      "suppliers": "Supplier partners across Germany, Netherlands, Switzerland, UK, Australia, Thailand, Egypt",
+      "branches": "Sudan branches, Khartoum HQ + 5 regional",
+      "skus": "Active SKUs across seeds, fertilizers, pesticides"
+    },
+    "v3catalog": {
+      "label": "The catalog",
+      "headline_phrase": "Three product lines, one Sudan-grade",
+      "headline_accent": "supply chain.",
+      "open": "Open category",
+      "lines": {
+        "seeds": {
+          "title": "Seeds",
+          "supplier_caption": "Barenbrug · East West",
+          "skus": "3+",
+          "subcat": "Forage + vegetable",
+          "body": "Australian forage cultivars and Thai vegetable hybrids. Catalog scaling as suppliers confirm."
+        },
+        "fertilizers": {
+          "title": "Fertilizers",
+          "supplier_caption": "K+S · Agro Dragon",
+          "skus": "11",
+          "subcat": "Water-soluble NPK",
+          "body": "K+S German premium chemistry, soluble NPK, KaliSOP, EPSO Top, soluNOP."
+        },
+        "pesticides": {
+          "title": "Pesticides",
+          "supplier_caption": "SAF · KZ · Kafr El Zayat",
+          "skus": "16",
+          "subcat": "3 subcategories",
+          "body": "Insecticides, herbicides, fungicides. Egyptian, Swiss, UK, China, India sourcing."
+        }
+      }
+    },
+    "v3partners": {
+      "label": "Partners",
+      "headline_phrase": "Seven international suppliers, sourcing from",
+      "headline_accent": "six countries.",
+      "spotlight_label": "Spotlight",
+      "read_story": "Read partner story"
+    },
+    "v3reports": {
+      "label": "Field reports",
+      "headline_phrase": "From the ground, agronomy notes",
+      "headline_accent": "by branch.",
+      "read_all": "Read all reports"
+    },
+    "v3customers": {
+      "label": "Customers",
+      "headline_phrase": "Working with the people who",
+      "headline_accent": "feed Sudan.",
+      "pull_quote_pending": "[Customer pull quote pending client confirmation.]"
+    },
+    "v3branches": {
+      "label": "Network",
+      "headline_phrase": "Six branches across Sudan, Khartoum HQ +",
+      "headline_accent": "five regional.",
+      "hq": "Headquarters",
+      "branch": "Branch"
+    },
+    "v3cta": {
+      "label": "Request a quote",
+      "headline_phrase": "Tell us what your",
+      "headline_accent": "field needs.",
+      "primary": "Request a quote",
+      "phone_label": "Call",
+      "whatsapp_label": "WhatsApp",
+      "footer_address": "Zagros Trading · Khartoum Bahry Industrial Zone"
     },
     "featured": {
       "kicker": "Featured · Issue 03"
