@@ -34,6 +34,15 @@ Home (Hero → Ticker → Numbers → Catalog → Partners → Field Reports →
 - `/partners` and `/ar/partners` (index pages)
 - `/customers` and `/ar/customers` (index pages and any detail variant)
 
+**Redirects:** `astro.config.mjs` gains four `redirects` entries:
+```
+/partners        → /        (302 by default; 301 if user prefers permanent)
+/ar/partners     → /ar/
+/customers       → /
+/ar/customers    → /ar/
+```
+Anyone with old links lands on the home page where the new Partners and Customers sections live. Default to 301 (permanent) since the IA change is intentional.
+
 **Nav primary links (post-redesign), in order:**
 Home · Products · Field Reports · About · Contact · [language toggle] · [Request a quote]
 
@@ -41,20 +50,29 @@ Home · Products · Field Reports · About · Contact · [language toggle] · [R
 
 ## 3 · Homepage section design
 
-### Section 01 — Hero · "Photo-led atmospheric"
+### Section 01 — Hero · "Photo-led atmospheric, rotating"
 
-Full-bleed hero, locked direction B from the brainstorming session.
+Full-bleed hero, locked direction B from the brainstorming session. Four photos rotate as a slow Ken Burns slideshow (decision: user picked `rotate` over single-photo, then shortlisted 4 of 6 candidates).
 
-- **Background:** real photo when client provides (`/photos/hero-sudan-farmland.jpg`, ~16:9, landscape). Until then, the gradient placeholder ships as the fallback (`linear-gradient(135deg, #6B5E3E 0%, #2B5E3E 50%, #1B1A17 100%)` + dark vignette).
-- **Top row:** mono kicker on the left (`● ZAGROS TRADING · KHARTOUM`), `EST · 2010` on the right.
+- **Background slideshow:** four photos cycle, each ~5 seconds visible + 1 second crossfade. Slow Ken Burns scale (1.00 → 1.09) over each slide. CSS animation only — no JS scheduler.
+  - `public/hero/irrigation.webp`
+  - `public/hero/crop.webp`
+  - `public/hero/vegetable.webp`
+  - `public/hero/pest.webp`
+- **Slide order:** declared in markup, fixed (no shuffle on each load — predictability beats novelty for B2B). All four photos stay in `public/hero/` at their existing dimensions; the unselected `crop2.webp` and `illustrative-hero-canal.jpg` stay in place but aren't referenced.
+- **Slide preload:** first slide gets `fetchpriority="high"`, the other three get `loading="eager"` with `decoding="async"` so the rotation has its assets ready when the cycle starts. No per-slide flash.
+- **Reduced-motion fallback:** `prefers-reduced-motion: reduce` freezes on the first slide (`irrigation.webp`), no zoom, no crossfade — but headline + scrim still render normally.
+- **Dark scrim:** `linear-gradient(180deg, rgba(27,26,23,0.18) 30%, rgba(27,26,23,0.55) 70%, rgba(27,26,23,0.85) 100%)` on top of the image stack. Keeps headline legible across all four photos.
+- **Top row:** mono kicker on the left (`● ZAGROS TRADING · KHARTOUM`), `EST · 2010` on the right. Live dot blinks at 2.4s cadence.
 - **Headline:** Fraunces italic display, 3-line phrasing pulled from i18n. EN: *"Seeds, fertilizers, pesticides — sourced for Sudanese soil."* AR equivalent in `ar.json`. The accent word (`Sudanese soil` / `للأرض السودانية`) is rendered in `--signal` yellow.
 - **Meta row:** three mono pills along the bottom — suppliers/countries, hours, phone. Border-top separator.
-- **Scroll cue:** bottom-right mono `SCROLL · 01 / 09 ↓`.
+- **Progress dots:** bottom-right, 4 thin yellow segments that fill in sync with the active slide (signal-yellow `transform: scaleX()` from 0 → 1 over each 5s window).
+- **Scroll cue:** removed — the progress dots cover the same need without competing for attention.
 - **Motion:**
-  - Image (when present) parallax-translates 12% on scroll via throttled `transform: translate3d(0, scrollY * 0.12, 0)`.
+  - Slideshow cadence above (24s full loop = 4 slides × 6s each).
   - Headline characters stagger-fade-in at 60ms each on first paint (1 char ≈ 0 → 1 opacity, 12px translate-y).
   - Meta row slides up after headline finishes.
-  - Scroll cue pulses (opacity 0.55 ↔ 0.95, 2.4s, infinite, paused for reduced motion).
+  - All motion gated by `prefers-reduced-motion: no-preference`.
 
 ### Section 02 — Ops ticker · "Live operational marquee"
 
@@ -77,7 +95,7 @@ Four numbers, one giant + three normal.
 
 Three product-line cards, each with the editorial colored hero zone.
 
-- **Layout:** `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5`. Reuse the existing `bgClassMap` Tailwind classes for hero zones — `bg-c-rhodes` (seeds, green), `bg-c-npk` (fertilizers, navy), and a pesticide variant. The current token set in `src/styles/tokens.css:23-32` does not include a pesticide-specific brand token, so plan adds `--c-pesticide: 90 58 30;` (matching the existing `--color-sienna` numerals — keeps the palette unchanged in practice) and a `bg-c-pesticide` map entry. Decision flagged in open questions §15.
+- **Layout:** `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5`. Reuse the existing `bgClassMap` Tailwind classes for hero zones — `bg-c-rhodes` (seeds, green), `bg-c-npk` (fertilizers, navy), and a new pesticide variant. Plan adds `--c-pesticide: 90 58 30;` to `src/styles/tokens.css` (matching the existing `--color-sienna` numerals so the 7-token palette stays intact in spirit) and a `bg-c-pesticide` map entry in `tailwind.config.mjs`. **Decision locked: sienna brown.**
 - **Hero zone content:** supplier name caption, SKU count as a giant italic numeral, classification mono pill.
 - **Body:** subhead (Fraunces italic 26px), 2-line body copy, `Open category →` mono link with `min-h-[44px]`.
 - **Motion:** stagger-fade-up on entry (80ms steps). Hover lifts card 4px + subtly sharpens border (stone → ink). NO scale transforms.
@@ -121,7 +139,7 @@ The folded-in Customers section. Inverts to ink ground for chapter contrast.
 Sudan map on the left, six-branch list on the right.
 
 - **Layout:** 1.4fr / 1fr grid. Mobile: list above, map below.
-- **Map:** an SVG hand-drawn editorial Sudan outline (NOT a Leaflet OpenStreetMap render — too generic). Six pins at the six city locations. Render via inline `<svg>` so it inherits text colors and stays small. Existing `leaflet` dep can be removed if no other page uses it.
+- **Map:** an SVG hand-drawn editorial Sudan outline (decision locked over Leaflet — too generic for editorial tone). Six pins at the six city locations. Render via inline `<svg>` so it inherits text colors and stays small. The `leaflet` dep gets removed from `package.json` and any `*Leaflet*.astro` components purged in the same commit, assuming no remaining page uses them (verify via grep before deletion).
 - **Branch list:** 6 items in a `<dl>`-style list. Each row: serial numeral (Fraunces italic), city name (Fraunces italic), branch-type mono pill (HEADQUARTERS / BRANCH). Border between rows.
 - **Data:** from `src/data/company.ts` — already correct (Khartoum HQ + 5 regional).
 - **Motion:** pins drop-in sequentially (100ms each) when section enters view. List items reveal in sync with pin animation. Reduced-motion shows everything immediately.
@@ -366,12 +384,12 @@ The implementation plan (next skill: `superpowers:writing-plans`) will sequence 
 | RTL parity at narrow viewports for marquee | Marquee uses `dir`-aware CSS animation. Test in AR locale build at 360px before merge. |
 | Pull quote pending-state copy contradicts the anti-AI-slop discipline | Pending fallback uses italics + a `[pending client confirmation]` marker, not a fabricated quote. Per the anti-slop memory: visible pending markers signal gaps, plausible placeholder copy hides them. |
 
-## 15 · Open questions for the user (resolved in review or before implementation)
+## 15 · Decisions (resolved 2026-05-12)
 
-1. **Pesticide hero zone color** — spec proposes `bg-c-sienna` (or new `--c-pesticide` token at `#5A3A1E`). Confirm or pick another existing token.
-2. **Sudan map style** — confirm hand-drawn editorial SVG (recommended) vs continuing with Leaflet/OpenStreetMap (more accurate, less editorial).
-3. **301 redirects** from old `/partners` and `/customers` paths — add or accept 404s?
-4. **Hero photo timing** — does the client provide one for the v3 launch or do we ship with the gradient placeholder and hot-swap later?
+1. **Pesticide hero zone color → sienna brown.** New `--c-pesticide: 90 58 30;` token added to `src/styles/tokens.css`, mirrors `--color-sienna`. New `bg-c-pesticide` Tailwind class added to `tailwind.config.mjs`. Plan 7's `bgClassMap` in `ProductHero.astro` gains a `c-pesticide` entry.
+2. **Sudan map → hand-drawn editorial SVG.** Inline `<svg>` with 6 pins. `leaflet` dep removed from `package.json`.
+3. **Redirects from deleted indexes → 301 permanent.** Configured in `astro.config.mjs` for both EN and AR mirrors.
+4. **Hero photo → 4-photo rotating slideshow** using existing `public/hero/` assets — `irrigation.webp`, `crop.webp`, `vegetable.webp`, `pest.webp`. Ken Burns slow zoom + 1s crossfade, 24s full loop. CSS-only, reduced-motion freezes on first slide.
 
 ---
 
