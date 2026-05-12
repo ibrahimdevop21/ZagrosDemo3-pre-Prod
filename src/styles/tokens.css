@@ -30,6 +30,7 @@
     --c-ksop:   30 58 138;    /* #1E3A8A — KaliSOP royal blue */
     --c-rhodes: 74 140 58;    /* #4A8C3A — Rhodes tropical green */
     --c-sardi:  107 79 187;   /* #6B4FBB — SARDI / Alfamaster lucerne purple */
+    --c-pesticide: 90 58 30;  /* #5A3A1E — pesticide line, mirrors --color-sienna */
 
     /* Layout constants */
     --stage-max-width: 1300px;

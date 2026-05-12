@@ -46,13 +46,14 @@ const bgClassMap: Record<string, string> = {
   'c-ksop':   'bg-c-ksop',
   'c-rhodes': 'bg-c-rhodes',
   'c-sardi':  'bg-c-sardi',
+  'c-pesticide': 'bg-c-pesticide',
 };
 const bgClass = bgClassMap[colorToken] ?? bgClassMap['c-cn'];
 const resolvedToken = bgClassMap[colorToken] ? colorToken : 'c-cn';
 
 // Text color: most SKU colors are dark, use cream text. soluCN, soluNOP and
 // Rhodes are pale → use ink.
-const darkBgTokens = new Set(['c-npk', 'c-mkp', 'c-map', 'c-ams', 'c-epso', 'c-ksop', 'c-sardi']);
+const darkBgTokens = new Set(['c-npk', 'c-mkp', 'c-map', 'c-ams', 'c-epso', 'c-ksop', 'c-sardi', 'c-pesticide']);
 const isDarkBg = darkBgTokens.has(resolvedToken);
 const textCls = isDarkBg ? 'text-paper' : 'text-ink';
 const dimCls = isDarkBg ? 'text-paper/65' : 'text-ink/60';

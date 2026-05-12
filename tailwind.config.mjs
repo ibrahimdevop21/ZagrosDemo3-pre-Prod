@@ -39,6 +39,7 @@ export default {
         'c-ksop':   'rgb(var(--c-ksop) / <alpha-value>)',
         'c-rhodes': 'rgb(var(--c-rhodes) / <alpha-value>)',
         'c-sardi':  'rgb(var(--c-sardi) / <alpha-value>)',
+        'c-pesticide': 'rgb(var(--c-pesticide) / <alpha-value>)',
       },
       spacing: {
         // Raw scale — spec §3.1
