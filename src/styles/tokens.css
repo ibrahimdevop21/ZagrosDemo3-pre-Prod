@@ -35,4 +35,12 @@
     --stage-max-width: 1300px;
     --page-margin-x:   56px;
   }
+
+  /* Mobile gutter: 56px is right at the edge of the viewport on 360px phones
+     and crowds content against the screen. Reduce to 20px below sm:. */
+  @media (max-width: 639px) {
+    :root {
+      --page-margin-x: 20px;
+    }
+  }
 }
