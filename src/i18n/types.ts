@@ -399,6 +399,14 @@ export interface UITranslations {
       hq: string;
       branch: string;
     };
+    v3markets: {
+      label: string;
+      headline_phrase: string;
+      headline_accent: string;
+      primary_label: string;
+      primary_body: string;
+      footer_note: string;
+    };
     v3cta: {
       label: string;
       headline_phrase: string;

@@ -1,0 +1,103 @@
+---
+/**
+ * Zagros v3 — Section 09 Markets reach (regional MENA presence).
+ *
+ * Twelve markets total: Sudan as the primary anchor card + 11 MENA
+ * markets as flag tiles. Tells the regional-distributor story that
+ * branches alone (Sudan-only) leaves on the table.
+ *
+ * Flags rendered as Unicode regional indicators (no asset management).
+ * Reduced-motion safe via the standard data-reveal hook.
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+interface Market {
+  code: string;          // ISO 3166-1 alpha-2 lowercase
+  flag: string;          // Unicode flag emoji (regional indicators)
+  name_en: string;
+  name_ar: string;
+  primary?: boolean;
+}
+
+// Order: Sudan first, then 11 MENA markets in the order the user listed
+// them (Egypt, Saudi Arabia, UAE, Qatar, Kuwait, Oman, Bahrain, Jordan,
+// Lebanon, Iraq, Yemen).
+const markets: Market[] = [
+  { code: 'sd', flag: '🇸🇩', name_en: 'Sudan',         name_ar: 'السودان',  primary: true },
+  { code: 'eg', flag: '🇪🇬', name_en: 'Egypt',         name_ar: 'مصر' },
+  { code: 'sa', flag: '🇸🇦', name_en: 'Saudi Arabia',  name_ar: 'السعودية' },
+  { code: 'ae', flag: '🇦🇪', name_en: 'UAE',           name_ar: 'الإمارات' },
+  { code: 'qa', flag: '🇶🇦', name_en: 'Qatar',         name_ar: 'قطر' },
+  { code: 'kw', flag: '🇰🇼', name_en: 'Kuwait',        name_ar: 'الكويت' },
+  { code: 'om', flag: '🇴🇲', name_en: 'Oman',          name_ar: 'عُمان' },
+  { code: 'bh', flag: '🇧🇭', name_en: 'Bahrain',       name_ar: 'البحرين' },
+  { code: 'jo', flag: '🇯🇴', name_en: 'Jordan',        name_ar: 'الأردن' },
+  { code: 'lb', flag: '🇱🇧', name_en: 'Lebanon',       name_ar: 'لبنان' },
+  { code: 'iq', flag: '🇮🇶', name_en: 'Iraq',          name_ar: 'العراق' },
+  { code: 'ye', flag: '🇾🇪', name_en: 'Yemen',         name_ar: 'اليمن' },
+];
+
+const primary = markets.find((m) => m.primary)!;
+const others = markets.filter((m) => !m.primary);
+---
+<section class="px-page-x py-section-y bg-paper-light border-t border-ink">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="w-6 h-px bg-mute inline-block"></span>
+    {t('home.v3markets.label')}
+  </span>
+
+  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[24ch] mb-sp-9" data-reveal style="--reveal-delay: 100ms;">
+    {t('home.v3markets.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3markets.headline_accent')}</span>
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_2fr] gap-sp-6 lg:gap-sp-7 items-stretch">
+    <!-- Primary anchor card: Sudan -->
+    <article
+      class="bg-ink text-paper p-sp-6 sm:p-sp-7 flex flex-col gap-sp-5 min-h-[300px]"
+      data-reveal
+    >
+      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/70">
+        {t('home.v3markets.primary_label')}
+      </span>
+      <div class="flex items-baseline gap-sp-4">
+        <span class="text-[clamp(56px,8vw,96px)] leading-none" aria-hidden="true">{primary.flag}</span>
+        <span class="font-display italic font-light text-[clamp(36px,5vw,56px)] leading-[1] text-paper">
+          {lang === 'ar' ? primary.name_ar : primary.name_en}
+        </span>
+      </div>
+      <p class="font-sans text-[14px] leading-relaxed text-paper/85 max-w-[40ch] m-0 mt-auto">
+        {t('home.v3markets.primary_body')}
+      </p>
+    </article>
+
+    <!-- 11 MENA market tiles -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-sp-3">
+      {others.map((m, idx) => (
+        <article
+          class="flex flex-col items-center justify-center gap-sp-2 p-sp-4 bg-paper border border-stone hover:border-ink transition-colors min-h-[120px]"
+          data-reveal
+          style={`--reveal-delay: ${(idx + 1) * 60}ms;`}
+        >
+          <span class="text-[42px] leading-none" aria-hidden="true">{m.flag}</span>
+          <span class="font-display italic text-[15px] leading-tight text-ink text-center">
+            {lang === 'ar' ? m.name_ar : m.name_en}
+          </span>
+          <span class="font-mono text-[9px] tracking-[0.2em] uppercase text-mute">{m.code.toUpperCase()}</span>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <p class="mt-sp-7 font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute max-w-[60ch]" data-reveal>
+    {t('home.v3markets.footer_note')}
+  </p>
+</section>
+
+<script>
+  import { observeReveal } from '../../lib/motion';
+  observeReveal();
+</script>

@@ -419,6 +419,14 @@
       "hq": "Headquarters",
       "branch": "Branch"
     },
+    "v3markets": {
+      "label": "Markets",
+      "headline_phrase": "Headquartered in Sudan,",
+      "headline_accent": "active across the MENA region.",
+      "primary_label": "Primary market · Headquarters",
+      "primary_body": "Six branches, ministry-grade trust, and a full-input portfolio anchor every regional shipment. Sudanese fields are where the catalog gets tested.",
+      "footer_note": "Twelve markets confirmed. Coverage varies by line and supplier agreement, contact sales for the specific catalog available in your country."
+    },
     "v3cta": {
       "label": "Request a quote",
       "headline_phrase": "Tell us what your",
