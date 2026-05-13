@@ -54,6 +54,23 @@
     line-height: 1.18;
   }
 
+  /* Arabic doesn't have italic and Fraunces has no Arabic glyphs.
+     Force every Latin display utility (font-display, font-serif, italic)
+     to render as the Arabic family upright in RTL — fixes the
+     "two-fonts in AR" bug where Fraunces fell back to a system serif
+     while body text used Plex Sans Arabic. */
+  html[dir='rtl'] .font-display,
+  html[dir='rtl'] .font-serif,
+  html[dir='rtl'] .font-sans {
+    font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+  html[dir='rtl'] .italic {
+    font-style: normal;
+  }
+  /* Mono kickers and data labels stay in Plex Mono — Arabic-Indic
+     numerals render fine in mono even though it's a Latin family. */
+
   /* Selection */
   ::selection {
     background: rgb(var(--color-signal));
