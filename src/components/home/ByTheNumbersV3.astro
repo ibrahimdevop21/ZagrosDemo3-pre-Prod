@@ -14,13 +14,13 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const isRTL = lang === 'ar';
 
-// AR-Indic display while count-up data uses Western digits internally.
+// Western digits in body copy for both locales — matches the AAAID
+// anchor (see AR_VOICE.md §Numerals). Arabic-Indic was the previous
+// default but read as "heritage / Google-translated" rather than the
+// premium B2B corporate voice the project needs.
 function toLocaleNum(n: number, suffix = ''): string {
-  if (!isRTL) return n + suffix;
-  const arabicIndic = '٠١٢٣٤٥٦٧٨٩';
-  return n.toString().split('').map((d) => arabicIndic[+d] ?? d).join('') + suffix;
+  return n + suffix;
 }
 ---
 <section class="px-page-x py-section-y bg-paper">

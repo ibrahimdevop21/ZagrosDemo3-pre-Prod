@@ -72,7 +72,7 @@ export const companyData: CompanyData = {
   },
   business: {
     en: 'Headquartered in Sudan since 1987, serving twelve markets across MENA with seeds, fertilizers, and pesticides from seven international suppliers.',
-    ar: 'مقرها في السودان منذ ١٩٨٧، تخدم اثنتي عشرة سوقاً في الشرق الأوسط وشمال أفريقيا ببذور وأسمدة ومبيدات من سبعة موردين دوليين.',
+    ar: 'تأسست في السودان عام 1987 وتعمل في 12 سوقاً عبر الشرق الأوسط وشمال أفريقيا، بتوفير البذور والأسمدة والمبيدات من 7 موردين دوليين.',
   },
   established_year: 1987,
   partners: [
