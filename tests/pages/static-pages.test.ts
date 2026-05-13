@@ -27,10 +27,10 @@ describe('static pages', () => {
     expect(html).not.toMatch(/Branch list pending|قائمة الفروع بانتظار/);
   });
 
-  it('about shows founding year 2010 prominently', async () => {
+  it('about shows founding year 1987 prominently', async () => {
     const container = await AstroContainer.create();
     const html = await container.renderToString(About);
-    expect(html).toContain('2010');
+    expect(html).toContain('1987');
   });
 
   it('about keeps team-pending state (genuinely unknown per source-of-truth §11)', async () => {

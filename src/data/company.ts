@@ -6,7 +6,7 @@
  * §5 branches, §11 contact channels).
  *
  * VERIFIED FROM SOURCE OF TRUTH:
- *   - Founded 2010 in Khartoum, Sudan (not 1987)
+ *   - Founded 1987 in Khartoum, Sudan
  *   - Seven international suppliers across six countries
  *   - Six branches across Sudan (Khartoum HQ + 5 regional)
  *   - Markets served: Sudan only
@@ -71,10 +71,10 @@ export const companyData: CompanyData = {
     ar: 'زاغروس للتجارة',
   },
   business: {
-    en: "Sudan's trusted partner for agricultural inputs — seeds, fertilizers, and pesticides from seven international suppliers across six countries.",
-    ar: 'شريك السودان الموثوق للمدخلات الزراعية — بذور وأسمدة ومبيدات من سبع شراكات دولية في ست دول.',
+    en: 'Headquartered in Sudan since 1987, serving twelve markets across MENA with seeds, fertilizers, and pesticides from seven international suppliers.',
+    ar: 'مقرها في السودان منذ ١٩٨٧، تخدم اثنتي عشرة سوقاً في الشرق الأوسط وشمال أفريقيا ببذور وأسمدة ومبيدات من سبعة موردين دوليين.',
   },
-  established_year: 2010,
+  established_year: 1987,
   partners: [
     { slug: 'east-west-seeds', name: 'East West Seeds International',            country: 'Thailand',       country_code: 'th', category: 'vegetable_seeds' },
     { slug: 'barenbrug',       name: 'Barenbrug Australia',                      country: 'Australia',      country_code: 'au', category: 'forage_seeds'    },
@@ -101,7 +101,7 @@ export const companyData: CompanyData = {
     social: { facebook: null, instagram: null, youtube: null, linkedin: null },
   },
   certifications: ['International Agricultural Trade Association'],
-  markets_served: ['sd'],
+  markets_served: ['sd', 'eg', 'sa', 'ae', 'qa', 'kw', 'om', 'bh', 'jo', 'lb', 'iq', 'ye'],
   supplier_countries: ['de', 'nl', 'ch', 'gb', 'au', 'th', 'cn', 'in', 'eg'],
   staff_count: 50,
   parent_company: 'Zagros Group',

@@ -3,7 +3,7 @@ import { companyData } from '../../src/data/company';
 
 describe('companyData', () => {
   it('reflects real Zagros facts from source-of-truth', () => {
-    expect(companyData.established_year).toBe(2010);
+    expect(companyData.established_year).toBe(1987);
     expect(companyData.partners.length).toBeGreaterThanOrEqual(7);
     expect(companyData.partners.map((p) => p.slug)).toEqual(
       expect.arrayContaining([
@@ -21,8 +21,12 @@ describe('companyData', () => {
     expect(companyData.contact.phone).toBe('+249 91 233 8559');
   });
 
-  it('records Sudan as the served market and lists supplier countries', () => {
-    expect(companyData.markets_served).toEqual(['sd']);
+  it('records Sudan as the primary market plus 11 MENA markets, and lists supplier countries', () => {
+    expect(companyData.markets_served[0]).toBe('sd');
+    expect(companyData.markets_served).toEqual(
+      expect.arrayContaining(['sd', 'eg', 'sa', 'ae', 'qa', 'kw', 'om', 'bh', 'jo', 'lb', 'iq', 'ye']),
+    );
+    expect(companyData.markets_served.length).toBe(12);
     expect(companyData.supplier_countries).toEqual(
       expect.arrayContaining(['de', 'nl', 'ch', 'gb', 'au', 'th', 'cn', 'in', 'eg']),
     );

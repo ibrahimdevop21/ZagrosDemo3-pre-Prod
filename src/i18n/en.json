@@ -2,8 +2,8 @@
   "site": {
     "name": "Zagros",
     "wordmark": "Zagros",
-    "tagline": "Agricultural inputs · Est. 2010",
-    "meta_description": "Sudan's trusted partner for agricultural inputs since 2010. Seeds from Thailand and Australia, fertilizers from Germany and the Netherlands, pesticides from Egypt, Switzerland, the UK, India, and China."
+    "tagline": "Agricultural inputs · Est. 1987",
+    "meta_description": "Headquartered in Sudan since 1987, serving twelve MENA markets with seeds, fertilizers, and pesticides from seven international suppliers across Germany, the Netherlands, Switzerland, the UK, Australia, Thailand, and Egypt."
   },
   "nav": {
     "home": "Home",
@@ -37,8 +37,8 @@
   "about": {
     "title": "About",
     "kicker": "About Zagros",
-    "headline": "Sudan's full-input agricultural-solutions partner since 2010.",
-    "deck": "Zagros Trading has served Sudanese farms — from ministry-scale projects to family operations — for sixteen years. Six branches, seven international suppliers, three product lines under one roof. Consultancy, distribution, and after-sales support.",
+    "headline": "Headquartered in Sudan since 1987, serving twelve MENA markets.",
+    "deck": "Zagros Trading has served farms across the region — from ministry-scale projects to family operations — for thirty-nine years. Six Sudan branches, twelve markets, seven international suppliers, three product lines under one roof. Consultancy, distribution, and after-sales support.",
     "timeline_label": "Established",
     "timeline": {
       "founded_label": "Founded in Khartoum",
@@ -337,17 +337,17 @@
   },
   "home": {
     "hero": {
-      "kicker": "Zagros Trading · Khartoum",
-      "est_pill": "Est · 2010",
+      "kicker": "Zagros Trading · Headquartered in Khartoum",
+      "est_pill": "Est · 1987",
       "headline_phrase": "Seeds, fertilizers, pesticides, sourced for",
-      "headline_accent": "Sudanese soil.",
-      "meta_suppliers": "7 suppliers · 6 countries",
+      "headline_accent": "Sudanese soil and the region.",
+      "meta_suppliers": "12 markets · 7 suppliers",
       "meta_hours": "Sun–Thu 8–5",
       "meta_phone": "+249 91 233 8559",
       "edition_label": "Yield",
       "photo_alt": "Sudanese agricultural landscape — Zagros field operations",
-      "headline_a": "Sudan's trusted partner —",
-      "headline_b": "for agricultural inputs since 2010.",
+      "headline_a": "MENA's regional agricultural inputs partner —",
+      "headline_b": "headquartered in Sudan since 1987.",
       "deck": "Six branches across Sudan, seven international suppliers, full input portfolio. Seeds, fertilizers, pesticides — specs forward, agronomically backed.",
       "kpi_partners": "International suppliers",
       "kpi_skus": "SKUs in catalog",
@@ -359,7 +359,7 @@
     },
     "v3numbers": {
       "label": "By the numbers",
-      "big_copy": "years moving inputs into Sudanese farms, established 2010 in Khartoum.",
+      "big_copy": "years moving agricultural inputs across MENA, headquartered in Khartoum since 1987.",
       "suppliers": "Supplier partners across Germany, Netherlands, Switzerland, UK, Australia, Thailand, Egypt",
       "branches": "Sudan branches, Khartoum HQ + 5 regional",
       "skus": "Active SKUs across seeds, fertilizers, pesticides"

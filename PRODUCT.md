@@ -14,7 +14,7 @@ Zagros's customers are not consumers. They're agriculture professionals. Voice s
 
 ## Product purpose
 
-Zagros Trading is Sudan's trusted partner for agricultural inputs — connecting Sudanese farmers to premium seeds, fertilizers, and pesticides from world-leading manufacturers across Europe, Asia, and the Middle East. Established 2010. Six branches across Sudan: Khartoum HQ (Bahry industrial zone) + Port Sudan, Al Qadarif, Al Managil, Ad-Damar, Ad-Daba. ~50 staff. Member of the International Agricultural Trade Association.
+Zagros Trading is a regional MENA distributor of agricultural inputs, headquartered in Sudan and active across twelve markets — Sudan (primary), Egypt, Saudi Arabia, UAE, Qatar, Kuwait, Oman, Bahrain, Jordan, Lebanon, Iraq, and Yemen. The company sources premium seeds, fertilizers, and pesticides from world-leading manufacturers across Europe, Asia, and the Middle East. Established 1987 in Khartoum. Six Sudan branches: Khartoum HQ (Bahry industrial zone) + Port Sudan, Al Qadarif, Al Managil, Ad-Damar, Ad-Daba. ~50 staff. Member of the International Agricultural Trade Association.
 
 Three product lines: Seeds (Barenbrug AU forage + East West TH vegetable, catalog pending), Fertilizers (11 K+S SKUs from Germany), Pesticides (16 SKUs from SAF, KZ, Kafr El Zayat, and ~12 Chinese chemistry partners). Seven international supplier partnerships across six countries.
 
@@ -50,7 +50,7 @@ Differentiators: 15-year track record, six-branch national network, full input p
 
 - Wordmark: "Zagros" set in Fraunces italic for the publication mark; full company is "Zagros Trading" / "تجارة زاغروس".
 - Tagline EN: "Leaders in Agric Services." AR: "روّاد الخدمات الزراعية" (to confirm with client).
-- Established 2010.
+- Established 1987 in Khartoum.
 - Phone: +249 91 233 8559 (phone + WhatsApp). Sun–Thu 8 AM – 5 PM.
 - Logo files at `public/zagros-dark.png` and `public/zagros-white.png`. Mix-blend-mode used to integrate logo against paper / ink grounds.
 

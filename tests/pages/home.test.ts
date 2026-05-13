@@ -19,7 +19,7 @@ describe('home page', () => {
     const html = await container.renderToString(Index);
     expect(html).toContain('hero-slideshow');                 // 01
     expect(html).toContain('marquee-track');                  // 02
-    expect(html).toMatch(/data-count-target="15"/);           // 03
+    expect(html).toMatch(/data-count-target="39"/);           // 03
     expect(html).toContain('bg-c-pesticide');                 // 04
     expect(html.toLowerCase()).toMatch(/spotlight/);          // 05
     expect(html).toMatch(/REPORT ·/);                          // 06

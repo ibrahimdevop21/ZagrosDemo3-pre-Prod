@@ -9,7 +9,7 @@ describe('home page (v3)', () => {
     const html = await container.renderToString(HomeEN);
     expect(html).toContain('hero-slideshow');
     expect(html).toContain('marquee-track');
-    expect(html).toMatch(/data-count-target="15"/);
+    expect(html).toMatch(/data-count-target="39"/);
     expect(html).toContain('bg-c-pesticide');
     expect(html.toLowerCase()).toMatch(/spotlight/);
     expect(html).toMatch(/REPORT ·/);

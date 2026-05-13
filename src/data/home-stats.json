@@ -1,7 +1,7 @@
 {
-  "_source_note": "Stats derived from src/data/company.ts and the three product collections. Years = currentYear - established_year (2010). Suppliers = company.partners.length. SKUs = sum of fertilizers/seeds/pesticides collection entries. Branches = company.branches.length.",
+  "_source_note": "Stats derived from src/data/company.ts and the three product collections. Years = currentYear - established_year (1987). Suppliers = company.partners.length. SKUs = sum of fertilizers/seeds/pesticides collection entries. Branches = company.branches.length.",
   "stats": [
-    { "key": "years",     "value": "16", "label_en": "Years operating",        "label_ar": "سنة من النشاط",     "context_en": "since 2010",      "context_ar": "منذ ٢٠١٠" },
+    { "key": "years",     "value": "39", "label_en": "Years operating",        "label_ar": "سنة من النشاط",     "context_en": "since 1987",      "context_ar": "منذ ١٩٨٧" },
     { "key": "branches",  "value": "6",  "label_en": "Branches across Sudan",  "label_ar": "فروع في السودان",    "context_en": "Khartoum HQ + 5", "context_ar": "الخرطوم + ٥ فروع" },
     { "key": "suppliers", "value": "7",  "label_en": "International suppliers","label_ar": "شراكات دولية",       "context_en": "6 countries",     "context_ar": "٦ دول" },
     { "key": "skus",      "value": "30", "label_en": "SKUs in catalog",        "label_ar": "منتج في الكتالوج",   "context_en": "3 product lines", "context_ar": "٣ خطوط منتجات" }
