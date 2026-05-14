@@ -24,7 +24,7 @@ describe('home page', () => {
     expect(html.toLowerCase()).toMatch(/spotlight/);          // 05
     expect(html).toMatch(/REPORT ·/);                          // 06
     expect(html).toMatch(/data-customer-logo/);               // 07
-    expect(html).toMatch(/<svg[^>]*viewBox="0 0 100 100"/);   // 08
+    expect(html).toMatch(/<svg[^>]*viewBox="0 0 1000 500"/);   // 08
     expect(html).toMatch(/Request a quote/);                  // 09
   });
 

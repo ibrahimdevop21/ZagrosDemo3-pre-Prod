@@ -34,7 +34,8 @@ const whatsapp = companyData.contact.whatsapp?.replace(/[^\d]/g, '');
     </a>
     {phone && (
       <a href={`tel:${phoneTel}`} class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
-        {t('home.v3cta.phone_label')} {phone}
+        <span>{t('home.v3cta.phone_label')}</span>
+        <span dir="ltr">{phone}</span>
       </a>
     )}
     {whatsapp && (

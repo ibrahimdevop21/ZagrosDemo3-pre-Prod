@@ -339,9 +339,9 @@
     "hero": {
       "kicker": "Zagros Trading · Headquartered in Khartoum",
       "est_pill": "Est · 1987",
-      "headline_phrase": "Seeds, fertilizers, pesticides, sourced for",
-      "headline_accent": "Sudanese soil and the region.",
-      "meta_suppliers": "12 markets · 7 suppliers",
+      "headline_phrase": "Seeds, fertilizers, pesticides",
+      "headline_accent": "for Sudanese soil and the region",
+      "meta_suppliers": "12 markets · 9 source countries",
       "meta_hours": "Sun–Thu 8–5",
       "meta_phone": "+249 91 233 8559",
       "edition_label": "Yield",
@@ -359,15 +359,15 @@
     },
     "v3numbers": {
       "label": "By the numbers",
-      "big_copy": "years moving agricultural inputs across MENA, headquartered in Khartoum since 1987.",
-      "suppliers": "Supplier partners across Germany, Netherlands, Switzerland, UK, Australia, Thailand, Egypt",
-      "branches": "Sudan branches, Khartoum HQ + 5 regional",
+      "big_copy": "years moving agricultural inputs across MENA. Headquartered in Khartoum since 1987",
+      "suppliers": "Source countries: Germany, Netherlands, Switzerland, UK, Australia, Thailand, Egypt, China, India",
+      "branches": "Markets we serve: Sudan, Iraq, Egypt, Jordan, Lebanon, Yemen, and the GCC states",
       "skus": "Active SKUs across seeds, fertilizers, pesticides"
     },
     "v3catalog": {
       "label": "The catalog",
-      "headline_phrase": "Three product lines, one Sudan-grade",
-      "headline_accent": "supply chain.",
+      "headline_phrase": "An integrated catalog",
+      "headline_accent": "across three product lines",
       "open": "Open category",
       "lines": {
         "seeds": {
@@ -395,42 +395,46 @@
     },
     "v3partners": {
       "label": "Partners",
-      "headline_phrase": "Seven international suppliers, sourcing from",
-      "headline_accent": "six countries.",
+      "headline_phrase": "An international supplier network",
+      "headline_accent": "across nine source countries",
       "spotlight_label": "Spotlight",
       "read_story": "Read partner story"
     },
     "v3reports": {
       "label": "Field reports",
-      "headline_phrase": "From the ground, agronomy notes",
-      "headline_accent": "by branch.",
+      "headline_phrase": "Agronomy notes from the ground",
+      "headline_accent": "by branch",
       "read_all": "Read all reports"
     },
     "v3customers": {
       "label": "Customers",
       "headline_phrase": "Working with the people who",
-      "headline_accent": "feed Sudan.",
-      "pull_quote_pending": "[Customer pull quote pending client confirmation.]"
+      "headline_accent": "feed Sudan",
+      "pull_quote_pending": "[Customer pull quote pending client confirmation]"
     },
     "v3branches": {
       "label": "Network",
-      "headline_phrase": "Six branches across Sudan, Khartoum HQ +",
-      "headline_accent": "five regional.",
+      "headline_phrase": "International reach",
+      "headline_accent": "suppliers in 9 countries, markets in 12",
       "hq": "Headquarters",
-      "branch": "Branch"
+      "branch": "Branch",
+      "legend_supplier": "Source country",
+      "legend_market": "Market served",
+      "legend_hq": "Headquarters · Sudan",
+      "branches_label": "Branches across Sudan"
     },
     "v3markets": {
       "label": "Markets",
-      "headline_phrase": "Headquartered in Sudan,",
-      "headline_accent": "active across the MENA region.",
+      "headline_phrase": "Headquartered in Sudan",
+      "headline_accent": "active across the MENA region",
       "primary_label": "Primary market · Headquarters",
-      "primary_body": "Six branches, ministry-grade trust, and a full-input portfolio anchor every regional shipment. Sudanese fields are where the catalog gets tested.",
-      "footer_note": "Twelve markets confirmed. Coverage varies by line and supplier agreement, contact sales for the specific catalog available in your country."
+      "primary_body": "Six branches, ministry-grade trust, and a full-input portfolio anchor every regional shipment. Sudanese fields are where the catalog gets tested",
+      "footer_note": "Twelve markets confirmed. Coverage varies by line and supplier agreement. Contact sales for the specific catalog available in your country"
     },
     "v3cta": {
       "label": "Request a quote",
       "headline_phrase": "Tell us what your",
-      "headline_accent": "field needs.",
+      "headline_accent": "field needs",
       "primary": "Request a quote",
       "phone_label": "Call",
       "whatsapp_label": "WhatsApp",

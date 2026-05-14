@@ -1,0 +1,209 @@
+---
+/**
+ * Zagros v3 — Section 08 World reach.
+ *
+ * Replaces the previous Sudan-only branches map (which "doesn't mean
+ * anything for the world" per user). Shows the operation's footprint:
+ *   - 9 source countries (where suppliers manufacture) — signal-yellow
+ *   - 12 markets we serve — sienna
+ *   - Sudan: special primary marker (HQ + market) — signal ring + dot
+ *   - Egypt: both source and market — composite marker
+ *
+ * Geography is editorial, not GIS-grade. Hand-traced continental blobs
+ * give context without pretending to be cartographically accurate.
+ * Pins are absolutely positioned at approximate lat/lon converted to
+ * the SVG viewBox.
+ *
+ * Coordinate mapping (equirectangular projection, viewBox 1000x500):
+ *   x = ((lon + 180) / 360) * 1000
+ *   y = ((90 - lat) / 180) * 500
+ */
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+interface Pin {
+  code: string;
+  name_en: string;
+  name_ar: string;
+  lon: number;
+  lat: number;
+  role: 'supplier' | 'market' | 'both' | 'hq';
+}
+
+const pins: Pin[] = [
+  // HQ (Sudan)
+  { code: 'sd', name_en: 'Sudan',         name_ar: 'السودان',     lon: 30,    lat: 15,  role: 'hq' },
+  // Both source and market (Egypt)
+  { code: 'eg', name_en: 'Egypt',         name_ar: 'مصر',         lon: 30,    lat: 27,  role: 'both' },
+  // Markets (11 MENA, excluding Sudan/Egypt already mapped)
+  { code: 'sa', name_en: 'Saudi Arabia',  name_ar: 'السعودية',    lon: 45,    lat: 24,  role: 'market' },
+  { code: 'ae', name_en: 'UAE',           name_ar: 'الإمارات',    lon: 54,    lat: 24,  role: 'market' },
+  { code: 'qa', name_en: 'Qatar',         name_ar: 'قطر',         lon: 51,    lat: 25.3, role: 'market' },
+  { code: 'kw', name_en: 'Kuwait',        name_ar: 'الكويت',      lon: 48,    lat: 29.5, role: 'market' },
+  { code: 'om', name_en: 'Oman',          name_ar: 'عمان',        lon: 57,    lat: 22,  role: 'market' },
+  { code: 'bh', name_en: 'Bahrain',       name_ar: 'البحرين',     lon: 50.5,  lat: 26,  role: 'market' },
+  { code: 'jo', name_en: 'Jordan',        name_ar: 'الأردن',      lon: 37,    lat: 31,  role: 'market' },
+  { code: 'lb', name_en: 'Lebanon',       name_ar: 'لبنان',       lon: 36,    lat: 34,  role: 'market' },
+  { code: 'iq', name_en: 'Iraq',          name_ar: 'العراق',      lon: 44,    lat: 33,  role: 'market' },
+  { code: 'ye', name_en: 'Yemen',         name_ar: 'اليمن',       lon: 48,    lat: 16,  role: 'market' },
+  // Source countries (8, excluding Egypt already mapped)
+  { code: 'de', name_en: 'Germany',       name_ar: 'ألمانيا',     lon: 10,    lat: 51,  role: 'supplier' },
+  { code: 'nl', name_en: 'Netherlands',   name_ar: 'هولندا',      lon: 5,     lat: 52,  role: 'supplier' },
+  { code: 'ch', name_en: 'Switzerland',   name_ar: 'سويسرا',      lon: 8,     lat: 47,  role: 'supplier' },
+  { code: 'gb', name_en: 'United Kingdom',name_ar: 'بريطانيا',    lon: -2,    lat: 54,  role: 'supplier' },
+  { code: 'au', name_en: 'Australia',     name_ar: 'أستراليا',    lon: 135,   lat: -25, role: 'supplier' },
+  { code: 'th', name_en: 'Thailand',      name_ar: 'تايلاند',     lon: 101,   lat: 15,  role: 'supplier' },
+  { code: 'cn', name_en: 'China',         name_ar: 'الصين',       lon: 105,   lat: 35,  role: 'supplier' },
+  { code: 'in', name_en: 'India',         name_ar: 'الهند',       lon: 78,    lat: 21,  role: 'supplier' },
+];
+
+function project(lon: number, lat: number) {
+  const x = ((lon + 180) / 360) * 1000;
+  const y = ((90 - lat) / 180) * 500;
+  return { x, y };
+}
+
+// Hand-traced continent blobs — editorial only, not GIS. Focus on the
+// quadrant of the map containing our pins. South America and most of
+// Africa interior are simplified or omitted.
+const continents = [
+  // Europe
+  'M 460,80 L 540,75 L 580,90 L 590,135 L 555,150 L 510,148 L 480,135 L 460,110 Z',
+  // Africa (rough)
+  'M 510,170 L 595,170 L 620,210 L 615,290 L 580,360 L 540,380 L 505,355 L 490,290 L 495,220 Z',
+  // Western + Central Asia
+  'M 595,90 L 720,95 L 770,120 L 780,170 L 740,200 L 700,210 L 640,200 L 600,170 Z',
+  // South Asia (Indian subcontinent)
+  'M 680,180 L 740,180 L 745,225 L 730,260 L 700,255 L 685,225 Z',
+  // East Asia (China)
+  'M 750,110 L 855,105 L 870,160 L 855,210 L 800,215 L 765,180 Z',
+  // SE Asia
+  'M 760,210 L 810,215 L 815,255 L 790,275 L 770,260 Z',
+  // Australia
+  'M 830,330 L 920,325 L 935,370 L 920,400 L 870,405 L 835,380 Z',
+];
+---
+<section class="px-page-x py-section-y bg-paper border-t border-ink">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="w-6 h-px bg-mute inline-block"></span>
+    {t('home.v3branches.label')}
+  </span>
+
+  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[24ch] mb-sp-9" data-reveal style="--reveal-delay: 100ms;">
+    {t('home.v3branches.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3branches.headline_accent')}</span>
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-sp-7 lg:gap-sp-9 items-start">
+    <!-- Map -->
+    <div class="w-full" data-reveal>
+      <div class="bg-paper-light border border-stone p-sp-5 sm:p-sp-6">
+        <svg viewBox="0 0 1000 500" class="w-full h-auto block" aria-label="World reach map" role="img">
+          <!-- Continents (faint background) -->
+          <g fill="rgb(var(--color-stone) / 0.45)" stroke="rgb(var(--color-mute) / 0.3)" stroke-width="0.6" stroke-linejoin="round">
+            {continents.map((d) => <path d={d} />)}
+          </g>
+
+          <!-- Connection lines from Sudan to source countries (faint) -->
+          <g stroke="rgb(var(--color-signal) / 0.35)" stroke-width="0.6" stroke-dasharray="2 3" fill="none">
+            {pins.filter((p) => p.role === 'supplier').map((p) => {
+              const sd = project(30, 15);
+              const dst = project(p.lon, p.lat);
+              return <line x1={sd.x} y1={sd.y} x2={dst.x} y2={dst.y} />;
+            })}
+          </g>
+
+          <!-- Pins -->
+          {pins.map((p, i) => {
+            const { x, y } = project(p.lon, p.lat);
+            const delay = i * 60;
+            return (
+              <g data-pin transform={`translate(${x} ${y})`} style={`--pin-delay: ${delay}ms`}>
+                {p.role === 'hq' && (
+                  <>
+                    <circle r="11" fill="none" stroke="rgb(var(--color-signal))" stroke-width="1.5" />
+                    <circle r="6" fill="rgb(var(--color-signal))" />
+                    <circle r="2" fill="rgb(var(--color-ink))" />
+                  </>
+                )}
+                {p.role === 'both' && (
+                  <>
+                    <circle r="6.5" fill="rgb(var(--color-sienna))" stroke="rgb(var(--color-signal))" stroke-width="2" />
+                  </>
+                )}
+                {p.role === 'supplier' && (
+                  <circle r="5" fill="rgb(var(--color-signal))" stroke="rgb(var(--color-ink))" stroke-width="0.7" />
+                )}
+                {p.role === 'market' && (
+                  <circle r="5" fill="rgb(var(--color-sienna))" stroke="rgb(var(--color-ink))" stroke-width="0.7" />
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      <!-- Legend -->
+      <div class="mt-sp-5 flex flex-wrap gap-sp-5 font-mono text-[10px] tracking-[0.2em] uppercase text-mute">
+        <span class="inline-flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-signal border border-ink/60"></span>
+          {t('home.v3branches.legend_supplier')}
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-sienna border border-ink/60"></span>
+          {t('home.v3branches.legend_market')}
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-signal border-2 border-signal ring-1 ring-signal/40 ring-offset-1 ring-offset-paper"></span>
+          {t('home.v3branches.legend_hq')}
+        </span>
+      </div>
+    </div>
+
+    <!-- Sudan branches list (small panel) -->
+    <aside class="bg-ink text-paper p-sp-5 sm:p-sp-6 flex flex-col gap-sp-4">
+      <h3 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/65 m-0">
+        {t('home.v3branches.branches_label')}
+      </h3>
+      <ul class="list-none m-0 p-0 flex flex-col">
+        {[
+          { en: 'Khartoum', ar: 'الخرطوم',   isHq: true },
+          { en: 'Port Sudan', ar: 'بورتسودان', isHq: false },
+          { en: 'Al Qadarif', ar: 'القضارف',  isHq: false },
+          { en: 'Al Managil', ar: 'المناقل',   isHq: false },
+          { en: 'Ad-Damar',   ar: 'الدامر',    isHq: false },
+          { en: 'Ad-Daba',    ar: 'الدبة',     isHq: false },
+        ].map((b, i) => (
+          <li class="grid grid-cols-[28px_1fr_auto] gap-sp-3 items-baseline py-sp-3 border-b border-paper/15 last:border-b-0">
+            <span class="font-display italic text-[18px] text-paper/55 leading-none">{String(i + 1).padStart(2, '0')}</span>
+            <span class="font-display italic text-[clamp(16px,2vw,18px)] text-paper leading-tight">{lang === 'ar' ? b.ar : b.en}</span>
+            <span class:list={['font-mono text-[8.5px] tracking-[0.22em] uppercase', b.isHq ? 'text-signal' : 'text-paper/55']}>
+              {b.isHq ? t('home.v3branches.hq') : t('home.v3branches.branch')}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<script>
+  import { observeReveal } from '../../lib/motion';
+  observeReveal();
+</script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    [data-pin] {
+      opacity: 0;
+      animation: pin-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: var(--pin-delay, 0ms);
+    }
+    @keyframes pin-fade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  }
+</style>

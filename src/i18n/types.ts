@@ -398,6 +398,10 @@ export interface UITranslations {
       headline_accent: string;
       hq: string;
       branch: string;
+      legend_supplier: string;
+      legend_market: string;
+      legend_hq: string;
+      branches_label: string;
     };
     v3markets: {
       label: string;

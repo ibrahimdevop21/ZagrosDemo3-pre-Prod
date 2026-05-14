@@ -16,11 +16,22 @@
     transform: none;
   }
 
-  /* === Marquee (LTR + RTL) === */
+  /* === Marquee (LTR + RTL) — true seamless loop ===
+     Two .marquee-set children inside .marquee-track. Each set has its
+     own internal gap + a trailing padding so the seam between sets has
+     the same gap as items within a set. Translating by exactly -50%
+     places set 2 in the position set 1 occupied — no visible jump. */
   .marquee-track {
-    display: inline-flex;
-    gap: 36px;
+    display: flex;
+    width: max-content;
     animation: marquee-ltr 40s linear infinite;
+    will-change: transform;
+  }
+  .marquee-set {
+    display: flex;
+    gap: 36px;
+    padding-inline-end: 36px;
+    flex-shrink: 0;
     white-space: nowrap;
   }
   .marquee-wrap:hover .marquee-track {
@@ -30,12 +41,12 @@
     animation-name: marquee-rtl;
   }
   @keyframes marquee-ltr {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
   }
   @keyframes marquee-rtl {
-    from { transform: translateX(-50%); }
-    to   { transform: translateX(0); }
+    from { transform: translate3d(-50%, 0, 0); }
+    to   { transform: translate3d(0, 0, 0); }
   }
   @media (max-width: 639px) {
     .marquee-track { animation-duration: 30s; }

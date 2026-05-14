@@ -2,13 +2,16 @@
 /**
  * Zagros v3 — Section 03 by the numbers (asymmetric grid).
  *
- * One giant number (15 years) + three smalls. Numbers count up from 0
- * when section enters viewport (1.2s ease-out). Reduced-motion skips
- * the count-up and shows final value.
+ * One giant number (39 years since 1987) + three smalls (12 markets,
+ * 9 source countries, 30+ SKUs). Numbers count up from 0 on entry.
  *
- * Per DESIGN.md absolute-bans: NOT the SaaS hero-metric template.
- * 1.4fr/1fr/1fr/1fr column ratio, big number lives in its own column,
- * smalls form a horizontal row. Sienna for the smalls, ink for the giant.
+ * Per DESIGN.md: NOT the SaaS hero-metric template. Big number lives
+ * in its own column-and-a-bit; smalls form a horizontal row underneath
+ * (mobile/tablet) or alongside (desktop). Sienna for the smalls,
+ * ink for the giant.
+ *
+ * Layout tightened (2026-05-14): smaller container padding, larger
+ * numerals, items-baseline to remove dead vertical space at desktop.
  */
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
@@ -16,42 +19,40 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // Western digits in body copy for both locales — matches the AAAID
-// anchor (see AR_VOICE.md §Numerals). Arabic-Indic was the previous
-// default but read as "heritage / Google-translated" rather than the
-// premium B2B corporate voice the project needs.
+// anchor (see AR_VOICE.md §Numerals).
 function toLocaleNum(n: number, suffix = ''): string {
   return n + suffix;
 }
 ---
-<section class="px-page-x py-section-y bg-paper">
-  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-7" data-reveal>
+<section class="px-page-x py-sp-9 lg:py-sp-10 bg-paper">
+  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-6" data-reveal>
     <span class="w-6 h-px bg-mute inline-block"></span>
     {t('home.v3numbers.label')}
   </span>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-sp-7 lg:gap-sp-9 items-end">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-sp-6 lg:gap-sp-7 items-baseline">
     <!-- Big -->
-    <div class="lg:col-span-1" data-reveal style="--reveal-delay: 0ms;">
-      <div class="font-display italic font-light text-[clamp(96px,18vw,200px)] leading-[0.82] text-ink" data-count-target="39">{toLocaleNum(39)}</div>
-      <p class="font-display text-lg sm:text-xl leading-[1.25] max-w-[18ch] mt-sp-4 text-ink">
+    <div data-reveal style="--reveal-delay: 0ms;">
+      <div class="font-display italic font-light text-[clamp(120px,22vw,280px)] leading-[0.82] text-ink tracking-tighter" data-count-target="39">{toLocaleNum(39)}</div>
+      <p class="font-display text-xl sm:text-2xl leading-[1.2] max-w-[20ch] mt-sp-5 text-ink">
         {t('home.v3numbers.big_copy')}
       </p>
     </div>
 
     <!-- Smalls -->
     <div data-reveal style="--reveal-delay: 120ms;">
-      <div class="font-display italic font-light text-[clamp(56px,9vw,88px)] leading-[0.82] text-sienna" data-count-target="7">{toLocaleNum(7)}</div>
-      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[24ch]">{t('home.v3numbers.suppliers')}</p>
+      <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="12">{toLocaleNum(12)}</div>
+      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.branches')}</p>
     </div>
 
     <div data-reveal style="--reveal-delay: 200ms;">
-      <div class="font-display italic font-light text-[clamp(56px,9vw,88px)] leading-[0.82] text-sienna" data-count-target="6">{toLocaleNum(6)}</div>
-      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[24ch]">{t('home.v3numbers.branches')}</p>
+      <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="9">{toLocaleNum(9)}</div>
+      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.suppliers')}</p>
     </div>
 
     <div data-reveal style="--reveal-delay: 280ms;">
-      <div class="font-display italic font-light text-[clamp(56px,9vw,88px)] leading-[0.82] text-sienna" data-count-target="30" data-count-suffix="+">{toLocaleNum(30, '+')}</div>
-      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[24ch]">{t('home.v3numbers.skus')}</p>
+      <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="30" data-count-suffix="+">{toLocaleNum(30, '+')}</div>
+      <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.skus')}</p>
     </div>
   </div>
 </section>

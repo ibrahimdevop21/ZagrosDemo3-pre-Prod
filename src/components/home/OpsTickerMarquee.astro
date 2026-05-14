@@ -12,7 +12,6 @@ import ticker from '../../data/ops-ticker.json';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const items = ticker.items.map((i) => i[lang as 'en' | 'ar']);
-const stream = [...items, ...items];
 ---
 <aside
   class="marquee-wrap bg-ink text-paper overflow-hidden border-y border-paper/10"
@@ -25,9 +24,16 @@ const stream = [...items, ...items];
     </span>
     <div class="overflow-hidden flex-1">
       <div class="marquee-track font-mono text-[10.5px] tracking-[0.18em] uppercase text-paper/80">
-        {stream.map((item) => (
-          <span class="inline-block">· {item}</span>
-        ))}
+        <div class="marquee-set" aria-hidden="false">
+          {items.map((item) => (
+            <span class="inline-block">· {item}</span>
+          ))}
+        </div>
+        <div class="marquee-set" aria-hidden="true">
+          {items.map((item) => (
+            <span class="inline-block">· {item}</span>
+          ))}
+        </div>
       </div>
     </div>
   </div>

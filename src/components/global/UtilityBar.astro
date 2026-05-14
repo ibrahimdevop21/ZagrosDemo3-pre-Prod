@@ -15,7 +15,7 @@ const phoneTel = phone?.replace(/\s+/g, '');
     <span>{t('utility.service_area')} · {t('utility.hours_label')}</span>
   </span>
   <span class="hidden md:flex gap-5 opacity-90 items-center">
-    {phone && <a href={`tel:${phoneTel}`} class="inline-flex items-center min-h-[36px] text-paper/60 no-underline hover:text-paper">{phone}</a>}
+    {phone && <a href={`tel:${phoneTel}`} dir="ltr" class="inline-flex items-center min-h-[36px] text-paper/60 no-underline hover:text-paper">{phone}</a>}
     <span class="text-paper/40">·</span>
     <span>{t('utility.partners_label')}</span>
   </span>

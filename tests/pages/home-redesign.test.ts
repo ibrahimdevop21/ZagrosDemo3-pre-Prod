@@ -14,7 +14,7 @@ describe('home page (v3)', () => {
     expect(html.toLowerCase()).toMatch(/spotlight/);
     expect(html).toMatch(/REPORT ·/);
     expect(html).toMatch(/data-customer-logo/);
-    expect(html).toMatch(/<svg[^>]*viewBox="0 0 100 100"/);
+    expect(html).toMatch(/<svg[^>]*viewBox="0 0 1000 500"/);
     expect(html).toMatch(/Request a quote/);
   });
 
@@ -23,7 +23,7 @@ describe('home page (v3)', () => {
     const html = await container.renderToString(HomeAR);
     expect(html).toContain('hero-slideshow');
     expect(html).toContain('marquee-track');
-    expect(html).toMatch(/<svg[^>]*viewBox="0 0 100 100"/);
+    expect(html).toMatch(/<svg[^>]*viewBox="0 0 1000 500"/);
     expect(html).toMatch(/data-customer-logo/);
   });
 
