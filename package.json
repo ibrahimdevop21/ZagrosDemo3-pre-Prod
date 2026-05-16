@@ -20,13 +20,18 @@
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/ibm-plex-sans-arabic": "^5.2.9",
     "@fontsource/ibm-plex-serif": "^5.2.7",
+    "@types/d3-geo": "^3.1.0",
+    "@types/topojson-client": "^3.1.5",
     "astro": "^5.4.0",
+    "d3-geo": "^3.1.1",
     "framer-motion": "^12.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "shiki": "^3.2.1",
     "swiper": "^11.2.6",
-    "typescript": "^5.8.2"
+    "topojson-client": "^3.1.0",
+    "typescript": "^5.8.2",
+    "world-atlas": "^2.0.2"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.5",

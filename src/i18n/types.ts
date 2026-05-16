@@ -400,8 +400,19 @@ export interface UITranslations {
       branch: string;
       legend_supplier: string;
       legend_market: string;
+      legend_both: string;
+      legend_branch: string;
       legend_hq: string;
       branches_label: string;
+      markets_caption: string;
+      credentials_label: string;
+      product_line_label: string;
+      slot_label: string;
+      slot_tbc: string;
+      slot_partial: string;
+      slot_aggregate: string;
+      scope_note_label: string;
+      scope_note_body: string;
     };
     v3markets: {
       label: string;
