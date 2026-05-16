@@ -348,7 +348,7 @@
       "photo_alt": "Sudanese agricultural landscape — Zagros field operations",
       "headline_a": "MENA's regional agricultural inputs partner —",
       "headline_b": "headquartered in Sudan since 1987.",
-      "deck": "Six branches across Sudan, seven international suppliers, full input portfolio. Seeds, fertilizers, pesticides — specs forward, agronomically backed.",
+      "deck": "Six branches across Sudan, seven international supplier houses across nine source countries, full input portfolio. Seeds, fertilizers, pesticides — specs forward, agronomically backed.",
       "kpi_partners": "International suppliers",
       "kpi_skus": "SKUs in catalog",
       "kpi_years": "Years operating",
@@ -360,8 +360,8 @@
     "v3numbers": {
       "label": "By the numbers",
       "big_copy": "years moving agricultural inputs across MENA. Headquartered in Khartoum since 1987",
-      "suppliers": "Source countries: Germany, Netherlands, Switzerland, UK, Australia, Thailand, Egypt, China, India",
-      "branches": "Markets we serve: Sudan, Iraq, Egypt, Jordan, Lebanon, Yemen, and the GCC states",
+      "suppliers": "Source countries supplying seeds, fertilizers, and pesticides into the catalog",
+      "branches": "MENA markets — Sudan active, regional reach across the GCC and Levant",
       "skus": "Active SKUs across seeds, fertilizers, pesticides"
     },
     "v3catalog": {
@@ -462,7 +462,7 @@
     "sources": {
       "runner": "Sources · Suppliers",
       "kicker": "Sources · seven international houses",
-      "headline_a": "Seven international suppliers across six countries —",
+      "headline_a": "Seven international supplier houses across nine source countries —",
       "headline_b": "one Sudanese operator."
     },
     "customers": {
