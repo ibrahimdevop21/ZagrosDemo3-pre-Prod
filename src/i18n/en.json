@@ -431,6 +431,7 @@
       "slot_tbc": "To be confirmed",
       "slot_partial": "Brand on file · full legal name pending",
       "slot_aggregate": "Listed per product on pesticide detail pages",
+      "slot_chip_aggregate": "Network",
       "scope_note_label": "Demo only",
       "scope_note_body": "Public listing only — brand and partner name. No pricing, volumes, or terms displayed."
     },

@@ -411,6 +411,7 @@ export interface UITranslations {
       slot_tbc: string;
       slot_partial: string;
       slot_aggregate: string;
+      slot_chip_aggregate: string;
       scope_note_label: string;
       scope_note_body: string;
     };
