@@ -326,13 +326,24 @@ const flagEmoji = (alpha2: string) =>
                 : 'border-stone bg-paper-light',
             ]}
           >
-            <span class="font-mono text-[9px] tracking-[0.24em] uppercase text-mute">
-              {t('home.v3branches.slot_label')}
-            </span>
+            <div class="flex items-baseline justify-between gap-2">
+              <span class="font-mono text-[9px] tracking-[0.24em] uppercase text-mute">
+                {t('home.v3branches.slot_label')}
+              </span>
+              {conf === 'aggregate' && (
+                <span class="font-mono text-[9px] tracking-[0.24em] uppercase text-sienna/85">
+                  {t('home.v3branches.slot_chip_aggregate')}
+                </span>
+              )}
+            </div>
             <span
               class:list={[
-                'font-display text-[clamp(16px,1.7vw,19px)] leading-tight',
-                isTbc ? 'italic text-mute' : 'italic text-ink',
+                'leading-tight',
+                conf === 'aggregate'
+                  ? 'font-sans not-italic text-ink text-[clamp(15px,1.5vw,17px)]'
+                  : isTbc
+                  ? 'font-display italic text-mute text-[clamp(16px,1.7vw,19px)]'
+                  : 'font-display italic text-ink text-[clamp(16px,1.7vw,19px)]',
               ]}
               dir={c.supplier_name ? 'ltr' : undefined}
             >
