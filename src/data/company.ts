@@ -71,8 +71,8 @@ export const companyData: CompanyData = {
     ar: 'زاغروس للتجارة',
   },
   business: {
-    en: 'Headquartered in Sudan since 1987, serving twelve markets across MENA with seeds, fertilizers, and pesticides from seven international suppliers.',
-    ar: 'تأسست في السودان عام 1987 وتعمل في 12 سوقاً عبر الشرق الأوسط وشمال أفريقيا، بتوفير البذور والأسمدة والمبيدات من 7 موردين دوليين.',
+    en: 'Headquartered in Sudan since 1987 with regional reach across twelve MENA markets. Seeds, fertilizers, and pesticides from seven international supplier houses across nine source countries.',
+    ar: 'تأسست في السودان عام 1987 بتغطية إقليمية في 12 سوق بالشرق الأوسط. بذور وأسمدة ومبيدات من 7 شراكات دولية في 9 دول مصدرة',
   },
   established_year: 1987,
   partners: [
