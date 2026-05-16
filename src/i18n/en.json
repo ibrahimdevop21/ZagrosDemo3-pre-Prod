@@ -37,8 +37,8 @@
   "about": {
     "title": "About",
     "kicker": "About Zagros",
-    "headline": "Headquartered in Sudan since 1987, serving twelve MENA markets.",
-    "deck": "Zagros Trading has served farms across the region — from ministry-scale projects to family operations — for thirty-nine years. Six Sudan branches, twelve markets, seven international suppliers, three product lines under one roof. Consultancy, distribution, and after-sales support.",
+    "headline": "Headquartered in Sudan since 1987 — Sudan-anchored, with regional reach across twelve MENA markets.",
+    "deck": "Zagros Trading has served farms across the region — from ministry-scale projects to family operations — for thirty-nine years. Six branches anchor distribution in Sudan; regional reach extends across twelve MENA markets. Seven international supplier houses across nine source countries, three product lines, all under one roof — with consultancy, distribution, and after-sales support.",
     "timeline_label": "Established",
     "timeline": {
       "founded_label": "Founded in Khartoum",
@@ -128,7 +128,7 @@
     "title": "Partners",
     "kicker": "Sources · seven international houses",
     "headline": "Where the seed, the chemistry, and the protection come from.",
-    "deck": "Zagros sources from seven international suppliers across six countries. Each house was chosen for technical credentials, regulatory standing, and agronomic fit with Sudanese farms."
+    "deck": "Zagros sources from seven international supplier houses across nine source countries. Each house was chosen for technical credentials, regulatory standing, and agronomic fit with Sudanese farms."
   },
   "customers": {
     "page": {
@@ -167,7 +167,7 @@
     "page": {
       "title": "Products",
       "headline": "Seeds, fertilizers, pesticides — sourced for Sudanese farms.",
-      "deck": "Three product lines, seven international suppliers, full agronomy support across the catalog. Browse by line below.",
+      "deck": "Three product lines, seven international supplier houses across nine source countries, full agronomy support across the catalog. Browse by line below.",
       "stat_skus": "SKUs",
       "stat_partners": "Suppliers",
       "stat_subcats": "Subcategories"
