@@ -27,7 +27,7 @@ const navLinks = [
 
 <UtilityBar />
 
-<nav class="bg-paper border-b border-stone py-sp-4 sticky top-0 z-40 backdrop-blur-sm">
+<nav class="bg-paper border-b border-stone py-sp-5 sticky top-0 z-40 backdrop-blur-sm">
   <div class="container-spine flex items-center gap-sp-5">
     <a href={isRTL ? '/ar/' : '/'} class="brand flex items-center gap-3">
       <img
@@ -64,13 +64,13 @@ const navLinks = [
     <div class="ms-auto hidden lg:flex items-center gap-sp-3">
       <a
         href={altLocaleHref}
-        class="font-mono text-[11px] tracking-[0.18em] px-3.5 py-2 border border-stone rounded-full text-ink no-underline inline-flex items-center min-h-[40px]"
+        class="font-mono text-[11px] tracking-[0.18em] px-sp-4 py-sp-3 border border-stone rounded-full text-ink no-underline inline-flex items-center min-h-[44px]"
       >
         {t('nav.language')}
       </a>
       <a
         href={isRTL ? '/ar/contact' : '/contact'}
-        class="bg-ink text-paper font-sans font-medium text-[13px] px-4 py-2.5 rounded-full no-underline inline-flex items-center gap-2 min-h-[44px]"
+        class="bg-ink text-paper font-sans font-medium text-[13px] px-sp-4 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[44px]"
       >
         {t('nav.cta_primary')} {isRTL ? '←' : '→'}
       </a>
