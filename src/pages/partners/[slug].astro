@@ -21,8 +21,10 @@ const t = useTranslations(lang);
     { label: t('nav.home'), href: '/' },
     { label: partner.data.name },
   ]} />
-  <div class="px-page-x py-section-y">
-    <PartnerSpotlight partner={partner} variant="detail" />
+  <div class="py-section-y">
+    <div class="container-spine">
+      <PartnerSpotlight partner={partner} variant="detail" />
+    </div>
   </div>
   <ProductLinesTable partner={partner} />
   <ReportsByPartner partnerSlug={partner.slug} />

@@ -35,23 +35,27 @@ const lines = [
     { label: t('nav.products') },
   ]} />
 
-  <header class="px-page-x pb-sp-9">
-    <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink max-w-[18ch] mb-sp-7">{t('products.page.headline')}</h1>
-    <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{t('products.page.deck')}</p>
+  <header class="pb-sp-9">
+    <div class="container-spine">
+      <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink max-w-[18ch] mb-sp-7">{t('products.page.headline')}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{t('products.page.deck')}</p>
+    </div>
   </header>
 
-  <section class="px-page-x pb-section-y">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-sp-7">
-      {lines.map((line, i) => (
-        <LineCard
-          line={line.slug}
-          count={line.count}
-          supplierCount={line.supplierCount}
-          subcatCount={line.subcatCount}
-          lang={lang}
-          index={i}
-        />
-      ))}
+  <section class="pb-section-y">
+    <div class="container-spine">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-sp-7">
+        {lines.map((line, i) => (
+          <LineCard
+            line={line.slug}
+            count={line.count}
+            supplierCount={line.supplierCount}
+            subcatCount={line.subcatCount}
+            lang={lang}
+            index={i}
+          />
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

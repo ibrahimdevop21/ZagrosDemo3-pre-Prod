@@ -65,32 +65,36 @@ if (fert) {
   ]} />
 
   {fert && (
-    <header class="stage-grid pt-sp-7 pb-section-y">
-      <div class="col-span-7 col-start-2">
-        <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
-          {fert.data.brand} · {t('product.header.supplied_via')} · {fert.data.supplier_slug}
-        </span>
-        <h1 class="font-display italic font-light text-[clamp(36px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{name}</h1>
-        <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{fert.data.grade}</p>
+    <header class="pt-sp-7 pb-section-y">
+      <div class="container-spine">
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-12 lg:col-span-7">
+            <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+              {fert.data.brand} · {t('product.header.supplied_via')} · {fert.data.supplier_slug}
+            </span>
+            <h1 class="font-display italic font-light text-[clamp(36px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 mb-sp-5">{name}</h1>
+            <p class="font-mono text-[12px] tracking-[0.16em] uppercase text-ink mb-sp-7">{fert.data.grade}</p>
 
-        {fertBadges.length > 0 && (
-          <ul class="list-none p-0 m-0 mb-sp-7 flex flex-wrap gap-2">
-            {fertBadges.map((b) => <li class="font-mono text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border border-sienna/60 text-sienna">· {b}</li>)}
-          </ul>
-        )}
+            {fertBadges.length > 0 && (
+              <ul class="list-none p-0 m-0 mb-sp-7 flex flex-wrap gap-2">
+                {fertBadges.map((b) => <li class="font-mono text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border border-sienna/60 text-sienna">· {b}</li>)}
+              </ul>
+            )}
 
-        <ProductHero
-          name={name}
-          grade={fert.data.grade}
-          brand={fert.data.brand}
-          colorToken={fert.data.bag_color_token ?? 'c-cn'}
-          classification={(fert.data.subcategory ?? '').replace(/-/g, ' ').toUpperCase()}
-          supplierPill={fert.data.brand}
-        />
-      </div>
+            <ProductHero
+              name={name}
+              grade={fert.data.grade}
+              brand={fert.data.brand}
+              colorToken={fert.data.bag_color_token ?? 'c-cn'}
+              classification={(fert.data.subcategory ?? '').replace(/-/g, ' ').toUpperCase()}
+              supplierPill={fert.data.brand}
+            />
+          </div>
 
-      <div class="col-span-4 col-start-10 mt-sp-7 lg:mt-0">
-        <CompositionCard product={fert} />
+          <div class="col-span-12 lg:col-span-4 lg:col-start-9 mt-sp-7 lg:mt-0">
+            <CompositionCard product={fert} />
+          </div>
+        </div>
       </div>
     </header>
   )}

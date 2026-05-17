@@ -13,16 +13,20 @@ const homeHref = lang === 'ar' ? '/ar/' : '/';
 <Layout title={t('contact.title')}>
   <Breadcrumb items={[{ label: t('nav.home'), href: homeHref }, { label: t('contact.title') }]} />
 
-  <header class="px-page-x pb-sp-9">
-    <Kicker label={t('contact.kicker')} accent="signal" />
-    <h1 class="font-display italic font-light text-[clamp(40px,6vw,84px)] leading-[1.02] text-ink mt-sp-5 max-w-[24ch] mb-sp-7">{t('contact.headline')}</h1>
-    <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('contact.deck')}</p>
+  <header class="pb-sp-9">
+    <div class="container-spine">
+      <Kicker label={t('contact.kicker')} accent="signal" />
+      <h1 class="font-display italic font-light text-[clamp(40px,6vw,84px)] leading-[1.02] text-ink mt-sp-5 max-w-[24ch] mb-sp-7">{t('contact.headline')}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('contact.deck')}</p>
+    </div>
   </header>
 
-  <section class="px-page-x pb-section-y">
-    <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-sp-9">
-      <ContactForm />
-      <DirectContact />
+  <section class="pb-section-y">
+    <div class="container-spine">
+      <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-sp-9">
+        <ContactForm />
+        <DirectContact />
+      </div>
     </div>
   </section>
 </Layout>

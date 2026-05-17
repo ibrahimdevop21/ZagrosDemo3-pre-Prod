@@ -55,49 +55,55 @@ const lineDeck = t(`products.lines.${line}.deck`);
     { label: lineLabel },
   ]} />
 
-  <header class="px-page-x pb-sp-9">
-    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">{t('nav.products')}</span>
-    <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{lineHeadline}</h1>
-    <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{lineDeck}</p>
-    <div class="flex gap-sp-9 flex-wrap font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
-      <span>{items.length} {t(`products.lines.${line}.stat_skus`)}</span>
-      <span>{orderedSubcats.length} {t(`products.lines.${line}.stat_subcats`)}</span>
+  <header class="pb-sp-9">
+    <div class="container-spine">
+      <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">{t('nav.products')}</span>
+      <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{lineHeadline}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{lineDeck}</p>
+      <div class="flex gap-sp-9 flex-wrap font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+        <span>{items.length} {t(`products.lines.${line}.stat_skus`)}</span>
+        <span>{orderedSubcats.length} {t(`products.lines.${line}.stat_subcats`)}</span>
+      </div>
     </div>
   </header>
 
-  <div class="px-page-x pb-sp-5 flex lg:hidden">
-    <FilterButton />
+  <div class="pb-sp-5 flex lg:hidden">
+    <div class="container-spine">
+      <FilterButton />
+    </div>
   </div>
 
-  <section class="px-page-x pb-section-y">
-    {orderedSubcats.map((subcat) => (
-      <SubcategoryGroup
-        line={line as 'seeds' | 'fertilizers' | 'pesticides'}
-        subcategory={subcat}
-        entries={grouped[subcat]}
-        lang={lang}
-      />
-    ))}
+  <section class="pb-section-y">
+    <div class="container-spine">
+      {orderedSubcats.map((subcat) => (
+        <SubcategoryGroup
+          line={line as 'seeds' | 'fertilizers' | 'pesticides'}
+          subcategory={subcat}
+          entries={grouped[subcat]}
+          lang={lang}
+        />
+      ))}
 
-    {line === 'seeds' && (
-      <div class="mt-section-y border-t border-ink pt-sp-7">
-        <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
-          <h2 class="font-display italic text-3xl text-ink">§ بذور خضار · East West Seeds</h2>
-          <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">تايلاند</span>
-        </header>
-        <DisclaimerChip text={t('products.lines.seeds.vegetable_pending')} />
-      </div>
-    )}
+      {line === 'seeds' && (
+        <div class="mt-section-y border-t border-ink pt-sp-7">
+          <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
+            <h2 class="font-display italic text-3xl text-ink">§ بذور خضار · East West Seeds</h2>
+            <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">تايلاند</span>
+          </header>
+          <DisclaimerChip text={t('products.lines.seeds.vegetable_pending')} />
+        </div>
+      )}
 
-    {line === 'fertilizers' && (
-      <div class="mt-section-y border-t border-ink pt-sp-7">
-        <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
-          <h2 class="font-display italic text-3xl text-ink">§ Agro Dragon · هولندا</h2>
-          <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">خطوط متخصصة</span>
-        </header>
-        <DisclaimerChip text={t('products.lines.fertilizers.agro_dragon_pending')} />
-      </div>
-    )}
+      {line === 'fertilizers' && (
+        <div class="mt-section-y border-t border-ink pt-sp-7">
+          <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
+            <h2 class="font-display italic text-3xl text-ink">§ Agro Dragon · هولندا</h2>
+            <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">خطوط متخصصة</span>
+          </header>
+          <DisclaimerChip text={t('products.lines.fertilizers.agro_dragon_pending')} />
+        </div>
+      )}
+    </div>
   </section>
 
   <FilterDrawer />

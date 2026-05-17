@@ -12,14 +12,18 @@ const reports = (await getCollection('field-reports')).sort((a, b) => b.data.dat
 ---
 <Layout title={t('field_reports.page.title')}>
   <Breadcrumb items={[{ label: t('nav.home'), href: '/ar/' }, { label: t('nav.field_reports') }]} />
-  <header class="px-page-x pb-sp-9">
-    <Kicker label={t('field_reports.page.kicker')} accent="sienna" />
-    <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[22ch] mb-sp-7">{t('field_reports.page.headline')}</h1>
-    <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('field_reports.page.deck')}</p>
+  <header class="pb-sp-9">
+    <div class="container-spine">
+      <Kicker label={t('field_reports.page.kicker')} accent="sienna" />
+      <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[22ch] mb-sp-7">{t('field_reports.page.headline')}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-[60ch]">{t('field_reports.page.deck')}</p>
+    </div>
   </header>
-  <section class="px-page-x pb-section-y">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sp-7">
-      {reports.map(r => <ReportCard report={r} />)}
+  <section class="pb-section-y">
+    <div class="container-spine">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sp-7">
+        {reports.map(r => <ReportCard report={r} />)}
+      </div>
     </div>
   </section>
 </Layout>

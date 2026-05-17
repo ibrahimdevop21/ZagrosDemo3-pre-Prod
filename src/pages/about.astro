@@ -16,65 +16,67 @@ const homeHref = lang === 'ar' ? '/ar/' : '/';
 <Layout title={t('about.title')}>
   <Breadcrumb items={[{ label: t('nav.home'), href: homeHref }, { label: t('about.title') }]} />
 
-  <header class="px-page-x pb-section-y">
-    <Kicker label={t('about.kicker')} accent="sienna" />
-    <h1 class="font-display italic font-light text-[clamp(36px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{t('about.headline')}</h1>
-    <p class="font-sans text-lg text-ink/80 max-w-[64ch] leading-relaxed">{t('about.deck')}</p>
+  <header class="pb-section-y">
+    <div class="container-spine">
+      <Kicker label={t('about.kicker')} accent="sienna" />
+      <h1 class="font-display italic font-light text-[clamp(36px,7vw,112px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{t('about.headline')}</h1>
+      <p class="font-sans text-lg text-ink/80 max-w-[64ch] leading-relaxed">{t('about.deck')}</p>
+    </div>
   </header>
 
   <CaptionStrip sectionNumber="01 / 06" label={t('about.timeline_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-12 col-start-2">
-        <FoundedTimeline />
-      </div>
+    <div class="container-spine">
+      <FoundedTimeline />
     </div>
   </section>
 
   <CaptionStrip sectionNumber="02 / 06" label={t('about.services_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-12 col-start-2">
-        <ServicesList />
-      </div>
+    <div class="container-spine">
+      <ServicesList />
     </div>
   </section>
 
   <CaptionStrip sectionNumber="03 / 06" label={t('about.branches_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-12 col-start-2">
-        <BranchesGrid />
-      </div>
+    <div class="container-spine">
+      <BranchesGrid />
     </div>
   </section>
 
   <CaptionStrip sectionNumber="04 / 06" label={t('about.team_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-9 col-start-2">
-        <DisclaimerChip text={t('about.team_pending')} />
+    <div class="container-spine">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-9">
+          <DisclaimerChip text={t('about.team_pending')} />
+        </div>
       </div>
     </div>
   </section>
 
   <CaptionStrip sectionNumber="05 / 06" label={t('about.affiliations_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-9 col-start-2 border-t border-ink pt-sp-7">
-        <div class="font-display text-3xl text-ink mb-sp-5 max-w-[40ch] leading-tight">
-          {t('about.affiliations.iata')}
+    <div class="container-spine">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-9 border-t border-ink pt-sp-7">
+          <div class="font-display text-3xl text-ink mb-sp-5 max-w-[40ch] leading-tight">
+            {t('about.affiliations.iata')}
+          </div>
+          <DisclaimerChip text={t('about.affiliations.additional_pending')} />
         </div>
-        <DisclaimerChip text={t('about.affiliations.additional_pending')} />
       </div>
     </div>
   </section>
 
   <CaptionStrip sectionNumber="06 / 06" label={t('about.story_label')} />
   <section class="py-section-y bg-paper">
-    <div class="stage-grid">
-      <div class="col-span-9 col-start-2">
-        <DisclaimerChip text={t('about.story_pending')} />
+    <div class="container-spine">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-9">
+          <DisclaimerChip text={t('about.story_pending')} />
+        </div>
       </div>
     </div>
   </section>
