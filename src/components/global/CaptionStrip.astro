@@ -12,12 +12,14 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="bg-ink text-paper px-page-x py-4 font-mono text-[10.5px] tracking-[0.25em] uppercase text-paper/55 flex justify-between items-center">
-  <span>
-    {sectionNumber && (
-      <>{t('common.section')} · {sectionNumber} · </>
-    )}
-    <b class="text-paper font-medium">{label}</b>
-  </span>
-  {subLabel && <span>{subLabel}</span>}
+<div class="bg-ink text-paper py-sp-4">
+  <div class="container-spine flex justify-between items-center font-mono text-[10.5px] tracking-[0.25em] uppercase text-paper/55">
+    <span>
+      {sectionNumber && (
+        <>{t('common.section')} · {sectionNumber} · </>
+      )}
+      <b class="text-paper font-medium">{label}</b>
+    </span>
+    {subLabel && <span>{subLabel}</span>}
+  </div>
 </div>

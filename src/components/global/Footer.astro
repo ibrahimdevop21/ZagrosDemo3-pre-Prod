@@ -12,87 +12,89 @@ const branches = companyData.branches;
 ---
 
 <footer class="bg-ink text-paper border-t border-paper/10 pt-section-y pb-sp-7">
-  <div class="stage-grid">
-    <div class="col-span-4 col-start-2">
-      <div class="flex items-center gap-4 mb-sp-6">
-        <img
-          src="/zagros-white.png"
-          alt={t('site.name')}
-          width="240"
-          height="80"
-          loading="lazy"
-          decoding="async"
-          class="h-12 w-auto block"
-          style="mix-blend-mode: screen;"
-        />
-      </div>
-      <p class="font-sans text-[15px] leading-relaxed text-paper/75 max-w-[36ch] mb-sp-7">
-        {t('site.meta_description')}
-      </p>
-      <form class="news">
-        <label class="block font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal mb-3">
-          {t('footer.newsletter_label')}
-        </label>
-        <div class="flex gap-2">
-          <input
-            type="email"
-            placeholder={t('footer.newsletter_placeholder')}
-            class="flex-1 bg-transparent text-paper border border-paper/20 px-3.5 py-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
+  <div class="container-spine">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-4">
+        <div class="flex items-center gap-4 mb-sp-6">
+          <img
+            src="/zagros-white.png"
+            alt={t('site.name')}
+            width="240"
+            height="80"
+            loading="lazy"
+            decoding="async"
+            class="h-12 w-auto block"
+            style="mix-blend-mode: screen;"
           />
-          <button
-            type="submit"
-            class="bg-signal text-ink font-sans font-semibold text-[14px] px-5 py-3 min-h-[44px] border-none cursor-pointer"
-          >
-            {t('footer.newsletter_submit')}
-          </button>
         </div>
-      </form>
-    </div>
+        <p class="font-sans text-[15px] leading-relaxed text-paper/75 max-w-[36ch] mb-sp-7">
+          {t('site.meta_description')}
+        </p>
+        <form class="news">
+          <label class="block font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal mb-3">
+            {t('footer.newsletter_label')}
+          </label>
+          <div class="flex gap-2">
+            <input
+              type="email"
+              placeholder={t('footer.newsletter_placeholder')}
+              class="flex-1 bg-transparent text-paper border border-paper/20 px-3.5 py-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
+            />
+            <button
+              type="submit"
+              class="bg-signal text-ink font-sans font-semibold text-[14px] px-5 py-3 min-h-[44px] border-none cursor-pointer"
+            >
+              {t('footer.newsletter_submit')}
+            </button>
+          </div>
+        </form>
+      </div>
 
-    <div class="col-span-2 col-start-7 footer-col">
-      <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-        {t('footer.col_catalog')}
-      </h5>
-      <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/products' : '/products'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.products')}</a></li>
-      </ul>
-    </div>
+      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
+          {t('footer.col_catalog')}
+        </h5>
+        <ul class="list-none p-0 m-0">
+          <li><a href={isRTL ? '/ar/products' : '/products'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.products')}</a></li>
+        </ul>
+      </div>
 
-    <div class="col-span-2 col-start-9 footer-col">
-      <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-        {t('footer.col_reports')}
-      </h5>
-      <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.field_reports')}</a></li>
-      </ul>
-    </div>
+      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
+          {t('footer.col_reports')}
+        </h5>
+        <ul class="list-none p-0 m-0">
+          <li><a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.field_reports')}</a></li>
+        </ul>
+      </div>
 
-    <div class="col-span-2 col-start-11 footer-col">
-      <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-        {t('footer.col_branches')}
-      </h5>
-      <ul class="list-none p-0 m-0">
-        {branches.length === 0 ? (
-          <li class="flex items-center min-h-[44px] text-paper/55 font-mono text-[12px]">— pending —</li>
-        ) : branches.map((b) => (
-          <li class="flex items-center min-h-[44px] text-paper/85 font-sans text-[15px]">{isRTL ? b.name.ar : b.name.en}</li>
-        ))}
-      </ul>
-    </div>
+      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
+          {t('footer.col_branches')}
+        </h5>
+        <ul class="list-none p-0 m-0">
+          {branches.length === 0 ? (
+            <li class="flex items-center min-h-[44px] text-paper/55 font-mono text-[12px]">— pending —</li>
+          ) : branches.map((b) => (
+            <li class="flex items-center min-h-[44px] text-paper/85 font-sans text-[15px]">{isRTL ? b.name.ar : b.name.en}</li>
+          ))}
+        </ul>
+      </div>
 
-    <div class="col-span-2 col-start-13 footer-col">
-      <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-        {t('footer.col_company')}
-      </h5>
-      <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/about' : '/about'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.about')}</a></li>
-        <li><a href={isRTL ? '/ar/contact' : '/contact'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.contact')}</a></li>
-      </ul>
-    </div>
+      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
+          {t('footer.col_company')}
+        </h5>
+        <ul class="list-none p-0 m-0">
+          <li><a href={isRTL ? '/ar/about' : '/about'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.about')}</a></li>
+          <li><a href={isRTL ? '/ar/contact' : '/contact'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.contact')}</a></li>
+        </ul>
+      </div>
 
-    <div class="col-span-12 col-start-2 mt-sp-9 pt-sp-5 border-t border-paper/10 flex justify-between font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
-      <span>{t('footer.copyright').replace('2026', String(year))}</span>
-      <span>{t('common.section')} · {t('footer.colophon_section')} · {t('footer.colophon_label')}</span>
+      <div class="col-span-12 mt-sp-9 pt-sp-5 border-t border-paper/10 flex justify-between font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
+        <span>{t('footer.copyright').replace('2026', String(year))}</span>
+        <span>{t('common.section')} · {t('footer.colophon_section')} · {t('footer.colophon_label')}</span>
+      </div>
     </div>
   </div>
 </footer>
