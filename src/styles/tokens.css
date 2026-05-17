@@ -35,6 +35,16 @@
     /* Layout constants */
     --stage-max-width: 1300px;
     --page-margin-x:   56px;
+
+    /* Motion tokens — single source of truth for durations and easing.
+       Personality: grounded, deliberate, regional B2B credible.
+       Hard rule: nothing over 450ms. Only transform + opacity.
+       Spec: 2026-05-17 motion-system brief (chat). */
+    --motion-fast: 150ms;   /* hover, press, focus feedback */
+    --motion-base: 250ms;   /* reveals, color/opacity transitions */
+    --motion-slow: 400ms;   /* used sparingly (count-up only) */
+    --motion-ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);  /* decelerating, settled */
+    --motion-ease-inout:    cubic-bezier(0.4, 0, 0.2, 1);   /* state toggles */
   }
 
   /* Mobile gutter: 56px is right at the edge of the viewport on 360px phones

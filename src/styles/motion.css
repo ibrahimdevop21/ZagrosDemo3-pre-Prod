@@ -1,6 +1,19 @@
 /* Zagros v3 — restrained editorial motion. All gated by
    prefers-reduced-motion: no-preference. Hardware-accelerated only
-   (transform + opacity). Picked up by src/lib/motion.ts. */
+   (transform + opacity). Picked up by src/lib/motion.ts.
+
+   Motion tokens live in src/styles/tokens.css. This file consumes
+   them via var(--motion-{fast,base,slow}) and var(--motion-ease-*).
+   Per the motion-system brief (2026-05-17): grounded, deliberate,
+   regional B2B credible — calm, not playful. Nothing over 450ms.
+
+   Documented exceptions (pre-existing brand features, NOT new
+   ambient/looping motion this layer would otherwise prohibit):
+     - Hero photo crossfade slideshow (.hero-slideshow)
+     - OpsTickerMarquee horizontal ticker (.marquee-track)
+   Both fully honor prefers-reduced-motion: under reduce, the
+   slideshow freezes on the first photo and the ticker stops
+   scrolling. The ticker also pauses on hover and on focus-within. */
 
 @media (prefers-reduced-motion: no-preference) {
   /* === Scroll reveals === */
@@ -34,7 +47,8 @@
     flex-shrink: 0;
     white-space: nowrap;
   }
-  .marquee-wrap:hover .marquee-track {
+  .marquee-wrap:hover .marquee-track,
+  .marquee-wrap:focus-within .marquee-track {
     animation-play-state: paused;
   }
   [dir="rtl"] .marquee-track {
@@ -118,9 +132,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Reduced-motion freezes hero on first slide, hides progress fill,
-     reveals every data-reveal element immediately. */
+  /* Reduced-motion contract for this site:
+     - Hero photo crossfade freezes on slide 1.
+     - Marquee track does not scroll (the no-preference @media gates the
+       animation declaration; this block makes that explicit).
+     - Hero progress dots do not fill.
+     - .blink-signal does not pulse (gated by no-preference).
+     - All [data-reveal] elements paint visible immediately (no entrance).
+     - Count-up shows final value instantly (handled in src/lib/motion.ts).
+     Belt-and-suspenders backstop in src/styles/global.css §80-89 caps
+     animation-duration and transition-duration to ~0ms !important. */
   .hero-slideshow .slide:nth-child(1) { opacity: 1; }
   .hero-slideshow .slide:not(:nth-child(1)) { opacity: 0; }
+  .marquee-track { animation: none; }
+  .hero-progress .dot::after { animation: none; opacity: 0; }
+  .blink-signal { animation: none; }
   [data-reveal] { opacity: 1; transform: none; }
 }

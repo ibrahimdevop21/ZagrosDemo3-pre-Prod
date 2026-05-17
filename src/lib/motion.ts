@@ -31,8 +31,12 @@ export function observeReveal(root: ParentNode = document): void {
 
 /**
  * Count-up helper for the By-the-numbers section. Animates 0 → target
- * over 1200ms ease-out when the element enters view. Reduced-motion
+ * over 400ms ease-out when the element enters view. Reduced-motion
  * skips and shows final value immediately.
+ *
+ * Duration matches --motion-slow (400ms). The motion brief caps every
+ * duration at ≤450ms, and the count-up is the single 'slow' delight
+ * on the site — used here and only here.
  */
 export function observeCountUp(root: ParentNode = document): void {
   const targets = root.querySelectorAll<HTMLElement>('[data-count-target]');
@@ -55,7 +59,7 @@ export function observeCountUp(root: ParentNode = document): void {
         const target = parseInt(el.dataset.countTarget ?? '0', 10);
         const suffix = el.dataset.countSuffix ?? '';
         const start = performance.now();
-        const duration = 1200;
+        const duration = 400;
 
         function tick(now: number) {
           const t = Math.min(1, (now - start) / duration);
