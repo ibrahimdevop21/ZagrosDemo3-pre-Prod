@@ -54,7 +54,7 @@ export default {
         'card-kicker-gap': '16px',
         'card-head-gap':   '24px',
         'card-summary-gap':'32px',
-        'page-x':          '56px',
+        'page-x':          'var(--page-margin-x)',
       },
       maxWidth: {
         prose: '60ch',

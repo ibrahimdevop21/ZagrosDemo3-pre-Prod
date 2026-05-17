@@ -54,7 +54,7 @@ const branches = companyData.branches;
         {t('footer.col_catalog')}
       </h5>
       <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/products' : '/products'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] leading-[2.15]">{t('nav.products')}</a></li>
+        <li><a href={isRTL ? '/ar/products' : '/products'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.products')}</a></li>
       </ul>
     </div>
 
@@ -63,7 +63,7 @@ const branches = companyData.branches;
         {t('footer.col_reports')}
       </h5>
       <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] leading-[2.15]">{t('nav.field_reports')}</a></li>
+        <li><a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.field_reports')}</a></li>
       </ul>
     </div>
 
@@ -73,9 +73,9 @@ const branches = companyData.branches;
       </h5>
       <ul class="list-none p-0 m-0">
         {branches.length === 0 ? (
-          <li class="text-paper/55 font-mono text-[12px] leading-[2.15]">— pending —</li>
+          <li class="flex items-center min-h-[44px] text-paper/55 font-mono text-[12px]">— pending —</li>
         ) : branches.map((b) => (
-          <li class="text-paper/85 font-sans text-[15px] leading-[2.15]">{isRTL ? b.name.ar : b.name.en}</li>
+          <li class="flex items-center min-h-[44px] text-paper/85 font-sans text-[15px]">{isRTL ? b.name.ar : b.name.en}</li>
         ))}
       </ul>
     </div>
@@ -85,8 +85,8 @@ const branches = companyData.branches;
         {t('footer.col_company')}
       </h5>
       <ul class="list-none p-0 m-0">
-        <li><a href={isRTL ? '/ar/about' : '/about'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] leading-[2.15]">{t('nav.about')}</a></li>
-        <li><a href={isRTL ? '/ar/contact' : '/contact'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] leading-[2.15]">{t('nav.contact')}</a></li>
+        <li><a href={isRTL ? '/ar/about' : '/about'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.about')}</a></li>
+        <li><a href={isRTL ? '/ar/contact' : '/contact'} class="inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px]">{t('nav.contact')}</a></li>
       </ul>
     </div>
 
