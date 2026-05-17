@@ -38,11 +38,11 @@ function arHref(slug: string) {
 
     <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
       <!-- Spotlight (spans 2 rows on lg) -->
-      <div class="lg:row-span-2">
+      <div class="lg:row-span-2" data-reveal>
         <PartnerSpotlight partner={featured} variant="home" />
       </div>
 
-      <!-- Tiles -->
+      <!-- Tiles (70ms stagger between siblings) -->
       {tiles.map((partner, idx) => {
         const name = partner.data.name;
         const country = partner.data.country;
@@ -53,7 +53,9 @@ function arHref(slug: string) {
           <a
             href={arHref(partner.slug)}
             data-partner-tile
-            class="flex flex-col gap-sp-3 p-sp-4 bg-paper-light border border-stone hover:border-ink transition-colors duration-200 min-h-[160px] no-underline text-inherit"
+            data-reveal
+            style={`--reveal-delay: ${(idx + 1) * 70}ms;`}
+            class="motion-card flex flex-col gap-sp-3 p-sp-4 bg-paper-light border border-stone hover:border-ink min-h-[160px] no-underline text-inherit"
           >
             <div class="flex-1 flex items-center justify-center min-h-[64px]">
               {logoPath ? (
