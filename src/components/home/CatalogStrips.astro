@@ -29,45 +29,47 @@ function arHref(href: string) {
   return isRTL ? `/ar${href}` : href;
 }
 ---
-<section class="px-page-x py-section-y bg-paper-light border-t border-ink">
-  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
-    <span class="w-6 h-px bg-mute inline-block"></span>
-    {t('home.v3catalog.label')}
-  </span>
+<section class="bg-paper-light border-t border-ink py-section-y">
+  <div class="container-spine">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+      <span class="w-6 h-px bg-mute inline-block"></span>
+      {t('home.v3catalog.label')}
+    </span>
 
-  <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
-    {t('home.v3catalog.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3catalog.headline_accent')}</span>
-  </h2>
+    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
+      {t('home.v3catalog.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3catalog.headline_accent')}</span>
+    </h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5 sm:gap-sp-6">
-    {lines.map(({ key, href, hero, serial }, idx) => {
-      const line = dict.home.v3catalog.lines[key];
-      return (
-        <article class="flex flex-col bg-paper border border-stone overflow-hidden transition-[border-color,transform] duration-200 hover:border-ink hover:-translate-y-1" data-reveal style={`--reveal-delay: ${(idx + 1) * 80}ms;`}>
-          <a href={arHref(href)} class="block no-underline text-inherit">
-            <div class:list={[hero, 'p-sp-5 sm:p-sp-6 min-h-[200px] flex flex-col justify-between text-paper']}>
-              <div class="flex justify-between items-baseline">
-                <span class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70">{line.supplier_caption}</span>
-                <span class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70">{serial}</span>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-sp-5 sm:gap-sp-6">
+      {lines.map(({ key, href, hero, serial }, idx) => {
+        const line = dict.home.v3catalog.lines[key];
+        return (
+          <article class="flex flex-col bg-paper border border-stone overflow-hidden transition-[border-color,transform] duration-200 hover:border-ink hover:-translate-y-1" data-reveal style={`--reveal-delay: ${(idx + 1) * 80}ms;`}>
+            <a href={arHref(href)} class="block no-underline text-inherit">
+              <div class:list={[hero, 'p-sp-5 sm:p-sp-6 min-h-[200px] flex flex-col justify-between text-paper']}>
+                <div class="flex justify-between items-baseline">
+                  <span class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70">{line.supplier_caption}</span>
+                  <span class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70">{serial}</span>
+                </div>
+                <div>
+                  <div class="font-display italic font-light text-[clamp(48px,7vw,72px)] leading-[0.85]">{line.skus}</div>
+                  <div class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70 mt-sp-2">{line.subcat}</div>
+                </div>
               </div>
-              <div>
-                <div class="font-display italic font-light text-[clamp(48px,7vw,72px)] leading-[0.85]">{line.skus}</div>
-                <div class="font-mono text-[10px] tracking-[0.22em] uppercase opacity-70 mt-sp-2">{line.subcat}</div>
-              </div>
-            </div>
-          </a>
-          <div class="p-sp-5 sm:p-sp-6 flex flex-col flex-1 gap-sp-4">
-            <h3 class="font-display italic text-[clamp(24px,3vw,30px)] leading-tight text-ink m-0">
-              <a href={arHref(href)} class="text-ink no-underline">{line.title}</a>
-            </h3>
-            <p class="font-sans text-[14px] leading-relaxed text-ink m-0">{line.body}</p>
-            <a href={arHref(href)} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start min-h-[44px] inline-flex items-center mt-auto">
-              {t('home.v3catalog.open')} {isRTL ? '←' : '→'}
             </a>
-          </div>
-        </article>
-      );
-    })}
+            <div class="p-sp-5 sm:p-sp-6 flex flex-col flex-1 gap-sp-4">
+              <h3 class="font-display italic text-[clamp(24px,3vw,30px)] leading-tight text-ink m-0">
+                <a href={arHref(href)} class="text-ink no-underline">{line.title}</a>
+              </h3>
+              <p class="font-sans text-[14px] leading-relaxed text-ink m-0">{line.body}</p>
+              <a href={arHref(href)} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start min-h-[44px] inline-flex items-center mt-auto">
+                {t('home.v3catalog.open')} {isRTL ? '←' : '→'}
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   </div>
 </section>
 

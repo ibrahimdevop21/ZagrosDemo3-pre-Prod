@@ -50,36 +50,40 @@ const slides = [
   </div>
 
   <!-- Content -->
-  <div class="relative z-20 flex flex-col min-h-[640px] sm:min-h-[720px] lg:min-h-[820px] px-page-x pt-sp-7 pb-sp-6">
-    <!-- Top row -->
-    <div class="flex items-baseline justify-between text-paper/80">
-      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase inline-flex items-center gap-2">
-        <span class="blink-signal w-[6px] h-[6px] rounded-full bg-signal inline-block"></span>
-        {t('home.hero.kicker')}
-      </span>
-      <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase">
-        {t('home.hero.est_pill')}
-      </span>
-    </div>
+  <div class="relative z-20 flex flex-col min-h-[640px] sm:min-h-[720px] lg:min-h-[820px] pt-sp-7 pb-sp-6">
+    <div class="container-spine flex flex-col flex-1">
+      <!-- Top row -->
+      <div class="flex items-baseline justify-between text-paper/80">
+        <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase inline-flex items-center gap-2">
+          <span class="blink-signal w-[6px] h-[6px] rounded-full bg-signal inline-block"></span>
+          {t('home.hero.kicker')}
+        </span>
+        <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase">
+          {t('home.hero.est_pill')}
+        </span>
+      </div>
 
-    <!-- Headline -->
-    <h1 class="font-display italic font-light text-[clamp(40px,8vw,96px)] leading-[0.95] max-w-[16ch] mt-auto mb-sp-6 text-paper" data-reveal style="--reveal-delay: 200ms;">
-      {t('home.hero.headline_phrase')} <span class="text-signal not-italic">{t('home.hero.headline_accent')}</span>
-    </h1>
+      <!-- Headline -->
+      <h1 class="font-display italic font-light text-[clamp(40px,8vw,96px)] leading-[0.95] max-w-[16ch] mt-auto mb-sp-6 text-paper" data-reveal style="--reveal-delay: 200ms;">
+        {t('home.hero.headline_phrase')} <span class="text-signal not-italic">{t('home.hero.headline_accent')}</span>
+      </h1>
 
-    <!-- Meta row -->
-    <div class="flex flex-wrap gap-x-sp-7 gap-y-sp-3 pt-sp-4 border-t border-paper/25 text-paper/85" data-reveal style="--reveal-delay: 360ms;">
-      <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase">{t('home.hero.meta_suppliers')}</span>
-      <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase">{t('home.hero.meta_hours')}</span>
-      <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase" dir="ltr">{t('home.hero.meta_phone')}</span>
+      <!-- Meta row -->
+      <div class="flex flex-wrap gap-x-sp-7 gap-y-sp-3 pt-sp-4 border-t border-paper/25 text-paper/85" data-reveal style="--reveal-delay: 360ms;">
+        <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase">{t('home.hero.meta_suppliers')}</span>
+        <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase">{t('home.hero.meta_hours')}</span>
+        <span class="font-mono text-[10.5px] tracking-[0.18em] uppercase" dir="ltr">{t('home.hero.meta_phone')}</span>
+      </div>
     </div>
   </div>
 
   <!-- Progress dots -->
-  <div class="hero-progress absolute bottom-sp-6 end-page-x z-30 flex gap-1.5">
-    {slides.map(() => (
-      <span class="dot relative w-7 h-[2px] bg-paper/25 overflow-hidden block"></span>
-    ))}
+  <div class="hero-progress absolute bottom-sp-6 inset-x-0 z-30">
+    <div class="container-spine flex justify-end gap-1.5">
+      {slides.map(() => (
+        <span class="dot relative w-7 h-[2px] bg-paper/25 overflow-hidden block"></span>
+      ))}
+    </div>
   </div>
 </section>
 

@@ -78,7 +78,8 @@ const flagEmoji = (alpha2: string) =>
     .replace(/./g, (ch) => String.fromCodePoint(0x1f1a5 + ch.charCodeAt(0)));
 ---
 
-<section class="px-page-x py-section-y bg-paper border-t border-ink">
+<section class="bg-paper border-t border-ink py-section-y">
+  <div class="container-spine">
   <span
     class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5"
     data-reveal
@@ -378,6 +379,7 @@ const flagEmoji = (alpha2: string) =>
       </p>
     </aside>
   )}
+  </div>
 </section>
 
 <script>

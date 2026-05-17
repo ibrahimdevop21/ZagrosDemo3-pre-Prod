@@ -16,38 +16,40 @@ const phone = companyData.contact.phone;
 const phoneTel = phone?.replace(/\s+/g, '');
 const whatsapp = companyData.contact.whatsapp?.replace(/[^\d]/g, '');
 ---
-<section class="relative bg-ink text-paper px-page-x py-section-y-major overflow-hidden">
+<section class="relative bg-ink text-paper py-section-y overflow-hidden">
   <span class="signal-bar absolute top-0 left-0 right-0 h-[3px] bg-signal origin-left" style="transform: scaleX(0); transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);"></span>
 
-  <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/70 inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
-    <span class="w-6 h-px bg-paper/70 inline-block"></span>
-    {t('home.v3cta.label')}
-  </span>
+  <div class="container-spine">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/70 inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+      <span class="w-6 h-px bg-paper/70 inline-block"></span>
+      {t('home.v3cta.label')}
+    </span>
 
-  <h2 class="font-display italic font-light text-[clamp(40px,7vw,84px)] leading-[1] text-paper max-w-[18ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
-    {t('home.v3cta.headline_phrase')} <span class="text-signal not-italic">{t('home.v3cta.headline_accent')}</span>
-  </h2>
+    <h2 class="font-display italic font-light text-[clamp(40px,7vw,84px)] leading-[1] text-paper max-w-[18ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
+      {t('home.v3cta.headline_phrase')} <span class="text-signal not-italic">{t('home.v3cta.headline_accent')}</span>
+    </h2>
 
-  <div class="flex flex-wrap items-center gap-sp-3 mb-sp-9" data-reveal style="--reveal-delay: 200ms;">
-    <a href={isRTL ? '/ar/contact' : '/contact'} class="bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
-      {t('home.v3cta.primary')} {isRTL ? '←' : '→'}
-    </a>
-    {phone && (
-      <a href={`tel:${phoneTel}`} class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
-        <span>{t('home.v3cta.phone_label')}</span>
-        <span dir="ltr">{phone}</span>
+    <div class="flex flex-wrap items-center gap-sp-3 mb-sp-9" data-reveal style="--reveal-delay: 200ms;">
+      <a href={isRTL ? '/ar/contact' : '/contact'} class="bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+        {t('home.v3cta.primary')} {isRTL ? '←' : '→'}
       </a>
-    )}
-    {whatsapp && (
-      <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
-        {t('home.v3cta.whatsapp_label')}
-      </a>
-    )}
-  </div>
+      {phone && (
+        <a href={`tel:${phoneTel}`} class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+          <span>{t('home.v3cta.phone_label')}</span>
+          <span dir="ltr">{phone}</span>
+        </a>
+      )}
+      {whatsapp && (
+        <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+          {t('home.v3cta.whatsapp_label')}
+        </a>
+      )}
+    </div>
 
-  <div class="pt-sp-5 border-t border-paper/20 flex justify-between font-mono text-[10px] tracking-[0.18em] uppercase text-paper/60 flex-wrap gap-sp-3">
-    <span>{t('home.v3cta.footer_address')}</span>
-    <span>© 2026 · Section 09 / 09 · Colophon</span>
+    <div class="pt-sp-5 border-t border-paper/20 flex justify-between font-mono text-[10px] tracking-[0.18em] uppercase text-paper/60 flex-wrap gap-sp-3">
+      <span>{t('home.v3cta.footer_address')}</span>
+      <span>© 2026 · Section 09 / 09 · Colophon</span>
+    </div>
   </div>
 </section>
 
