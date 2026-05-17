@@ -144,3 +144,33 @@ Cards are the lazy answer to most layout problems. Use only when truly the best 
 - Real customer pull quote (currently pending fallback).
 - Hand-drawn Sudan map SVG for the Branches section.
 - Real Kafr El Zayat partner logo (per `REMAINING_GAPS.md` item 8).
+
+## Audit close-out (2026-05-17)
+
+The `docs/superpowers/audits/2026-05-17-spacing-polish-audit.md` punch list is fully reconciled. Items closed by code reference the commit that closed them; items closed by reasoning document the design call so a future audit doesn't re-flag the same thing.
+
+**Closed by code:**
+- **A1, A3** — closed in `e13b5ea` (quick-wins batch).
+- **A2** — closed in `9c3d39e`: orphan `card-*-gap` tokens deleted (YAGNI — cards don't share a four-role structure).
+- **B1, B2, B3, B4, B5, E1, E2** — closed by the layout spine migration (`ce94c16` through `b860f0c`). One `.container-spine` primitive, one `--section-y` token, one type scale per peer role.
+- **C1, C2, C3** — closed in `b3a0ae3`: Nav vertical padding bumped to `py-sp-5`, lang toggle to 44px, all three pills standardized on `px-sp-4 py-sp-3`.
+- **C4, C5** — closed in `e13b5ea`: UtilityBar phone link to 44px + bar grown to `py-sp-4` token.
+- **D1, D3, D4, D6** — closed in `5c3c2e7`: footer pt/pb to 96/64, newsletter literals to tokens, colophon gap tightened, branch names differentiated from links via size + opacity.
+- **D2** — closed in `e13b5ea`: `leading-[2.15]` hack removed; footer items now share `min-h-[44px] flex items-center` rhythm.
+- **D5** — closed by the spine Phase 2 footer rewrite (`97715dd`): the new `col-span-12 / sm:col-span-3 / lg:col-span-2` responsive scheme replaced the crowded `col-start-{7,9,11,13}` placement.
+- **E4** — closed in spine Phase 3 (`fa9e188`): marquee `py-3` literal → `py-sp-3` token.
+- **E5** — closed in spine Phase 2 (`97715dd`): CaptionStrip `py-4` literal → `py-sp-4` token.
+- **E6** — closed in `4ffef0a`: Hero content wrapper to `pt-sp-8 pb-sp-7`.
+- **E7** — closed automatically by D1 (`5c3c2e7`): footer top pulled up to 96px, CTA→footer seam now reasonable.
+
+**Closed by reasoning (no code change needed):**
+- **E3** — Hero → OpsTickerMarquee join. Marquee is a chrome band by design (slim ticker at `py-sp-3`); after E6 the hero ends at `pb-sp-7`. The join is intentional. The marquee should feel attached to the hero — it's an ops ticker, not a content section.
+- **E8** — Card padding "inconsistent" sitewide. The variation is **role-based, not drift**:
+  - Tiny logo tiles (`CustomersWall`): `p-sp-3` — logos need tight padding to read at small sizes.
+  - Compact tiles (`PartnersSection`): `p-sp-4` — tile density.
+  - Standard editorial cards (`CatalogStrips`, `FieldReportsTeaser`): `p-sp-5 sm:p-sp-6` — full editorial padding.
+  - Info blocks (`WorldReach` credentials, scope note): `p-sp-5` — informational density.
+  - Utility blocks (`WorldReach` map+aside): `p-sp-4 sm:p-sp-5` — utilitarian.
+
+  Each card-class has one consistent padding for its role. There is no sitewide single `card-padding` token because cards don't share a single role.
+- **E9** — Card-internal vertical rhythm. Same reasoning as E8 — `gap-sp-3` (info cards), `gap-sp-4` (editorial cards), `mb-sp-2`/`mb-sp-3` (small cards) all match the role of the card class. Not random drift.
