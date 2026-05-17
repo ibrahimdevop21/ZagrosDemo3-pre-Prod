@@ -27,18 +27,18 @@ function arHref(slug: string) {
 ---
 <section class="bg-paper border-t border-ink py-section-y">
   <div class="container-spine">
-    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5">
       <span class="w-6 h-px bg-mute inline-block"></span>
       {t('home.v3partners.label')}
     </span>
 
-    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[24ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
+    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[24ch] mb-head-to-content">
       {t('home.v3partners.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3partners.headline_accent')}</span>
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
       <!-- Spotlight (spans 2 rows on lg) -->
-      <div class="lg:row-span-2" data-reveal>
+      <div class="lg:row-span-2">
         <PartnerSpotlight partner={featured} variant="home" />
       </div>
 
@@ -54,8 +54,6 @@ function arHref(slug: string) {
             href={arHref(partner.slug)}
             data-partner-tile
             class="flex flex-col gap-sp-3 p-sp-4 bg-paper-light border border-stone hover:border-ink transition-colors duration-200 min-h-[160px] no-underline text-inherit"
-            data-reveal
-            style={`--reveal-delay: ${(idx + 1) * 80}ms;`}
           >
             <div class="flex-1 flex items-center justify-center min-h-[64px]">
               {logoPath ? (
@@ -74,8 +72,3 @@ function arHref(slug: string) {
     </div>
   </div>
 </section>
-
-<script>
-  import { observeReveal } from '../../lib/motion';
-  observeReveal();
-</script>

@@ -58,5 +58,16 @@ const metaDescription = description ?? t('site.meta_description');
       <slot />
     </main>
     <Footer />
+
+    <script>
+      /* Single shared IntersectionObserver for the whole site:
+         scroll-reveal for [data-reveal] elements + count-up for
+         [data-count-target] elements. Both honor reduced-motion
+         (count-up shows final value instantly; reveals paint
+         immediately via CSS in motion.css). */
+      import { observeReveal, observeCountUp } from '../lib/motion';
+      observeReveal();
+      observeCountUp();
+    </script>
   </body>
 </html>

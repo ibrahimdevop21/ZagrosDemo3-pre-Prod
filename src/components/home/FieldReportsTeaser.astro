@@ -39,18 +39,18 @@ function fmtDate(d: Date): string {
 ---
 <section class="bg-paper-light border-t border-ink py-section-y">
   <div class="container-spine">
-    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5">
       <span class="w-6 h-px bg-mute inline-block"></span>
       {t('home.v3reports.label')}
     </span>
 
-    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
+    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content">
       {t('home.v3reports.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3reports.headline_accent')}</span>
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr] gap-sp-5 lg:gap-sp-6">
       {featured && (
-        <a href={arHref(featured.slug)} data-reveal class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
+        <a href={arHref(featured.slug)} class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
           <img src={featured.data.hero_image} alt="" role="presentation" aria-hidden="true" width="800" height="500" loading="lazy" decoding="async" class="block w-full aspect-[16/10] object-cover" />
           <div class="p-sp-5 sm:p-sp-6">
             <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(featured.data.date)}</span>
@@ -62,7 +62,7 @@ function fmtDate(d: Date): string {
         </a>
       )}
       {rest.map((report, idx) => (
-        <a href={arHref(report.slug)} data-reveal style={`--reveal-delay: ${(idx + 1) * 120}ms;`} class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
+        <a href={arHref(report.slug)} class="flex flex-col bg-paper border border-stone hover:border-ink transition-colors no-underline text-inherit">
           <img src={report.data.hero_image} alt="" role="presentation" aria-hidden="true" width="600" height="450" loading="lazy" decoding="async" class="block w-full aspect-[4/3] object-cover" />
           <div class="p-sp-5">
             <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute block mb-sp-3">REPORT · {fmtDate(report.data.date)}</span>
@@ -82,8 +82,3 @@ function fmtDate(d: Date): string {
     </div>
   </div>
 </section>
-
-<script>
-  import { observeReveal } from '../../lib/motion';
-  observeReveal();
-</script>

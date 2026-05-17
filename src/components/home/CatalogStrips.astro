@@ -31,12 +31,12 @@ function arHref(href: string) {
 ---
 <section class="bg-paper-light border-t border-ink py-section-y">
   <div class="container-spine">
-    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5" data-reveal>
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute inline-flex items-center gap-2.5 mb-sp-5">
       <span class="w-6 h-px bg-mute inline-block"></span>
       {t('home.v3catalog.label')}
     </span>
 
-    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content" data-reveal style="--reveal-delay: 100ms;">
+    <h2 class="font-display italic font-light text-[clamp(32px,5vw,56px)] leading-[0.95] text-ink max-w-[20ch] mb-head-to-content">
       {t('home.v3catalog.headline_phrase')} <span class="text-sienna not-italic">{t('home.v3catalog.headline_accent')}</span>
     </h2>
 
@@ -44,7 +44,7 @@ function arHref(href: string) {
       {lines.map(({ key, href, hero, serial }, idx) => {
         const line = dict.home.v3catalog.lines[key];
         return (
-          <article class="flex flex-col bg-paper border border-stone overflow-hidden transition-[border-color,transform] duration-200 hover:border-ink hover:-translate-y-1" data-reveal style={`--reveal-delay: ${(idx + 1) * 80}ms;`}>
+          <article class="motion-card flex flex-col bg-paper border border-stone overflow-hidden hover:border-ink" data-reveal style={`--reveal-delay: ${idx * 70}ms;`}>
             <a href={arHref(href)} class="block no-underline text-inherit">
               <div class:list={[hero, 'p-sp-5 sm:p-sp-6 min-h-[200px] flex flex-col justify-between text-paper']}>
                 <div class="flex justify-between items-baseline">
@@ -72,8 +72,3 @@ function arHref(href: string) {
     </div>
   </div>
 </section>
-
-<script>
-  import { observeReveal } from '../../lib/motion';
-  observeReveal();
-</script>
