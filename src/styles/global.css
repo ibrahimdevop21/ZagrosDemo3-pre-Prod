@@ -116,6 +116,19 @@
     column-gap: 24px;
   }
 
+  /* Layout spine — single horizontal-alignment primitive sitewide.
+     Spec: docs/superpowers/specs/2026-05-17-layout-spine-design.md
+     Uses three already-declared tokens: --stage-max-width,
+     --page-margin-x, --section-y. RTL-safe via inline logical
+     properties. Migration in progress; .stage-grid + px-page-x
+     retired in Phase 7. */
+  .container-spine {
+    width: 100%;
+    max-width: var(--stage-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-margin-x);
+  }
+
   /* Kicker — small caps mono label with leading bar */
   .kicker {
     @apply font-mono text-[11px] uppercase text-mute;
