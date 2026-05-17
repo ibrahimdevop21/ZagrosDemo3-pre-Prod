@@ -65,7 +65,7 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
         type="button"
         aria-label={closeLabel}
         data-mobile-nav-close
-        class="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mx-2 text-ink"
+        class="motion-press inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mx-2 text-ink hover:opacity-70"
       >
         <svg
           width="20"
@@ -85,7 +85,7 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
 
     <a
       href={altLocaleHref}
-      class="self-start font-mono text-[11px] tracking-[0.18em] px-sp-4 py-sp-3 border border-stone rounded-full text-ink no-underline mb-sp-7 min-h-[44px] inline-flex items-center"
+      class="motion-press self-start font-mono text-[11px] tracking-[0.18em] px-sp-4 py-sp-3 border border-stone rounded-full text-ink no-underline mb-sp-7 min-h-[44px] inline-flex items-center hover:bg-stone/30"
     >
       {t('nav.language')}
     </a>
@@ -95,7 +95,7 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
         <li>
           <a
             href={isRTL ? `/ar${route}` : route}
-            class="block font-display text-3xl text-ink no-underline min-h-[44px] py-1 leading-tight"
+            class="motion-press block font-display text-3xl text-ink no-underline min-h-[44px] py-1 leading-tight hover:opacity-70"
           >
             {label}
           </a>
@@ -105,7 +105,7 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
 
     <a
       href={isRTL ? '/ar/contact' : '/contact'}
-      class="bg-ink text-paper font-sans font-medium text-[15px] px-sp-5 py-sp-4 rounded-full no-underline inline-flex items-center justify-center gap-2 min-h-[52px] mt-sp-7"
+      class="motion-press bg-ink text-paper font-sans font-medium text-[15px] px-sp-5 py-sp-4 rounded-full no-underline inline-flex items-center justify-center gap-2 min-h-[52px] mt-sp-7 hover:opacity-90"
     >
       {t('nav.cta_primary')} {isRTL ? '←' : '→'}
     </a>

@@ -66,15 +66,6 @@
     .marquee-track { animation-duration: 30s; }
   }
 
-  /* === Live dot blink === */
-  .blink-signal {
-    animation: blink-signal 2.4s infinite;
-  }
-  @keyframes blink-signal {
-    0%, 60%, 100% { opacity: 1; }
-    80%           { opacity: 0.4; }
-  }
-
   /* === Hero slideshow === */
   .hero-slideshow .slide {
     opacity: 0;
@@ -137,7 +128,6 @@
      - Marquee track does not scroll (the no-preference @media gates the
        animation declaration; this block makes that explicit).
      - Hero progress dots do not fill.
-     - .blink-signal does not pulse (gated by no-preference).
      - All [data-reveal] elements paint visible immediately (no entrance).
      - Count-up shows final value instantly (handled in src/lib/motion.ts).
      Belt-and-suspenders backstop in src/styles/global.css §80-89 caps
@@ -146,6 +136,18 @@
   .hero-slideshow .slide:not(:nth-child(1)) { opacity: 0; }
   .marquee-track { animation: none; }
   .hero-progress .dot::after { animation: none; opacity: 0; }
-  .blink-signal { animation: none; }
   [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* === Micro-interactions ===
+   Opt-in utility classes for hover/press/focus feedback. Components add
+   .motion-press to interactive surfaces (buttons, links, pills, form
+   inputs). Tokens centralized in src/styles/tokens.css.
+   Reduced-motion: the global * { transition-duration: 0.01ms !important }
+   rule in src/styles/global.css §80-89 cancels these transitions
+   automatically. */
+.motion-press {
+  transition-property: opacity, background-color, color, border-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--motion-ease-inout);
 }

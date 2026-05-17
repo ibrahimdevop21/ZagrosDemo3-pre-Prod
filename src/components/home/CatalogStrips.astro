@@ -62,7 +62,7 @@ function arHref(href: string) {
                 <a href={arHref(href)} class="text-ink no-underline">{line.title}</a>
               </h3>
               <p class="font-sans text-[14px] leading-relaxed text-ink m-0">{line.body}</p>
-              <a href={arHref(href)} class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start min-h-[44px] inline-flex items-center mt-auto">
+              <a href={arHref(href)} class="motion-press font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 self-start min-h-[44px] inline-flex items-center mt-auto hover:opacity-70">
                 {t('home.v3catalog.open')} {isRTL ? '←' : '→'}
               </a>
             </div>

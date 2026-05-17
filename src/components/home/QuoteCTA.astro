@@ -30,17 +30,17 @@ const whatsapp = companyData.contact.whatsapp?.replace(/[^\d]/g, '');
     </h2>
 
     <div class="flex flex-wrap items-center gap-sp-3 mb-sp-9" data-reveal style="--reveal-delay: 200ms;">
-      <a href={isRTL ? '/ar/contact' : '/contact'} class="bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+      <a href={isRTL ? '/ar/contact' : '/contact'} class="motion-press bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px] hover:opacity-90">
         {t('home.v3cta.primary')} {isRTL ? '←' : '→'}
       </a>
       {phone && (
-        <a href={`tel:${phoneTel}`} class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+        <a href={`tel:${phoneTel}`} class="motion-press border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px] hover:bg-paper/10">
           <span>{t('home.v3cta.phone_label')}</span>
           <span dir="ltr">{phone}</span>
         </a>
       )}
       {whatsapp && (
-        <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" class="border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px]">
+        <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" class="motion-press border border-paper/40 text-paper font-sans font-medium text-[14px] px-sp-5 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[48px] hover:bg-paper/10">
           {t('home.v3cta.whatsapp_label')}
         </a>
       )}

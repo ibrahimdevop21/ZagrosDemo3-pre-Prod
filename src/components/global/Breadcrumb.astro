@@ -14,7 +14,7 @@ const { items } = Astro.props;
       {items.map((crumb, i) => (
         <li class="inline-flex items-center gap-2">
           {crumb.href ? (
-            <a href={crumb.href} class="text-ink no-underline border-b border-transparent hover:border-ink">{crumb.label}</a>
+            <a href={crumb.href} class="motion-press text-ink no-underline border-b border-transparent hover:border-ink">{crumb.label}</a>
           ) : (
             <span class="text-ink/90">{crumb.label}</span>
           )}

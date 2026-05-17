@@ -48,7 +48,7 @@ const navLinks = [
           <a
             href={isRTL ? `/ar${route}` : route}
             class:list={[
-              'font-sans font-medium text-[15px] text-ink no-underline relative inline-flex items-center min-h-[44px]',
+              'motion-press font-sans font-medium text-[15px] text-ink no-underline relative inline-flex items-center min-h-[44px]',
               { 'opacity-100': isActive(route), 'opacity-85 hover:opacity-100': !isActive(route) }
             ]}
           >
@@ -64,13 +64,13 @@ const navLinks = [
     <div class="ms-auto hidden lg:flex items-center gap-sp-3">
       <a
         href={altLocaleHref}
-        class="font-mono text-[11px] tracking-[0.18em] px-sp-4 py-sp-3 border border-stone rounded-full text-ink no-underline inline-flex items-center min-h-[44px]"
+        class="motion-press font-mono text-[11px] tracking-[0.18em] px-sp-4 py-sp-3 border border-stone rounded-full text-ink no-underline inline-flex items-center min-h-[44px] hover:bg-stone/30"
       >
         {t('nav.language')}
       </a>
       <a
         href={isRTL ? '/ar/contact' : '/contact'}
-        class="bg-ink text-paper font-sans font-medium text-[13px] px-sp-4 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[44px]"
+        class="motion-press bg-ink text-paper font-sans font-medium text-[13px] px-sp-4 py-sp-3 rounded-full no-underline inline-flex items-center gap-2 min-h-[44px] hover:opacity-90"
       >
         {t('nav.cta_primary')} {isRTL ? '←' : '→'}
       </a>
