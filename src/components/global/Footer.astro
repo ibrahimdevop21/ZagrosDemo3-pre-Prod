@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 const branches = companyData.branches;
 ---
 
-<footer class="bg-ink text-paper border-t border-paper/10 pt-section-y pb-sp-7">
+<footer class="bg-ink text-paper border-t border-paper/10 pt-sp-9 pb-sp-8">
   <div class="container-spine">
     <div class="grid grid-cols-12 gap-6">
       <div class="col-span-12 lg:col-span-4">
@@ -31,18 +31,18 @@ const branches = companyData.branches;
           {t('site.meta_description')}
         </p>
         <form class="news">
-          <label class="block font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal mb-3">
+          <label class="block font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal mb-sp-3">
             {t('footer.newsletter_label')}
           </label>
           <div class="flex gap-2">
             <input
               type="email"
               placeholder={t('footer.newsletter_placeholder')}
-              class="flex-1 bg-transparent text-paper border border-paper/20 px-3.5 py-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
+              class="flex-1 bg-transparent text-paper border border-paper/20 px-sp-4 py-sp-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
             />
             <button
               type="submit"
-              class="bg-signal text-ink font-sans font-semibold text-[14px] px-5 py-3 min-h-[44px] border-none cursor-pointer"
+              class="bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 min-h-[44px] border-none cursor-pointer"
             >
               {t('footer.newsletter_submit')}
             </button>
@@ -76,7 +76,7 @@ const branches = companyData.branches;
           {branches.length === 0 ? (
             <li class="flex items-center min-h-[44px] text-paper/55 font-mono text-[12px]">— pending —</li>
           ) : branches.map((b) => (
-            <li class="flex items-center min-h-[44px] text-paper/85 font-sans text-[15px]">{isRTL ? b.name.ar : b.name.en}</li>
+            <li class="flex items-center min-h-[44px] text-paper/65 font-sans text-[14px]">{isRTL ? b.name.ar : b.name.en}</li>
           ))}
         </ul>
       </div>
@@ -91,7 +91,7 @@ const branches = companyData.branches;
         </ul>
       </div>
 
-      <div class="col-span-12 mt-sp-9 pt-sp-5 border-t border-paper/10 flex justify-between font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
+      <div class="col-span-12 mt-sp-7 pt-sp-5 border-t border-paper/10 flex justify-between font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
         <span>{t('footer.copyright').replace('2026', String(year))}</span>
         <span>{t('common.section')} · {t('footer.colophon_section')} · {t('footer.colophon_label')}</span>
       </div>
