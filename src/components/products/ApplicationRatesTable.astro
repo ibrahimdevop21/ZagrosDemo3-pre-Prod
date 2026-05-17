@@ -13,13 +13,13 @@ const rows = product.data.crops ?? [];
 
 {rows.length > 0 && (
   <section class="py-section-y bg-paper" aria-label={t('product.rates.label')}>
-    <div class="stage-grid">
-      <header class="col-span-12 col-start-2 mb-sp-7">
+    <div class="container-spine">
+      <header class="mb-sp-7">
         <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{t('product.rates.kicker')}</span>
         <h2 class="font-display text-4xl text-ink mt-sp-3 leading-tight max-w-[24ch]">{t('product.rates.headline')}</h2>
       </header>
 
-      <div class="col-span-12 col-start-2 overflow-x-auto">
+      <div class="overflow-x-auto">
         <table class="w-full text-start">
           <thead>
             <tr class="border-b border-ink">

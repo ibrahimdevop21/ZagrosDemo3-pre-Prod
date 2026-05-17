@@ -8,9 +8,10 @@ const t = useTranslations(lang);
 const hasLines = partner.data.product_lines.length > 0;
 ---
 <section class="py-section-y bg-paper">
-  <div class="stage-grid">
-    <h2 class="col-span-5 col-start-2 font-display text-5xl text-ink leading-tight">{t('partner_page.lines_headline')}</h2>
-    <div class="col-span-6 col-start-8">
+  <div class="container-spine">
+    <div class="grid grid-cols-12 gap-6">
+      <h2 class="col-span-12 lg:col-span-5 font-display text-5xl text-ink leading-tight">{t('partner_page.lines_headline')}</h2>
+      <div class="col-span-12 lg:col-span-6 lg:col-start-7">
       {hasLines ? (
         <table class="w-full">
           <tbody>
@@ -35,6 +36,7 @@ const hasLines = partner.data.product_lines.length > 0;
           </p>
         </div>
       )}
+      </div>
     </div>
   </div>
 </section>

@@ -10,9 +10,9 @@ const reports = await getCollection('field-reports', ({ data }) => data.related_
 ---
 {reports.length > 0 && (
   <section class="py-section-y bg-stone/30">
-    <div class="stage-grid">
-      <h2 class="col-span-12 col-start-2 font-display text-4xl text-ink mb-sp-7">{t('partner_page.reports_headline')}</h2>
-      <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-6">
+    <div class="container-spine">
+      <h2 class="font-display text-4xl text-ink mb-sp-7">{t('partner_page.reports_headline')}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-sp-6">
         {reports.slice(0, 3).map(r => <ReportCard report={r} />)}
       </div>
     </div>

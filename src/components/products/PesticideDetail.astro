@@ -18,8 +18,10 @@ const description = pesticide.data.description[lang as 'en' | 'ar'];
 const recommendation = pesticide.data.recommendation?.[lang as 'en' | 'ar'];
 const efficacy = pesticide.data.efficacy?.[lang as 'en' | 'ar'];
 ---
-<header class="stage-grid pt-sp-7 pb-section-y">
-  <div class="col-span-7 col-start-2">
+<header class="pt-sp-7 pb-section-y">
+  <div class="container-spine">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-7">
     <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
       {type} · {pesticide.data.origin_country.toUpperCase()}
     </span>
@@ -71,7 +73,7 @@ const efficacy = pesticide.data.efficacy?.[lang as 'en' | 'ar'];
     )}
   </div>
 
-  <aside class="col-span-4 col-start-10 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.pesticide.spec_label')}>
+      <aside class="col-span-12 lg:col-span-4 lg:col-start-9 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.pesticide.spec_label')}>
     <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-5 m-0">{t('product.pesticide.spec_label')}</h2>
 
     <dl class="grid grid-cols-1 gap-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase">
@@ -104,5 +106,7 @@ const efficacy = pesticide.data.efficacy?.[lang as 'en' | 'ar'];
         <dd class="text-paper m-0 text-end">{pesticide.data.origin_country.toUpperCase()}</dd>
       </div>
     </dl>
-  </aside>
+      </aside>
+    </div>
+  </div>
 </header>

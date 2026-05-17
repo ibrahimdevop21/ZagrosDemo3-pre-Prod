@@ -3,8 +3,8 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<div class="px-page-x py-sp-3 border-b border-stone hidden" data-products-pills aria-live="polite">
-  <div class="flex items-center gap-sp-3 flex-wrap font-mono text-[10.5px] tracking-[0.22em] uppercase">
+<div class="py-sp-3 border-b border-stone hidden" data-products-pills aria-live="polite">
+  <div class="container-spine flex items-center gap-sp-3 flex-wrap font-mono text-[10.5px] tracking-[0.22em] uppercase">
     <span class="text-mute">{t('products.pills.active_label')}</span>
     <div data-products-pills-container class="flex flex-wrap gap-2"></div>
     <button type="button" data-products-clear-all class="ms-auto text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">{t('products.pills.clear_all')}</button>

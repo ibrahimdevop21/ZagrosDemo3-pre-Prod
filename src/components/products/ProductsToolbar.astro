@@ -3,7 +3,8 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<div class="bg-paper border-y border-stone py-sp-4 px-page-x flex items-center justify-between gap-sp-5 flex-wrap" data-products-toolbar>
+<div class="bg-paper border-y border-stone py-sp-4" data-products-toolbar>
+  <div class="container-spine flex items-center justify-between gap-sp-5 flex-wrap">
   <div class="flex items-center gap-sp-5 flex-1 min-w-[260px]">
     <label class="inline-flex items-center gap-3 border-b border-ink/30 focus-within:border-ink py-1 flex-1 max-w-[480px]">
       <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute">{t('products.toolbar.search_label')}</span>
@@ -34,5 +35,6 @@ const t = useTranslations(lang);
       <button type="button" data-products-view="cards" aria-pressed="true" class="px-3 py-2 min-h-[44px] inline-flex items-center font-mono text-[10.5px] tracking-[0.22em] uppercase bg-ink text-paper">{t('products.toolbar.view_cards')}</button>
       <button type="button" data-products-view="compact" aria-pressed="false" class="px-3 py-2 min-h-[44px] inline-flex items-center font-mono text-[10.5px] tracking-[0.22em] uppercase bg-paper text-ink">{t('products.toolbar.view_compact')}</button>
     </div>
+  </div>
   </div>
 </div>

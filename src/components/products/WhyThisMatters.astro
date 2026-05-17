@@ -13,12 +13,12 @@ const slugCases = (useCases as Record<string, any>)[product.slug];
 const cases = slugCases?.[lang] ?? slugCases?.en ?? (useCases as any)._default[lang] ?? (useCases as any)._default.en;
 ---
 <section class="bg-ink text-paper py-section-y">
-  <div class="stage-grid">
-    <header class="col-span-12 col-start-2 mb-sp-9">
+  <div class="container-spine">
+    <header class="mb-sp-9">
       <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-signal">{t('product.why.kicker')}</span>
       <h2 class="font-display text-5xl text-paper mt-sp-3 leading-tight max-w-[22ch]">{t('product.why.headline')}</h2>
     </header>
-    <div class="col-span-12 col-start-2 grid grid-cols-1 md:grid-cols-3 gap-sp-7">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-sp-7">
       {cases.map((c: any, i: number) => (
         <UseCaseCard number={String(i + 1).padStart(2, '0')} title={c.title} body={c.body} />
       ))}

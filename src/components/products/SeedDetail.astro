@@ -13,8 +13,10 @@ const name = seed.data.name[lang as 'en' | 'ar'];
 const rows = seed.data.sowing_rates;
 const hasSowing = rows && (rows.marginal_dryland || rows.ideal_dryland || rows.irrigated);
 ---
-<header class="stage-grid pt-sp-7 pb-section-y">
-  <div class="col-span-7 col-start-2">
+<header class="pt-sp-7 pb-section-y">
+  <div class="container-spine">
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-7">
     <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
       {seed.data.brand} · {seed.data.subcategory} · {seed.data.origin_country.toUpperCase()}
     </span>
@@ -42,7 +44,7 @@ const hasSowing = rows && (rows.marginal_dryland || rows.ideal_dryland || rows.i
     )}
   </div>
 
-  <aside class="col-span-4 col-start-10 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.seed.agronomy_label')}>
+      <aside class="col-span-12 lg:col-span-4 lg:col-start-9 mt-sp-7 lg:mt-0 bg-ink text-paper p-sp-7" aria-label={t('product.seed.agronomy_label')}>
     <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-paper/60 mb-sp-5 m-0">{t('product.seed.agronomy_label')}</h2>
 
     <dl class="grid grid-cols-1 gap-y-sp-4 font-mono text-[11px] tracking-[0.18em] uppercase mb-sp-7">
@@ -105,5 +107,7 @@ const hasSowing = rows && (rows.marginal_dryland || rows.ideal_dryland || rows.i
         </dl>
       </div>
     )}
-  </aside>
+      </aside>
+    </div>
+  </div>
 </header>

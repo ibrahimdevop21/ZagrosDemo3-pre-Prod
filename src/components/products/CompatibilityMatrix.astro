@@ -27,8 +27,8 @@ const chemistryNotes = (compatibilityData as any)._chemistry_notes ?? {};
 ---
 
 <section class="py-section-y bg-paper" aria-label={t('product.compatibility.label')}>
-  <div class="stage-grid">
-    <header class="col-span-12 col-start-2 mb-sp-7 border-s-4 border-sienna ps-sp-5">
+  <div class="container-spine">
+    <header class="mb-sp-7 border-s-4 border-sienna ps-sp-5">
       <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-sienna">{t('product.compatibility.kicker')}</span>
       <h2 class="font-display text-4xl text-ink mt-sp-3 leading-tight max-w-[24ch]">
         {isSeed ? t('product.compatibility.seed_note_headline') : t('product.compatibility.headline')}
@@ -36,12 +36,12 @@ const chemistryNotes = (compatibilityData as any)._chemistry_notes ?? {};
     </header>
 
     {isSeed ? (
-      <p class="col-span-9 col-start-2 font-sans text-base text-ink/80 leading-relaxed max-w-[60ch]">
+      <p class="max-w-[60ch] font-sans text-base text-ink/80 leading-relaxed">
         {t('product.compatibility.seed_note_body')}
       </p>
     ) : (
-      <>
-        <div class="col-span-6 col-start-2">
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 lg:col-span-6">
           <h3 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">{t('product.compatibility.compatible')}</h3>
           <ul class="list-none p-0 m-0 space-y-3">
             {compatibleNames.length === 0 && <li class="font-sans text-sm text-mute">—</li>}
@@ -53,7 +53,7 @@ const chemistryNotes = (compatibilityData as any)._chemistry_notes ?? {};
           </ul>
         </div>
 
-        <div class="col-span-6 col-start-8">
+        <div class="col-span-12 lg:col-span-6 lg:col-start-7">
           <h3 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">{t('product.compatibility.incompatible')}</h3>
           <ul class="list-none p-0 m-0 space-y-3">
             {incompatibleNames.length === 0 && <li class="font-sans text-sm text-mute">—</li>}
@@ -73,14 +73,14 @@ const chemistryNotes = (compatibilityData as any)._chemistry_notes ?? {};
         </div>
 
         {entry?.notes && (
-          <aside class="col-span-12 col-start-2 mt-sp-7 p-sp-5 border border-sienna/40 bg-sienna/5">
+          <aside class="col-span-12 mt-sp-7 p-sp-5 border border-sienna/40 bg-sienna/5">
             <p class="font-sans text-base text-ink m-0">{entry.notes}</p>
           </aside>
         )}
-      </>
+      </div>
     )}
 
-    <aside class="col-span-12 col-start-2 mt-sp-5 p-sp-5 border border-signal bg-signal/15">
+    <aside class="mt-sp-5 p-sp-5 border border-signal bg-signal/15">
       <p class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink m-0 leading-relaxed">
         <strong>{t('product.compatibility.universal_rule_label')}</strong> · {(compatibilityData as any)._universal_rule}
       </p>
