@@ -100,7 +100,7 @@ Vary spacing for rhythm. Same padding everywhere is monotony. Sections should br
 
 ## Layout primitives
 
-- `.stage-grid` — 14-column grid (`minmax(page-x, 1fr) repeat(12, 1fr) minmax(page-x, 1fr)`), 24px column gap. Editorial gutters built in. Defined `src/styles/global.css:91-100`.
+- `.container-spine` — **single horizontal-alignment primitive sitewide**. `max-width: var(--stage-max-width)` (1300px), `padding-inline: var(--page-margin-x)` (responsive 56/20px), `margin-inline: auto`. Every content region wraps its inner content in this class. Full-bleed backgrounds sit on the outer element; constrained content sits inside the container. Defined in `src/styles/global.css` `@layer components`. Internal 12-col grids nest inside via `<div class="grid grid-cols-12 gap-6">` (opt-in, never overloaded onto the container itself). Spec: `docs/superpowers/specs/2026-05-17-layout-spine-design.md`.
 - `.paper-grain` — SVG-noise paper texture overlay applied as `::after`. Use on hero or full-width sections that want depth.
 - `.kicker` — small-caps mono label with a 28px leading bar.
 

@@ -48,13 +48,11 @@ export default {
         'sp-9': '96px',  'sp-10': '144px','sp-11': '200px',
         // Semantic role tokens — spec §3.2
         'section-y':       '144px',
-        'section-y-major': '200px',
         'head-to-content': '96px',
         'card-photo-gap':  '32px',
         'card-kicker-gap': '16px',
         'card-head-gap':   '24px',
         'card-summary-gap':'32px',
-        'page-x':          'var(--page-margin-x)',
       },
       maxWidth: {
         prose: '60ch',

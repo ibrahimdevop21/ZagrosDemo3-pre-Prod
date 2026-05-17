@@ -106,22 +106,11 @@
     z-index: 5;
   }
 
-  /* 14-col stage grid — spec §3.3, reusable on any section root */
-  .stage-grid {
-    display: grid;
-    grid-template-columns:
-      minmax(var(--page-margin-x), 1fr)
-      repeat(12, 1fr)
-      minmax(var(--page-margin-x), 1fr);
-    column-gap: 24px;
-  }
-
   /* Layout spine — single horizontal-alignment primitive sitewide.
      Spec: docs/superpowers/specs/2026-05-17-layout-spine-design.md
      Uses three already-declared tokens: --stage-max-width,
      --page-margin-x, --section-y. RTL-safe via inline logical
-     properties. Migration in progress; .stage-grid + px-page-x
-     retired in Phase 7. */
+     properties. */
   .container-spine {
     width: 100%;
     max-width: var(--stage-max-width);
