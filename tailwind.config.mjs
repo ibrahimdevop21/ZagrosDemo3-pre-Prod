@@ -49,10 +49,6 @@ export default {
         // Semantic role tokens — spec §3.2
         'section-y':       '144px',
         'head-to-content': '96px',
-        'card-photo-gap':  '32px',
-        'card-kicker-gap': '16px',
-        'card-head-gap':   '24px',
-        'card-summary-gap':'32px',
       },
       maxWidth: {
         prose: '60ch',
