@@ -1,12 +1,8 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 import Breadcrumb from '../../../components/global/Breadcrumb.astro';
-import SubcategoryGroup from '../../../components/products/SubcategoryGroup.astro';
-import DisclaimerChip from '../../../components/editorial/DisclaimerChip.astro';
-import FilterButton from '../../../components/products/FilterButton.astro';
-import FilterDrawer from '../../../components/products/FilterDrawer.astro';
+import ProductsListing from '../../../components/products/ProductsListing.astro';
 
 export async function getStaticPaths() {
   return ['seeds', 'fertilizers', 'pesticides'].map((line) => ({ params: { line } }));
@@ -16,37 +12,7 @@ const { line } = Astro.params;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-type Entry =
-  | CollectionEntry<'fertilizers'>
-  | CollectionEntry<'seeds'>
-  | CollectionEntry<'pesticides'>;
-
-let items: Entry[] = [];
-if (line === 'seeds') items = await getCollection('seeds');
-else if (line === 'fertilizers') items = await getCollection('fertilizers');
-else if (line === 'pesticides') items = await getCollection('pesticides');
-
-const grouped: Record<string, Entry[]> = {};
-for (const item of items) {
-  const key = (item.data as any).subcategory ?? 'uncategorized';
-  if (!grouped[key]) grouped[key] = [];
-  grouped[key].push(item);
-}
-
-const orderFor: Record<string, string[]> = {
-  fertilizers: ['water-soluble-npk', 'phosphate-sources', 'nitrogen-sources', 'potassium-sulphate', 'magnesium'],
-  seeds: ['forage', 'vegetable'],
-  pesticides: ['insecticide', 'herbicide', 'fungicide'],
-};
-const orderedSubcats = (orderFor[line as string] ?? Object.keys(grouped))
-  .filter((k) => grouped[k]);
-for (const k of Object.keys(grouped)) {
-  if (!orderedSubcats.includes(k)) orderedSubcats.push(k);
-}
-
 const lineLabel = t(`products.lines.${line}.label`);
-const lineHeadline = t(`products.lines.${line}.headline`);
-const lineDeck = t(`products.lines.${line}.deck`);
 ---
 <Layout title={lineLabel}>
   <Breadcrumb items={[
@@ -55,56 +21,5 @@ const lineDeck = t(`products.lines.${line}.deck`);
     { label: lineLabel },
   ]} />
 
-  <header class="pb-sp-9">
-    <div class="container-spine">
-      <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">{t('nav.products')}</span>
-      <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">{lineHeadline}</h1>
-      <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">{lineDeck}</p>
-      <div class="flex gap-sp-9 flex-wrap font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
-        <span>{items.length} {t(`products.lines.${line}.stat_skus`)}</span>
-        <span>{orderedSubcats.length} {t(`products.lines.${line}.stat_subcats`)}</span>
-      </div>
-    </div>
-  </header>
-
-  <div class="pb-sp-5 flex lg:hidden">
-    <div class="container-spine">
-      <FilterButton />
-    </div>
-  </div>
-
-  <section class="pb-section-y">
-    <div class="container-spine">
-      {orderedSubcats.map((subcat) => (
-        <SubcategoryGroup
-          line={line as 'seeds' | 'fertilizers' | 'pesticides'}
-          subcategory={subcat}
-          entries={grouped[subcat]}
-          lang={lang}
-        />
-      ))}
-
-      {line === 'seeds' && (
-        <div class="mt-section-y border-t border-ink pt-sp-7">
-          <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
-            <h2 class="font-display italic text-3xl text-ink">§ بذور خضار · East West Seeds</h2>
-            <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">تايلاند</span>
-          </header>
-          <DisclaimerChip text={t('products.lines.seeds.vegetable_pending')} />
-        </div>
-      )}
-
-      {line === 'fertilizers' && (
-        <div class="mt-section-y border-t border-ink pt-sp-7">
-          <header class="flex items-baseline justify-between flex-wrap gap-sp-4 mb-sp-5">
-            <h2 class="font-display italic text-3xl text-ink">§ Agro Dragon · هولندا</h2>
-            <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">خطوط متخصصة</span>
-          </header>
-          <DisclaimerChip text={t('products.lines.fertilizers.agro_dragon_pending')} />
-        </div>
-      )}
-    </div>
-  </section>
-
-  <FilterDrawer />
+  <ProductsListing initialLine={line as 'fertilizers' | 'seeds' | 'pesticides'} />
 </Layout>
