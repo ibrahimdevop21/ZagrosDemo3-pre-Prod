@@ -34,7 +34,7 @@ function toLocaleNum(n: number, suffix = ''): string {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-sp-6 lg:gap-sp-7 items-baseline">
       <!-- Big -->
       <div data-reveal>
-        <div class="font-display italic font-light text-[clamp(120px,22vw,280px)] leading-[0.82] text-ink tracking-tighter" data-count-target="39">{toLocaleNum(39)}</div>
+        <div class="font-display italic font-light text-[clamp(64px,18vw,280px)] leading-[0.82] text-ink tracking-tighter" data-count-target="39">{toLocaleNum(39)}</div>
         <p class="font-display text-xl sm:text-2xl leading-[1.2] max-w-[20ch] mt-sp-5 text-ink">
           {t('home.v3numbers.big_copy')}
         </p>
@@ -42,17 +42,17 @@ function toLocaleNum(n: number, suffix = ''): string {
 
       <!-- Smalls (70ms stagger between siblings, capped per motion brief) -->
       <div data-reveal style="--reveal-delay: 70ms;">
-        <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="12">{toLocaleNum(12)}</div>
+        <div class="font-display italic font-light text-[clamp(52px,11vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="12">{toLocaleNum(12)}</div>
         <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.branches')}</p>
       </div>
 
       <div data-reveal style="--reveal-delay: 140ms;">
-        <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="9">{toLocaleNum(9)}</div>
+        <div class="font-display italic font-light text-[clamp(52px,11vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="9">{toLocaleNum(9)}</div>
         <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.suppliers')}</p>
       </div>
 
       <div data-reveal style="--reveal-delay: 210ms;">
-        <div class="font-display italic font-light text-[clamp(72px,12vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="30" data-count-suffix="+">{toLocaleNum(30, '+')}</div>
+        <div class="font-display italic font-light text-[clamp(52px,11vw,140px)] leading-[0.82] text-sienna tracking-tighter" data-count-target="30" data-count-suffix="+">{toLocaleNum(30, '+')}</div>
         <p class="font-mono text-[10.5px] tracking-[0.18em] uppercase text-mute mt-sp-3 max-w-[28ch]">{t('home.v3numbers.skus')}</p>
       </div>
     </div>

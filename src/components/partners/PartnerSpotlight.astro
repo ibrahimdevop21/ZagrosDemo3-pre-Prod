@@ -31,7 +31,9 @@ const tagline = partner.data.tagline?.[lang as 'en' | 'ar'] ?? partner.data.tagl
 const categoryLabel = partner.data.category?.replace(/_/g, ' ').toUpperCase() ?? '';
 
 const href = isRTL ? `/ar/partners/${partner.slug}` : `/partners/${partner.slug}`;
-const minHeight = variant === 'detail' ? 'min-h-[480px]' : 'min-h-[420px] lg:min-h-[460px]';
+const minHeight = variant === 'detail'
+  ? 'min-h-[360px] sm:min-h-[420px] lg:min-h-[480px]'
+  : 'min-h-[280px] sm:min-h-[320px] lg:min-h-[460px]';
 ---
 <article class:list={['relative bg-ink text-paper p-sp-6 sm:p-sp-7 flex flex-col gap-sp-5', minHeight]}>
   <div class="flex items-baseline justify-between gap-sp-3 flex-wrap">

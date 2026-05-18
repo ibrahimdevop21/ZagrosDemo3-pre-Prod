@@ -98,8 +98,10 @@ const flagEmoji = (alpha2: string) =>
   <div
     class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.6fr)_minmax(260px,1fr)] gap-sp-5 lg:gap-sp-6 items-start mb-sp-9"
   >
-    <!-- Map block -->
-    <div class="bg-paper-light border border-stone p-sp-4 sm:p-sp-5 flex flex-col">
+    <!-- Map block — hidden below sm: where 2:1 SVG renders < 150px tall
+         and pins become unreadable (audit PG-13). The branches aside
+         below carries the branches data on mobile. -->
+    <div class="hidden sm:flex bg-paper-light border border-stone p-sp-4 sm:p-sp-5 flex-col">
       <svg
         viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
         class="w-full h-auto block"
@@ -255,11 +257,11 @@ const flagEmoji = (alpha2: string) =>
       </h3>
       <ul class="list-none m-0 p-0 flex flex-col">
         {branches.map((b, i) => (
-          <li class="grid grid-cols-[28px_1fr_auto] gap-sp-3 items-baseline py-sp-3 border-b border-paper/15 last:border-b-0">
+          <li class="grid grid-cols-[28px_minmax(0,1fr)_auto] gap-sp-3 items-baseline py-sp-3 border-b border-paper/15 last:border-b-0">
             <span class="font-display italic text-[18px] text-paper/55 leading-none">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <span class="font-display italic text-[clamp(16px,2vw,18px)] text-paper leading-tight">
+            <span class="font-display italic text-[clamp(16px,2vw,18px)] text-paper leading-tight truncate">
               {lang === 'ar' ? b.city_ar : b.city_en}
             </span>
             <span
