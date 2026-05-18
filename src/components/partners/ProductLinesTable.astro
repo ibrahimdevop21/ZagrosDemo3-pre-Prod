@@ -13,17 +13,19 @@ const hasLines = partner.data.product_lines.length > 0;
       <h2 class="col-span-12 lg:col-span-5 font-display text-5xl text-ink leading-tight">{t('partner_page.lines_headline')}</h2>
       <div class="col-span-12 lg:col-span-6 lg:col-start-7">
       {hasLines ? (
-        <table class="w-full">
-          <tbody>
-            {partner.data.product_lines.map((line) => (
-              <tr class="border-b border-stone align-baseline">
-                <td class="py-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute w-[12ch]">{line.name}</td>
-                <td class="py-sp-5 font-display italic text-xl text-ink">{line.grade}</td>
-                <td class="py-sp-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mute text-end">{line.crops.join(' · ')}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[480px]">
+            <tbody>
+              {partner.data.product_lines.map((line) => (
+                <tr class="border-b border-stone align-baseline">
+                  <td class="py-sp-5 font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute w-[12ch]">{line.name}</td>
+                  <td class="py-sp-5 font-display italic text-xl text-ink">{line.grade}</td>
+                  <td class="py-sp-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mute text-end">{line.crops.join(' · ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div class="border-t border-b border-stone py-sp-7">
           <p class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-3">
