@@ -25,10 +25,14 @@
       for (const v of values) {
         const pill = document.createElement('button');
         pill.type = 'button';
-        pill.className = 'inline-flex items-center gap-2 px-3 py-1 border border-ink text-ink bg-paper';
+        pill.className = 'inline-flex items-center gap-2 px-3 py-1 border border-ink text-ink bg-paper capitalize';
         pill.dataset.removeFacet = facet;
         pill.dataset.removeValue = v;
-        pill.innerHTML = `${facet} · ${v} <span aria-hidden="true">×</span>`;
+        // Pretty label: subcategory values are "line:subcat" — show only the subcat half, dashes → spaces.
+        const pretty = facet === 'subcategory' && v.includes(':')
+          ? v.split(':')[1].replace(/-/g, ' ')
+          : v.replace(/-/g, ' ');
+        pill.innerHTML = `${pretty} <span aria-hidden="true">×</span>`;
         container.appendChild(pill);
         count++;
       }
@@ -40,6 +44,8 @@
     const state = getState();
     const searchInput = document.querySelector<HTMLInputElement>('[data-products-search]');
     const search = searchInput?.value ?? '';
+
+    // 1. Filter individual cards.
     let visible = 0;
     const cards = document.querySelectorAll<HTMLElement>('[data-product-slug]');
     cards.forEach((cardEl) => {
@@ -48,11 +54,31 @@
       cardEl.toggleAttribute('hidden', !ok);
       if (ok) visible++;
     });
+
+    // 2. Update subcategory group counts + hide empty groups.
+    const groups = document.querySelectorAll<HTMLElement>('[data-subcategory-group]');
+    groups.forEach((groupEl) => {
+      const total = Number(groupEl.dataset.subcategoryGroupTotal ?? 0);
+      const visibleInGroup = groupEl.querySelectorAll<HTMLElement>('[data-product-slug]:not([hidden])').length;
+      groupEl.toggleAttribute('hidden', visibleInGroup === 0);
+      const countEl = groupEl.querySelector<HTMLElement>('[data-subcategory-group-count]');
+      if (countEl) {
+        if (visibleInGroup === total) {
+          countEl.textContent = `${total} SKU${total === 1 ? '' : 's'}`;
+        } else {
+          countEl.textContent = `${visibleInGroup} of ${total}`;
+        }
+      }
+    });
+
+    // 3. Update toolbar total.
     const countEl = document.querySelector('[data-products-count]');
-    if (countEl) {
-      // each SKU appears in cards + compact sections, so divide by 2
-      countEl.textContent = String(Math.ceil(visible / 2));
-    }
+    if (countEl) countEl.textContent = String(visible);
+
+    // 4. Toggle empty-state block.
+    const emptyEl = document.querySelector<HTMLElement>('[data-products-empty]');
+    if (emptyEl) emptyEl.toggleAttribute('hidden', visible !== 0);
+
     renderPills(state);
   }
 
