@@ -170,7 +170,9 @@
       "deck": "Three product lines, seven international supplier houses across nine source countries, full agronomy support across the catalog. Browse by line below.",
       "stat_skus": "SKUs",
       "stat_partners": "Suppliers",
-      "stat_subcats": "Subcategories"
+      "stat_subcats": "Subcategories",
+      "stat_total": "products total",
+      "stat_groups": "subcategories"
     },
     "lines": {
       "seeds": {
@@ -233,6 +235,10 @@
     "pills": {
       "active_label": "Active filters",
       "clear_all": "Clear all"
+    },
+    "empty": {
+      "kicker": "No matches",
+      "headline": "Try fewer filters"
     },
     "facets": {
       "category": "Category",

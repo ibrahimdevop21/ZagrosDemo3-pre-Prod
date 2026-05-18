@@ -1,0 +1,164 @@
+---
+/**
+ * Unified products listing — shared body for /products and /products/[line]
+ * (both EN and AR mirrors).
+ *
+ * Loads all 3 product collections at build time, renders them as
+ * one big set of SubcategoryGroup sections grouped by (line, subcategory)
+ * with the orderFor mapping. A left-rail FilterSidebar (desktop) +
+ * FilterDrawer (mobile) drive client-side filtering against the
+ * data-facet-* attributes on each card. FilterController is the
+ * single script island that wires it all together.
+ *
+ * Props:
+ *   initialLine — optional line to preset as filter on first paint.
+ *                 When set, the page emits an inline script that
+ *                 calls history.replaceState() before FilterController
+ *                 runs, so the URL gains ?line=<initialLine> and the
+ *                 controller's first apply() pass hides non-matching
+ *                 cards. Use case: /products/fertilizers preset to
+ *                 fertilizers-only view.
+ */
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import SubcategoryGroup from './SubcategoryGroup.astro';
+import FilterSidebar from './FilterSidebar.astro';
+import FilterDrawer from './FilterDrawer.astro';
+import FilterButton from './FilterButton.astro';
+import FilterPills from './FilterPills.astro';
+import ProductsToolbar from './ProductsToolbar.astro';
+import FilterController from './FilterController.astro';
+
+interface Props {
+  initialLine?: 'fertilizers' | 'seeds' | 'pesticides';
+}
+const { initialLine } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const [fertilizers, seeds, pesticides] = await Promise.all([
+  getCollection('fertilizers'),
+  getCollection('seeds'),
+  getCollection('pesticides'),
+]);
+
+const orderFor: Record<string, string[]> = {
+  fertilizers: ['water-soluble-npk', 'phosphate-sources', 'nitrogen-sources', 'potassium-sulphate', 'magnesium'],
+  seeds: ['forage', 'vegetable'],
+  pesticides: ['insecticide', 'herbicide', 'fungicide'],
+};
+
+type Line = 'fertilizers' | 'seeds' | 'pesticides';
+type AnyEntry =
+  | CollectionEntry<'fertilizers'>
+  | CollectionEntry<'seeds'>
+  | CollectionEntry<'pesticides'>;
+
+interface Group { line: Line; subcategory: string; entries: AnyEntry[]; }
+const groups: Group[] = [];
+
+const sources: Record<Line, AnyEntry[]> = {
+  fertilizers: fertilizers as AnyEntry[],
+  seeds: seeds as AnyEntry[],
+  pesticides: pesticides as AnyEntry[],
+};
+
+for (const line of ['fertilizers', 'seeds', 'pesticides'] as const) {
+  const declared = orderFor[line];
+  const buckets: Record<string, AnyEntry[]> = {};
+  for (const item of sources[line]) {
+    const key = (item.data as any).subcategory ?? 'uncategorized';
+    if (!buckets[key]) buckets[key] = [];
+    buckets[key].push(item);
+  }
+  const ordered = declared.filter((s) => buckets[s]);
+  for (const s of Object.keys(buckets)) if (!ordered.includes(s)) ordered.push(s);
+  for (const s of ordered) groups.push({ line, subcategory: s, entries: buckets[s] });
+}
+
+const totalProducts = groups.reduce((acc, g) => acc + g.entries.length, 0);
+
+// Preset URL state for /products/[line] entries.
+const initialQuery = initialLine ? `?line=${initialLine}` : '';
+---
+
+<header class="pb-sp-9">
+  <div class="container-spine">
+    <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">{t('nav.products')}</span>
+    <h1 class="font-display italic font-light text-[clamp(36px,7vw,96px)] leading-[0.95] text-ink mt-sp-5 max-w-[20ch] mb-sp-7">
+      {t('products.page.headline')}
+    </h1>
+    <p class="font-sans text-lg text-ink/80 max-w-[60ch] mb-sp-7 leading-relaxed">
+      {t('products.page.deck')}
+    </p>
+    <div class="flex gap-sp-7 flex-wrap font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute">
+      <span><span data-products-count>{totalProducts}</span> {t('products.page.stat_total')}</span>
+      <span>{groups.length} {t('products.page.stat_groups')}</span>
+    </div>
+  </div>
+</header>
+
+<ProductsToolbar />
+<FilterPills />
+
+<div class="pb-sp-5 flex lg:hidden">
+  <div class="container-spine">
+    <FilterButton />
+  </div>
+</div>
+
+<section class="pb-section-y">
+  <div class="container-spine">
+    <div class="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-sp-9">
+      <div class="hidden lg:block">
+        <FilterSidebar variant="sidebar" />
+      </div>
+      <div>
+        {groups.map((g) => (
+          <SubcategoryGroup
+            line={g.line}
+            subcategory={g.subcategory}
+            entries={g.entries}
+            lang={lang}
+          />
+        ))}
+
+        <div data-products-empty hidden class="py-section-y text-center">
+          <span class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-mute mb-sp-3 inline-block">
+            {t('products.empty.kicker')}
+          </span>
+          <h2 class="font-display italic text-3xl text-ink mb-sp-5">
+            {t('products.empty.headline')}
+          </h2>
+          <button
+            type="button"
+            data-products-reset
+            class="motion-press font-mono text-[10.5px] tracking-[0.22em] uppercase text-ink no-underline border-b border-ink pb-0.5 inline-flex items-center min-h-[44px] hover:opacity-70"
+          >
+            {t('products.filters.reset')}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<FilterDrawer />
+
+{initialLine && (
+  <script is:inline define:vars={{ initialQuery }}>
+    /* Preset the URL filter state BEFORE FilterController's first
+       apply() pass runs. If the user lands at /products/fertilizers
+       fresh (no existing query string), this rewrites the URL to
+       /products/fertilizers?line=fertilizers so the controller's
+       parseStateFromQuery sees the preset. If the URL already has
+       a query string, leave it alone — the user navigated here
+       with explicit filter intent. */
+    if (!location.search) {
+      history.replaceState(null, '', location.pathname + initialQuery);
+    }
+  </script>
+)}
+
+<FilterController />
