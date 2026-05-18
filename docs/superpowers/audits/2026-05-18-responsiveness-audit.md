@@ -7,13 +7,29 @@
 
 ## TL;DR
 
-**Three structural root causes** explain most of what the user is seeing:
+**Two structural root causes** explain what the user is seeing (a third was disproved during verification — see "Correction" below):
 
-1. **F-1 + F-2 — horizontal scroll on `/products` mobile.** `ProductsToolbar` has `min-w-[260px]` on its search row plus no `overflow-x: hidden` guard sitewide. At 360px the toolbar children can't shrink below their minimum content width, the row tries to be wider than the viewport, and the entire page horizontally scrolls. This is the literal cause of "broken on mobile."
-2. **PG-1 + PG-2 — flat section padding tokens.** `--section-y` (144px) and `--head-to-content` (96px) have no responsive override. Every section eats 288px of vertical chrome at mobile — 36% of an 800px-tall phone, per section. The site reads as tall, cramped, and lifeless on phones. This affects **every page**, not just `/products`.
-3. **RTL-1 → RTL-5 — RTL grid auto-placement collisions.** Wherever `<div lg:col-start-N>` shares a grid row with a sibling that has no `col-start`, RTL renders the two on top of each other (auto-placement runs from the physical right; `col-start-N` is physical-left-anchored). Affects `CompatibilityMatrix`, `ProductLinesTable`, `SeedDetail`, `PesticideDetail`, the fertilizer-detail header, `field-reports/[slug]`, and `ReportHero`. Arabic users see overlapping content on every product and field-report detail page.
+1. **F-1 + F-2 — horizontal scroll on `/products` mobile.** `ProductsToolbar` has `min-w-[260px]` on its search row plus no `overflow-x: hidden` guard sitewide. At 360px the toolbar children can't shrink below their minimum content width, the row tries to be wider than the viewport, and the entire page horizontally scrolls. This is the literal cause of "broken on mobile." **Closed in commit `7e4671d`.**
+2. **PG-1 + PG-2 — flat section padding tokens.** `--section-y` (144px) and `--head-to-content` (96px) had no responsive override. Every section ate 288px of vertical chrome at mobile — 36% of an 800px-tall phone, per section. **Closed in commit `7e4671d`** (mobile values 64px / 32px under `@media (max-width: 639px)`).
 
-Beyond these three, **57 findings total · 7 P0 · 31 P1 · 19 P2** across 4 lanes.
+Beyond these, **57 findings total · 7 P0 · 28 P1 · 22 P2** across 4 lanes.
+
+## Correction (2026-05-18) — RTL grid findings disproved
+
+**RTL-1, RTL-2, RTL-3, RTL-4, RTL-5, and RTL-12 are false positives.**
+
+The RTL-lane audit agent claimed that wherever a grid container had a mix of auto-placed and `lg:col-start-N` children, the items would overlap in RTL because "auto-placement runs from the physical right." This reasoning is incorrect. Per the CSS Grid Level 1 spec:
+
+- Grid line numbers count from the **inline-start** edge of the explicit grid (line 1 = right edge in RTL, line 13 = left edge).
+- An explicit `col-start: 7` references **line 7 counted from the inline-start**. In RTL, line 7 is the physical-middle line; cols 7-12 (line numbers) occupy the physical **LEFT** half (the inline-end side).
+- An auto-placed item finds the next available line number starting from 1. In RTL, line 1 is at the physical right, so auto-placed first DOM children land on the physical **RIGHT** half (the inline-start side).
+- DOM order naturally maps to reading order in RTL: first DOM child → physical right (inline-start = where Arabic readers start), second DOM child → physical left (inline-end).
+
+Verified empirically with a small standalone test page (`/tmp/rtl-grid-test.html`, since deleted) showing DOM child 1 on the right and DOM child 2 on the left in `dir="rtl"` mode, identical reading order in both directions. The `CompatibilityMatrix`, `ProductLinesTable`, `SeedDetail`, `PesticideDetail`, fertilizer-detail header, `field-reports/[slug]`, `ReportHero`, and `privacy`/`terms` layouts all mirror correctly in RTL without code changes.
+
+**Net effect on this audit:** 6 findings struck (RTL-1, RTL-2, RTL-3, RTL-4, RTL-5, RTL-12). The remaining real RTL items are: RTL-6 (cosmetic `left-0 right-0` → `inset-x-0`), RTL-7 (hardcoded `→` arrows — real), RTL-9 (signal-bar `origin-left` needs RTL override), RTL-10/RTL-11 (hardcoded English labels — real).
+
+**Revised totals: 51 valid findings · 5 P0 · 23 P1 · 23 P2** (after striking 6 RTL false positives; 4 of the 5 P0s already closed by `7e4671d`).
 
 ## Summary table — all findings ranked
 
@@ -191,29 +207,25 @@ Beyond these three, **57 findings total · 7 P0 · 31 P1 · 19 P2** across 4 lan
 
 ---
 
-## Recommended fix order
+## Recommended fix order (revised after RTL correction)
 
-**Phase 1 — Stop the bleeding (the user's actual report):** F-1, F-2. ~3 line edits in `ProductsToolbar.astro` and `global.css`. Mobile horizontal scroll on `/products` stops. **Ship first, verify in browser before anything else.**
+**~~Phase 1~~ + ~~Phase 2~~ — DONE.** Mobile scroll bug + responsive padding tokens shipped in commit `7e4671d`.
 
-**Phase 2 — Sitewide mobile-rhythm fix:** PG-1, PG-2. Two lines in `tokens.css` adding `@media (max-width: 639px)` overrides for `--section-y` and `--head-to-content`. Every page on mobile suddenly feels right.
+**~~Phase 3 — RTL grid-collision class fix.~~ STRUCK.** Findings RTL-1 → RTL-5 + RTL-12 disproved (see Correction section above). Nothing to fix.
 
-**Phase 3 — RTL grid-collision class fix:** RTL-1, RTL-2, RTL-3, RTL-4, RTL-5. Same pattern across 5+ components. Best handled as one coherent batch.
+**Phase 3 (new) — Dead code + broken toolbar features:** F-3 (hide view-toggle until built), F-4 (fix `[data-products-count]` selector — `querySelectorAll` + remove hardcoded "14"), F-5 (hide or implement sort dropdown), F-14 (delete `BagMockup.astro` dead file). Quick wins, no architecture, fixes broken behavior.
 
-**Phase 4 — Dead code + broken features:** F-3 (hide view-toggle), F-4 (fix count selector), F-5 (hide or implement sort), F-14 (delete BagMockup). Quick wins, no architecture.
+**Phase 4 — Tables on mobile:** PG-5 (`ProductLinesTable` overflow wrapper), PG-6 (`ApplicationRatesTable` min-width). 2-file batch.
 
-**Phase 5 — Table accessibility on mobile:** PG-5 (overflow wrapper), PG-6 (min-width on table).
+**Phase 5 — Chrome polish (P0/P1 items):** CH-2 (drawer CSS conflict — P0), CH-1 (mobile phone tap-to-call), CH-6 (newsletter `min-w-0`), CH-9 (drawer Arabic text size), CH-3 (footer colophon wrap), CH-5 (utility bar Arabic truncate).
 
-**Phase 6 — Chrome polish:** CH-2 (drawer CSS conflict), CH-1 (mobile phone tap-to-call), CH-6 (newsletter min-w-0), CH-9 (drawer text size), CH-3 (footer colophon wrap), CH-5 (utility bar truncate).
+**Phase 6 — Hero/section fine-tuning:** PG-3 (numbers clamp at narrow), PG-13 (WorldReach SVG mobile fallback), PG-14 (branches truncate), PG-18 (PartnerSpotlight min-h), PG-7 (field-report sidebar mobile order).
 
-**Phase 7 — Hero/section padding fine-tuning:** PG-3 (numbers clamp), PG-13 (WorldReach SVG mobile), PG-14 (branches truncate), PG-18 (PartnerSpotlight min-h), PG-7 (field-report sidebar mobile order).
+**Phase 7 — Filter UX polish:** F-6 (drawer padding), F-7 (group h2 size), F-8 (3-col→2-col at lg), F-9 (SeedCard inner grid), F-10/F-11 (toolbar plumbing).
 
-**Phase 8 — Filter polish:** F-6 (drawer padding), F-7 (group h2 size), F-8 (3-col→2-col at lg), F-9 (SeedCard inner grid), F-10/F-11 (toolbar plumbing).
+**Phase 8 — RTL real items + miscellaneous:** RTL-6 (`inset-x-0` cosmetic), RTL-7 (hardcoded `→` arrows in 7+ components), RTL-9 (signal-bar `origin-left` RTL override), RTL-10/RTL-11 (hardcoded English labels), CH-4.
 
-**Phase 9 — RTL strings + small fixes:** RTL-6, RTL-7, RTL-9, RTL-10, RTL-11, RTL-12, CH-4.
-
-**Phase 10 — P2 polish wave:** Everything else not yet closed.
-
-**Recommended quickest visible win:** Phase 1 + Phase 2 together (~5 line edits). Closes the user-reported bug AND immediately makes every page feel native on mobile.
+**Phase 9 — P2 polish wave:** Everything else not yet closed (CH-7, CH-8, CH-10, PG-4, PG-8, PG-10-12, PG-15-20, F-12, F-13, F-15).
 
 ---
 
