@@ -1,77 +1,138 @@
 ---
-// NOTE: This sidebar is currently unused. The /products tree no longer
-// renders a single filterable page (it now branches into /products,
-// /products/[line], /products/[line]/[slug]). The filter system needs
-// re-scoping to the line-page level (deferred — Subtask 1.4 / Plan 6
-// follow-up). The component is left in place but rewritten to read
-// from the `fertilizers` collection so it does not crash imports if
-// referenced from a future line page.
+/**
+ * Filter sidebar — lean scope.
+ *
+ * Renders two facet groups (Line, Subcategory) as checkbox lists,
+ * plus a "Reset" header link. Subcategory checkbox VALUES are
+ * line-prefixed (e.g., "fertilizers:water-soluble-npk") to match
+ * the data-facet-subcategory attributes emitted on each product card.
+ *
+ * Used by:
+ *   - /products listing pages (desktop left rail) — variant="sidebar"
+ *   - <FilterDrawer> (mobile dialog body) — variant="drawer"
+ *
+ * The 5 other facets (Nutrient grid, Application, Crop stage, Crop
+ * category, Special props) are intentionally NOT rendered. Their
+ * definitions stay below in comments so a future scope-up can
+ * re-enable them without redoing the data load.
+ */
 import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  variant?: 'sidebar' | 'drawer';
+}
+const { variant = 'sidebar' } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const products = await getCollection('fertilizers');
+const [fertilizers, seeds, pesticides] = await Promise.all([
+  getCollection('fertilizers'),
+  getCollection('seeds'),
+  getCollection('pesticides'),
+]);
 
-const categories = ['fertilizers', 'seeds', 'pesticides'] as const;
-const subcategories = Array.from(new Set(products.map(p => p.data.subcategory))).sort();
-const nutrients = ['N', 'P2O5', 'K2O', 'Ca', 'MgO', 'S'];
-const applications = ['foliar', 'fertigation', 'soil', 'pivot', 'hydroponic'];
-const cropStages = ['establishment', 'seedling', 'vegetative', 'flowering', 'heading', 'fruiting', 'post_harvest'];
-const cropCategories = ['field_crops', 'vegetables', 'fruit_trees', 'forages', 'oilseeds'];
-const specialProps = [
-  { key: 'organic_certified', label: t('products.facets.special.organic') },
-  { key: 'chloride_free',     label: t('products.facets.special.chloride_free') },
-  { key: 'sodium_free',       label: t('products.facets.special.sodium_free') },
-  { key: 'acidifying',        label: t('products.facets.special.acidifying') },
+// Display order matches /products/[line].astro's orderFor map.
+const orderFor: Record<string, string[]> = {
+  fertilizers: ['water-soluble-npk', 'phosphate-sources', 'nitrogen-sources', 'potassium-sulphate', 'magnesium'],
+  seeds: ['forage', 'vegetable'],
+  pesticides: ['insecticide', 'herbicide', 'fungicide'],
+};
+
+const sourceFor: Record<string, ReadonlyArray<{ data: { subcategory: string } }>> = {
+  fertilizers, seeds, pesticides,
+};
+
+interface SubcatItem { value: string; label: string; line: string; }
+const subcategoryItems: SubcatItem[] = [];
+for (const line of ['fertilizers', 'seeds', 'pesticides'] as const) {
+  const declared = orderFor[line];
+  const present = new Set(sourceFor[line].map((p) => p.data.subcategory));
+  const ordered = declared.filter((s) => present.has(s));
+  for (const s of Array.from(present)) if (!ordered.includes(s)) ordered.push(s);
+  for (const s of ordered) {
+    subcategoryItems.push({
+      value: `${line}:${s}`,
+      label: s.replace(/-/g, ' '),
+      line,
+    });
+  }
+}
+
+const lineItems = [
+  { value: 'fertilizers', label: t('products.lines.fertilizers.label') },
+  { value: 'seeds',       label: t('products.lines.seeds.label') },
+  { value: 'pesticides',  label: t('products.lines.pesticides.label') },
 ];
 
-const facetGroups = [
-  { id: 'category',      title: t('products.facets.category'),      items: categories.map(v => ({ value: v, label: v.replace('_', ' ') })) },
-  { id: 'subcategory',   title: t('products.facets.subcategory'),   items: subcategories.map(v => ({ value: v, label: v })) },
-  { id: 'application',   title: t('products.facets.application'),   items: applications.map(v => ({ value: v, label: v })) },
-  { id: 'crop_stage',    title: t('products.facets.crop_stage'),    items: cropStages.map(v => ({ value: v, label: v.replace('_', ' ') })) },
-  { id: 'crop_category', title: t('products.facets.crop_category'), items: cropCategories.map(v => ({ value: v, label: v.replace('_', ' ') })) },
-  { id: 'special',       title: t('products.facets.special_props'), items: specialProps.map(p => ({ value: p.key, label: p.label })) },
-];
+const isDrawer = variant === 'drawer';
+const wrapperClass = isDrawer
+  ? 'flex flex-col gap-sp-7'
+  : 'lg:sticky lg:top-[140px] lg:max-h-[calc(100vh-140px)] lg:overflow-y-auto pe-sp-6';
 ---
 
-<aside class="lg:sticky lg:top-[120px] lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto p-sp-6 border-e border-stone" aria-label={t('products.filters.label')}>
-  <header class="flex items-center justify-between mb-sp-7">
-    <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink m-0">{t('products.filters.label')}</h2>
-    <button type="button" data-products-reset class="inline-flex items-center min-h-[44px] font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
-      {t('products.filters.reset')}
-    </button>
-  </header>
+<aside class={wrapperClass} aria-label={t('products.filters.label')}>
+  {!isDrawer && (
+    <header class="flex items-center justify-between mb-sp-7">
+      <h2 class="font-mono text-[10.5px] tracking-[0.24em] uppercase text-ink m-0">{t('products.filters.label')}</h2>
+      <button type="button" data-products-reset class="motion-press inline-flex items-center min-h-[44px] font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
+        {t('products.filters.reset')}
+      </button>
+    </header>
+  )}
 
-  <fieldset class="mb-sp-7 border-0 p-0 m-0">
-    <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">{t('products.facets.nutrient')}</legend>
-    <div class="grid grid-cols-3 gap-2">
-      {nutrients.map((n) => (
-        <label class="cursor-pointer">
-          <input type="checkbox" data-facet="nutrient" value={n} class="peer sr-only" />
-          <span class="flex aspect-square flex-col items-center justify-center border border-stone bg-paper peer-checked:border-ink peer-checked:bg-signal peer-checked:text-ink transition-colors">
-            <span class="font-display italic text-2xl text-ink leading-none">{n}</span>
-          </span>
-        </label>
+  <fieldset class="border-0 p-0 m-0">
+    <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">
+      {t('products.facets.category')}
+    </legend>
+    <ul class="list-none p-0 m-0 space-y-1">
+      {lineItems.map((item) => (
+        <li>
+          <label class="motion-press inline-flex items-center gap-2.5 py-2 min-h-[44px] font-sans text-base text-ink cursor-pointer hover:text-sienna">
+            <input type="checkbox" data-facet="line" value={item.value} class="accent-signal" />
+            <span>{item.label}</span>
+          </label>
+        </li>
       ))}
-    </div>
+    </ul>
   </fieldset>
 
-  {facetGroups.map((group) => (
-    <fieldset class="mb-sp-6 border-0 p-0 m-0">
-      <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-3">{group.title}</legend>
-      <ul class="list-none p-0 m-0 space-y-2">
-        {group.items.map((item) => (
-          <li>
-            <label class="inline-flex items-center gap-2.5 py-2 min-h-[44px] font-sans text-base text-ink cursor-pointer">
-              <input type="checkbox" data-facet={group.id} value={item.value} class="accent-signal" />
-              <span class="capitalize">{item.label}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
-    </fieldset>
-  ))}
+  <fieldset class="border-0 p-0 m-0 mt-sp-7">
+    <legend class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-4">
+      {t('products.facets.subcategory')}
+    </legend>
+    <ul class="list-none p-0 m-0 space-y-1">
+      {subcategoryItems.map((item) => (
+        <li>
+          <label class="motion-press inline-flex items-center gap-2.5 py-2 min-h-[44px] font-sans text-base text-ink cursor-pointer hover:text-sienna">
+            <input type="checkbox" data-facet="subcategory" value={item.value} class="accent-signal" />
+            <span class="capitalize">{item.label}</span>
+            <span class="ms-auto font-mono text-[9.5px] tracking-[0.18em] uppercase text-mute capitalize">{item.line}</span>
+          </label>
+        </li>
+      ))}
+    </ul>
+  </fieldset>
+
+  {isDrawer && (
+    <div class="mt-sp-5">
+      <button type="button" data-products-reset class="motion-press inline-flex items-center min-h-[44px] font-mono text-[10px] tracking-[0.22em] uppercase text-mute hover:text-ink border-b border-mute hover:border-ink pb-0.5">
+        {t('products.filters.reset')}
+      </button>
+    </div>
+  )}
 </aside>
+
+{/*
+  Deferred facet groups (lean scope — restore when needed):
+
+  Nutrient grid (N, P2O5, K2O, Ca, MgO, S) — fertilizer-only
+  Application (foliar, fertigation, soil, pivot, hydroponic) — fertilizer-only
+  Crop stage (establishment, seedling, vegetative, ...) — fertilizer-only
+  Crop category (field_crops, vegetables, fruit_trees, forages, oilseeds) — broad
+  Special props (organic_certified, chloride_free, sodium_free, acidifying) — fertilizer-only
+
+  All data attributes already emitted on FertilizerCard (line 32-51) so
+  re-enabling is purely a sidebar markup change.
+*/}
