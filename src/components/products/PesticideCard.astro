@@ -23,7 +23,7 @@ const accent =
   class="flex flex-col bg-paper border border-stone min-h-[360px]"
   data-product-slug={pesticide.slug}
   data-facet-line="pesticides"
-  data-facet-subcategory={pesticide.data.subcategory}
+  data-facet-subcategory={`pesticides:${pesticide.data.subcategory}`}
   data-facet-active_ingredient={pesticide.data.active_ingredient.toLowerCase()}
   data-facet-target_crops={pesticide.data.target_crops.join(' ')}
 >

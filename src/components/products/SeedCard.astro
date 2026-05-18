@@ -16,7 +16,7 @@ const href = `${lang === 'ar' ? '/ar' : ''}/products/seeds/${seed.slug}`;
   data-product-slug={seed.slug}
   data-brand={seed.data.brand}
   data-facet-line="seeds"
-  data-facet-subcategory={seed.data.subcategory}
+  data-facet-subcategory={`seeds:${seed.data.subcategory}`}
   data-facet-supplier={seed.data.supplier_slug}
 >
   <a href={href} class="flex flex-col flex-1 p-sp-6 no-underline text-inherit">

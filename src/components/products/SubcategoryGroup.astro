@@ -37,10 +37,14 @@ if (!caption && entries.length > 0) {
   }
 }
 ---
-<section class="mb-section-y" data-subcategory-group={subcategory}>
+<section
+  class="mb-section-y"
+  data-subcategory-group={`${line}:${subcategory}`}
+  data-subcategory-group-total={entries.length}
+>
   <header class="flex items-baseline justify-between mb-sp-7 border-b border-ink pb-sp-3 flex-wrap gap-sp-4">
     <h2 class="font-display italic text-3xl text-ink">
-      § {subcatLabel} · {entries.length} SKU{entries.length === 1 ? '' : 's'}
+      § {subcatLabel} · <span data-subcategory-group-count>{entries.length} SKU{entries.length === 1 ? '' : 's'}</span>
     </h2>
     {caption && (
       <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute">{caption}</span>

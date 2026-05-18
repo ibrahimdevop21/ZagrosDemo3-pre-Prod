@@ -31,7 +31,7 @@ const classification = (product.data.subcategory ?? '')
 
 const facetAttrs = {
   'data-facet-line': 'fertilizers',
-  'data-facet-subcategory': product.data.subcategory,
+  'data-facet-subcategory': `fertilizers:${product.data.subcategory}`,
   'data-facet-application': product.data.applications.join(' '),
   'data-facet-crop_stage': product.data.ideal_stages.join(' '),
   'data-facet-crop_category': tags.join(' '),
