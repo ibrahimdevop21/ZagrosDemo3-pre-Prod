@@ -32,6 +32,10 @@ const altLocaleHref = isRTL
   ? Astro.url.pathname.replace(/^\/ar/, '') || '/'
   : `/ar${Astro.url.pathname}`;
 
+const path = Astro.url.pathname.replace(/^\/ar/, '') || '/';
+const isActive = (route: string) =>
+  route === '/' ? path === '/' : path === route || path.startsWith(`${route}/`);
+
 const navLinks = [
   { route: '/',              label: t('nav.home') },
   { route: '/products',      label: t('nav.products') },
@@ -91,16 +95,24 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
     </a>
 
     <ul class="list-none m-0 p-0 flex flex-col gap-sp-4 flex-1">
-      {navLinks.map(({ route, label }) => (
-        <li>
-          <a
-            href={isRTL ? `/ar${route}` : route}
-            class="motion-press block font-display text-2xl sm:text-3xl text-ink no-underline min-h-[44px] py-1 leading-tight hover:opacity-70"
-          >
-            {label}
-          </a>
-        </li>
-      ))}
+      {navLinks.map(({ route, label }) => {
+        const active = isActive(route);
+        return (
+          <li>
+            <a
+              href={isRTL ? `/ar${route}` : route}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'motion-press flex items-baseline gap-3 font-display text-2xl sm:text-3xl no-underline min-h-[44px] py-1 leading-tight',
+                active ? 'text-sienna' : 'text-ink hover:opacity-70',
+              ]}
+            >
+              {active && <span aria-hidden="true" class="inline-block w-4 h-px bg-sienna translate-y-[-0.35em] shrink-0"></span>}
+              <span>{label}</span>
+            </a>
+          </li>
+        );
+      })}
     </ul>
 
     <a

@@ -27,9 +27,10 @@
     "newsletter_placeholder": "you@farm",
     "newsletter_submit": "Subscribe",
     "col_catalog": "Catalog",
-    "col_reports": "Reports",
-    "col_branches": "Branches",
     "col_company": "Company",
+    "col_contact": "Contact",
+    "contact_location": "Khartoum, Sudan",
+    "contact_whatsapp": "WhatsApp",
     "copyright": "© 2026 Zagros Trading",
     "colophon_label": "Colophon",
     "colophon_section": "10 / 10"

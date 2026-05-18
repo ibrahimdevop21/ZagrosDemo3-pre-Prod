@@ -8,7 +8,9 @@ const isRTL = lang === 'ar';
 
 const year = new Date().getFullYear();
 
-const branches = companyData.branches;
+const phone = companyData.contact.phone;
+const phoneTel = phone?.replace(/\s+/g, '');
+const whatsapp = companyData.contact.whatsapp?.replace(/[^\d]/g, '');
 ---
 
 <footer class="bg-ink text-paper border-t border-paper/10 pt-sp-9 pb-sp-8">
@@ -50,44 +52,48 @@ const branches = companyData.branches;
         </form>
       </div>
 
-      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+      <div class="col-span-6 sm:col-span-4 lg:col-span-3 footer-col">
         <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
           {t('footer.col_catalog')}
         </h5>
         <ul class="list-none p-0 m-0">
           <li><a href={isRTL ? '/ar/products' : '/products'} class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">{t('nav.products')}</a></li>
-        </ul>
-      </div>
-
-      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
-        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-          {t('footer.col_reports')}
-        </h5>
-        <ul class="list-none p-0 m-0">
           <li><a href={isRTL ? '/ar/field-reports' : '/field-reports'} class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">{t('nav.field_reports')}</a></li>
         </ul>
       </div>
 
-      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
-        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
-          {t('footer.col_branches')}
-        </h5>
-        <ul class="list-none p-0 m-0">
-          {branches.length === 0 ? (
-            <li class="flex items-center min-h-[44px] text-paper/55 font-mono text-[12px]">— pending —</li>
-          ) : branches.map((b) => (
-            <li class="flex items-center min-h-[44px] text-paper/65 font-sans text-[14px]">{isRTL ? b.name.ar : b.name.en}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div class="col-span-6 sm:col-span-3 lg:col-span-2 footer-col">
+      <div class="col-span-6 sm:col-span-4 lg:col-span-3 footer-col">
         <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
           {t('footer.col_company')}
         </h5>
         <ul class="list-none p-0 m-0">
           <li><a href={isRTL ? '/ar/about' : '/about'} class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">{t('nav.about')}</a></li>
           <li><a href={isRTL ? '/ar/contact' : '/contact'} class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">{t('nav.contact')}</a></li>
+        </ul>
+      </div>
+
+      <div class="col-span-12 sm:col-span-4 lg:col-span-2 footer-col">
+        <h5 class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute mb-sp-5 font-medium m-0">
+          {t('footer.col_contact')}
+        </h5>
+        <ul class="list-none p-0 m-0 space-y-sp-3">
+          <li class="font-sans text-[14px] text-paper/65 leading-snug">
+            {t('footer.contact_location')}
+          </li>
+          {phone && (
+            <li>
+              <a href={`tel:${phoneTel}`} dir="ltr" class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">
+                {phone}
+              </a>
+            </li>
+          )}
+          {whatsapp && (
+            <li>
+              <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" class="motion-press inline-flex items-center min-h-[44px] text-paper/85 no-underline font-sans text-[15px] hover:text-paper">
+                {t('footer.contact_whatsapp')}
+              </a>
+            </li>
+          )}
         </ul>
       </div>
 
