@@ -35,6 +35,8 @@
     /* Layout constants */
     --stage-max-width: 1300px;
     --page-margin-x:   56px;
+    --section-y:       144px;
+    --head-to-content: 96px;
 
     /* Motion tokens — single source of truth for durations and easing.
        Personality: grounded, deliberate, regional B2B credible.
@@ -47,11 +49,19 @@
     --motion-ease-inout:    cubic-bezier(0.4, 0, 0.2, 1);   /* state toggles */
   }
 
-  /* Mobile gutter: 56px is right at the edge of the viewport on 360px phones
-     and crowds content against the screen. Reduce to 20px below sm:. */
+  /* Mobile overrides:
+     - --page-margin-x: 56px is too tight at viewport edge on 360px phones.
+     - --section-y: 144px at every section eats ~36% of an 800px-tall phone
+       per section band — chrome-heavy, lifeless mobile feel.
+     - --head-to-content: 96px between every h2 and its content puts
+       editorial-magazine air between heading and body that's too much on a
+       small screen.
+     Per the 2026-05-18 responsiveness audit findings PG-1 + PG-2. */
   @media (max-width: 639px) {
     :root {
-      --page-margin-x: 20px;
+      --page-margin-x:   20px;
+      --section-y:        64px;   /* sp-8 — was 144px */
+      --head-to-content:  32px;   /* sp-6 — was 96px  */
     }
   }
 }

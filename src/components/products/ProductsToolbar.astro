@@ -5,14 +5,14 @@ const t = useTranslations(lang);
 ---
 <div class="bg-paper border-y border-stone py-sp-4" data-products-toolbar>
   <div class="container-spine flex items-center justify-between gap-sp-5 flex-wrap">
-  <div class="flex items-center gap-sp-5 flex-1 min-w-[260px]">
-    <label class="inline-flex items-center gap-3 border-b border-ink/30 focus-within:border-ink py-1 flex-1 max-w-[480px]">
+  <div class="flex items-center gap-sp-5 flex-1 min-w-0">
+    <label class="inline-flex items-center gap-3 border-b border-ink/30 focus-within:border-ink py-1 flex-1 max-w-[480px] min-w-0">
       <span class="font-mono text-[10px] tracking-[0.22em] uppercase text-mute">{t('products.toolbar.search_label')}</span>
       <input
         type="search"
         data-products-search
         placeholder={t('products.toolbar.search_placeholder')}
-        class="bg-transparent border-none font-sans text-base text-ink outline-none flex-1 placeholder:text-mute"
+        class="bg-transparent border-none font-sans text-base text-ink outline-none flex-1 min-w-0 placeholder:text-mute"
       />
     </label>
     <span class="font-mono text-[10.5px] tracking-[0.22em] uppercase text-mute hidden md:inline-flex items-center gap-2">

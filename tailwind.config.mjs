@@ -46,9 +46,11 @@ export default {
         'sp-1': '4px',   'sp-2': '8px',   'sp-3': '12px',  'sp-4': '16px',
         'sp-5': '24px',  'sp-6': '32px',  'sp-7': '48px',  'sp-8': '64px',
         'sp-9': '96px',  'sp-10': '144px','sp-11': '200px',
-        // Semantic role tokens — spec §3.2
-        'section-y':       '144px',
-        'head-to-content': '96px',
+        // Semantic role tokens — spec §3.2.
+        // Both reference CSS vars so the mobile @media override in
+        // tokens.css can shrink them on narrow viewports.
+        'section-y':       'var(--section-y)',
+        'head-to-content': 'var(--head-to-content)',
       },
       maxWidth: {
         prose: '60ch',

@@ -30,6 +30,9 @@
     @apply bg-paper text-ink font-sans;
     font-feature-settings: 'kern' 1, 'liga' 1;
     line-height: 1.65;
+    /* Safety net against any descendant overflowing the viewport on mobile.
+       Per the 2026-05-18 responsiveness audit finding F-2. */
+    overflow-x: hidden;
   }
 
   /* Arabic locale gets the Arabic family by default */
