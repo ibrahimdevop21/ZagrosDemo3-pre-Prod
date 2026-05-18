@@ -38,11 +38,11 @@ const branches = companyData.branches;
             <input
               type="email"
               placeholder={t('footer.newsletter_placeholder')}
-              class="motion-press flex-1 bg-transparent text-paper border border-paper/20 px-sp-4 py-sp-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
+              class="motion-press flex-1 min-w-0 bg-transparent text-paper border border-paper/20 px-sp-4 py-sp-3 font-sans text-base min-h-[44px] outline-none focus:border-signal"
             />
             <button
               type="submit"
-              class="motion-press bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 min-h-[44px] border-none cursor-pointer hover:opacity-90"
+              class="motion-press shrink-0 bg-signal text-ink font-sans font-semibold text-[14px] px-sp-5 py-sp-3 min-h-[44px] border-none cursor-pointer hover:opacity-90"
             >
               {t('footer.newsletter_submit')}
             </button>
@@ -91,7 +91,7 @@ const branches = companyData.branches;
         </ul>
       </div>
 
-      <div class="col-span-12 mt-sp-7 pt-sp-5 border-t border-paper/10 flex justify-between font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
+      <div class="col-span-12 mt-sp-7 pt-sp-5 border-t border-paper/10 flex flex-wrap justify-between gap-y-sp-3 font-mono text-[10.5px] tracking-[0.22em] uppercase text-paper/50">
         <span>{t('footer.copyright').replace('2026', String(year))}</span>
         <span>{t('common.section')} · {t('footer.colophon_section')} · {t('footer.colophon_label')}</span>
       </div>

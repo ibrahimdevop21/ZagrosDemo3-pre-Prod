@@ -138,15 +138,21 @@
   }
 }
 
-/* Plan 7 — mobile nav and filter drawer dialog reset */
+/* Plan 7 — mobile nav and filter drawer dialog reset.
+   Scoped to <lg: viewports so the `lg:hidden` class on each
+   dialog wins on desktop (CH-2: previously the unscoped
+   display:flex override could re-show the drawer on desktop
+   if any JS opened it). */
 dialog[data-mobile-nav-drawer],
 dialog[data-filter-drawer] {
   max-height: 100dvh;
 }
-dialog[data-mobile-nav-drawer][open],
-dialog[data-filter-drawer][open] {
-  display: flex;
-  flex-direction: column;
+@media (max-width: 1023px) {
+  dialog[data-mobile-nav-drawer][open],
+  dialog[data-filter-drawer][open] {
+    display: flex;
+    flex-direction: column;
+  }
 }
 dialog::backdrop {
   backdrop-filter: blur(2px);

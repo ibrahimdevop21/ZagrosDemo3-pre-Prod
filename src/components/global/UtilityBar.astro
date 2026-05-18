@@ -11,11 +11,11 @@ const phoneTel = phone?.replace(/\s+/g, '');
 
 <div class="bg-ink text-paper/60 py-sp-4">
   <div class="container-spine flex justify-between items-center font-mono text-[11px] uppercase tracking-[0.22em]">
-    <span class="inline-flex items-center gap-2.5">
-      <span class="w-1.5 h-1.5 bg-signal rounded-full inline-block"></span>
-      <span>{t('utility.service_area')} · {t('utility.hours_label')}</span>
+    <span class="inline-flex items-center gap-2.5 min-w-0 flex-1">
+      <span class="w-1.5 h-1.5 bg-signal rounded-full inline-block shrink-0"></span>
+      <span class="truncate">{t('utility.service_area')} · {t('utility.hours_label')}</span>
     </span>
-    <span class="hidden md:flex gap-5 opacity-90 items-center">
+    <span class="hidden sm:flex gap-5 opacity-90 items-center shrink-0">
       {phone && <a href={`tel:${phoneTel}`} dir="ltr" class="motion-press inline-flex items-center min-h-[44px] text-paper/60 no-underline hover:text-paper">{phone}</a>}
       <span class="text-paper/40">·</span>
       <span>{t('utility.partners_label')}</span>
