@@ -94,16 +94,16 @@ const closeLabel = isRTL ? 'إغلاق القائمة' : 'Close menu';
       {t('nav.language')}
     </a>
 
-    <ul class="list-none m-0 p-0 flex flex-col gap-sp-4 flex-1">
+    <ul class="list-none m-0 p-0 flex flex-col flex-1 border-t border-stone/40">
       {navLinks.map(({ route, label }) => {
         const active = isActive(route);
         return (
-          <li>
+          <li class="border-b border-stone/40">
             <a
               href={isRTL ? `/ar${route}` : route}
               aria-current={active ? 'page' : undefined}
               class:list={[
-                'motion-press flex items-baseline gap-3 font-display text-2xl sm:text-3xl no-underline min-h-[44px] py-1 leading-tight',
+                'motion-press flex items-baseline gap-3 font-display text-2xl sm:text-3xl no-underline py-sp-4 leading-tight',
                 active ? 'text-sienna' : 'text-ink hover:opacity-70',
               ]}
             >
